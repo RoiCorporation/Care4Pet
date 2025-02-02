@@ -7,8 +7,8 @@ Care4Pet es una aplicación web destinada a la búsqueda y contratación de serv
 
 
 <h3>INTEGRANTES</h3>
-- Ikram Benali Makri
-- Pablo Mora Martínez
-- Ricards Liskovskis
-- Clarisse Cecconi
-- Roi López Barata
+Ikram Benali Makri
+Pablo Mora Martínez
+Ricards Liskovskis
+Clarisse Cecconi
+Roi López Barata
