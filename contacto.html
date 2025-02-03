@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>contacto.html</title>
+</head>
+
+<body>
+    <h3>Enlaces:
+        <a href="index.html">Indice</a> <a href="detalles.html">Detalles</a> <a href="miembros.html">Miembros</a>
+        <a href="bocetos.html">Bocetos</a> <a href="planificacion.html">Planificación</a> <a
+            href="contacto.html">Contacto</a>
+    </h3>
+
+    <h1>Contacto</h1>
+
+    <!-- <form action="mailto:rliskovs@ucm.es" method="post" enctype="text/plain"> -->
+
+    <form onsubmit="sendEmail(event)">
+        Nombre:<br>
+        <input type="text" name="nombre"><br>
+        <br>
+
+        E-mail:<br>
+        <input type="email" name="email"><br>
+        <br>
+
+        Motivo de consulta:<br>
+        <input id="eval" type="radio" name="motivo">
+        <label for="eval">Evaluación</label><br>
+        <input id="suger" type="radio" name="motivo">
+        <label for="suger">Sugerencias</label><br>
+        <input id="critic" type="radio" name="motivo">
+        <label for="critic">Críticas</label><br>
+        <br>
+
+        <input type="checkbox" id="verifica" name="verifica" />
+        <label for="verifica">Marque esta casilla para verificar que ha leído nuestros términos y condiciones del
+            servicio</label><br>
+        <br>
+
+        Consulta:<br>
+        <input type="text" name="consulta" size="200"><br>
+        <br>
+
+        <input type="submit" value="Subir">
+    </form>
+    <script>
+        function sendEmail(event) {
+            event.preventDefault();
+
+            const nombre = document.querySelector('input[name="nombre"]').value;
+            const email = document.querySelector('input[name="email"]').value;
+            const consulta = document.querySelector('input[name="consulta"]').value;
+
+            const motivoElemento = document.querySelector('input[name="motivo"]:checked');
+            const motivo = motivoElemento ? motivoElemento.nextElementSibling.innerText : "No especificado";
+
+            let textoCuerpo = ""
+            textoCuerpo += `Nombre: ${nombre}\n`;
+            textoCuerpo += `E-mail: ${email}\n`;
+            textoCuerpo += `Motivo: ${motivo}\n`;
+            textoCuerpo += `Consulta: ${consulta}`;
+
+            const mailtoLink = `mailto:rliskovs@ucm.es?subject=Consulta de ${encodeURIComponent(nombre)}&body=${encodeURIComponent(textoCuerpo)}`;
+
+            window.location.href = mailtoLink;
+        }
+    </script>
+</body>
+
+</html>
