@@ -45,6 +45,9 @@
         <input type="submit" value="Subir">
     </form>
     <script>
+        // Es posible cambiar recpiente a otro valor necesario
+        let recipiente = "rliskovs@ucm.es";
+
         function sendEmail(event) {
             // Evitamos que el formulario se envíe y recargue la página
             event.preventDefault();
@@ -67,7 +70,7 @@
 
             // Preparamos el enlace "mailto:" con el asunto y el cuerpo codificados
             // usamos "encodeURIComponent" para asegurarse de que los caracteres especiales sean convertidos en un formato seguro para URLs
-            const mailtoLink = `mailto:rliskovs@ucm.es?subject=Consulta de ${encodeURIComponent(nombre)}&body=${encodeURIComponent(textoCuerpo)}`;
+            const mailtoLink = `mailto:${recipiente}?subject=Consulta de ${encodeURIComponent(nombre)}&body=${encodeURIComponent(textoCuerpo)}`;
 
             // Redirigimos al usuario a la aplicación de correo predeterminada con el correo prellenado
             window.location.href = mailtoLink;
