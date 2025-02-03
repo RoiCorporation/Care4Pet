@@ -15,8 +15,6 @@
 
     <h1>Contacto</h1>
 
-    <!-- <form action="mailto:rliskovs@ucm.es" method="post" enctype="text/plain"> -->
-
     <form onsubmit="sendEmail(event)">
         Nombre:<br>
         <input type="text" name="nombre"><br>
@@ -48,23 +46,30 @@
     </form>
     <script>
         function sendEmail(event) {
+            // Evitamos que el formulario se envíe y recargue la página
             event.preventDefault();
 
+            // Obtenemos los valores ingresados por usario en los campos del formulario
             const nombre = document.querySelector('input[name="nombre"]').value;
             const email = document.querySelector('input[name="email"]').value;
             const consulta = document.querySelector('input[name="consulta"]').value;
 
+            // Buscamos el checkbox seleccionado dentro del grupo "motivo". Si no está seleccionado, establece valor predeterminado
             const motivoElemento = document.querySelector('input[name="motivo"]:checked');
             const motivo = motivoElemento ? motivoElemento.nextElementSibling.innerText : "No especificado";
 
+            // Preparamos el cuerpo del correo para enviar
             let textoCuerpo = ""
             textoCuerpo += `Nombre: ${nombre}\n`;
             textoCuerpo += `E-mail: ${email}\n`;
             textoCuerpo += `Motivo: ${motivo}\n`;
             textoCuerpo += `Consulta: ${consulta}`;
 
+            // Preparamos el enlace "mailto:" con el asunto y el cuerpo codificados
+            // usamos "encodeURIComponent" para asegurarse de que los caracteres especiales sean convertidos en un formato seguro para URLs
             const mailtoLink = `mailto:rliskovs@ucm.es?subject=Consulta de ${encodeURIComponent(nombre)}&body=${encodeURIComponent(textoCuerpo)}`;
 
+            // Redirigimos al usuario a la aplicación de correo predeterminada con el correo prellenado
             window.location.href = mailtoLink;
         }
     </script>
