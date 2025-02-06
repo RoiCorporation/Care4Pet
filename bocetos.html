@@ -18,20 +18,73 @@
         Wireframe.cc para las distintas páginas intermedias que van a ver los distintos usuarios. </p>
         
       
+        <!-- SECCIÓN DE INTRODUCCIÓN -->
 
         <h2>Introduccion</h2>
-            <!--A MODIFICAR-->
-            <p>****Una descripción textual de lo que se puede ver en cada una de
-        l    as pantallas y describir cómo sería la navegación entre pantallas</p>
 
+        <p>
+            Antes de proceder a detallar las pantallas propias de cada una de las funcionalidades, vamos a explicar las relativas 
+            al registro e inicio de sesión en la aplicación.
+        </p><br>
+
+
+        <!-- Explicación de la pantalla de registro -->
+        <h3 style="text-align: center;">Registro</h3>
+        
+        <!-- 
+            Se insertan la imágenes dentro de un elemento "figure", para poder así generar un borde que facilite la identificación 
+            de cada boceto.
+        -->
+        <figure style="border: 2px solid black; width: fit-content; margin: auto">
+            <img src="img/BocetoCrearCuenta.PNG" alt="Boceto de la página de crear cuenta" style="display: block; margin: auto;">
+        </figure>
+
+        <p>
+            En primer lugar, tenemos la pantalla de registro o creación de cuenta. Aparece con un campo para el nombre de usuario, 
+            otro para el email -necesario en todo proceso de registro web- y otro para la contraseña. El siguiente elemento es el 
+            botón de "Registrarse", que envía la información introducida al sistema. Por último, se muestra un texto informativo 
+            relativo a la conformidad del usuario con los Términos y condiciones y con la Política de privacidad.
+        </p>
+
+        <p>
+            Tras rellenar la información en los campos correspondientes y pulsar el botón de registro, el sistema comprueba los
+            valores introducidos. Si no haya ningún problema o conflicto, se creará una cuenta asociada al email y contraseña 
+            dados, y se dirigirá al usuario a la página incial. En caso contrario, recargará la página actual y mostrará un 
+            mensaje de error.
+        </p><br><br>
+
+
+        <!-- Explicación de la pantalla de inicio de sesión -->
+        <h3 style="text-align: center;">Inicio de sesión</h3>
+        <figure style="border: 2px solid black; width: fit-content; margin: auto">
+            <img src="img/BocetoIniciarSesion.PNG" alt="Boceto de la página de inicio de sesión" style="display: block; margin: auto;"/>
+        </figure>
+
+        <p>
+            En segundo lugar observamos aquí la pantalla de inicio de sesión. De manera similar a la pantalla de registro, se 
+            muestran los campos de email y contraseña. Como es comprensible, el campo de nombre ya no se incluye (no es 
+            relevante para el inicio de sesión) y el texto de conformidad con las políticas de la empresa tampoco aparece (lo 
+            cual es lógico ya que es en el momento del registro de la cuenta a partir del cual el usuario acepta estar conforme 
+            con dichas políticas).
+        </p>
+
+        <p>
+            Tras pulsar el botón de "Iniciar sesión", el sistema comprueba las credenciales del usuario. Si son correctas, dirige 
+            al usuario a la página principal; sino recargará esta página y mostrará un mensaje de error.
+        </p><br><br>
+
+
+
+
+        <!-- SECCIÓN DE FUNCIONALIDADES -->
 
         <h2>Funcionalidades</h2>
         <ol>
-            <h3> 1.Contratacion de un cuidador</h3>
+            <h3><li>Contratacion de un cuidador</li></h3>
             <p>Servicio de contratación de cada cuidador, para que se pueda establecer la duración del contrato de cuidado, las fechas, 
             tarifas, tipos de mascotas a cuidar, etc.</p>
 
-            <h3> 2.Valoraciones</h3>  <!--Me faltan los bocetos + usar listas mejor para estructurar bien el codigo -ikram--> 
+            <h3><li>Valoraciones</li></h3>  <!--Me faltan los bocetos + usar listas mejor para estructurar bien el codigo -ikram--> 
             <ul>
                 <h4>Sistema de valoraciones</h4>
                 <p>En nuestra plataforma, tanto los dueños de mascotas como los cuidadores pueden valorarse mutuamente después de cada servicio completado. 
@@ -60,11 +113,11 @@
                     sino que también fomenta un ambiente positivo y seguro para todos los miembros de la comunidad.</p>   
                 </dl>
             </ul>
-            <h3> 3.Buscador con filtros</h3>
+            <h3><li>Buscador con filtros</li></h3>
             <p>Filtrado de cuidadores en función de las mascotas que quieran cuidar, la valoración que tienen, 
             las fechas en las que estén disponibles…</p>
 
-            <h3> 4.Chat/correo</h3>
+            <h3><li>Chat/correo</li></h3>
                 <p>Servicio de mensajería entre el dueño de la mascota y el potencial cuidador, para poder contactar con ese cuidador, 
                 conocerl@ mejor, acordar pautas de cuidado para la mascota, etc.</p>
 
@@ -83,7 +136,7 @@
                         <p>Los controles de chat constan de un campo de entrada de texto para el mensaje y un botón para enviar el mensaje. 
                         También es posible cerrar el chat activo.</p>
             
-            <h3> 5.Eliminacion de usuarios</h3>
+            <h3><li>Eliminacion de usuarios</li></h3>
             <p>Eliminar o impedir el acceso a usuarios que hayan roto alguna de las reglas de la comunidad (solo posible por el administrador)</p>
         </ol>
 </body>
