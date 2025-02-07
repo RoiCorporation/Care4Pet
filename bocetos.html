@@ -1,34 +1,36 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<head>
-    <meta charset="UTF-8">
-    <title>bocetos.html</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title>bocetos.html</title>
+    </head>
 
-<body>
-    <h3>Enlaces:
-        <a href="index.html">Indice</a> <a href="detalles.html">Detalles</a> <a href="miembros.html">Miembros</a>
-        <a href="bocetos.html">Bocetos</a> <a href="planificacion.html">Planificación</a> <a
-            href="contacto.html">Contacto</a>
-    </h3>
+    <body>
+        <h3>Enlaces:
+            <a href="index.html">Indice</a> <a href="detalles.html">Detalles</a> <a href="miembros.html">Miembros</a>
+            <a href="bocetos.html">Bocetos</a> <a href="planificacion.html">Planificación</a> <a
+                href="contacto.html">Contacto</a>
+        </h3>
 
-    <h1>Bocetos</h1>
+        <h1>Bocetos</h1>
+            
         <p>En este documento se describe la apariencia de la web, aportando bocetos realizados con
-        Wireframe.cc para las distintas páginas intermedias que van a ver los distintos usuarios. </p>
+        Wireframe.cc para las páginas intermedias que van a ver los distintos usuarios. </p>
         
-      
+        
         <!-- SECCIÓN DE INTRODUCCIÓN -->
 
         <h2>Introduccion</h2>
 
         <p>
             Antes de proceder a detallar las pantallas propias de cada una de las funcionalidades, vamos a explicar las relativas 
-            al registro, inicio de sesión en la aplicación y página principal.
+            al registro, inicio de sesión en la aplicación, página principal y páginas de perfil. Estas no son páginas referentes 
+            a ninguna funcionalidad concreta, pero son igualmente necesarias para la correcta composición de la aplicación web.
         </p><br>
 
 
-        <!-- Explicación de la pantalla de registro -->
+        <!-- Pantalla de registro -->
         <h3 style="text-align: center;">Registro</h3>
         
         <!-- 
@@ -36,7 +38,8 @@
             de cada boceto.
         -->
         <figure style="border: 2px solid black; width: fit-content; margin: auto">
-            <img src="img/BocetoCrearCuenta.PNG" alt="Boceto de la página de crear cuenta" style="display: block; margin: auto;">
+            <img src="img/BocetoCrearCuenta.PNG" alt="Boceto de la página de crear cuenta" 
+            style="display: block; margin: auto;">
         </figure>
 
         <p>
@@ -54,34 +57,36 @@
         </p><br><br>
 
 
-        <!-- Explicación de la pantalla de inicio de sesión -->
+        <!-- Pantalla de inicio de sesión -->
         <h3 style="text-align: center;">Inicio de sesión</h3>
         <figure style="border: 2px solid black; width: fit-content; margin: auto">
-            <img src="img/BocetoIniciarSesion.PNG" alt="Boceto de la página de inicio de sesión" style="display: block; margin: auto;"/>
+            <img src="img/BocetoIniciarSesion.PNG" alt="Boceto de la página de inicio de sesión" 
+            style="display: block; margin: auto;">
         </figure>
 
         <p>
             En segundo lugar observamos aquí la pantalla de inicio de sesión. De manera similar a la pantalla de registro, se 
             muestran los campos de email y contraseña. Como es comprensible, el campo de nombre ya no se incluye (no es 
             relevante para el inicio de sesión) y el texto de conformidad con las políticas de la empresa tampoco aparece (lo 
-            cual es lógico ya que es en el momento del registro de la cuenta a partir del cual el usuario acepta estar conforme 
-            con dichas políticas).
+            cual es lógico, ya que la conformidad del usuario con dichas políticas ya ha sido ratificada en el momento del 
+            registro de la cuenta).         
         </p>
 
         <p>
             Tras pulsar el botón de "Iniciar sesión", el sistema comprueba las credenciales del usuario. Si son correctas, dirige 
-            al usuario a la página principal; sino recargará esta página y mostrará un mensaje de error.
+            al usuario a la página principal; sino, recargará esta página y mostrará un mensaje de error.
         </p><br><br>
 
 
-        <!-- Explicación de la pantalla principal (landing page) -->
+        <!-- Pantalla principal (landing page) -->
         <h3 style="text-align: center;">Pantalla inicial</h3>
         <figure style="border: 2px solid black; width: fit-content; margin: auto">
-            <img src="img/BocetoLandingPage.PNG" alt="Boceto de la página principal" style="display: block; margin: auto;"/>
+            <img src="img/BocetoLandingPage.PNG" alt="Boceto de la página principal" 
+            style="display: block; margin: auto;">
         </figure>
 
         <p>
-            Por último, esta pantalla es la primera que ve, tanto un usuario sin registrar que entra a Care4Pet, como otro que 
+            La pantalla principal es la primera que ve, tanto un usuario sin registrar que entra a Care4Pet, como otro que 
             haya iniciado sesión por alguno de los dos métodos descritos anteriormente.
         </p>
 
@@ -94,120 +99,205 @@
         </p><br><br>
 
 
+        <!-- Pantalla de perfil de dueño -->
+        <h3 style="text-align: center;">Perfil del dueño</h3>
+        <figure style="border: 2px solid black; width: fit-content; margin: auto">
+            <img src="img/BocetoPerfilDueno.png" alt="Boceto de la página de perfil del dueño" 
+            style="display: block; margin: auto;">
+        </figure>
+
+        <p>
+            Esta es la pantalla desde la que un usuario dueño de mascota/-s puede editar su perfil. Por cada mascota que 
+            tiene, se muestra un pequeño bloque que contiene su foto y descripción, así como dos botones. Desde uno de 
+            ellos se puede editar alguno de los detalles de esa mascota. Por el contrario, el otro botón sirve para 
+            eliminar esa mascota del perfil de ese usuario.
+        </p>
+
+        <p>
+            Además de los bloques relativos a cada mascota, en la página se distinguen dos botones adicionales. Con el 
+            de "Abrir chat", el usuario puede acceder a la página de chats. Por otro lado, si pulsa el botón de "Agregar 
+            una mascota +", podrá añadir otra mascota a la lista de la que hemos hablado aquí.
+        </p><br><br>
+
+
+        <!-- Pantalla de perfil del cuidador -->
+        <h3 style="text-align: center;">Perfil del cuidador</h3>
+        <figure style="border: 2px solid black; width: fit-content; margin: auto">
+            <img src="img/BocetoPerfilCuidador.png" alt="Boceto de la página de perfil del cuidador" 
+            style="display: block; margin: auto;">
+        </figure>        
+
+        <p>
+            El contenido de la página de perfil del cuidador se puede dividir en tres secciones, a saber: información 
+            personal, servicios adicionales y solicitudes de servicios.
+        </p>
+
+        <p>
+            Al comienzo de la pantalla aparece la sección de información personal. Ahí, el cuidador puede ver y editar 
+            su foto y descripción, así como los tipos de mascotas que está dispuesto a cuidar y la tarifa que aplica 
+            por sus servicios.
+        </p>
+
+        <p>
+            A continuación, se puede observar un listado con todos los servicios adicionales que ofrece dicho cuidador. 
+            Cada uno de estos servicios se puede editar o eliminar (pulsando los botones homónimos presentes en sus 
+            respectivos bloques). Además, si el usuario pulsa sobre el botón de "Agregar servicio +", se añadirá un 
+            servicio más a la lista en cuestión.
+        </p>
+
+        <p>
+            Por último, se muestra la sección de solicitudes. Aquí, el cuidador puede observar con un simple vistazo 
+            cuáles son las solicitudes que le han llegado. Cada una aparece insertada en una "tarjeta", compuesta por la 
+            foto de la mascota, su descripción, la propuesta de fechas en las que prestar sus servicios y dos botones. 
+            Si acciona el de "Confirmar", el cuidador elige aceptar esa solicitud, tras lo cual el sistema se actualiza y 
+            registra la reserva. Si, por el contrario, pulsa el botón de "Rechazar", el cuidador no acepta esa solicitud y 
+            es eliminada de su lista de solicitudes. A mayores, cabe mecionar que, en esta sección, hay también un botón 
+            que permite al usuario dirigirse a la página de chats.
+        </p><br><br>
+
+
+        <!-- Pantalla de mis reservas -->
+        <h3 style="text-align: center;">Mis reservas</h3>
+        <figure style="border: 2px solid black; width: fit-content; margin: auto">
+            <img src="img/BocetoMisReservas.PNG" alt="Boceto de la página de mis reservas" 
+            style="display: block; margin: auto;">
+        </figure>
+
+        <p>
+            En esta página, el dueño de una mascota puede ver qué reservas tiene activas actualmente. El modo de presentación 
+            es similar al de la página de contratación, por "tarjetas". Así, en cada una de ellas aparece la foto de la 
+            mascota para la cual se hace la reserva, la información propia de la reserva en sí (fechas, cuidador, tarifa,...) 
+            y un botón desde el cual se pueda cancelar la reserva.
+        </p><br><br>
 
 
 
         <!-- SECCIÓN DE FUNCIONALIDADES -->
 
         <h2>Funcionalidades</h2>
-        <ol>
-            <h3><li>Contratacion de un cuidador</li></h3>
-            <p>
-                El servicio de contratación de un cuidador se realiza a través de las siguientes pantallas:
-            </p><br>
+        <ul>
+            <li>
+                <h3>Contratacion de un cuidador</h3>
 
-            <!-- Pantalla de contratación -->
-            <h3 style="text-align: center;">Página de contratación</h3>
-            <figure style="border: 2px solid black; width: fit-content; margin: auto">
-                <img src="img/BocetoContratarCuidador.PNG" alt="Boceto de la página de contratación de cuidadores" 
-                style="display: block; margin: auto;"/>
-            </figure>
-
-            <p>
-                Esta es la pantalla desde la que el usuario dueño de un animal de compañía puede buscar y seleccionar 
-                a los distintos cuidadores. Así, aquí se muestra una lista de "tarjetas", cada una referente a un cuidador. 
-                En cada una de esas tarjetas aparece la imagen, la valoración, el nombre y un resumen de la descripción del 
-                mismo. Además, dentro de ellas hay también dos botones. El primero dirige al usuario a la página de 
-                información del cuidador. El segundo se utiliza para seleccionar al cuidador y, una vez pulsado, el sistema 
-                dirige al usuario al formulario de contratación (para que pueda proceder a formalizar la fecha y 
-                especificacionesdel contrato).
-            </p>
-
-            <p>
-                Como se puede comprender con facilidad, esta es una de las páginas más importantes de toda la aplicación, 
-                ya que es a partir de ella de donde se obtienen todos los contactos dueño-cuidador y desde donde comienza 
-                cualquier contrato de servicios y/o conversación.
-            </p><br><br>
+                <p>
+                    El servicio de contratación de un cuidador se realiza a través de las siguientes pantallas:
+                </p><br>
 
 
-            <!-- Pantalla de información del cuidador -->
-            <h3 style="text-align: center;">Página de información del cuidador</h3>
-            <figure style="border: 2px solid black; width: fit-content; margin: auto">
-                <img src="img/BocetoPaginaInfoCuidador.png" alt="Boceto de la página de información del cuidador" 
-                style="display: block; margin: auto;"/>
-            </figure>
+                <!-- Pantalla de contratación -->
+                <h3 style="text-align: center;">Página de contratación</h3>
+                <figure style="border: 2px solid black; width: fit-content; margin: auto">
+                    <img src="img/BocetoContratarCuidador.PNG" alt="Boceto de la página de contratación de cuidadores" 
+                    style="display: block; margin: auto;">
+                </figure>
 
-            <p>
-                Esta página se dedica a ofrecer a los usuarios de la aplicación toda la información que necesitan conocer 
-                de un cuidador para decidir si contratar sus servicios o no. Por lo tanto, aquí aparecen elementos como su 
-                nombre, foto, valoración, descripción, tarifa, animales que puede cuidar y reseñas publicadas por clientes 
-                previos.
+                <p>
+                    Esta es la pantalla desde la que el usuario dueño de un animal de compañía puede buscar y seleccionar 
+                    a los distintos cuidadores. Así, aquí se muestra una lista de "tarjetas", cada una referente a un cuidador. 
+                    En cada una de esas tarjetas aparece la imagen, la valoración, el nombre y un resumen de la descripción del 
+                    mismo. Además, dentro de ellas hay también dos botones. El primero dirige al usuario a la página de 
+                    información del cuidador. El segundo se utiliza para seleccionar al cuidador y, una vez pulsado, el sistema 
+                    dirige al usuario al formulario de contratación (para que pueda proceder a formalizar la fecha y 
+                    especificaciones del contrato).
+                </p>
 
-            </p>
-                En la sección inferior de la página se pueden observar dos botones. El primero, similar al homónimo de la 
-                página de contratación, dirige al usuario al formulario de contratación. El segundo, sin embargo, 
-                constituye la puerta de enlace a una de las funcionalidades más interesantes del sistema: los chats. Así, 
-                cuando el usuario pulsa dicho botón, es redirigido a la página de chats, en la que podrá escribir mensajes 
-                destinados a ese cuidador.
-            </p><br><br>
-
-
-            <!-- Pantalla de formulario de contratación -->
-            <h3 style="text-align: center;">Página de formulario de contratación</h3>
-            <figure style="border: 2px solid black; width: fit-content; margin: auto">
-                <img src="img/BocetoFormularioContratar.png" alt="Boceto de la página del formulario de contratación" 
-                style="display: block; margin: auto;"/>
-            </figure>
-
-            <p>
-                Como se puede razonar, esta página es central en el proceso de gestión de contratos. Es aquí donde el 
-                dueño de una mascota procede a contratar al cuidador, seleccionando o especificando en los campos 
-                respectivos los datos propios de dicho contrato, es decir: la mascota a cuidar, las fechas de inicio y 
-                fin de los servicios, los comentarios con las cuestiones a tener en cuenta, los servicios adicionales 
-                que se quieran contratar y los datos bancarios para proceder al pago. En la última parte de la página 
-                se muestra el botón de "Hacer reserva". Si se acciona, el sistema procede a registrar la reserva y 
-                a realizar el pago, tras lo cual el usuario podrá ver la reserva que ha realizado en la página de "Mis 
-                Reservas".
-            </p><br><br>
+                <p>
+                    Como se puede comprender con facilidad, esta es una de las páginas más importantes de toda la aplicación, 
+                    ya que es a partir de ella de donde se obtienen todos los contactos dueño-cuidador y desde donde comienza 
+                    cualquier contrato de servicios.
+                </p><br><br>
 
 
+                <!-- Pantalla de información del cuidador -->
+                <h3 style="text-align: center;">Página de información del cuidador</h3>
+                <figure style="border: 2px solid black; width: fit-content; margin: auto">
+                    <img src="img/BocetoPaginaInfoCuidador.png" alt="Boceto de la página de información del cuidador" 
+                    style="display: block; margin: auto;">
+                </figure>
+
+                <p>
+                    Esta página se dedica a ofrecer a los usuarios de la aplicación toda la información que necesitan conocer 
+                    de un cuidador para decidir si contratar sus servicios o no. Por lo tanto, aquí aparecen elementos como su 
+                    nombre, foto, valoración, descripción, tarifa, animales que puede cuidar y reseñas publicadas por clientes 
+                    previos.
+
+                </p>
+
+                <p>
+                    En la sección inferior de la página se pueden observar dos botones. El primero, similar al homónimo de la 
+                    página de contratación, dirige al usuario al formulario de contratación. El segundo, sin embargo, 
+                    constituye la puerta de enlace a una de las funcionalidades más interesantes del sistema: los chats. Así, 
+                    cuando el usuario pulsa dicho botón, es redirigido a la página de chats, en la que podrá escribir mensajes 
+                    destinados a ese cuidador.
+                </p><br><br>
 
 
+                <!-- Pantalla de formulario de contratación -->
+                <h3 style="text-align: center;">Página de formulario de contratación</h3>
+                <figure style="border: 2px solid black; width: fit-content; margin: auto">
+                    <img src="img/BocetoFormularioContratar.png" alt="Boceto de la página del formulario de contratación" 
+                    style="display: block; margin: auto;">
+                </figure>
 
-            <h3><li>Valoraciones</li></h3>  <!--Me faltan los bocetos + usar listas mejor para estructurar bien el codigo -ikram--> 
-            <ul>
-                <h4>Sistema de valoraciones</h4>
-                <p>En nuestra plataforma, tanto los dueños de mascotas como los cuidadores pueden valorarse mutuamente después de cada servicio completado. 
-                Este sistema de valoraciones garantiza transparencia, confianza y una comunidad segura para todos los usuarios.</p>
+                <p>
+                    Como resulta evidente, esta página es vital en el proceso de gestión de contratos. Es aquí donde el 
+                    dueño de una mascota procede a contratar al cuidador, seleccionando o especificando en los campos 
+                    respectivos los datos propios de dicho contrato, es decir: la mascota a cuidar, las fechas de inicio y 
+                    fin de los servicios, los comentarios con las cuestiones a tener en cuenta, los servicios adicionales 
+                    que se quieran contratar y los datos bancarios para proceder al pago. En la última parte de la página 
+                    se muestra el botón de "Hacer reserva". Si se acciona, el sistema procede a registrar la reserva y 
+                    a realizar el pago, tras lo cual el usuario podrá ver la reserva que ha realizado en la página de "Mis 
+                    reservas".
+                </p><br><br>
 
-                <h4>¿Cómo funciona?</h4> 
-                <dl>
-                    <dt><em>Valoración mutua:</em></dt>
-                        <dd>Una vez finalizado el servicio, tanto el cuidador como el dueño pueden calificarse entre sí.
-                        La valoración incluye una puntuación en una escala del 1 al 5 y la opción de dejar un comentario sobre la experiencia.<dd>
+            </li>
 
-                    <dt><em>Revisión por el administrador:</em></dt>
-                        <dd>Para evitar valoraciones falsas o inapropiadas, cada valoración pasa por una revisión.
-                        El administrador verifica que los comentarios sean legítimos y respetuosos antes de publicarlos.</dd>
-                    
-                    <dt><em>Publicación y visibilidad:</em></dt>
-                        <dd>Una vez aprobada, la valoración se hace pública y cualquier usuario de la plataforma puede verla en el perfil del cuidador o del dueño.
-                        Esto permite a otros usuarios tomar decisiones informadas al elegir con quién interactuar.</dd>
-                    
-                    <dt><em>Beneficios por buena reputación:</em></dt>    
-                        <dd>Los cuidadores y dueños con altas puntuaciones recibirán distintivos de confianza en sus perfiles. 
-                        Aquellos con una puntuación destacada podrán acceder a beneficios exclusivos, como mayor visibilidad en los listados de busqueda.</dd>
-                    
-                    
-                    <p>Este sistema no solo ayuda a encontrar los mejores cuidadores y dueños responsables, 
-                    sino que también fomenta un ambiente positivo y seguro para todos los miembros de la comunidad.</p>   
-                </dl>
-            </ul>
-            <h3><li>Buscador con filtros</li></h3>
-            <p>Filtrado de cuidadores en función de las mascotas que quieran cuidar, la valoración que tienen, 
-            las fechas en las que estén disponibles…</p>
 
-            <h3><li>Chat/correo</li></h3>
+            <li>
+                <h3>Valoraciones</h3>   <!--Me faltan los bocetos + usar listas mejor para estructurar bien el codigo -ikram-->
+                <ul>
+                    <h4>Sistema de valoraciones</h4>
+                    <p>En nuestra plataforma, tanto los dueños de mascotas como los cuidadores pueden valorarse mutuamente después de cada servicio completado. 
+                    Este sistema de valoraciones garantiza transparencia, confianza y una comunidad segura para todos los usuarios.</p>
+
+                    <h4>¿Cómo funciona?</h4> 
+                    <dl>
+                        <dt><em>Valoración mutua:</em></dt>
+                            <dd>Una vez finalizado el servicio, tanto el cuidador como el dueño pueden calificarse entre sí.
+                            La valoración incluye una puntuación en una escala del 1 al 5 y la opción de dejar un comentario sobre la experiencia.<dd>
+
+                        <dt><em>Revisión por el administrador:</em></dt>
+                            <dd>Para evitar valoraciones falsas o inapropiadas, cada valoración pasa por una revisión.
+                            El administrador verifica que los comentarios sean legítimos y respetuosos antes de publicarlos.</dd>
+                        
+                        <dt><em>Publicación y visibilidad:</em></dt>
+                            <dd>Una vez aprobada, la valoración se hace pública y cualquier usuario de la plataforma puede verla en el perfil del cuidador o del dueño.
+                            Esto permite a otros usuarios tomar decisiones informadas al elegir con quién interactuar.</dd>
+                        
+                        <dt><em>Beneficios por buena reputación:</em></dt>    
+                            <dd>Los cuidadores y dueños con altas puntuaciones recibirán distintivos de confianza en sus perfiles. 
+                            Aquellos con una puntuación destacada podrán acceder a beneficios exclusivos, como mayor visibilidad en los listados de busqueda.</dd>
+                        
+                        
+                        <p>Este sistema no solo ayuda a encontrar los mejores cuidadores y dueños responsables, 
+                        sino que también fomenta un ambiente positivo y seguro para todos los miembros de la comunidad.</p>   
+                    </dl>
+                </ul>
+                
+            </li>
+
+
+            <li>
+                <h3>Buscador con filtros</h3>
+                <p>
+                    Filtrado de cuidadores en función de las mascotas que quieran cuidar, la valoración que tienen, 
+                    las fechas en las que estén disponibles…
+                </p>
+            </li>
+
+
+            <li>
+                <h3>Chat/correo</h3>
                 <p>Servicio de mensajería entre el dueño de la mascota y el potencial cuidador, para poder contactar con ese cuidador, 
                 conocerl@ mejor, acordar pautas de cuidado para la mascota, etc.</p>
 
@@ -225,10 +315,15 @@
                     <h5>Controles de chat:</h5>
                         <p>Los controles de chat constan de un campo de entrada de texto para el mensaje y un botón para enviar el mensaje. 
                         También es posible cerrar el chat activo.</p>
+            </li>
             
-            <h3><li>Eliminacion de usuarios</li></h3>
-            <p>Eliminar o impedir el acceso a usuarios que hayan roto alguna de las reglas de la comunidad (solo posible por el administrador)</p>
-        </ol>
-</body>
+            <li>
+                <h3>Eliminación de usuarios</h3>
+                <p>Eliminar o impedir el acceso a usuarios que hayan roto alguna de las reglas de la comunidad (solo posible por el administrador)</p>
+            </li>
+
+        </ul>
+
+    </body>
 
 </html>
