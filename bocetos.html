@@ -15,7 +15,7 @@
 
         <h1>Bocetos</h1>
             
-        <p>En este documento se describe la apariencia de la web, aportando bocetos realizados con
+        <p>En esta página se describe la apariencia de la web, aportando bocetos realizados con
         Wireframe.cc para las páginas intermedias que van a ver los distintos usuarios. </p>
         
         
@@ -295,7 +295,7 @@
 
 
             <li>
-                <h3>Valoraciones</h3>   <!--Me faltan los bocetos + usar listas mejor para estructurar bien el codigo -ikram-->
+                <h3>Valoraciones</h3>   
                 <ul>
                     <h4>Sistema de valoraciones</h4>
                     <p>En nuestra plataforma, tanto los dueños de mascotas como los cuidadores pueden valorarse mutuamente después de cada servicio completado. 
@@ -321,11 +321,28 @@
                         
                         
                         <p>Este sistema no solo ayuda a encontrar los mejores cuidadores y dueños responsables, 
-                        sino que también fomenta un ambiente positivo y seguro para todos los miembros de la comunidad.</p>   
+                        sino que también fomenta un ambiente positivo y seguro para todos los miembros de la comunidad.</p> 
+
+                        <!-- Explico los bocetos y como es la interaccion por la web hasta legar a estas paginas-->
+                        <p>En el perfil tanto del dueño como del cuidador hay un historial de reservas cuyo estado (Figura 1) 
+                            va cambiando a medida que los usuarios del sistema interactuan con estas. 
+                            Es decir, una reserva pasa a estado <em>PENDIENTE</em> si se el cuidador ha aceptado la solicitud del dueño. Después,
+                            una vez finalizado el servicio, el estado de la reserva cambia a <em>FINALIZADO</em> y en ese momento aparece el botón <em>VALORAR</em>.
+                            Una vez que hagamos click sobre este botón, nos lleva a la <a href="#imagen-valoraciones">página de valoraciones</a>.
+                        </p> 
                     </dl>
-                    <figure style="border: 2px solid black; width: fit-content; margin: auto">
-                        <img src="img/Bocetos/BocetoValoracion1.PNG" alt="Boceto de la pagina de valoraciones." 
+                    <figure id="imagen-estados" style="border: 2px solid black; width: fit-content; margin: auto; margin-bottom: 20px;">
+                        <img src="img/Bocetos/BocetoValoracion1.png" alt="Boceto de la pagina de valoraciones." 
                         style="display: block; margin: auto;">
+                        <!--Titulo de la primera imagen-->
+                        <figcaption style="text-align: center; font-style: italic;">Figura 1: Estados de una reserva</figcaption>
+                    </figure>
+
+                    <figure id="imagen-valoraciones" style="border: 2px solid black; width: fit-content; margin: auto">
+                        <img src="img/Bocetos/BocetoValoracion2.png" alt="Boceto de la pagina de valoraciones." 
+                        style="display: block; margin: auto;">
+                         <!--Titulo de la segunda imagen-->
+                        <figcaption style="text-align: center; font-style: italic;">Figura 2: Boceto página valoraciones</figcaption>
                     </figure>
                 </ul>
                 
@@ -510,7 +527,10 @@
                     
                 <!-- Pantalla Panel de control -->
                 <h3 style="text-align: center;">Gestión de valoraciones</h3>
-                
+                <figure style="border: 2px solid black; width: fit-content; margin: auto">
+                 <img src="img/Bocetos/BocetoValoracionAdmin.png" alt="Boceto de la página de Gestión de valoraciones" 
+                 style="display: block; margin: auto;">
+                </figure>
 
                 <p>
                     ...
