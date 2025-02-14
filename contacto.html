@@ -1,81 +1,87 @@
 <!DOCTYPE html>
+
 <html lang="es">
 
-<head>
-    <meta charset="UTF-8">
-    <title>contacto.html</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <title>contacto.html</title>
+    </head>
 
-<body>
-    <h3>Enlaces:
-        <a href="index.html">Indice</a> <a href="detalles.html">Detalles</a> <a href="miembros.html">Miembros</a>
-        <a href="bocetos.html">Bocetos</a> <a href="planificacion.html">Planificación</a> <a
-            href="contacto.html">Contacto</a>
-    </h3>
+    <body>
+        
+        <nav>
+            <a href="index.html">Índice</a> |
+            <a href="detalles.html">Detalles</a> |
+            <a href="miembros.html">Miembros</a> |
+            <a href="bocetos.html">Bocetos</a> |
+            <a href="planificacion.html">Planificación</a> |
+            <a href="contacto.html">Contacto</a>
+        </nav>
 
-    <h1>Contacto</h1>
+        <h1>Contacto</h1>
 
-    <form onsubmit="sendEmail(event)">
-        Nombre:<br>
-        <input type="text" name="nombre"><br>
-        <br>
+        <form onsubmit="sendEmail(event)">
+            Nombre:<br>
+            <input type="text" name="nombre"><br>
+            <br>
 
-        E-mail:<br>
-        <input type="email" name="email"><br>
-        <br>
+            E-mail:<br>
+            <input type="email" name="email"><br>
+            <br>
 
-        Motivo de consulta:<br>
-        <input id="eval" type="radio" name="motivo">
-        <label for="eval">Evaluación</label><br>
-        <input id="suger" type="radio" name="motivo">
-        <label for="suger">Sugerencias</label><br>
-        <input id="critic" type="radio" name="motivo">
-        <label for="critic">Críticas</label><br>
-        <br>
+            Motivo de consulta:<br>
+            <input id="eval" type="radio" name="motivo">
+            <label for="eval">Evaluación</label><br>
+            <input id="suger" type="radio" name="motivo">
+            <label for="suger">Sugerencias</label><br>
+            <input id="critic" type="radio" name="motivo">
+            <label for="critic">Críticas</label><br>
+            <br>
 
-        <input type="checkbox" id="verifica" name="verifica">
-        <label for="verifica">Marque esta casilla para verificar que ha leído nuestros términos y condiciones del
-            servicio</label><br>
-        <br>
+            <input type="checkbox" id="verifica" name="verifica">
+            <label for="verifica">Marque esta casilla para verificar que ha leído nuestros términos y condiciones del
+                servicio</label><br>
+            <br>
 
-        Consulta:<br>
-        <input type="text" name="consulta" size="200"><br>
-        <br>
+            Consulta:<br>
+            <input type="text" name="consulta" size="200"><br>
+            <br>
 
-        <input type="submit" value="Subir">
-    </form>
-    <script>
-        // Es posible cambiar recpiente a otro valor necesario
-        let recipiente = "rliskovs@ucm.es";
+            <input type="submit" value="Subir">
+        </form>
+        <script>
+            // Es posible cambiar recpiente a otro valor necesario
+            let recipiente = "rliskovs@ucm.es";
 
-        function sendEmail(event) {
-            // Evitamos que el formulario se envíe y recargue la página
-            event.preventDefault();
+            function sendEmail(event) {
+                // Evitamos que el formulario se envíe y recargue la página
+                event.preventDefault();
 
-            // Obtenemos los valores ingresados por usario en los campos del formulario
-            const nombre = document.querySelector('input[name="nombre"]').value;
-            const email = document.querySelector('input[name="email"]').value;
-            const consulta = document.querySelector('input[name="consulta"]').value;
+                // Obtenemos los valores ingresados por usario en los campos del formulario
+                const nombre = document.querySelector('input[name="nombre"]').value;
+                const email = document.querySelector('input[name="email"]').value;
+                const consulta = document.querySelector('input[name="consulta"]').value;
 
-            // Buscamos el checkbox seleccionado dentro del grupo "motivo". Si no está seleccionado, establece valor predeterminado
-            const motivoElemento = document.querySelector('input[name="motivo"]:checked');
-            const motivo = motivoElemento ? motivoElemento.nextElementSibling.innerText : "No especificado";
+                // Buscamos el checkbox seleccionado dentro del grupo "motivo". Si no está seleccionado, establece valor predeterminado
+                const motivoElemento = document.querySelector('input[name="motivo"]:checked');
+                const motivo = motivoElemento ? motivoElemento.nextElementSibling.innerText : "No especificado";
 
-            // Preparamos el cuerpo del correo para enviar
-            let textoCuerpo = ""
-            textoCuerpo += `Nombre: ${nombre}\n`;
-            textoCuerpo += `E-mail: ${email}\n`;
-            textoCuerpo += `Motivo: ${motivo}\n`;
-            textoCuerpo += `Consulta: ${consulta}`;
+                // Preparamos el cuerpo del correo para enviar
+                let textoCuerpo = ""
+                textoCuerpo += `Nombre: ${nombre}\n`;
+                textoCuerpo += `E-mail: ${email}\n`;
+                textoCuerpo += `Motivo: ${motivo}\n`;
+                textoCuerpo += `Consulta: ${consulta}`;
 
-            // Preparamos el enlace "mailto:" con el asunto y el cuerpo codificados
-            // usamos "encodeURIComponent" para asegurarse de que los caracteres especiales sean convertidos en un formato seguro para URLs
-            const mailtoLink = `mailto:${recipiente}?subject=Consulta de ${encodeURIComponent(nombre)}&body=${encodeURIComponent(textoCuerpo)}`;
+                // Preparamos el enlace "mailto:" con el asunto y el cuerpo codificados
+                // usamos "encodeURIComponent" para asegurarse de que los caracteres especiales sean convertidos en un formato seguro para URLs
+                const mailtoLink = `mailto:${recipiente}?subject=Consulta de ${encodeURIComponent(nombre)}&body=${encodeURIComponent(textoCuerpo)}`;
 
-            // Redirigimos al usuario a la aplicación de correo predeterminada con el correo prellenado
-            window.location.href = mailtoLink;
-        }
-    </script>
-</body>
+                // Redirigimos al usuario a la aplicación de correo predeterminada con el correo prellenado
+                window.location.href = mailtoLink;
+            }
+        </script>
+
+    </body>
 
 </html>
