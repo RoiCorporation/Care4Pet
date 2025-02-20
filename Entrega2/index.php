@@ -18,6 +18,10 @@
     </header>
 
 
+	<?php require 'pie_pagina.php'?>
+	<?php require 'aviso_legal.php'?>
+
+
 	</body>
 
 </html>
