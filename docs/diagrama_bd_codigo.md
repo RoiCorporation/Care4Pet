@@ -14,6 +14,7 @@ erDiagram
         bigint Telefono
         varchar DireccionCompleta
         text FotoPerfil
+        varchar Ubicacion
         boolean esDueno
         boolean esCuidador
         boolean esAdmin
