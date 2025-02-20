@@ -1,11 +1,13 @@
+<!-- Pié de página en el que se inserta el logo, los links a las páginas "Sobre nosotros" 
+y "Contacto" y todos los enlaces a nuestros perfiles de redes sociales -->
 <footer>
     <div style="padding-left: 100px; display: flex; align-items: center">
 
-    <!-- Care4Pet footer logo section -->
+    <!-- Sección para el logo de Care4Pet -->
         <img src="img/LogoCare4PetTransparente.png" alt="Logo de Care4Pet" height="100" 
             width="112" style="display: inline-block; margin: 0 175px; vertical-align: middle">
 
-        <!-- Central footer webpage links' section -->
+        <!-- Sección de los enlaces a las páginas de interés arriba mencionadas -->
         <div align="center">
             <span style="display: inline-block; margin: 0 50px; vertical-align: middle">
                 <a href="sobre_nosotros.php">Sobre nosotros</a></span>

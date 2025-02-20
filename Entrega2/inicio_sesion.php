@@ -1,3 +1,8 @@
+<?php
+	session_start();
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 	<head>
@@ -9,7 +14,7 @@
 
 	<body>
 
-	<!-- Encabezado de la página dentro del cuerpo, en donde se inserta el menú. -->
+	<!-- Encabezado de la página dentro del cuerpo, en donde se inserta el menú -->
     <header>
         <h1 style="text-align:center">Inicio de sesión</h1>
         <?php
@@ -24,7 +29,7 @@
 		<h2>Iniciar sesión</h2>
 
 		<!-- Formulario para introducir el email y la contraseña -->
-		<form name="form_inicio_sesion" method="post" action="index.php">
+		<form name="form_inicio_sesion" method="post" action="procesar_login.php">
 			<input type="text" name="email" placeholder="Email" size="18"><br><br>
 			<input type="text" name="contrasena" placeholder="Contraseña" size="18"><br><br>
 			<input style="text-align:center" type="submit" value="Iniciar sesión" size="20">
