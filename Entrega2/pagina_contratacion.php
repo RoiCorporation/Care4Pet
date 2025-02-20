@@ -3,7 +3,7 @@
 	<head>
 		<link rel="stylesheet" type="text/css" href="CSS/estilo.css" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<title>Landing page</title>
+		<title>Páginad de contratación</title>
 	</head>
 
 

@@ -3,7 +3,7 @@
 	<head>
 		<link rel="stylesheet" type="text/css" href="CSS/estilo.css" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<title>Landing page</title>
+		<title>Página de inicio de sesión</title>
 	</head>
 
 
@@ -25,10 +25,12 @@
 
 		<!-- Formulario para introducir el email y la contraseña -->
 		<form name="form_inicio_sesion" method="post" action="index.php">
-			<input type="text" name="nombre" placeholder="Email" size="18"><br><br>
+			<input type="text" name="email" placeholder="Email" size="18"><br><br>
 			<input type="text" name="contrasena" placeholder="Contraseña" size="18"><br><br>
 			<input style="text-align:center" type="submit" value="Iniciar sesión" size="20">
 		</form>
+
+		<p>¿No tienes una cuenta todavía? <a href="registro.php">¡Regístrate!</a></p>
 
 
 	</div>
