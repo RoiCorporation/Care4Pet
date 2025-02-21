@@ -37,7 +37,7 @@
 
 		<p>¿No tienes una cuenta todavía? <a href="registro.php">¡Regístrate!</a></p>
 
-	</div><br><br><br><br>
+	</div>
 
 	<?php require 'pie_pagina.php'?>
 	<?php require 'aviso_legal.php'?>

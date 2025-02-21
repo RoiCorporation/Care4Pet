@@ -1,6 +1,6 @@
 <!-- Pié de página en el que se inserta el logo, los links a las páginas "Sobre nosotros" 
 y "Contacto" y todos los enlaces a nuestros perfiles de redes sociales -->
-<footer>
+<br><br><br><br><footer>
     <div style="padding-left: 100px; display: flex; align-items: center">
 
     <!-- Sección para el logo de Care4Pet -->
