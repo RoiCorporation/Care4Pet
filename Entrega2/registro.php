@@ -29,7 +29,7 @@
 		<h2>Crear una cuenta</h2>
 
 		<!-- Formulario para introducir los datos para registrarse en la página web -->
-		<form name="form_inicio_sesion" method="post" action="index.php">
+		<form name="form_inicio_sesion" method="post" action="procesar_registro.php">
 
 			<div style="display: table; margin: 0 auto;">
 
@@ -62,10 +62,10 @@
 
 				<div style="display: table-row;">
 					<div style="display: table-cell; padding: 10px;">
-						<input type="text" name="contraseña" placeholder="Contraseña" size="18">
+						<input type="text" name="contrasena" placeholder="Contraseña" size="18">
 					</div>
 					<div style="display: table-cell; padding: 10px;">
-						<input type="text" name="contraseña" placeholder="Repita la contraseña" size="18">
+						<input type="text" name="contrasena repetida" placeholder="Repita la contraseña" size="18">
 					</div>
 				</div>
 

@@ -10,6 +10,7 @@
         unset($_SESSION["login"]);
         unset($_SESSION["email"]);
         unset($_SESSION["nombreUsuario"]);
+        unset($_SESSION["id"]);
         
         if (isset($_SESSION["esCuidador"]) && $_SESSION["esCuidador"] == true) {
             unset($_SESSION["esCuidador"]);
@@ -25,7 +26,7 @@
 
     }
 
-    // Aviso al usuario en caso de que se produzca un error (siendo el único 
+    // Avisa al usuario en caso de que se produzca un error (siendo el único 
     // posible aquí el que, por algún motivo, se ha accedido al código de 
     // logout sin haberse registrado anteriormente).
     else {

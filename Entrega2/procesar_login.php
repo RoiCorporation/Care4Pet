@@ -32,6 +32,7 @@
             $_SESSION["login"] = true;
             $_SESSION["email"] = $filaResultado["Correo"];
             $_SESSION["nombreUsuario"] = $filaResultado["Nombre"];
+            $_SESSION["id"] = $filaResultado["idUsuario"];
 
             // Redirige al usuario a la página de inicio.
             header("Location: index.php");
@@ -47,8 +48,6 @@
         $con->close();
         
     }
-
-
 
 
 ?>

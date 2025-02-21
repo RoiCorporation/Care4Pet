@@ -18,8 +18,7 @@
 		// de registro e inicio de sesión.
 		else {
 			echo "<span><a href=\"registro.php\">Registrarse</a></span> &emsp;&emsp;";
-			echo "<span><a href=\"inicio_sesion.php\">Iniciar sesión</a></span> &emsp;&emsp;";
-
+			echo "<span><a href=\"login.php\">Iniciar sesión</a></span> &emsp;&emsp;";
 		}
 	?>
 	
