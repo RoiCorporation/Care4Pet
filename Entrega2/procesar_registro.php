@@ -35,10 +35,12 @@
     if (hayCamposVacios($nombre, $apellidos, $dni, $direccion, $email, $telefono, 
         $contrasena, $contrasena_repetida)) {  // Si alguno de los campos está vacío.
         echo "<h3>Por favor, rellene todos los campos.</h3>";
+        exit();
     }
 
     if ($contrasena != $contrasena_repetida) {  // Si las contraseñas son diferentes.
         echo "<h3>Las contraseñas no coinciden.</h3>";
+        exit();
     }
 
     else {
@@ -48,10 +50,17 @@
 
         $consulta_comprobacion = $con->query($sentencia_sql);
 
+        // Si ya hay una cuenta asociada a ese email, se pide al usuario que 
+        // escoja otro correo electrónico.
+        if ($consulta_comprobacion->num_rows != 0) {
+            echo "<h3>Ya existe una cuenta asociada a ese correo.</h3>";
+            exit();
+        }
+
         // Si no hay ninguna cuenta asociada a ese email, crea una nueva cuenta 
         // y da de alta al usuario -junto con los valores que ha introducido-
         // en la base de datos.
-        if ($consulta_comprobacion->num_rows == 0) {
+        else {
 
             // Crea un id de usuario random.
             $id_usuario = rand();
@@ -82,12 +91,6 @@
             }
 
         } 
-        
-        // Si ya existe una cuenta con ese email, se informa de ello al usuario.
-        else {
-            echo "Ya existe una cuenta asociada a ese correo.<br>";
-        }
-
 
         // Se cierra la conexión con la BD (puede que esta línea haya que omitirla...).
         $con->close();

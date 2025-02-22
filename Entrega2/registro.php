@@ -53,19 +53,19 @@
 
 				<div style="display: table-row;">
 					<div style="display: table-cell; padding: 10px;">
-						<input type="text" name="email" placeholder="Email" size="18">
+						<input type="email" name="email" placeholder="Email" size="18">
 					</div>
 					<div style="display: table-cell; padding: 10px;">
-						<input type="text" name="telefono" placeholder="Teléfono" size="18">
+						<input type="tel" name="telefono" placeholder="Teléfono" size="18">
 					</div>
 				</div>
 
 				<div style="display: table-row;">
 					<div style="display: table-cell; padding: 10px;">
-						<input type="text" name="contrasena" placeholder="Contraseña" size="18">
+						<input type="password" name="contrasena" placeholder="Contraseña" size="18">
 					</div>
 					<div style="display: table-cell; padding: 10px;">
-						<input type="text" name="contrasena repetida" placeholder="Repita la contraseña" size="18">
+						<input type="password" name="contrasena repetida" placeholder="Repita la contraseña" size="18">
 					</div>
 				</div>
 
