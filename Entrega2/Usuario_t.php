@@ -2,7 +2,7 @@
 mediante las consultas a la base de datos hechas a través del DAOUsuario -->
 <?php
 
-    class Usuario {
+    class tUsuario {
 
         // Atributos de la clase.
         public $id, $nombre, $apellidos, $correo, $contrasena, 
@@ -32,7 +32,7 @@ mediante las consultas a la base de datos hechas a través del DAOUsuario -->
         }
 
         // Resto de funciones (getters y setters).
-                
+
         // Getters
         public function getId() { return $this->id; }
         public function getNombre() { return $this->nombre; }
