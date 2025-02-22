@@ -17,13 +17,10 @@
 
 	<body>
 
-    <header>
-        <h1 style="text-align:center">Care4Pet</h1>
-        <?php
-			require 'menu.php';
-		?>
-    </header><br><br>
-
+	<?php
+		require 'cabecera.php';
+	?>
+	
 	<!-- Contenido principal de la página de inicio -->
 	<div style="padding-left: 200px; padding-right: 200px">
 		<p>

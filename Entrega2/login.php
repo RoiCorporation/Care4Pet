@@ -14,14 +14,9 @@
 
 	<body>
 
-	<!-- Encabezado de la página dentro del cuerpo, en donde se inserta el menú -->
-    <header>
-        <h1 style="text-align:center">Inicio de sesión</h1>
-        <?php
-			require 'menu.php';
-		?>
-    </header><br><br><br><br>
-
+	<?php
+		require 'cabecera.php';
+	?>
 
 	<!-- Sección de los campos de entrada de datos -->
 	<div style="text-align:center">
@@ -30,8 +25,8 @@
 
 		<!-- Formulario para introducir el email y la contraseña -->
 		<form name="form_inicio_sesion" method="post" action="procesar_login.php">
-			<input type="text" name="email" placeholder="Email" size="18"><br><br>
-			<input type="text" name="contrasena" placeholder="Contraseña" size="18"><br><br>
+			<input type="email" name="email" placeholder="Email" size="18"><br><br>
+			<input type="password" name="contrasena" placeholder="Contraseña" size="18"><br><br>
 			<input style="text-align:center" type="submit" value="Iniciar sesión" size="20">
 		</form>
 

@@ -14,12 +14,9 @@
 
 	<body>
 
-    <header>
-        <h1 style="text-align:center">Care4Pet</h1>
-        <?php
-			require 'menu.php';
-		?>
-    </header><br><br>
+    <?php
+		require 'cabecera.php';
+	?>
 
 	<!-- Contenido de la política de privacidad -->
 	<div style="padding-left: 200px; padding-right: 200px">

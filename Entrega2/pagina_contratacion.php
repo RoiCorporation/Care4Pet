@@ -8,19 +8,23 @@
 	<head>
 		<link rel="stylesheet" type="text/css" href="CSS/estilo.css" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<title>Páginad de contratación</title>
+		<title>Página de contratación</title>
 	</head>
 
 
 	<body>
 
-    <header>
-        <h1 style="text-align:center">Contratación de cuidadores</h1>
-        <?php
-			require 'menu.php';
-		?>
+    <?php
+		require 'cabecera.php';
+	?>
 
-    </header>
+	<!-- Contenido principal de la página de contratación -->
+	<div style="padding-left: 200px; padding-right: 200px">
+    
+        <h2 style="text-align:center">Página de contratación</h2>
+
+		<p>Contenido...</p>
+	</div>
 
 	<?php require 'pie_pagina.php'?>
 	<?php require 'aviso_legal.php'?>

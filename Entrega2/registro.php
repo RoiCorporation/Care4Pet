@@ -14,14 +14,9 @@
 
 	<body>
 
-	<!-- Encabezado de la página dentro del cuerpo, en donde se inserta el menú -->
-    <header>
-        <h1 style="text-align:center">Registro</h1>
-        <?php
-			require 'menu.php';
-		?>
-    </header><br><br><br><br>
-
+	<?php
+		require 'cabecera.php';
+	?>
 
 	<!-- Sección de los campos de entrada de datos -->
 	<div style="text-align:center">
