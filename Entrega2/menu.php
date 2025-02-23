@@ -7,10 +7,35 @@
 	<span><a href="sobre_nosotros.php">Sobre nosotros</a></span> &emsp;&emsp;
 	
 	<?php
+	    require 'database.php';
+
 		// Si el usuario ha iniciado sesión, le aparecerá el link a sus reservas y el 
 		// botón de cerrar sesión.
 		if (isset($_SESSION["login"]) && $_SESSION["login"] == true) {
 			echo "<span><a href=\"mis_reservas.php\">Mis reservas</a></span> &emsp;&emsp;";
+
+			# consultamos BD para comprobar el tipo de usario (dueno o cuidador)
+			$id = $_SESSION["id"];
+			$sentencia_sql = "SELECT * FROM usuarios WHERE idUsuario = '$id'";
+			$consulta = $con->query($sentencia_sql);
+
+			if ($consulta->num_rows > 0) {	
+				$filaResultado = $consulta->fetch_assoc();
+	
+				# dependiente de quien es el usario, le mostramos diferente pagina de perfil
+				$esDueno = $filaResultado["esDueno"];
+				$esCuidador = $filaResultado["esCuidador"];
+
+				if ($esDueno) {
+					echo "<span><a href=\"perfil_dueno.php\">Mi perfil</a></span> &emsp;&emsp;";
+				}
+				if ($esCuidador) {
+					echo "<span><a href=\"perfil_cuidador.php\">Mi perfil</a></span> &emsp;&emsp;";
+				}
+			} 
+			
+			$con->close();
+
 			echo "<span><a href=\"logout.php\">Cerrar sesión</a></span> &emsp;&emsp;";
 		}
 		
