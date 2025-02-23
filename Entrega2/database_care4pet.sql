@@ -68,6 +68,7 @@ CREATE TABLE `mascotas` (
 
 CREATE TABLE `reservas` (
   `idReserva` bigint(20) UNSIGNED NOT NULL,
+  `idUsuario` bigint(20) UNSIGNED NOT NULL,
   `idMascota` bigint(20) UNSIGNED NOT NULL,
   `idCuidador` bigint(20) UNSIGNED NOT NULL,
   `FechaInicio` datetime NOT NULL,
