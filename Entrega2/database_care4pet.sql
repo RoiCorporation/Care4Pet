@@ -130,7 +130,6 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`idUsuario`, `Nombre`, `Apellidos`, `Correo`, `Contraseña`, `DNI`, `Telefono`, `FotoPerfil`, `Direccion`, `esDueno`, `esCuidador`, `esAdmin`, `cuentaActiva`) VALUES
 (1203472, 'Juan', 'Pérez de la Rosa', 'ejemplo@ejemplo.com', 'ejemplo', '00000000Z', 0, NULL, 'Calle del Amor Hermoso, 80', 1, 0, 0, 1),
-(1203472, 'Juan', 'Pérez de la Rosa', 'ejemplo@ejemplo.com', 'ejemplo', '00000000Z', 0, NULL, 'Calle del Amor Hermoso, 80', 1, 0, 0, 1),
 (205753802, 'usuario', 'apellido del usuario', 'usuario@usuario.com', 'usuario', '00000000Z', 0, 'NULL', 'asdf sf asdfa', 0, 0, 0, 1);
 
 --
