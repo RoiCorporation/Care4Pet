@@ -2,6 +2,10 @@
 	session_start();
 
     require 'database.php';
+	require 'Mascota_t.php';
+    require 'DAOMascota.php';
+	require 'Reserva_t.php';
+    require 'DAOReserva.php';
 
     $listaReservas = [];
 
@@ -9,87 +13,8 @@
         // obtenemos informacion basica sobre el dueno de BD
         $id = $_SESSION["id"];
 
-        // consulatmos la BD para obtener las reservas del usuario y mascotas / cuidadores relacionados
-        $sentencia_sql_reservas = "SELECT 
-			r.idReserva,
-			r.FechaInicio,
-			r.FechaFin,
-			r.esAceptadaPorCuidador,
-			r.Valoracion,
-			r.Resena,
-			r.ComentariosAdicionales,
-			
-			-- obtenemos info de mascota
-			m.idMascota,
-			m.FotoMascota,
-			m.Descripcion AS DescripcionMascota,
-			m.TipoMascota,
-			
-			-- obtenemos info de cuidador
-			c.idUsuario AS idCuidador,
-			c.TiposDeMascotas,
-			c.Tarifa,
-			c.Descripcion AS DescripcionCuidador,
-			c.ServiciosAdicionales,
-			c.Valoracion AS ValoracionCuidador,
-
-			u.Nombre AS NombreCuidador,
-			u.Apellidos AS ApellidosCuidador,
-			u.Correo AS CorreoCuidador,
-			u.DNI AS DNICuidador,
-			u.Telefono AS TelefonoCuidador,
-			u.FotoPerfil AS FotoCuidador,
-			u.Direccion AS DireccionCuidador
-
-		FROM 
-			reservas r
-			INNER JOIN mascotas m ON r.idMascota = m.idMascota
-			INNER JOIN cuidadores c ON r.idCuidador = c.idUsuario
-			INNER JOIN usuarios u ON r.idCuidador = u.idUsuario
-
-		WHERE 
-			r.idUsuario = '$id'";
-        $consultaReservas = $con->query($sentencia_sql_reservas);
-
-        if ($consultaReservas->num_rows > 0) {	
-			// guardamos resultados de la BD a una lista compleja
-            while ($filaResultado = $consultaReservas->fetch_assoc()) {
-                $listaReservas[] = [
-					"idReserva" => $filaResultado["idReserva"],
-					"FechaInicio" => $filaResultado["FechaInicio"],
-					"FechaFin" => $filaResultado["FechaFin"],
-					"esAceptadaPorCuidador" => $filaResultado["esAceptadaPorCuidador"],
-					"Valoracion" => $filaResultado["Valoracion"],
-					"Resena" => $filaResultado["Resena"],
-					"ComentariosAdicionales" => $filaResultado["ComentariosAdicionales"],
-					
-					"Mascota" => [
-						"idMascota" => $filaResultado["idMascota"],
-						"FotoMascota" => $filaResultado["FotoMascota"],
-						"Descripcion" => $filaResultado["DescripcionMascota"],
-						"TipoMascota" => $filaResultado["TipoMascota"]
-					],
-	
-					"Cuidador" => [
-						"idCuidador" => $filaResultado["idCuidador"],
-						"TiposDeMascotas" => $filaResultado["TiposDeMascotas"],
-						"Tarifa" => $filaResultado["Tarifa"],
-						"Descripcion" => $filaResultado["DescripcionCuidador"],
-						"ServiciosAdicionales" => $filaResultado["ServiciosAdicionales"],
-						"Valoracion" => $filaResultado["ValoracionCuidador"],
-						"Nombre" => $filaResultado["NombreCuidador"],
-						"Apellidos" => $filaResultado["ApellidosCuidador"],
-						"Correo" => $filaResultado["CorreoCuidador"],
-						"DNI" => $filaResultado["DNICuidador"],
-						"Telefono" => $filaResultado["TelefonoCuidador"],
-						"Foto" => $filaResultado["FotoCuidador"],
-						"Direccion" => $filaResultado["DireccionCuidador"],
-					]
-				];
-            }
-        } 
-        
-        $con->close();
+        // consulatmos DAO Reservas para obtener las reservas del usuario y mascotas / cuidadores relacionados
+        $listaReservas = (DAOReserva::getInstance())->leerReservasDelUsuario($id);
     } else {
         header("Location: index.php");
     }
@@ -119,28 +44,28 @@
 		<?php
 		foreach ($listaReservas as $reserva) {
 			echo "<div class='reserva-box'>";
-			echo "<h3>Reserva #" . $reserva["idReserva"] . "</h3>";
+			echo "<h3>Reserva #" . $reserva->getId() . "</h3>";
 			echo "<div class='reserva-details'>";
 	
 			// info mascota
 			echo "<div class='mascota-info'>";
 			echo "<h4>Mascota</h4>";
-			if ($reserva["Mascota"]["FotoMascota"]) {
-				echo "<img src='" . $reserva["Mascota"]["FotoMascota"] . "' alt='Foto de Mascota'>";
+			if ($reserva->getFotoMascota()) {
+				echo "<img src='" . $reserva->getFotoMascota() . "' alt='Foto de Mascota'>";
 			}
-			echo "<p><strong>Descripción:</strong> " . $reserva["Mascota"]["Descripcion"] . "</p>";
+			echo "<p><strong>Descripción:</strong> " . $reserva->getDescripcionMascota() . "</p>";
 			echo "</div>";
 	
 			// info cuidador
 			echo "<div class='cuidador-info'>";
 			echo "<h4>Cuidador</h4>";
-			echo "<p><strong>Descripción:</strong> " . $reserva["Cuidador"]["Nombre"] . " " . $reserva["Cuidador"]["Apellidos"] . "</p>";
+			echo "<p><strong>Nombre:</strong> " . $reserva->getNombreCuidador() . " " . $reserva->getApellidosCuidador() . "</p>";
 			echo "</div>";	
 			echo "</div>";
 	
 			echo "<form method='POST' action='cancelar_reserva.php'>";
-			echo "<input type='hidden' name='idReserva' value='" . $reserva["idReserva"] . "'>";
-			echo "<a href='detalles_reserva.php?reserva=" . $reserva["idReserva"] . "'>Ver reserva</a>";
+			echo "<input type='hidden' name='idReserva' value='" . $reserva->getId() . "'>";
+			echo "<a href='detalles_reserva.php?reserva=" . $reserva->getId() . "'>Ver reserva</a>";
 			echo "<button type='submit'>Cancelar</button>";
 			echo "</form>";
 			echo "</div>";

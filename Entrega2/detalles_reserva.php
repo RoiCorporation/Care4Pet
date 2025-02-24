@@ -2,106 +2,16 @@
 	session_start();
 
     require 'database.php';
+	require 'Mascota_t.php';
+    require 'DAOMascota.php';
+	require 'Reserva_t.php';
+    require 'DAOReserva.php';
 
 	$idReserva = $_GET['reserva'];
 
-	$fechaInicio = NULL;
-	$fechaFin = NULL;
-	$esAceptadaPorCuidador = NULL;
-	$valoracion = NULL;
-	$resena = NULL;
-	$comentariosAdicionales = NULL;
-	
-	$idMascota = NULL;
-	$fotoMascota = NULL;
-	$descripcionMascota = NULL;
-	$tipoMascota = NULL;
-	
-	$idCuidador = NULL;
-	$tiposDeMascotas = NULL;
-	$tarifa = NULL;
-	$descripcionCuidador = NULL;
-	$serviciosAdicionales = NULL;
-	$valoracionCuidador = NULL;
-	
-	$nombreCuidador = NULL;
-	$apellidosCuidador = NULL;
-	$correoCuidador = NULL;
-	$dniCuidador = NULL;
-	$telefonoCuidador = NULL;
-	$fotoCuidador = NULL;
-	$direccionCuidador = NULL;
-
 	if (isset($_SESSION["login"]) && $_SESSION["login"] == true && $idReserva != '') {
 		// consulatmos la BD para obtener la reserva exacta con mascota / cuidador relacionados
-        $sentencia_sql_reserva = "SELECT 
-			r.idReserva,
-			r.FechaInicio,
-			r.FechaFin,
-			r.esAceptadaPorCuidador,
-			r.Valoracion,
-			r.Resena,
-			r.ComentariosAdicionales,
-			
-			-- obtenemos info de mascota
-			m.idMascota,
-			m.FotoMascota,
-			m.Descripcion AS DescripcionMascota,
-			m.TipoMascota,
-			
-			-- obtenemos info de cuidador
-			c.idUsuario AS idCuidador,
-			c.TiposDeMascotas,
-			c.Tarifa,
-			c.Descripcion AS DescripcionCuidador,
-			c.ServiciosAdicionales,
-			c.Valoracion AS ValoracionCuidador,
-			
-			u.Nombre AS NombreCuidador,
-			u.Apellidos AS ApellidosCuidador,
-			u.Correo AS CorreoCuidador,
-			u.DNI AS DNICuidador,
-			u.Telefono AS TelefonoCuidador,
-			u.FotoPerfil AS FotoCuidador,
-			u.Direccion AS DireccionCuidador
-
-		FROM 
-			reservas r
-			INNER JOIN mascotas m ON r.idMascota = m.idMascota
-			INNER JOIN cuidadores c ON r.idCuidador = c.idUsuario
-			INNER JOIN usuarios u ON r.idCuidador = u.idUsuario
-
-		WHERE 
-			r.idReserva = '$idReserva'";
-        $consultaReserva = $con->query($sentencia_sql_reserva);
-
-        if ($consultaReserva->num_rows > 0) {
-			$filaResultado = $consultaReserva->fetch_assoc();
-
-			$fechaInicio = $filaResultado["FechaInicio"];
-            $fechaFin = $filaResultado["FechaFin"];
-            $esAceptadaPorCuidador = $filaResultado["esAceptadaPorCuidador"];
-            $valoracion = $filaResultado["Valoracion"];
-            $resena = $filaResultado["Resena"];
-            $comentariosAdicionales = $filaResultado["ComentariosAdicionales"];
-            $idMascota = $filaResultado["idMascota"];
-            $fotoMascota = $filaResultado["FotoMascota"];
-            $descripcionMascota = $filaResultado["DescripcionMascota"];
-            $tipoMascota = $filaResultado["TipoMascota"];
-            $idCuidador = $filaResultado["idCuidador"];
-            $tiposDeMascotas = $filaResultado["TiposDeMascotas"];
-            $tarifa = $filaResultado["Tarifa"];
-            $descripcionCuidador = $filaResultado["DescripcionCuidador"];
-            $serviciosAdicionales = $filaResultado["ServiciosAdicionales"];
-            $valoracionCuidador = $filaResultado["ValoracionCuidador"];
-            $nombreCuidador = $filaResultado["NombreCuidador"];
-            $apellidosCuidador = $filaResultado["ApellidosCuidador"];
-            $correoCuidador = $filaResultado["CorreoCuidador"];
-            $dniCuidador = $filaResultado["DNICuidador"];
-            $telefonoCuidador = $filaResultado["TelefonoCuidador"];
-            $fotoCuidador = $filaResultado["FotoCuidador"];
-            $direccionCuidador = $filaResultado["DireccionCuidador"];
-		}
+        $reserva = (DAOReserva::getInstance())->leerUnaReserva($idReserva);
 
 		// Usuario entrega el formulario de valoracion
         if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["crearValoracion"])) {
@@ -149,7 +59,8 @@
     
 		<?php
 
-        echo "<h2 style='text-align:center'>Reserva nr. " . $idReserva . " - Cuidador: " . $nombreCuidador . " " . $apellidosCuidador . "</h2>";
+        echo "<h2 style='text-align:center'>Reserva nr. " . $reserva->getId() . " - Cuidador: " . $reserva->getNombreCuidador() . " " . $reserva->getApellidosCuidador() . "</h2>";
+		echo "<a href='mis_reservas.php'>Volver a la lista de reservas</a>";
 
 		echo "<div class='reserva-box'>";
 
@@ -157,9 +68,9 @@
 		// info reserva
 		echo "<div class='reserva-info'>";
 		echo "<h4>Detalles</h4>";
-		echo "<p><strong>Fechas:</strong> " . $fechaInicio . " - " . $fechaFin . "</p>";
-		echo "<p><strong>Comentarios adicionales:</strong> " . $comentariosAdicionales . "</p>";
-		if ($esAceptadaPorCuidador) { 
+		echo "<p><strong>Fechas:</strong> " . $reserva->getFechaInicio() . " - " . $reserva->getFechaFin() . "</p>";
+		echo "<p><strong>Comentarios adicionales:</strong> " . $reserva->getComentariosAdicionales() . "</p>";
+		if ($reserva->getEsAceptadaPorCuidador()) { 
 			echo "<p style='color:green'><strong>Estado:</strong> Acceptada por cuidador</p>";
 		} else {
 			echo "<p style='color:orange'><strong>Estado:</strong> Pendiente</p>";
@@ -167,12 +78,12 @@
 		echo "</div>";
 		echo "</div>";
 		// resena y valoracion
-		if ($valoracion != NULL) {
+		if ($reserva->getValoracion() != NULL) {
 			echo "<div class='valoracion-info'>";
 			echo "<h4>Feedback</h4>";
-			echo "<p><strong>Valoracion:</strong> " . $valoracion . " ★</p>";
-			if ($resena != NULL) {
-				echo "<p><strong>Resena:</strong> " . $resena . "</p>";
+			echo "<p><strong>Valoracion:</strong> " . $reserva->getValoracion() . " ★</p>";
+			if ($reserva->getResena() != NULL) {
+				echo "<p><strong>Resena:</strong> " . $reserva->getResena() . "</p>";
 			}
 		}
 
@@ -180,29 +91,29 @@
 		// info mascota
 		echo "<div class='mascota-info'>";
 		echo "<h4>Mascota</h4>";
-		if ($fotoMascota != NULL) {
-			echo "<img src='" . $fotoMascota . "' alt='Foto de Mascota'>";
+		if ($reserva->getFotoMascota() != NULL) {
+			echo "<img src='" . $reserva->getFotoMascota() . "' alt='Foto de Mascota'>";
 		}
-		echo "<p><strong>Descripción:</strong> " . $descripcionMascota . "</p>";
+		echo "<p><strong>Descripción:</strong> " . $reserva->getDescripcionMascota() . "</p>";
 		echo "</div>";
 		// info cuidador
 		echo "<div class='cuidador-info'>";
 		echo "<h4>Cuidador</h4>";
-		if ($fotoCuidador != NULL) {
-			echo "<img src='" . $fotoCuidador . "' alt='Foto del Cuidador'>";
+		if ($reserva->getFotoPerfilCuidador() != NULL) {
+			echo "<img src='" . $reserva->getFotoPerfilCuidador() . "' alt='Foto del Cuidador'>";
 		}
-		echo "<p><strong>Nombre:</strong> " . $nombreCuidador . " " . $apellidosCuidador . "</p>";
-		echo "<p><strong>Correo:</strong> " . $correoCuidador . "</p>";
-		echo "<p><strong>Telefono:</strong> " . $telefonoCuidador . "</p>";
-		echo "<p><strong>Descripción:</strong> " . $descripcionCuidador . "</p>";
+		echo "<p><strong>Nombre:</strong> " . $reserva->getNombreCuidador() . " " . $reserva->getApellidosCuidador() . "</p>";
+		echo "<p><strong>Correo:</strong> " . $reserva->getCorreoCuidador() . "</p>";
+		echo "<p><strong>Telefono:</strong> " . $reserva->getTelefonoCuidador() . "</p>";
+		echo "<p><strong>Dirección:</strong> " . $reserva->getDireccionCuidador() . "</p>";
 		echo "</div>";	
 		echo "</div>";
 
 
-		$ffin = new DateTime($fechaFin);
+		$ffin = new DateTime($reserva->getFechaFin());
 		$now = new DateTime();
 
-		if ($valoracion == NULL && $esAceptadaPorCuidador == true && $ffin < $now) {
+		if ($reserva->getValoracion() == NULL && $reserva->getEsAceptadaPorCuidador() == true && $ffin < $now) {
 			echo "<div class='reserva-details'>";
 			// formulario valoracion
 			echo "<div class='form-valoracion'>";
