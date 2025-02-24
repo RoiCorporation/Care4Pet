@@ -31,12 +31,21 @@
 			c.Tarifa,
 			c.Descripcion AS DescripcionCuidador,
 			c.ServiciosAdicionales,
-			c.Valoracion AS ValoracionCuidador
+			c.Valoracion AS ValoracionCuidador,
+
+			u.Nombre AS NombreCuidador,
+			u.Apellidos AS ApellidosCuidador,
+			u.Correo AS CorreoCuidador,
+			u.DNI AS DNICuidador,
+			u.Telefono AS TelefonoCuidador,
+			u.FotoPerfil AS FotoCuidador,
+			u.Direccion AS DireccionCuidador
 
 		FROM 
 			reservas r
 			INNER JOIN mascotas m ON r.idMascota = m.idMascota
 			INNER JOIN cuidadores c ON r.idCuidador = c.idUsuario
+			INNER JOIN usuarios u ON r.idCuidador = u.idUsuario
 
 		WHERE 
 			r.idUsuario = '$id'";
@@ -67,7 +76,14 @@
 						"Tarifa" => $filaResultado["Tarifa"],
 						"Descripcion" => $filaResultado["DescripcionCuidador"],
 						"ServiciosAdicionales" => $filaResultado["ServiciosAdicionales"],
-						"Valoracion" => $filaResultado["ValoracionCuidador"]
+						"Valoracion" => $filaResultado["ValoracionCuidador"],
+						"Nombre" => $filaResultado["NombreCuidador"],
+						"Apellidos" => $filaResultado["ApellidosCuidador"],
+						"Correo" => $filaResultado["CorreoCuidador"],
+						"DNI" => $filaResultado["DNICuidador"],
+						"Telefono" => $filaResultado["TelefonoCuidador"],
+						"Foto" => $filaResultado["FotoCuidador"],
+						"Direccion" => $filaResultado["DireccionCuidador"],
 					]
 				];
             }
@@ -118,7 +134,7 @@
 			// info cuidador
 			echo "<div class='cuidador-info'>";
 			echo "<h4>Cuidador</h4>";
-			echo "<p><strong>Descripción:</strong> " . $reserva["Cuidador"]["Descripcion"] . "</p>";
+			echo "<p><strong>Descripción:</strong> " . $reserva["Cuidador"]["Nombre"] . " " . $reserva["Cuidador"]["Apellidos"] . "</p>";
 			echo "</div>";	
 			echo "</div>";
 	
