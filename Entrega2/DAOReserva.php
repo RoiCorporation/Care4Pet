@@ -47,6 +47,7 @@
             // Crea la sentencia sql para comprobar el id.
             $sentencia_sql = "SELECT 
                 r.idReserva,
+                r.idUsuario,
                 r.FechaInicio,
                 r.FechaFin,
                 r.esAceptadaPorCuidador,
@@ -187,7 +188,6 @@
                     $telefonoCuidador = $reservaActual["TelefonoCuidador"];
                     $fotoCuidador = $reservaActual["FotoCuidador"];
                     $direccionCuidador = $reservaActual["DireccionCuidador"];
-                    $direccionCuidador = $reservaActual["DireccionCuidador"];                
                     $fotoMascota = $reservaActual["FotoMascota"];
                     $descripcionMascota = $reservaActual["DescripcionMascota"];
                     $tipoMascota = $reservaActual["TipoMascota"];                
