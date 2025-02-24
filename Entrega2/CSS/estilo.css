@@ -55,6 +55,9 @@
     display: flex;
 }
 
+.reserva-info,
+.valoracion-info,
+.form-valoracion,
 .mascota-info,
 .cuidador-info {
     flex: 1;

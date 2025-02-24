@@ -74,6 +74,8 @@
         } 
         
         $con->close();
+    } else {
+        header("Location: index.php");
     }
 ?>
 
@@ -122,6 +124,7 @@
 	
 			echo "<form method='POST' action='cancelar_reserva.php'>";
 			echo "<input type='hidden' name='idReserva' value='" . $reserva["idReserva"] . "'>";
+			echo "<a href='detalles_reserva.php?reserva=" . $reserva["idReserva"] . "'>Ver reserva</a>";
 			echo "<button type='submit'>Cancelar</button>";
 			echo "</form>";
 			echo "</div>";
@@ -131,6 +134,7 @@
 		}
 		?>
 	</div>
+	<a href=""></a>
 
 	<?php require 'pie_pagina.php'?>
 	<?php require 'aviso_legal.php'?>
