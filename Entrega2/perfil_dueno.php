@@ -2,62 +2,23 @@
 	session_start();
 
     require 'database.php';
+    // require 'Usuario_t.php';
+    require 'DAOUsuario.php';
+    require 'Mascota_t.php';
+    require 'DAOMascota.php';
 
-    $nombre = NULL;
-    $apellidos = NULL;
-    $correo = NULL;
-    $dni = NULL;
-    $telefono = NULL;
-    $fotoPerfil = NULL;
-    $direccion = NULL;
-
+    $usuario = NULL;
     $listaMascotas = [];
 
     if (isset($_SESSION["login"]) && $_SESSION["login"] == true) {
         // obtenemos informacion basica sobre el dueno de BD
         $id = $_SESSION["id"];
-        $sentencia_sql_usuario = "SELECT * FROM usuarios WHERE idUsuario = '$id'";
-        $consultaUsuario = $con->query($sentencia_sql_usuario);
 
-        if ($consultaUsuario->num_rows > 0) {	
-            $filaResultado = $consultaUsuario->fetch_assoc();
-
-            $nombre = $filaResultado["Nombre"];
-            $apellidos = $filaResultado["Apellidos"];
-            $correo = $filaResultado["Correo"];
-            $dni = $filaResultado["DNI"];
-            $telefono = $filaResultado["Telefono"];
-            $fotoPerfil = $filaResultado["FotoPerfil"];
-            $direccion = $filaResultado["Direccion"];
-
-        } 
+        // Obtenemos info del usario mediante el DAO
+        $usuario = (DAOUsuario::getInstance())->leerUnUsuario($id);
 
         // consulatmos la BD para obtener las mascotas del dueno y las agregamos a una lista
-        $sentencia_sql_mascotas = "SELECT 
-            m.idMascota,
-            m.FotoMascota,
-            m.Descripcion,
-            m.TipoMascota
-        FROM 
-            usuarios u
-            INNER JOIN duenos d ON u.idUsuario = d.idUsuario
-            INNER JOIN mascotas m ON d.idMascota = m.idMascota
-        WHERE 
-            u.idUsuario = '$id'";
-        $consultaMascotas = $con->query($sentencia_sql_mascotas);
-
-        if ($consultaMascotas->num_rows > 0) {	
-
-            while ($filaResultado = $consultaMascotas->fetch_assoc()) {
-                $listaMascotas[] = [
-                    "idMascota" => $filaResultado["idMascota"],
-                    "fotoMascota" => $filaResultado["FotoMascota"],
-                    "descripcion" => $filaResultado["Descripcion"],
-                    "tipoMascota" => $filaResultado["TipoMascota"]
-                ];
-            }
-
-        } 
+        $listaMascotas = (DAOMascota::getInstance())->leerMascotasDelUsuario($id);
 
         // Usuario entrega el formulario de crear mascota
         if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["crearMascota"])) {
@@ -68,25 +29,12 @@
             $id_usario = $_SESSION["id"];
             $id_mascota = rand();
             
-            // Inserción de la mascota a BD
-            $sentencia_sql_mascota = 
-            "INSERT INTO mascotas VALUES ('$id_mascota', '', '$descripcion', '$tipoMascota')";
-
-            $consulta_insercion_mascota = $con->query($sentencia_sql_mascota);
-
-            if ($con->affected_rows > 0) {
-                // Creamos un link entre la mascota y el dueno
-                $sentencia_sql_link_md = 
-                "INSERT INTO duenos VALUES ('$id_usario', '$id_mascota')";
-
-                $consulta_insercion_link_md = $con->query($sentencia_sql_link_md);    
-                
-                if ($con->affected_rows > 0) {
-                    header("Location: perfil_dueno.php");
-                }
+            $mascotaNueva = new tMascota($id_mascota, '', $descripcion, $tipoMascota);
             
+            if ((DAOMascota::getInstance())->crearMascota($mascotaNueva, $id_usario) == true) {
+                header("Location: " . $_SERVER['PHP_SELF']);
+                exit();
             }
-            
         }
         
         $con->close();
@@ -114,15 +62,15 @@
 	<!-- Contenido principal de la página de mis reservas -->
 	<div style="padding-left: 200px; padding-right: 200px">
     
-        <h2 style="text-align:center">Hola, <?php echo $nombre ?>! Bienvedinos a tu perfil! </h2>
+        <h2 style="text-align:center">Hola, <?php echo $usuario->getNombre() ?>! Bienvedinos a tu perfil! </h2>
 
         <p>Info basica de tu perfil:</p>
         <?php 
-            echo "<p><strong>Nombre y apellidos:</strong> " . $nombre . " " . $apellidos . "</p>";
-            echo "<p><strong>Correo electronico:</strong> " . $correo . "</p>";
-            echo "<p><strong>DNI:</strong> " . $dni . "</p>";
-            echo "<p><strong>Telefono:</strong> " . $telefono . "</p>";
-            echo "<p><strong>Direccion:</strong> " . $direccion . "</p>";
+            echo "<p><strong>Nombre y apellidos:</strong> " . $usuario->getNombre() . " " . $usuario->getApellidos() . "</p>";
+            echo "<p><strong>Correo electronico:</strong> " . $usuario->getCorreo() . "</p>";
+            echo "<p><strong>DNI:</strong> " . $usuario->getDNI() . "</p>";
+            echo "<p><strong>Telefono:</strong> " . $usuario->getTelefono() . "</p>";
+            echo "<p><strong>Direccion:</strong> " . $usuario->getDireccion() . "</p>";
         ?>
 
         <!-- Mostramos la lista de mascotas del dueno -->
@@ -132,11 +80,11 @@
         <ul>
             <?php foreach ($listaMascotas as $mascota) : ?>
                 <li>
-                    <strong>Descripción:</strong> <?= $mascota['descripcion']; ?><br>
+                    <strong>Descripción:</strong> <?= $mascota->getDescripcion(); ?><br>
                     <strong>Tipo de Mascota:</strong> 
                     <?php
                     // para cada mascota, convertimos la salida de BD 'tipo' a texto normal
-                    switch ($mascota['tipoMascota']) {
+                    switch ($mascota->getTipoMascota()) {
                         case 1:
                             echo "Perro";
                             break;
