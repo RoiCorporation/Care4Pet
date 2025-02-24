@@ -14,8 +14,8 @@ mediante las consultas a la base de datos hechas a través del DAOUsuario -->
         // Constructor
         public function __construct($id = null, $nombre = "", $apellidos = "", 
             $correo = "", $contrasena = "", $dni = "", $telefono = "", $fotoPerfil = "", 
-            $direccion = "", $esDueno = false, $esCuidador = false, $esAdmin = false, 
-            $cuentaActiva = true) {
+            $direccion = "", $esDueno = 0, $esCuidador = 0, $esAdmin = 0, 
+            $cuentaActiva = 1) {
             $this->id = $id;
             $this->nombre = $nombre;
             $this->apellidos = $apellidos;

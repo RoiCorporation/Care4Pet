@@ -1,7 +1,7 @@
 <!-- Menú principal de la aplicación -->
 
-<!-- Reemplazar el atributo "align" cuanto antes, está obsoleto -->
-<nav align="center" >
+<!-- Reemplazar el atributo "align" cuanto antes, está obsoleto align="center"-->
+<nav style="text-align:center">
 	<span><a href="index.php">Care4Pet</a></span> &emsp;&emsp;
 	<span><a href="pagina_contratacion.php">Contratar cuidadores</a></span> &emsp;&emsp;
 	<span><a href="sobre_nosotros.php">Sobre nosotros</a></span> &emsp;&emsp;

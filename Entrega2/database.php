@@ -7,6 +7,7 @@
 
     try {
         // El objeto "con" representa la conexión con la base de datos.
+        global $con;
         $con = new mysqli($db_servidor, $db_usuario, $db_contrasena, $db_nombre);
     }
 
