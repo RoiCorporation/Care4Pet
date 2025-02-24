@@ -1,3 +1,4 @@
+/* estilos pop up */
 .popup {
     display: none;
     position: fixed;
@@ -31,4 +32,40 @@
 
 .overlay.active {
     display: block;
+}
+
+/* estilos item de reserva */
+.reserva-box {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 20px 0;
+    padding: 20px;
+    overflow: hidden;
+}
+
+.reserva-box img {
+    max-width: 200px;
+    border-radius: 8px;
+    margin-right: 20px;
+}
+
+.reserva-details {
+    display: flex;
+}
+
+.mascota-info,
+.cuidador-info {
+    flex: 1;
+    padding: 10px;
+}
+
+.reserva-box h3 {
+    color: #333;
+}
+
+.reserva-box p {
+    margin: 5px 0;
+    color: #555;
 }
