@@ -21,7 +21,9 @@
     session_start();
 
     require 'database.php';
-
+    require 'Usuario_t.php';
+    require 'DAOUsuario.php';
+    
     $nombre = htmlspecialchars(trim(strip_tags($_REQUEST["nombre"])));
     $apellidos = htmlspecialchars(trim(strip_tags($_REQUEST["apellidos"])));
     $dni = htmlspecialchars(trim(strip_tags($_REQUEST["dni"])));
@@ -45,52 +47,29 @@
 
     else {
 
-        // Crea la sentencia sql para comprobar el email.
-        $sentencia_sql = "SELECT * FROM usuarios WHERE Correo = '$email'";
+        $id_usuario = rand();
 
-        $consulta_comprobacion = $con->query($sentencia_sql);
-
-        // Si ya hay una cuenta asociada a ese email, se pide al usuario que 
-        // escoja otro correo electrónico.
-        if ($consulta_comprobacion->num_rows != 0) {
-            echo "<h3>Ya existe una cuenta asociada a ese correo.</h3>";
-            exit();
-        }
-
-        // Si no hay ninguna cuenta asociada a ese email, crea una nueva cuenta 
-        // y da de alta al usuario -junto con los valores que ha introducido-
-        // en la base de datos.
-        else {
-
-            // Crea un id de usuario random.
-            $id_usuario = rand();
+        $nuevoUsuario = new tUsuario($id_usuario, $nombre, $apellidos,
+            $email, $contrasena, $dni, $telefono, NULL, $direccion);
             
-            // Crea la sentencia sql de inserción a ejecutar.
-            $sentencia_sql = 
-            "INSERT INTO usuarios VALUES ('$id_usuario', '$nombre', '$apellidos', '$email', '$contrasena', '$dni', '$telefono', 'NULL', '$direccion', '0', '0', '0', '1')";
-
-            $consulta_insercion = $con->query($sentencia_sql);
-
             // Si la inserción ha creado una entrada nueva, el usuario se ha 
             // registrado correctamente. Por lo tanto, se inicia su sesión con 
             // las mismas variables de sesión de cualquier otro usuario.
-            if ($con->affected_rows > 0) {
-                $_SESSION["login"] = true;
-                $_SESSION["email"] = $email;
-                $_SESSION["nombreUsuario"] = $nombre;
-                $_SESSION["id"] = $id_usuario;
+        if ((DAOUsuario::getInstance())->crearUsuario($nuevoUsuario) == true) {
+            $_SESSION["login"] = true;
+            $_SESSION["email"] = $email;
+            $_SESSION["nombreUsuario"] = $nombre;
+            $_SESSION["id"] = $id_usuario;
 
-                // Redirige al usuario a la página de inicio.
-                header("Location: index.php");
-            }
+            // Redirige al usuario a la página de inicio.
+            header("Location: index.php");
+        }
 
-            // Si la inserción ha fallado por algún motivo, se avisa al usuario.
-            else {
-                echo "Ha habido un problema al intentar registrar esta cuenta.
-                Por favor, inténtelo de nuevo.<br>";
-            }
-
-        } 
+        // Si la inserción ha fallado por algún motivo, se avisa al usuario.
+        else {
+            echo "Ha habido un problema al intentar registrar esta cuenta.
+            Por favor, inténtelo de nuevo.<br>";
+        }
 
         // Se cierra la conexión con la BD (puede que esta línea haya que omitirla...).
         $con->close();
