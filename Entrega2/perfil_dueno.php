@@ -90,6 +90,8 @@
         }
         
         $con->close();
+    } else {
+        header("Location: index.php");
     }
 ?>
 
