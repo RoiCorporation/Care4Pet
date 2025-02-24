@@ -21,9 +21,9 @@
     
         // Setters
         public function setId($id) { $this->id = $id; }
-        public function setFotoMascota() { return $this->fotoMascota; }
-        public function setDescripcion() { return $this->descripcion; }
-        public function setTipoMascota() { return $this->tipoMascota; }
+        public function setFotoMascota($fotoMascota) { $this->fotoMascota = $fotoMascota; }
+        public function setDescripcion($descripcion) { $this->descripcion = $descripcion; }
+        public function setTipoMascota($tipoMascota) { $this->tipoMascota = $tipoMascota; }
     }
 
 ?>
