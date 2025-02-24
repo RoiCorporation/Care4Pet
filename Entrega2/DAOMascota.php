@@ -136,7 +136,17 @@
                 $sentencia_sql = "DELETE FROM mascotas WHERE idMascota = '{$idMascota}'";
                 $consulta_borrado = $this->con->query($sentencia_sql);
 
-                return $this->con->affected_rows > 0;
+                if ($this->con->affected_rows > 0) {
+                    // Borramos un link entre la mascota y el dueno
+                    $sentencia_sql_borra_link_md = 
+                    "DELETE FROM duenos WHERE idMascota = '{$idMascota}')";
+    
+                    $consulta_borra_link_md = $this->con->query($sentencia_sql_borra_link_md);    
+                    
+                    return $this->con->affected_rows > 0;
+                } else {
+                    return false;
+                }
             }
             else {
                 return false;
