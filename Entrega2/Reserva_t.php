@@ -4,16 +4,16 @@
 
         // Atributos de la clase.
         public $id, $idUsuario, $idMascota, $idCuidador, $fechaInicio, 
-            $fechaFin, $esAceptadaPorCuidador, $valoracion, $resena, $comentariosAdicionales,
+            $fechaFin, $esAceptadaPorCuidador, $valoracion, $resena, $comentariosAdicionales, $esReservaActiva,
             $nombreCuidador, $apellidosCuidador, $correoCuidador, $telefonoCuidador, $fotoPerfilCuidador, $direccionCuidador,
             $fotoMascota, $descripcionMascota, $tipoMascota;
             
         // Constructor
         public function __construct($id = null, $idUsuario = null, $idMascota = null, 
             $idCuidador = null, $fechaInicio = null, $fechaFin = null, $valoracion = null, $resena = "", 
-            $comentariosAdicionales = "", $nombreCuidador = "", $apellidosCuidador = "", $correoCuidador = "", 
-            $telefonoCuidador = "", $fotoPerfilCuidador = "", $direccionCuidador = "", $fotoMascota = "",
-            $descripcionMascota = "", $tipoMascota = "", $esAceptadaPorCuidador = 0) {
+            $comentariosAdicionales = "", $esReservaActiva = 1, $nombreCuidador = "", $apellidosCuidador = "", 
+            $correoCuidador = "", $telefonoCuidador = "", $fotoPerfilCuidador = "", $direccionCuidador = "", 
+            $fotoMascota = "", $descripcionMascota = "", $tipoMascota = "", $esAceptadaPorCuidador = 0) {
             $this->id = $id;
             $this->idUsuario = $idUsuario;
             $this->idMascota = $idMascota;
@@ -24,6 +24,7 @@
             $this->valoracion = $valoracion;
             $this->resena = $resena;
             $this->comentariosAdicionales = $comentariosAdicionales;
+            $this->esReservaActiva = $esReservaActiva;
 
             $this->nombreCuidador = $nombreCuidador;
             $this->apellidosCuidador = $apellidosCuidador;
@@ -50,6 +51,7 @@
         public function getValoracion() { return $this->valoracion; }
         public function getResena() { return $this->resena; }
         public function getComentariosAdicionales() { return $this->comentariosAdicionales; }
+        public function getEsReservaActiva() { return $this->esReservaActiva; }
         public function getNombreCuidador() { return $this->nombreCuidador; }
         public function getApellidosCuidador() { return $this->apellidosCuidador; }
         public function getCorreoCuidador() { return $this->correoCuidador; }
@@ -71,6 +73,7 @@
         public function setValoracion($valoracion) { $this->valoracion = $valoracion; }
         public function setResena($resena) { $this->resena = $resena; }
         public function setComentariosAdicionales($comentariosAdicionales) { $this->comentariosAdicionales = $comentariosAdicionales; }
+        public function setEsReservaActiva($esReservaActiva) { $this->esReservaActiva = $esReservaActiva; }
         public function setNombreCuidador($nombreCuidador) { $this->nombreCuidador = $nombreCuidador; }
         public function setApellidosCuidador($apellidosCuidador) { $this->apellidosCuidador = $apellidosCuidador; }
         public function setCorreoCuidador($correoCuidador) { $this->correoCuidador = $correoCuidador; }

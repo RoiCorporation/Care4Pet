@@ -13,6 +13,17 @@
         // obtenemos informacion basica sobre el dueno de BD
         $id = $_SESSION["id"];
 
+		// si el usuario quiere cancelar la reserva
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['idReserva'])) {
+            $idReservaToCancel = $_POST['idReserva'];
+            if ((DAOReserva::getInstance())->borrarReserva($idReservaToCancel)) {
+                $mensaje = "Reserva cancelada correctamente.";
+				header("Location: mis_reservas.php");
+            } else {
+                $mensaje = "Error al cancelar la reserva.";
+            }
+        }
+
         // consulatmos DAO Reservas para obtener las reservas del usuario y mascotas / cuidadores relacionados
         $listaReservas = (DAOReserva::getInstance())->leerReservasDelUsuario($id);
     } else {
@@ -63,10 +74,16 @@
 			echo "</div>";	
 			echo "</div>";
 	
-			echo "<form method='POST' action='cancelar_reserva.php'>";
+			echo "<form method='POST'>";
 			echo "<input type='hidden' name='idReserva' value='" . $reserva->getId() . "'>";
 			echo "<a href='detalles_reserva.php?reserva=" . $reserva->getId() . "'>Ver reserva</a>";
-			echo "<button type='submit'>Cancelar</button>";
+
+			$ffin = new DateTime($reserva->getFechaFin());
+			$now = new DateTime();
+
+			if ($ffin > $now) {
+				echo "<button type='submit'>Cancelar</button>";
+			}
 			echo "</form>";
 			echo "</div>";
 		}

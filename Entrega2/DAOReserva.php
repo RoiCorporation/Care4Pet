@@ -35,7 +35,7 @@
             $sentencia_sql = 
             "INSERT INTO reservas VALUES ('{$reservaACrear->getId()}', '{$reservaACrear->getIdUsuario()}', '{$reservaACrear->getIdMascota()}',
             '{$reservaACrear->getIdCuidador()}', '{$reservaACrear->getFechaInicio()}', '{$reservaACrear->getFechaFin()}', '{$reservaACrear->getEsAceptadaPorCuidador()}',
-            '{$reservaACrear->getValoracion()}', '{$reservaACrear->getResena()}', '{$reservaACrear->getComentariosAdicionales()}')";
+            '{$reservaACrear->getValoracion()}', '{$reservaACrear->getResena()}', '{$reservaACrear->getComentariosAdicionales()}', '{$reservaACrear->getEsReservaActiva()}')";
 
             $consulta_insercion = $this->con->query($sentencia_sql);
 
@@ -54,6 +54,7 @@
                 r.Valoracion,
                 r.Resena,
                 r.ComentariosAdicionales,
+                r.esReservaActiva,
                 
                 -- obtenemos info de mascota
                 m.idMascota,
@@ -100,6 +101,7 @@
                 $valoracion = $valores_resultado["Valoracion"];
                 $resena = $valores_resultado["Resena"];
                 $comentariosAdicionales = $valores_resultado["ComentariosAdicionales"];
+                $esReservaActiva = $valores_resultado["esReservaActiva"];
 
                 $nombreCuidador = $valores_resultado["NombreCuidador"];
                 $apellidosCuidador = $valores_resultado["ApellidosCuidador"];
@@ -113,7 +115,7 @@
                 $tipoMascota = $valores_resultado["TipoMascota"];                
 
                 $reservaBuscada = new tReserva($idReserva, $idUsuario, $idMascota, $idCuidador, $fechaInicio, $fechaFin,
-                $valoracion, $resena, $comentariosAdicionales, $nombreCuidador, $apellidosCuidador, $correoCuidador,
+                $valoracion, $resena, $comentariosAdicionales, $esReservaActiva, $nombreCuidador, $apellidosCuidador, $correoCuidador,
                 $telefonoCuidador, $fotoCuidador, $direccionCuidador, $fotoMascota, $descripcionMascota, $tipoMascota, $esAceptadaPorCuidador);
                 return $reservaBuscada;
             }
@@ -134,6 +136,7 @@
                 r.Valoracion,
                 r.Resena,
                 r.ComentariosAdicionales,
+                r.esReservaActiva,
                 
                 -- obtenemos info de mascota
                 m.idMascota,
@@ -181,6 +184,7 @@
                     $valoracion = $reservaActual["Valoracion"];
                     $resena = $reservaActual["Resena"];
                     $comentariosAdicionales = $reservaActual["ComentariosAdicionales"];
+                    $esReservaActiva = $reservaActual["esReservaActiva"];
     
                     $nombreCuidador = $reservaActual["NombreCuidador"];
                     $apellidosCuidador = $reservaActual["ApellidosCuidador"];
@@ -193,7 +197,7 @@
                     $tipoMascota = $reservaActual["TipoMascota"];                
     
                     $reservaAAnadir = new tReserva($idReserva, $idUsuario, $idMascota, $idCuidador, $fechaInicio, $fechaFin,
-                    $valoracion, $resena, $comentariosAdicionales, $nombreCuidador, $apellidosCuidador, $correoCuidador,
+                    $valoracion, $resena, $comentariosAdicionales, $esReservaActiva, $nombreCuidador, $apellidosCuidador, $correoCuidador,
                     $telefonoCuidador, $fotoCuidador, $direccionCuidador, $fotoMascota, $descripcionMascota, $tipoMascota, $esAceptadaPorCuidador);    
                     $arrayReservas[] = $reservaAAnadir;
                 }
