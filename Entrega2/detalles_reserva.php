@@ -120,8 +120,10 @@
 			echo "
 			<form method='POST'>
 				<label for='valoracion'>Estrellas:</label><br>
-				<input type='number' name='valoracion' id='valoracion' min='1' max='5' required><br>
-				<label for='resena'>Resena:</label><br>
+				<input type='range' name='valoracion' id='valoracion' min='1' max='5' value='3' oninput='valoracionOutput.value = valoracion.value' required>
+				<output id='valoracionOutput'>3</output>/5 <br>
+
+				<label for='resena'>Reseña:</label><br>
 				<input type='text' name='resena' id='resena' required><br>
 				<button type='submit' name='crearValoracion'>Subir valoracion</button>
 			</form>
