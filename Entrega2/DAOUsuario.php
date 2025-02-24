@@ -198,7 +198,6 @@ clase que es el DAO -->
                 // Devuelve false si no se ha podido borrar con éxito el usuario con los 
                 // valores sin actualizar.
                 else {
-                    echo "NO SE HA CONSEGUIDO BORRAR";
                     return false;
                 }
             }
@@ -230,7 +229,6 @@ clase que es el DAO -->
 
             // Si no existe un usuario con ese id, devuelve falso.
             else {
-                echo "NO ÉXITO AL BORRAR";
                 return false;
             }
 
