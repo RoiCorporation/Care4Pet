@@ -14,7 +14,7 @@
         $id = $_SESSION["id"];
 
         // Obtenemos info del usario mediante el DAO
-        $usuario = (DAOUsuario::getInstance())->leerUnUsuario($id);
+        $usuario = (DAOUsuario::getInstance())->leerUnUsuario($_SESSION["email"]);
 
         // consulatmos la BD para obtener las mascotas del dueno y las agregamos a una lista
         $listaMascotas = (DAOMascota::getInstance())->leerMascotasDelUsuario($id);
@@ -63,7 +63,6 @@
             }
         }
         
-        $con->close();
     } else {
         header("Location: index.php");
     }

@@ -19,41 +19,6 @@
 
 	<?php
 		require 'cabecera.php';
-
-
-		
-		require 'DAOTipoDeMascota.php';
-		require 'TipoDeMascota_t.php';
-		require_once 'DatabaseConnection.php';
-		
-		$id = 32123;
-		$nombre = "Canario";
-
-
-		$tipo = new tTipoDeMascota($id, $nombre);
-		(DAOTipoDeMascota::getInstance())->crearTipoDeMascota($tipo);
-
-		$idS = 32123;
-		$nombreS = "Pet";
-
-
-		$tipo2 = new tTipoDeMascota($idS, $nombreS);
-		(DAOTipoDeMascota::getInstance())->editarTipoDeMascota($tipo2->getId());
-
-
-		/*
-		// Convertir array a json
-		$tiposDeMascotasJson = json_encode($tiposDeMascotas);
-		$serviciosJson = json_encode($servicios);
-		
-		$nuevoCuidador = new tCuidador(1203472, $tiposDeMascotasJson, 4, $descripcion, $serviciosJson, $descripcion, 0);
-
-		//(DAOCuidador::getInstance())->borrarCuidador(1203472);
-		(DAOCuidador::getInstance())->crearCuidador($nuevoCuidador);
-		$resultado = (DAOCuidador::getInstance())->leerUnCuidador(1203472);
-		echo "Mascotas: {$resultado->getTiposDeMascotas()[0]}";
-*/
-
 	?>
 	
 	<!-- Contenido principal de la página de inicio -->

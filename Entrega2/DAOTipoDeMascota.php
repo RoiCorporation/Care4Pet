@@ -40,8 +40,6 @@ clase que es el DAO -->
         // Crear tipoDeMascota.
         public function crearTipoDeMascota($tipoDeMascotaACrear) {
 
-            // Inserta en la base de datos el nuevo tipo de mascota.
-
             // Crea la sentencia sql de inserción a ejecutar.
             $sentencia_sql = 
             "INSERT INTO tipos_de_mascotas VALUES ('{$tipoDeMascotaACrear->getId()}', 
