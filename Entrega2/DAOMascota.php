@@ -112,14 +112,14 @@
         }
 
         // Editar mascota.
-        public function editarMascota($mascotaAEditar) {
+        public function editarMascota($mascotaAEditar, $idUsuario) {
             $sentencia_sql = "SELECT * FROM mascotas WHERE idMascota = '{$mascotaAEditar->getId()}'";
             $consulta_comprobacion = $this->con->query($sentencia_sql);
 
             if ($consulta_comprobacion->num_rows != 0) {
                 
                 if ((DAOMascota::getInstance())->borrarMascota($mascotaAEditar->getId())) {
-                    return (DAOMascota::getInstance())->crearMascota($mascotaAEditar);
+                    return (DAOMascota::getInstance())->crearMascota($mascotaAEditar, $idUsuario);
                 }                
                 else {
                     return false;
