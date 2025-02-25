@@ -1,7 +1,7 @@
 <?php
 	session_start();
 
-    require 'database.php';
+    require_once 'DatabaseConnection.php';
 	require 'Mascota_t.php';
     require 'DAOMascota.php';
 	require 'Reserva_t.php';

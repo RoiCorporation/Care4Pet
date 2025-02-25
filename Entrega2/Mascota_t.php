@@ -3,27 +3,33 @@
     class tMascota {
 
         // Atributos de la clase.
-        public $id, $fotoMascota, $descripcion, $tipoMascota;
+        public $id, $tipoMascota, $descripcion, $foto;
+
+
             
         // Constructor
-        public function __construct($id = null, $fotoMascota = "", $descripcion = "", $tipoMascota = "") {
-            $this->id = $id;
-            $this->fotoMascota = $fotoMascota;
-            $this->descripcion = $descripcion;
+        public function __construct($id = NULL, $tipoMascota = "", 
+            $descripcion = "", $foto = NULL) {
+            if ($id == NULL) $this->id = rand();
+            else $this->id = $id;
             $this->tipoMascota = $tipoMascota;
+            $this->descripcion = $descripcion;
+            $this->foto = $foto;
         }
+
+        // Resto de funciones (getters y setters).
 
         // Getters
         public function getId() { return $this->id; }
-        public function getFotoMascota() { return $this->fotoMascota; }
-        public function getDescripcion() { return $this->descripcion; }
         public function getTipoMascota() { return $this->tipoMascota; }
+        public function getDescripcion() { return $this->descripcion; }
+        public function getFoto() { return $this->foto; }
     
         // Setters
         public function setId($id) { $this->id = $id; }
-        public function setFotoMascota($fotoMascota) { $this->fotoMascota = $fotoMascota; }
-        public function setDescripcion($descripcion) { $this->descripcion = $descripcion; }
         public function setTipoMascota($tipoMascota) { $this->tipoMascota = $tipoMascota; }
+        public function setDescripcion($descripcion) { $this->descripcion = $descripcion; }
+        public function setFoto($foto) { $this->foto = $foto; }
     }
 
 ?>

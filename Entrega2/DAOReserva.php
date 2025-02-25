@@ -9,12 +9,9 @@
         // Constructor privado para evitar nuevas instancias con new().
         private function __construct() { 
             require_once 'Reserva_t.php';
-            require_once 'database.php';
-            global $con; // Obtiene explícitamente la variable global "con".
-            if (!$con) {
-                die("Error de conexión a la base de datos");
-            }
-            $this->con = $con;
+            require_once 'DatabaseConnection.php';
+            $con = null;
+            $this->con = (DatabaseConnection::getInstance())->getConnection();
         }
 
         // La función de clonación se hace privada para impedir dicha 

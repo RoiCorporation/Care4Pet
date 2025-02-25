@@ -8,19 +8,16 @@
         // Constructor privado para evitar nuevas instancias con new().
         private function __construct() { 
             require_once 'Usuario_t.php';
-            require_once 'database.php';
-            global $con; // Obtiene explícitamente la variable global "con".
-            if (!$con) {
-                die("Error de conexión a la base de datos");
-            }
-            $this->con = $con;
+            require_once 'DatabaseConnection.php';
+            $con = null;
+            $this->con = (DatabaseConnection::getInstance())->getConnection();
         }
 
         // La función de clonación se hace privada para impedir dicha 
         // funcionalidad (no se contempla en el uso del patrón Singleton).
         private function __clone() { }
 
-        // Método singleton .
+        // Método singleton.
         public static function getInstance() {
             if (null === self::$DAOUsuarioInstance) {
                 self::$DAOUsuarioInstance = new DAOUsuario();
@@ -63,19 +60,20 @@
 
                 $consulta_insercion = $this->con->query($sentencia_sql);
 
-                // Si la inserción ha creado una entrada nueva, se devuelve true.
+                // Si la inserción ha creado una entrada nueva, se devuelve true; en caso contrario, se devuelve false.
                 return $this->con->affected_rows > 0;
-            } 
+            }
+            
         }
 
 
 
         
         // Leer un usuario.
-        public function leerUnUsuario($idUsuario) {
+        public function leerUnUsuario($correo) {
 
             // Crea la sentencia sql para comprobar el id.
-            $sentencia_sql = "SELECT * FROM usuarios WHERE idUsuario = '{$idUsuario}'";
+            $sentencia_sql = "SELECT * FROM usuarios WHERE Correo = '{$correo}'";
 
             $consulta_resultado = $this->con->query($sentencia_sql);
             
@@ -85,6 +83,7 @@
             if ($consulta_resultado->num_rows > 0) {
                 $valores_resultado = $consulta_resultado->fetch_assoc();
 
+                $idUsuario = $valores_resultado["idUsuario"];
                 $nombre = $valores_resultado["Nombre"];
                 $apellidos = $valores_resultado["Apellidos"];
                 $correo = $valores_resultado["Correo"];

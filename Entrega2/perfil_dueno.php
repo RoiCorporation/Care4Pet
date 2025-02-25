@@ -1,8 +1,7 @@
 <?php
 	session_start();
 
-    require 'database.php';
-    // require 'Usuario_t.php';
+    require_once 'DatabaseConnection.php';
     require 'DAOUsuario.php';
     require 'Mascota_t.php';
     require 'DAOMascota.php';
@@ -15,7 +14,7 @@
         $id = $_SESSION["id"];
 
         // Obtenemos info del usario mediante el DAO
-        $usuario = (DAOUsuario::getInstance())->leerUnUsuario($id);
+        $usuario = (DAOUsuario::getInstance())->leerUnUsuario($_SESSION["email"]);
 
         // consulatmos la BD para obtener las mascotas del dueno y las agregamos a una lista
         $listaMascotas = (DAOMascota::getInstance())->leerMascotasDelUsuario($id);
@@ -64,7 +63,6 @@
             }
         }
         
-        $con->close();
     } else {
         header("Location: index.php");
     }
@@ -108,8 +106,8 @@
             <?php foreach ($listaMascotas as $mascota) : ?>
                 <div class="mascota-card">
                     <div class="mascota-info">
-                        <?php if ($mascota->getFotoMascota()) { ?>
-                            <img src="<?php echo $mascota->getFotoMascota(); ?>" alt="Foto de Mascota">
+                        <?php if ($mascota->getFoto()) { ?>
+                            <img src="<?php echo $mascota->getFoto(); ?>" alt="Foto de Mascota">
                         <?php } ?>
                         <p><strong>Descripción:</strong> <?php echo $mascota->getDescripcion(); ?></p>
                         <p><strong>Tipo de Mascota:</strong> 
