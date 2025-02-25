@@ -1,5 +1,5 @@
 <!-- Clase DAO ("Data Acces Object") para realizar las operaciones
-CRUD sobre las entidades de tipo Usuario_t. Se utilizará el patrón de 
+CRUD sobre las entidades de tipo tUsuario. Se utilizará el patrón de 
 diseño Singleton, por considerarlo el más apropiado para el tipo de 
 clase que es el DAO -->
 
@@ -16,11 +16,8 @@ clase que es el DAO -->
         private function __construct() { 
             require_once 'Usuario_t.php';
             require_once 'database.php';
-            global $con; // Obtiene explícitamente la variable global "con".
-            if (!$con) {
-                die("Error de conexión a la base de datos");
-            }
-            $this->con = $con;
+            $con = null;
+            $this->con = (Database::getInstance())->getConnection();  
         }
 
         // La función de clonación se hace privada para impedir dicha 
@@ -70,19 +67,20 @@ clase que es el DAO -->
 
                 $consulta_insercion = $this->con->query($sentencia_sql);
 
-                // Si la inserción ha creado una entrada nueva, se devuelve true.
+                // Si la inserción ha creado una entrada nueva, se devuelve true; en caso contrario, se devuelve false.
                 return $this->con->affected_rows > 0;
-            } 
+            }
+            
         }
 
 
 
         
         // Leer un usuario.
-        public function leerUnUsuario($idUsuario) {
+        public function leerUnUsuario($correo) {
 
             // Crea la sentencia sql para comprobar el id.
-            $sentencia_sql = "SELECT * FROM usuarios WHERE idUsuario = '{$idUsuario}'";
+            $sentencia_sql = "SELECT * FROM usuarios WHERE Correo = '{$correo}'";
 
             $consulta_resultado = $this->con->query($sentencia_sql);
             
@@ -92,6 +90,7 @@ clase que es el DAO -->
             if ($consulta_resultado->num_rows > 0) {
                 $valores_resultado = $consulta_resultado->fetch_assoc();
 
+                $idUsuario = $valores_resultado["idUsuario"];
                 $nombre = $valores_resultado["Nombre"];
                 $apellidos = $valores_resultado["Apellidos"];
                 $correo = $valores_resultado["Correo"];

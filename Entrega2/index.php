@@ -1,7 +1,7 @@
 <?php
 	session_start();
 
-	require 'database.php';
+	require_once 'database.php';
 
 ?>
 
@@ -19,6 +19,39 @@
 
 	<?php
 		require 'cabecera.php';
+		require 'DAOUsuario.php';
+
+
+		
+		require 'DAOMascota.php';
+		require 'Mascota_t.php';
+		require_once 'database.php';
+		
+		$idTipo = 345234;
+		$descripcion = "es muy muy mono";
+		$nuevaMascota = new tMascota(1010, $idTipo, "hola", $descripcion);
+
+		echo "Servidor: {$db_servidor}, Usuario: {$db_usuario}";
+
+		(DAOMascota::getInstance())->crearMascota($nuevaMascota);
+		
+
+
+		/*
+		(DAOUsuario::getInstance())->leerUnUsuario("vv@vv.com");
+		$arrayUsuario = (DAOUsuario::getInstance())->leerTodosLosUsuarios();
+
+		
+		if (!empty($arrayUsuario) && isset($arrayUsuario[0]->idUsuario)) {
+			echo "{$arrayUsuario[0]->idUsuario}";
+		} 
+		
+		else {
+			echo "No users found.";
+		}
+		*/
+
+
 	?>
 	
 	<!-- Contenido principal de la página de inicio -->

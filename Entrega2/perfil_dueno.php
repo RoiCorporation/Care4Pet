@@ -1,7 +1,7 @@
 <?php
 	session_start();
 
-    require 'database.php';
+    require_once 'database.php';
 
     $nombre = NULL;
     $apellidos = NULL;
