@@ -106,8 +106,8 @@
             <?php foreach ($listaMascotas as $mascota) : ?>
                 <div class="mascota-card">
                     <div class="mascota-info">
-                        <?php if ($mascota->getFotoMascota()) { ?>
-                            <img src="<?php echo $mascota->getFotoMascota(); ?>" alt="Foto de Mascota">
+                        <?php if ($mascota->getFoto()) { ?>
+                            <img src="<?php echo $mascota->getFoto(); ?>" alt="Foto de Mascota">
                         <?php } ?>
                         <p><strong>Descripción:</strong> <?php echo $mascota->getDescripcion(); ?></p>
                         <p><strong>Tipo de Mascota:</strong> 
