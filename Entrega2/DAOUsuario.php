@@ -1,11 +1,4 @@
-<!-- Clase DAO ("Data Acces Object") para realizar las operaciones
-CRUD sobre las entidades de tipo tUsuario. Se utilizará el patrón de 
-diseño Singleton, por considerarlo el más apropiado para el tipo de 
-clase que es el DAO -->
-
 <?php
-
-
     class DAOUsuario {
     
         // Atributos.

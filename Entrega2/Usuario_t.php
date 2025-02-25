@@ -1,5 +1,3 @@
-<!-- Definición de la clase tUsuario, necesaria para almacenar los datos obtenidos 
-mediante las consultas a la base de datos hechas a través del DAOUsuario -->
 <?php
 
     class tUsuario {
