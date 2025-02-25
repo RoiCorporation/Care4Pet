@@ -1,10 +1,4 @@
-<!-- Clase DAO ("Data Acces Object") para realizar las operaciones
-CRUD sobre las entidades de tipo tMascota. Se utilizará el patrón de 
-diseño Singleton, por considerarlo el más apropiado para el tipo de 
-clase que es el DAO -->
-
 <?php
-
 
     class DAOMascota {
     
@@ -17,15 +11,14 @@ clase que es el DAO -->
             require_once 'Mascota_t.php';
             require_once 'database.php';
             $con = null;
-            $this->con = (Database::getInstance())->getConnection();  
-        } 
-
+            $this->con = (DatabaseConnection::getInstance())->getConnection();
+        }
 
         // La función de clonación se hace privada para impedir dicha 
         // funcionalidad (no se contempla en el uso del patrón Singleton).
         private function __clone() { }
 
-        // Método singleton.
+        // Método singleton .
         public static function getInstance() {
             if (null === self::$DAOMascotaInstance) {
                 self::$DAOMascotaInstance = new DAOMascota();
@@ -33,176 +26,129 @@ clase que es el DAO -->
             return self::$DAOMascotaInstance;
         }
 
-
-
-
-        // Resto de métodos (CRUDs).
-
         // Crear mascota.
-        public function crearMascota($mascotaACrear) {
-
+        public function crearMascota($mascotaACrear, $idUsuario) {
             // Crea la sentencia sql de inserción a ejecutar.
             $sentencia_sql = 
-            "INSERT INTO mascotas VALUES ('{$mascotaACrear->getId()}', 
-                '{$mascotaACrear->getTipoMascota()}', '{$mascotaACrear->getDescripcion()}', 
-                '{$mascotaACrear->getFoto()}')";
+            "INSERT INTO mascotas VALUES ('{$mascotaACrear->getId()}', '{$mascotaACrear->getFotoMascota()}', 
+            '{$mascotaACrear->getDescripcion()}', '{$mascotaACrear->getTipoMascota()}')";
 
-            if ($this->con instanceof mysqli) {
-                if ($this->con == NULL) {
-                    echo "NULL";
-                }
-                else if ($this->con->ping()) {
-                    echo "Connection is open.";
-                    $this->con->query($sentencia_sql);
-                    echo "Query done!";
-                }
-            }
-                            
-            else {
-                echo "Connection is closed.";
-            }
+            $consulta_insercion = $this->con->query($sentencia_sql);
 
+            if ($this->con->affected_rows > 0) {
+                // Creamos un link entre la mascota y el dueno
+                $sentencia_sql_link_md = 
+                "INSERT INTO duenos VALUES ('$idUsuario', '{$mascotaACrear->getId()}')";
+
+                $consulta_insercion_link_md = $this->con->query($sentencia_sql_link_md);    
+                
+                return $this->con->affected_rows > 0;
+            } else {
+                return false;
+            }
         }
-
-
         
         // Leer una mascota.
-        public function leerUnaMascota($idMascota) {
+        public function leerUnaMacota($idMascota) {
 
             // Crea la sentencia sql para comprobar el id.
             $sentencia_sql = "SELECT * FROM mascotas WHERE idMascota = '{$idMascota}'";
 
             $consulta_resultado = $this->con->query($sentencia_sql);
             
-            // Si ha obtenido un resultado, entonces se ha encontrado a esa mascota.
-            // Se procede a extraer los valores de esa mascota, generar un nuevo objeto 
-            // de tipo tMascota, y devolver dicho objeto.
             if ($consulta_resultado->num_rows > 0) {
                 $valores_resultado = $consulta_resultado->fetch_assoc();
 
-                $tipoMascota = $valores_resultado["TipoMascota"];
-                $descripcion = $valores_resultado["Descripcion"];
                 $fotoMascota = $valores_resultado["FotoMascota"];
+                $descripcion = $valores_resultado["Descripcion"];
+                $tipoMascota = $valores_resultado["TipoMascota"];
 
-                $mascotaBuscada = new tMascota($idMascota, $tipoMascota, $descripcion,
-                    $fotoMascota);
-                
+                $mascotaBuscada = new tMascota($idMascota, $fotoMascota, $descripcion, $tipoMascota);
                 return $mascotaBuscada;
             }
-
-            // Si no se ha obtenido un resultado, devuelve NULL -pues no existe una
-            // mascota con ese id-.
             else {
                 return NULL;
             }
-            
         }
 
+        // Leer todos las de un usuario.
+        public function leerMascotasDelUsuario($idUsuario) {
 
-
-
-        // Leer todas las mascotas.
-        public function leerTodasLasMascotas() {
-
-            // Crea la sentencia sql para obtener todas las mascotas en la base de datos.
-            $sentencia_sql = "SELECT * FROM mascotas";
+            // Crea la sentencia sql para obtener todos los usuarios en la base de datos.
+            $sentencia_sql = "SELECT 
+                m.idMascota,
+                m.FotoMascota,
+                m.Descripcion,
+                m.TipoMascota
+            FROM 
+                usuarios u
+                INNER JOIN duenos d ON u.idUsuario = d.idUsuario
+                INNER JOIN mascotas m ON d.idMascota = m.idMascota
+            WHERE 
+                u.idUsuario = '$idUsuario'";
 
             $consulta_resultado = $this->con->query($sentencia_sql);
-            
             $arrayMascotas = [];
 
-            // Si ha obtenido algún resultado, para cada una de las mascotas, toma los  
-            // valores de todos los atributos, crea una mascota con dichos valores y 
-            // añade dicho mascota al array de mascotas.
             if ($consulta_resultado->num_rows > 0) {
                 while ($mascotaActual = $consulta_resultado->fetch_assoc()) {
                     
                     $idMascota = $mascotaActual["idMascota"];
-                    $tipoMascota = $mascotaActual["TipoMascota"];
+                    $fotoMascota = $mascotaActual["FotoMascota"];
                     $descripcion = $mascotaActual["Descripcion"];
-                    $foto = $mascotaActual["FotoMascota"];
+                    $tipoMascota = $mascotaActual["TipoMascota"];
     
-                    $mascotaAAnadir = new tMascota($idMascota, $tipoMascota, 
-                        $descripcion, $foto);
-
+                    $mascotaAAnadir = new tMascota($idMascota, $fotoMascota, $descripcion, $tipoMascota);
                     $arrayMascotas[] = $mascotaAAnadir;
                 }
-                
                 return $arrayMascotas;
             }
-
-            // Si no se ha obtenido ningún resultado, devuelve NULL -pues no hay 
-            // mascotas registradas en la base de datos-.
             else {
                 return NULL;
             }
-            
         }
 
-
-
-
         // Editar mascota.
-        public function editarMascota($mascotaAEditar) {
-
-            // Crea la sentencia sql para comprobar el id.
+        public function editarMascota($mascotaAEditar, $idUsuario) {
             $sentencia_sql = "SELECT * FROM mascotas WHERE idMascota = '{$mascotaAEditar->getId()}'";
-
             $consulta_comprobacion = $this->con->query($sentencia_sql);
 
-            // Si la mascota con ese id está en la base de datos, reemplaza todos sus
-            // atributos por los del objeto tMascota pasado como parámetro.
             if ($consulta_comprobacion->num_rows != 0) {
                 
-                // Si se borra con éxito esa mascota, a continuación se inserta una nueva
-                // mascota con el mismo id que la anterior, pero con los nuevos valores  
-                // de los atributos.
                 if ((DAOMascota::getInstance())->borrarMascota($mascotaAEditar->getId())) {
-                    // Devuelve true si se ha podido insertar la mascota, false en caso
-                    // contrario.
-                    return (DAOMascota::getInstance())->crearMascota($mascotaAEditar);
-                }
-                
-                // Devuelve false si no se ha podido borrar con éxito la mascota con los 
-                // valores sin actualizar.
+                    return (DAOMascota::getInstance())->crearMascota($mascotaAEditar, $idUsuario);
+                }                
                 else {
                     return false;
                 }
             }
-
         }
 
-
-
-
-        // Borrar mascota.
-        public function borrarMascota($idMascota) {
-            
-            // Crea la sentencia sql para comprobar el id.
+        // Borrar Mascota.
+        public function borrarMascota($idMascota) {            
             $sentencia_sql = "SELECT * FROM mascotas WHERE idMascota = '{$idMascota}'";
-
             $consulta_comprobacion = $this->con->query($sentencia_sql);
 
-            // Si la mascota con ese id está en la base de datos, se elimina de la misma.
-            if ($consulta_comprobacion->num_rows != 0) {
-                
+            if ($consulta_comprobacion->num_rows != 0) {                
                 $sentencia_sql = "DELETE FROM mascotas WHERE idMascota = '{$idMascota}'";
-
                 $consulta_borrado = $this->con->query($sentencia_sql);
 
-                // Devuelve true si se ha borrado con éxito esa mascota, false en caso
-                // contrario.
-                return $this->con->affected_rows > 0;
+                if ($this->con->affected_rows > 0) {
+                    // Borramos un link entre la mascota y el dueno
+                    $sentencia_sql_borra_link_md = 
+                    "DELETE FROM duenos WHERE idMascota = '{$idMascota}'";
+    
+                    $consulta_borra_link_md = $this->con->query($sentencia_sql_borra_link_md);    
+                    
+                    return $this->con->affected_rows > 0;
+                } else {
+                    return false;
+                }
             }
-
-            // Si no existe una mascota con ese id, devuelve falso.
             else {
                 return false;
             }
-
         }
-
-
     }
 
 ?>

@@ -15,16 +15,16 @@ clase que es el DAO -->
         // Constructor privado para evitar nuevas instancias con new().
         private function __construct() { 
             require_once 'Usuario_t.php';
-            require_once 'database.php';
+            require_once 'DatabaseConnection.php';
             $con = null;
-            $this->con = (Database::getInstance())->getConnection();  
+            $this->con = (DatabaseConnection::getInstance())->getConnection();
         }
 
         // La función de clonación se hace privada para impedir dicha 
         // funcionalidad (no se contempla en el uso del patrón Singleton).
         private function __clone() { }
 
-        // Método singleton .
+        // Método singleton.
         public static function getInstance() {
             if (null === self::$DAOUsuarioInstance) {
                 self::$DAOUsuarioInstance = new DAOUsuario();

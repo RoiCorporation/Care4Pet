@@ -20,7 +20,7 @@
 
     session_start();
 
-    require_once 'database.php';
+    require_once 'DatabaseConnection.php';
     require 'Usuario_t.php';
     require 'DAOUsuario.php';
     

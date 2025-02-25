@@ -1,7 +1,7 @@
 <?php
 	session_start();
 
-	require_once 'database.php';
+	require_once 'DatabaseConnection.php';
 
 ?>
 
@@ -19,38 +19,40 @@
 
 	<?php
 		require 'cabecera.php';
-		require 'DAOUsuario.php';
 
 
 		
-		require 'DAOMascota.php';
-		require 'Mascota_t.php';
-		require_once 'database.php';
+		require 'DAOTipoDeMascota.php';
+		require 'TipoDeMascota_t.php';
+		require_once 'DatabaseConnection.php';
 		
-		$idTipo = 345234;
-		$descripcion = "es muy muy mono";
-		$nuevaMascota = new tMascota(1010, $idTipo, "hola", $descripcion);
+		$id = 32123;
+		$nombre = "Canario";
 
-		echo "Servidor: {$db_servidor}, Usuario: {$db_usuario}";
 
-		(DAOMascota::getInstance())->crearMascota($nuevaMascota);
-		
+		$tipo = new tTipoDeMascota($id, $nombre);
+		(DAOTipoDeMascota::getInstance())->crearTipoDeMascota($tipo);
+
+		$idS = 32123;
+		$nombreS = "Pet";
+
+
+		$tipo2 = new tTipoDeMascota($idS, $nombreS);
+		(DAOTipoDeMascota::getInstance())->editarTipoDeMascota($tipo2->getId());
 
 
 		/*
-		(DAOUsuario::getInstance())->leerUnUsuario("vv@vv.com");
-		$arrayUsuario = (DAOUsuario::getInstance())->leerTodosLosUsuarios();
-
+		// Convertir array a json
+		$tiposDeMascotasJson = json_encode($tiposDeMascotas);
+		$serviciosJson = json_encode($servicios);
 		
-		if (!empty($arrayUsuario) && isset($arrayUsuario[0]->idUsuario)) {
-			echo "{$arrayUsuario[0]->idUsuario}";
-		} 
-		
-		else {
-			echo "No users found.";
-		}
-		*/
+		$nuevoCuidador = new tCuidador(1203472, $tiposDeMascotasJson, 4, $descripcion, $serviciosJson, $descripcion, 0);
 
+		//(DAOCuidador::getInstance())->borrarCuidador(1203472);
+		(DAOCuidador::getInstance())->crearCuidador($nuevoCuidador);
+		$resultado = (DAOCuidador::getInstance())->leerUnCuidador(1203472);
+		echo "Mascotas: {$resultado->getTiposDeMascotas()[0]}";
+*/
 
 	?>
 	

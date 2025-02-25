@@ -5,7 +5,7 @@
 	<span><a href="sobre_nosotros.php">Sobre nosotros</a></span> &emsp;&emsp;
 	
 	<?php
-	    require_once 'database.php';
+	    require_once 'DatabaseConnection.php';
 
 		// Si el usuario ha iniciado sesión, le aparecerá el link a sus reservas y el 
 		// botón de cerrar sesión.
@@ -16,7 +16,7 @@
 			$id = $_SESSION["id"];
 			$sentencia_sql = "SELECT * FROM usuarios WHERE idUsuario = '$id'";
 			
-			$con = (Database::getInstance())->getConnection();
+			$con = (DatabaseConnection::getInstance())->getConnection();
 			$consulta = $con->query($sentencia_sql);
 
 			if ($consulta->num_rows > 0) {	
