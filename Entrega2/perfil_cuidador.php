@@ -1,7 +1,19 @@
 <?php
 	session_start();
+	require 'database.php';
 ?>
 
+//tabla cuidadores 
+
+<!-- CREATE TABLE `cuidadores` (
+  `idUsuario` bigint(20) UNSIGNED NOT NULL,
+  `TiposDeMascotas` longtext DEFAULT NULL,
+  `Tarifa` decimal(10,0) UNSIGNED NOT NULL,
+  `Descripcion` text DEFAULT NULL,
+  `ServiciosAdicionales` longtext DEFAULT NULL,
+  `Valoracion` tinyint(3) UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+ -->
 
 <!DOCTYPE html>
 <html lang="es">

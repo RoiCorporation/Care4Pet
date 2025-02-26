@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 
 --
 -- Estructura de tabla para la tabla `cuidadores`
---
+--añadir `ZonasDeCobertura` longtext DEFAULT NULL,
 
 CREATE TABLE `cuidadores` (
   `idUsuario` bigint(20) UNSIGNED NOT NULL,
@@ -130,7 +130,8 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`idUsuario`, `Nombre`, `Apellidos`, `Correo`, `Contraseña`, `DNI`, `Telefono`, `FotoPerfil`, `Direccion`, `esDueno`, `esCuidador`, `esAdmin`, `cuentaActiva`) VALUES
 (1203472, 'Juan', 'Pérez de la Rosa', 'ejemplo@ejemplo.com', 'ejemplo', '00000000Z', 0, NULL, 'Calle del Amor Hermoso, 80', 1, 0, 0, 1),
-(205753802, 'usuario', 'apellido del usuario', 'usuario@usuario.com', 'usuario', '00000000Z', 0, 'NULL', 'asdf sf asdfa', 0, 0, 0, 1);
+(205753802, 'usuario', 'apellido del usuario', 'usuario@usuario.com', 'usuario', '00000000Z', 0, 'NULL', 'asdf sf asdfa', 0, 0, 0, 1),
+(205753803, 'Maria', 'Santos Aguillera', 'masa@ej.com', 'masa', '00000000Y', 0, NULL, 'Calle Umbria, ', 0, 1, 0, 1);
 
 --
 -- Índices para tablas volcadas
