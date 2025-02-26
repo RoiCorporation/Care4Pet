@@ -20,7 +20,7 @@
 
     session_start();
 
-    require 'database.php';
+    require_once 'DatabaseConnection.php';
     require 'Usuario_t.php';
     require 'DAOUsuario.php';
     
@@ -70,9 +70,6 @@
             echo "Ha habido un problema al intentar registrar esta cuenta.
             Por favor, inténtelo de nuevo.<br>";
         }
-
-        // Se cierra la conexión con la BD (puede que esta línea haya que omitirla...).
-        $con->close();
         
     }
 

@@ -1,5 +1,3 @@
-<!-- Definición de la clase Usuario, necesaria para almacenar los datos obtenidos 
-mediante las consultas a la base de datos hechas a través del DAOUsuario -->
 <?php
 
     class tUsuario {
@@ -12,11 +10,12 @@ mediante las consultas a la base de datos hechas a través del DAOUsuario -->
 
             
         // Constructor
-        public function __construct($id = null, $nombre = "", $apellidos = "", 
+        public function __construct($id = NULL, $nombre = "", $apellidos = "", 
             $correo = "", $contrasena = "", $dni = "", $telefono = "", $fotoPerfil = "", 
             $direccion = "", $esDueno = 0, $esCuidador = 0, $esAdmin = 0, 
             $cuentaActiva = 1) {
-            $this->id = $id;
+            if ($id == NULL) $this->id = rand();
+            else $this->id = $id;
             $this->nombre = $nombre;
             $this->apellidos = $apellidos;
             $this->correo = $correo;

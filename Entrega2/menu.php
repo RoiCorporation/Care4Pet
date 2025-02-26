@@ -5,7 +5,7 @@
 	<span><a href="sobre_nosotros.php">Sobre nosotros</a></span> &emsp;&emsp;
 	
 	<?php
-	    require 'database.php';
+	    require_once 'DatabaseConnection.php';
 
 		// Si el usuario ha iniciado sesión, le aparecerá el link a sus reservas y el 
 		// botón de cerrar sesión.
@@ -15,6 +15,8 @@
 			# consultamos BD para comprobar el tipo de usario (dueno o cuidador)
 			$id = $_SESSION["id"];
 			$sentencia_sql = "SELECT * FROM usuarios WHERE idUsuario = '$id'";
+			
+			$con = (DatabaseConnection::getInstance())->getConnection();
 			$consulta = $con->query($sentencia_sql);
 
 			if ($consulta->num_rows > 0) {	
@@ -32,8 +34,6 @@
 				}
 			} 
 			
-			$con->close();
-
 			echo "<span><a href=\"logout.php\">Cerrar sesión</a></span> &emsp;&emsp;";
 		}
 		
