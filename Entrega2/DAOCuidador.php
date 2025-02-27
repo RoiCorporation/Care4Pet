@@ -55,7 +55,7 @@ clase que es el DAO -->
                 "INSERT INTO cuidadores VALUES ('{$cuidadorACrear->getId()}', 
                     '{$cuidadorACrear->getTiposDeMascotas()}', '{$cuidadorACrear->getTarifa()}', 
                     '{$cuidadorACrear->getDescripcion()}', '{$cuidadorACrear->getServiciosAdicionales()}', 
-                    '{$cuidadorACrear->getValoracion()}')";
+                    '{$cuidadorACrear->getValoracion()}', '{$cuidadorACrear->getZonasAtendidas()}' )";
     
                 $consulta_insercion = $this->con->query($sentencia_sql);
     
@@ -87,9 +87,10 @@ clase que es el DAO -->
                 $descripcion = $valores_resultado["Descripcion"];
                 $serviciosAdicionales = $valores_resultado["ServiciosAdicionales"];
                 $valoracion = $valores_resultado["Valoracion"];
+                $zonasAtendidas = $valores_resultado["ZonasAtendidas"];
 
                 $cuidadorBuscado = new tCuidador($idUsuario, $tiposDeMascotas, $tarifa,
-                    $descripcion, $serviciosAdicionales, $valoracion);
+                    $descripcion, $serviciosAdicionales, $valoracion, $zonasAtendidas);
                 
                 return $cuidadorBuscado;
             }
@@ -127,9 +128,10 @@ clase que es el DAO -->
                     $descripcion = $cuidadorActual["Descripcion"];
                     $serviciosAdicionales = $cuidadorActual["ServiciosAdicionales"];
                     $valoracion = $cuidadorActual["Valoracion"];
+                    $zonasAtendidas = $cuidadorActual["ZonasAtendidas"];
     
                     $cuidadorAAnadir = new tCuidador($idUsuario, $tiposDeMascotas, $tarifa,
-                        $descripcion, $serviciosAdicionales, $valoracion);
+                        $descripcion, $serviciosAdicionales, $valoracion, $zonasAtendidas);
 
                     $arrayCuidadores[] = $cuidadorAAnadir;
                 }

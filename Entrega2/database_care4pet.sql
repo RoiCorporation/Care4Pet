@@ -25,7 +25,6 @@ SET time_zone = "+00:00";
 
 --
 -- Estructura de tabla para la tabla `cuidadores`
---añadir `ZonasDeCobertura` longtext DEFAULT NULL,
 
 CREATE TABLE `cuidadores` (
   `idUsuario` bigint(20) UNSIGNED NOT NULL,
@@ -33,7 +32,8 @@ CREATE TABLE `cuidadores` (
   `Tarifa` decimal(10,0) UNSIGNED NOT NULL,
   `Descripcion` text DEFAULT NULL,
   `ServiciosAdicionales` longtext DEFAULT NULL,
-  `Valoracion` tinyint(3) UNSIGNED DEFAULT NULL
+  `Valoracion` tinyint(3) UNSIGNED DEFAULT NULL,
+  `ZonasAtendidas` longtext DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------

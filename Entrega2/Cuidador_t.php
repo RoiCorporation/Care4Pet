@@ -6,12 +6,12 @@ mediante las consultas a la base de datos hechas a través del DAOCuidador -->
 
         // Atributos de la clase.
         public $id, $tiposDeMascotas, $tarifa, $descripcion, $serviciosAdicionales, 
-            $valoracion;
+            $valoracion, $zonasAtendidas;
 
             
         // Constructor
         public function __construct($id, $tiposDeMascotas = "", $tarifa = 0, 
-            $descripcion = "", $serviciosAdicionales = "", $valoracion = 0) {
+            $descripcion = "", $serviciosAdicionales = "", $valoracion = 0, $zonasAtendidas = "") {
             
             $this->id = $id;
             $this->tiposDeMascotas = $tiposDeMascotas;
@@ -19,6 +19,7 @@ mediante las consultas a la base de datos hechas a través del DAOCuidador -->
             $this->descripcion = $descripcion;
             $this->serviciosAdicionales = $serviciosAdicionales;
             $this->valoracion = $valoracion;
+            $this->zonasAtendidas = $zonasAtendidas;
         }
 
         // Resto de funciones (getters y setters).
@@ -30,6 +31,7 @@ mediante las consultas a la base de datos hechas a través del DAOCuidador -->
         public function getDescripcion() { return $this->descripcion; }
         public function getServiciosAdicionales() { return $this->serviciosAdicionales; }
         public function getValoracion() { return $this->valoracion; }
+        public function getZonasAtendidas() { return $this->zonasAtendidas; }
     
         // Setters
         public function setId($id) { $this->id = $id; }
@@ -38,6 +40,7 @@ mediante las consultas a la base de datos hechas a través del DAOCuidador -->
         public function setDescripcion($descripcion) { $this->descripcion = $descripcion; }
         public function setServiciosAdicionales($serviciosAdicionales) { $this->serviciosAdicionales = $serviciosAdicionales; }
         public function setValoracion($valoracion) { $this->valoracion = $valoracion; }
+        public function setZonasAtendidas($zonasAtendidas) { $this->zonasAtendidas = $zonasAtendidas; }
     }
 
 ?>
