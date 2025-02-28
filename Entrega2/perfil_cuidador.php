@@ -47,7 +47,7 @@
                 <p>Telefono: <?= htmlspecialchars($usuario->telefono); ?></p>
                 <p>Localidad: <?= htmlspecialchars($usuario->direccion); ?></p>
                 <div class="foto-perfil">
-                    <img src="<?= htmlspecialchars($usuario->fotoPerfil ?? 'img/perfil_rand.png'); ?>" alt="Foto de perfil">
+                    <img src="img/perfil_rand.png" alt="Foto de perfil">
                 </div>
                 <h2>Hola, <?= htmlspecialchars($usuario->nombre); ?>! Bienvenidos a tu perfil!</h2>
             <?php else: ?>
