@@ -97,7 +97,7 @@
                     <!-- info dueno -->
                     <div class='dueno-info'>
                         <h4>Dueño</h4>
-                        <p><strong>Nombre:</strong> <?= htmlspecialchars($reserva->getNombreDueno()); ?></p>
+                        <p><strong>Nombre:</strong></p>
                     </div>
 
                     <form method='POST'>
