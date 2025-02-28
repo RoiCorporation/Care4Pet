@@ -20,6 +20,13 @@
     }
 ?>
 
+//idea: si hace click en id de mascota viene pop up con info de mascota
+//añadir nombre y id de dueño en cada reserva
+//mostrar evaluacion cuando se termina reserva
+// funcionalidad evaluacion?
+//$listaReservas = (DAOCuidador::getInstance())->obtenerReservasRecientes($id);
+//hacer bloque con reservas recientes y sus evaluaciones
+?>
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -69,6 +76,53 @@
                 <?php endif; ?>
             </section>
         </section>
+		<section div class="solicitudes">
+        <h3>Solicitudes de tus servicios</h3>
+        <?php foreach ($listaReservas as $reserva) : ?>
+            <div class='reserva-box'>
+                <h4>Reserva #<?= htmlspecialchars($reserva->getId()); ?></h4>
+                <p><strong>Fecha de inicio:</strong> <?= htmlspecialchars($reserva->getFechaInicio()); ?></p>
+                <p><strong>Fecha de fin:</strong> <?= htmlspecialchars($reserva->getFechaFin()); ?></p>
+                <p><strong>Descripción:</strong> <?= htmlspecialchars($reserva->getComentariosAdicionales()); ?></p>
+                <div class='reserva-details'>
+                    <!-- info mascota -->
+                    <div class='mascota-info'>
+                        <h5>Mascota</h5>
+                        <?php if ($reserva->getFotoMascota()) : ?>
+                            <img src='<?= htmlspecialchars($reserva->getFotoMascota()); ?>' alt='Foto de Mascota'>
+                        <?php endif; ?>
+                        <p><strong>ID Mascota:</strong> <?= htmlspecialchars($reserva->getIdMascota()); ?></p>
+                    </div>
+
+                    <!-- info dueno -->
+                    <div class='dueno-info'>
+                        <h4>Dueño</h4>
+                        <p><strong>Nombre:</strong> <?= htmlspecialchars($reserva->getNombreDueno()); ?></p>
+                    </div>
+
+                    <form method='POST'>
+                        <?php
+                        $ffin = new DateTime($reserva->getFechaFin());
+                        $now = new DateTime();
+                        ?>
+                        <div class='reserva-actions'>
+                            <p><strong>Estado:</strong> <?= $reserva->getEsAceptadaPorCuidador() ? "Aceptada" : "Pendiente"; ?></p>
+                            <?php if ($ffin > $now) : ?>
+                                <button class="btn-confirmar">Confirmar</button>
+                                <button class="btn-rechazar">Rechazar</button>
+                            <?php endif; ?>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        <?php endforeach; ?>
+
+        <?php if (count($listaReservas) == 0) : ?>
+            <p>Actualmente no tienes ninguna reserva.</p>
+        <?php endif; ?>
+		</section>
+			
+    </section>
         </main>
     </div>
 
