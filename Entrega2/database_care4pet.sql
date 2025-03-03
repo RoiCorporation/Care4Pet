@@ -76,7 +76,7 @@ CREATE TABLE `reservas` (
   `esAceptadaPorCuidador` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
   `Valoracion` tinyint(3) UNSIGNED DEFAULT NULL,
   `Resena` text DEFAULT NULL,
-  `ComentariosAdicionales` text DEFAULT NULL
+  `ComentariosAdicionales` text DEFAULT NULL,
   `esReservaActiva` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
