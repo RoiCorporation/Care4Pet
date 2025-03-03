@@ -4,29 +4,27 @@
     require_once 'DatabaseConnection.php';
     require 'DAOUsuario.php';
     require 'DAOCuidador.php';
+	require 'DAOReserva.php';
 
     $usuario = NULL;
     $cuidador = NULL;
+	$listaReservas = [];
+	
 
     if (isset($_SESSION["login"]) && $_SESSION["login"] == true) {
         // obtenemos informacion basica sobre el dueno de BD
         $id = $_SESSION["id"];
+		echo $id;
 
         // Obtenemos info del usario mediante el DAO
         $usuario = (DAOUsuario::getInstance())->leerUnUsuario($_SESSION["email"]);
 
         // consulatmos la BD para obtener las infos del cuidador
         $cuidador = (DAOCuidador::getInstance())->leerUnCuidador($id);
+		$listaReservas = (DAOReserva::getInstance())->leerReservasDelCuidador($id);
     }
 ?>
 
-//idea: si hace click en id de mascota viene pop up con info de mascota
-//añadir nombre y id de dueño en cada reserva
-//mostrar evaluacion cuando se termina reserva
-// funcionalidad evaluacion?
-//$listaReservas = (DAOCuidador::getInstance())->obtenerReservasRecientes($id);
-//hacer bloque con reservas recientes y sus evaluaciones
-?>
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -56,7 +54,7 @@
                 <div class="foto-perfil">
                     <img src="img/perfil_rand.png" alt="Foto de perfil">
                 </div>
-                <h2>Hola, <?= htmlspecialchars($usuario->nombre); ?>! Bienvenidos a tu perfil!</h2>
+                <h2>Hola, <?= htmlspecialchars($usuario->nombre); ?>! Bienvenid@ a tu perfil!</h2>
             <?php else: ?>
                 <p>No se pudo cargar la información del usuario.</p>
             <?php endif; ?>
@@ -97,7 +95,8 @@
                     <!-- info dueno -->
                     <div class='dueno-info'>
                         <h4>Dueño</h4>
-                        <p><strong>Nombre:</strong></p>
+                        <p><strong>Nombre:</strong> <?= htmlspecialchars($reserva->getNombreDueno()) ?></p>
+						<p><strong>Apellidos:</strong> <?= htmlspecialchars($reserva->getApellidosDueno()) ?></p>
                     </div>
 
                     <form method='POST'>

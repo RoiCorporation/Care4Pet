@@ -6,14 +6,14 @@
         public $id, $idUsuario, $idMascota, $idCuidador, $fechaInicio, 
             $fechaFin, $esAceptadaPorCuidador, $valoracion, $resena, $comentariosAdicionales, $esReservaActiva,
             $nombreCuidador, $apellidosCuidador, $correoCuidador, $telefonoCuidador, $fotoPerfilCuidador, $direccionCuidador,
-            $fotoMascota, $descripcionMascota, $tipoMascota;
+            $fotoMascota, $descripcionMascota, $tipoMascota, $NombreDueno, $ApellidosDueno;
             
         // Constructor
         public function __construct($id = null, $idUsuario = null, $idMascota = null, 
             $idCuidador = null, $fechaInicio = null, $fechaFin = null, $valoracion = null, $resena = "", 
             $comentariosAdicionales = "", $esReservaActiva = 1, $nombreCuidador = "", $apellidosCuidador = "", 
             $correoCuidador = "", $telefonoCuidador = "", $fotoPerfilCuidador = "", $direccionCuidador = "", 
-            $fotoMascota = "", $descripcionMascota = "", $tipoMascota = "", $esAceptadaPorCuidador = 0) {
+            $fotoMascota = "", $descripcionMascota = "", $tipoMascota = "", $esAceptadaPorCuidador = 0, $nombreDueno = "", $apellidosDueno = "") {
             $this->id = $id;
             $this->idUsuario = $idUsuario;
             $this->idMascota = $idMascota;
@@ -35,6 +35,8 @@
             $this->fotoMascota = $fotoMascota;
             $this->descripcionMascota = $descripcionMascota;
             $this->tipoMascota = $tipoMascota;
+            $this->NombreDueno = $nombreDueno;
+            $this->ApellidosDueno = $apellidosDueno;
 
         }
 
@@ -61,6 +63,8 @@
         public function getFotoMascota() { return $this->fotoMascota; }
         public function getDescripcionMascota() { return $this->descripcionMascota; }
         public function getTipoMascota() { return $this->tipoMascota; }
+        public function getNombreDueno() { return $this->NombreDueno; }
+        public function getApellidosDueno() { return $this->ApellidosDueno; }
 
         // Setters
         public function setId($id) { $this->id = $id; }
@@ -83,6 +87,9 @@
         public function setFotoMascota($fotoMascota) { $this->fotoMascota = $fotoMascota; }
         public function setDescripcionMascota($descripcionMascota) { $this->descripcionMascota = $descripcionMascota; }
         public function setTipoMascota($tipoMascota) { $this->tipoMascota = $tipoMascota; }
+
+        public function setNombreDueno($NombreDueno) { $this->NombreDueno = $NombreDueno; }
+        public function setApellidosDueno($ApellidosDueno) { $this->ApellidosDueno = $ApellidosDueno; }
     }
 
 ?>
