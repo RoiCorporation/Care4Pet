@@ -21,6 +21,14 @@ SET time_zone = "+00:00";
 -- Base de datos: `database_care4pet`
 --
 
+DROP DATABASE IF EXISTS `database_care4pet`;
+CREATE DATABASE `database_care4pet`;
+USE `database_care4pet`;
+
+-- --------------------------------------------------------
+
+DROP TABLE IF EXISTS `cuidadores`, `duenos`, `mascotas`, `reservas`, `servicios_adicionales`, `tipos_de_mascotas`, `usuarios`;
+
 -- --------------------------------------------------------
 
 --
@@ -132,6 +140,38 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`idUsuario`, `Nombre`, `Apellidos`, `Correo`, `Contraseña`, `DNI`, `Telefono`, `FotoPerfil`, `Direccion`, `esDueno`, `esCuidador`, `esAdmin`, `cuentaActiva`) VALUES
 (1203472, 'Juan', 'Pérez de la Rosa', 'ejemplo@ejemplo.com', 'ejemplo', '00000000Z', 0, NULL, 'Calle del Amor Hermoso, 80', 1, 0, 0, 1),
 (205753802, 'usuario', 'apellido del usuario', 'usuario@usuario.com', 'usuario', '00000000Z', 0, 'NULL', 'asdf sf asdfa', 0, 0, 0, 1);
+
+
+--
+-- Volcado de datos para la tabla `tipos_de_mascotas`
+--
+
+INSERT INTO `tipos_de_mascotas` (`idTipoMascota`, `Nombre`) VALUES (1, 'Perro'), (2, 'Gato'), (3, 'Conejo'), (4, 'Otro');
+
+--
+-- Volcado de datos para la tabla `mascotas`
+--
+INSERT INTO `mascotas` (`idMascota`, `FotoMascota`, `Descripcion`, `TipoMascota`) VALUES
+(386894591, '', 'Amable perro Juan', 1),
+(450657867, '', 'Pedro', 2),
+(1056139132, '', 'Popeyes', 3),
+(2080815704, '', 'Cameleon John', 4);
+
+--
+-- Volcado de datos para la tabla `duenos`
+--
+INSERT INTO `duenos` (`idUsuario`, `idMascota`) VALUES
+(1203472, 386894591),
+(1203472, 450657867),
+(1203472, 1056139132),
+(1203472, 2080815704);
+
+--
+-- Volcado de datos para la tabla `reservas`
+--
+INSERT INTO `reservas` (`idReserva`, `idUsuario`, `idMascota`, `idCuidador`, `FechaInicio`, `FechaFin`, `esAceptadaPorCuidador`, `Valoracion`, `Resena`, `ComentariosAdicionales`, `esReservaActiva`) VALUES
+(230717, 1203472, 450657867, 205753802, '2025-02-17 01:09:17', '2025-02-23 01:09:17', 1, 4, 'My bien!', 'Por favor gracias', 1),
+(9924774, 1203472, 386894591, 205753802, '2025-02-24 01:09:17', '2025-02-25 01:09:17', 1, NULL, NULL, 'Por favor lavar el perro', 1);
 
 --
 -- Índices para tablas volcadas
