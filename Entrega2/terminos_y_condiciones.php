@@ -52,7 +52,7 @@
         <p>
             Todos los contenidos del sitio (textos, imágenes, logotipos) son propiedad de 
             <em>Care4Pet</em> o de terceros con licencia. No está permitido su uso sin autorización.
-        </p>
+        </p><br>
 
         <h4>4. RESPONSABILIDAD</h4>
         <p><em>Care4Pet</em> no se hace responsable por:<br>
