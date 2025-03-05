@@ -69,11 +69,11 @@ INSERT INTO `tipos_de_mascotas` (`idTipoMascota`, `Nombre`) VALUES
 -- Dumping data for table `usuarios`
 --
 
-INSERT INTO `usuarios` (`idUsuario`, `Nombre`, `Apellidos`, `Correo`, `Contraseña`, `DNI`, `Telefono`, `FotoPerfil`, `Direccion`, `esDueno`, `esCuidador`, `esAdmin`, `cuentaActiva`) VALUES
-(1203472, 'Maria', 'José', 'mariajose@gmail.com', 'maria', '00000000Z', 0, NULL, 'Calle del Amor Hermoso, 80', 1, 0, 0, 1),
-(205753802, 'Maria', 'Santos Aguillera', 'masa@ej.com', 'masa', '00000000Z', 0, 'NULL', 'Calle del Amor Hermoso, 80', 0, 1, 0, 1),
-(205753803, 'Blahblah', 'blahblah', 'usuario1@usuario.cm', 'masa', '00000000Y', 0, NULL, 'Calle Umbria, ', 0, 1, 0, 1),
-(1320644188, 'Blah', 'Blah', 'ejemplo1@ejemplo.com', 'maria', '000001', 2147483647, 'NULL', 'Calle ABC, 17', 1, 0, 0, 1);
+INSERT INTO `usuarios` (`idUsuario`, `Nombre`, `Apellidos`, `Correo`, `Contraseña`, `DNI`, `Telefono`, `FotoPerfil`, `Direccion`, `esDueno`, `esCuidador`, `esAdmin`, `cuentaActiva`, `fecha_registro`) VALUES
+(1203472, 'Maria', 'José', 'mariajose@gmail.com', 'maria', '00000000Z', 0, NULL, 'Calle del Amor Hermoso, 80', 1, 0, 0, 1, '2025-03-05 00:00:00'),
+(205753802, 'Maria', 'Santos Aguillera', 'masa@ej.com', 'masa', '00000000Z', 0, 'NULL', 'Calle del Amor Hermoso, 80', 0, 1, 0, 1, '2025-03-05 00:00:00'),
+(205753803, 'Blahblah', 'blahblah', 'usuario1@usuario.cm', 'masa', '00000000Y', 0, NULL, 'Calle Umbria, ', 0, 1, 0, 1, '2025-03-05 00:00:00'),
+(1320644188, 'Blah', 'Blah', 'ejemplo1@ejemplo.com', 'maria', '000001', 2147483647, 'NULL', 'Calle ABC, 17', 1, 0, 0, 1, '2025-03-05 00:00:00');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
