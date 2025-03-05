@@ -19,7 +19,7 @@
 					<h2>Crear usuario</h2>
 				</div>
 				<!-- Formulario para introducir los datos para registrarse en la página web -->
-				<form name="form_inicio_sesion" method="post" action="procesar_registro.php">
+				<form name="form_inicio_sesion" method="post" action="admin_procesar_registro.php">
 
 					<div style="display: table; margin: 0 auto;">
 
