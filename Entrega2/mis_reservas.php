@@ -86,7 +86,7 @@
 			}
 			echo "</form>";
 			echo "</div>";
-		}
+		}			
 		if (count($listaReservas) == 0) {
 			echo "<p>Actualmente no tienes ninguna reserva. Puedes <a href='pagina_contratacion.php'> contratar cuidadores aqui</a>.</p>";
 		}
