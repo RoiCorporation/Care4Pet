@@ -187,12 +187,6 @@
             if ($consulta_resultado->num_rows > 0) {
                 while ($reservaActual = $consulta_resultado->fetch_assoc()) {
 
-                    $idReserva = $reservaActual["idReserva"];
-                    $idMascota = $reservaActual["idMascota"];
-                    $idCuidador = $reservaActual["idCuidador"];
-                    $fechaInicio = $reservaActual["FechaInicio"];
-                    $fechaFin = $reservaActual["FechaFin"];
-                    $esAceptadaPorCuidador = $reservaActual["esAceptadaPorCuidador"];
                     $valoracion = $reservaActual["Valoracion"];
                     $resena = $reservaActual["Resena"];
                     $comentariosAdicionales = $reservaActual["ComentariosAdicionales"];
@@ -211,9 +205,19 @@
                     $nombreDueno = $reservaActual["NombreDueno"];
                     $apellidosDueno = $reservaActual["ApellidosDueno"];
     
-                    $reservaAAnadir = new tReserva($idReserva, $idUsuario, $idMascota, $idCuidador, $fechaInicio, $fechaFin,
-                    $valoracion, $resena, $comentariosAdicionales, $esReservaActiva, $nombreCuidador, $apellidosCuidador, $correoCuidador,
-                    $telefonoCuidador, $fotoCuidador, $direccionCuidador, $fotoMascota, $descripcionMascota, $tipoMascota, $esAceptadaPorCuidador, $nombreDueno, $apellidosDueno);    
+                    $idReserva = $reservaActual["idReserva"];
+                    $idUsuario = $reservaActual["idUsuario"];
+                    $idMascota = $reservaActual["idMascota"];
+                    $idCuidador = $reservaActual["idCuidador"];
+                    $fechaInicio = $reservaActual["FechaInicio"];
+                    $fechaFin = $reservaActual["FechaFin"];
+                    $esAceptadaPorCuidador = $reservaActual["esAceptadaPorCuidador"];
+    
+                    $reservaAAnadir = new tReserva(
+                        $idReserva, $idUsuario, $idMascota, $idCuidador, $fechaInicio, $fechaFin,
+                        $valoracion, $resena, $comentariosAdicionales, $esReservaActiva, $nombreCuidador, $apellidosCuidador, $correoCuidador,
+                        $telefonoCuidador, $fotoCuidador, $direccionCuidador, $fotoMascota, $descripcionMascota, $tipoMascota, $esAceptadaPorCuidador, $nombreDueno, $apellidosDueno
+                    );    
                     $arrayReservas[] = $reservaAAnadir;
                 }
                 return $arrayReservas;
@@ -223,99 +227,91 @@
             }
         }
 
-                // Leer todos las reservas de un usuario.
-                public function leerReservasDelCuidador($idUsuario) {
+        public function leerReservasDelCuidador($idCuidador) {
+            $sentencia_sql = "SELECT 
+                r.idReserva,
+                r.FechaInicio,
+                r.FechaFin,
+                r.esAceptadaPorCuidador,
+                r.Valoracion,
+                r.Resena,
+                r.ComentariosAdicionales,
+                r.esReservaActiva,
+                
+                -- obtenemos info de mascota
+                m.idMascota,
+                m.FotoMascota,
+                m.Descripcion AS DescripcionMascota,
+                m.TipoMascota,
+                
+                -- obtenemos info de cuidador
+                c.idUsuario AS idCuidador,
+                c.TiposDeMascotas,
+                c.Tarifa,
+                c.Descripcion AS DescripcionCuidador,
+                c.ServiciosAdicionales,
+                c.Valoracion AS ValoracionCuidador,
+                
+                u.Nombre AS NombreCuidador,
+                u.Apellidos AS ApellidosCuidador,
+                u.Correo AS CorreoCuidador,
+                u.DNI AS DNICuidador,
+                u.Telefono AS TelefonoCuidador,
+                u.FotoPerfil AS FotoCuidador,
+                u.Direccion AS DireccionCuidador,
 
-                    // Crea la sentencia sql para obtener todos los usuarios en la base de datos.
-                    $sentencia_sql = "SELECT 
-                        r.idReserva,
-                        r.idCuidador,
-                        r.FechaInicio,
-                        r.FechaFin,
-                        r.esAceptadaPorCuidador,
-                        r.Valoracion,
-                        r.Resena,
-                        r.ComentariosAdicionales,
-                        r.esReservaActiva,
-                        
-                        -- obtenemos info de mascota
-                        m.idMascota,
-                        m.FotoMascota,
-                        m.Descripcion AS DescripcionMascota,
-                        m.TipoMascota,
-                        
-                        -- obtenemos info de cuidador
-                        c.idUsuario AS idCuidador,
-                        c.TiposDeMascotas,
-                        c.Tarifa,
-                        c.Descripcion AS DescripcionCuidador,
-                        c.ServiciosAdicionales,
-                        c.Valoracion AS ValoracionCuidador,
-                        
-                        u.Nombre AS NombreCuidador,
-                        u.Apellidos AS ApellidosCuidador,
-                        u.Correo AS CorreoCuidador,
-                        u.DNI AS DNICuidador,
-                        u.Telefono AS TelefonoCuidador,
-                        u.FotoPerfil AS FotoCuidador,
-                        u.Direccion AS DireccionCuidador,
-        
-                        -- obtenemos info de dueno
-                        d.Nombre AS NombreDueno,
-                        d.Apellidos AS ApellidosDueno
-        
-                    FROM 
-                        reservas r
-                        INNER JOIN mascotas m ON r.idMascota = m.idMascota
-                        INNER JOIN cuidadores c ON r.idCuidador = c.idUsuario
-                        INNER JOIN usuarios u ON r.idCuidador = u.idUsuario
-                        INNER JOIN usuarios d ON r.idUsuario = d.idUsuario
-        
-                    WHERE 
-                        r.idCuidador = '205753802'";
-        
-                    $consulta_resultado = $this->con->query($sentencia_sql);
-                    $arrayReservas = [];
-        
-                    if ($consulta_resultado->num_rows > 0) {
-                        echo "hola";	
-                        while ($reservaActual = $consulta_resultado->fetch_assoc()) {
-        
-                            $idReserva = $reservaActual["idReserva"];
-                            $idMascota = $reservaActual["idMascota"];
-                            $idCuidador = $reservaActual["idCuidador"];
-                            $fechaInicio = $reservaActual["FechaInicio"];
-                            $fechaFin = $reservaActual["FechaFin"];
-                            $esAceptadaPorCuidador = $reservaActual["esAceptadaPorCuidador"];
-                            $valoracion = $reservaActual["Valoracion"];
-                            $resena = $reservaActual["Resena"];
-                            $comentariosAdicionales = $reservaActual["ComentariosAdicionales"];
-                            $esReservaActiva = $reservaActual["esReservaActiva"];
-            
-                            $nombreCuidador = $reservaActual["NombreCuidador"];
-                            $apellidosCuidador = $reservaActual["ApellidosCuidador"];
-                            $correoCuidador = $reservaActual["CorreoCuidador"];
-                            $telefonoCuidador = $reservaActual["TelefonoCuidador"];
-                            $fotoCuidador = $reservaActual["FotoCuidador"];
-                            $direccionCuidador = $reservaActual["DireccionCuidador"];
-                            $fotoMascota = $reservaActual["FotoMascota"];
-                            $descripcionMascota = $reservaActual["DescripcionMascota"];
-                            $tipoMascota = $reservaActual["TipoMascota"];
-                            
-                            $nombreDueno = $reservaActual["NombreDueno"];
-                            $apellidosDueno = $reservaActual["ApellidosDueno"];
-            
-                            $reservaAAnadir = new tReserva($idReserva, $idUsuario, $idMascota, $idCuidador, $fechaInicio, $fechaFin,
-                            $valoracion, $resena, $comentariosAdicionales, $esReservaActiva, $nombreCuidador, $apellidosCuidador, $correoCuidador,
-                            $telefonoCuidador, $fotoCuidador, $direccionCuidador, $fotoMascota, $descripcionMascota, $tipoMascota, $esAceptadaPorCuidador, $nombreDueno, $apellidosDueno);    
-                            $arrayReservas[] = $reservaAAnadir;
-                        }
-                        return $arrayReservas;
-                    }
-                    else {
-                        return NULL;
-                    }
+                -- obtenemos info de dueno
+                d.Nombre AS NombreDueno,
+                d.Apellidos AS ApellidosDueno
+
+            FROM 
+                reservas r
+                INNER JOIN mascotas m ON r.idMascota = m.idMascota
+                INNER JOIN cuidadores c ON r.idCuidador = c.idUsuario
+                INNER JOIN usuarios u ON r.idCuidador = u.idUsuario
+                INNER JOIN usuarios d ON r.idUsuario = d.idUsuario
+
+            WHERE 
+                r.idCuidador = '$idCuidador'";
+
+            $consulta_resultado = $this->con->query($sentencia_sql);
+            $arrayReservas = [];
+
+            if ($consulta_resultado->num_rows > 0) {
+                while ($reservaActual = $consulta_resultado->fetch_assoc()) {
+                    $idReserva = $reservaActual["idReserva"];
+                    $idUsuario = $reservaActual["idUsuario"];
+                    $idMascota = $reservaActual["idMascota"];
+                    $idCuidador = $reservaActual["idCuidador"];
+                    $fechaInicio = $reservaActual["FechaInicio"];
+                    $fechaFin = $reservaActual["FechaFin"];
+                    $esAceptadaPorCuidador = $reservaActual["esAceptadaPorCuidador"];
+                    $valoracion = $reservaActual["Valoracion"];
+                    $resena = $reservaActual["Resena"];
+                    $comentariosAdicionales = $reservaActual["ComentariosAdicionales"];
+                    $esReservaActiva = $reservaActual["esReservaActiva"];
+
+                    $nombreCuidador = $reservaActual["NombreCuidador"];
+                    $apellidosCuidador = $reservaActual["ApellidosCuidador"];
+                    $correoCuidador = $reservaActual["CorreoCuidador"];
+                    $telefonoCuidador = $reservaActual["TelefonoCuidador"];
+                    $fotoCuidador = $reservaActual["FotoCuidador"];
+                    $direccionCuidador = $reservaActual["DireccionCuidador"];
+                    $fotoMascota = $reservaActual["FotoMascota"];
+                    $descripcionMascota = $reservaActual["DescripcionMascota"];
+                    $tipoMascota = $reservaActual["TipoMascota"];
+                    
+                    $nombreDueno = $reservaActual["NombreDueno"];
+                    $apellidosDueno = $reservaActual["ApellidosDueno"];
+
+                    $reservaAAnadir = new tReserva($idReserva, $idUsuario, $idMascota, $idCuidador, $fechaInicio, $fechaFin,
+                    $valoracion, $resena, $comentariosAdicionales, $esReservaActiva, $nombreCuidador, $apellidosCuidador, $correoCuidador,
+                    $telefonoCuidador, $fotoCuidador, $direccionCuidador, $fotoMascota, $descripcionMascota, $tipoMascota, $esAceptadaPorCuidador, $nombreDueno, $apellidosDueno);    
+                    $arrayReservas[] = $reservaAAnadir;
                 }
+            }
+            return $arrayReservas;
+        }
 
         // Editar reserva.
         public function editarReserva($reservaAEditar) {
@@ -325,7 +321,7 @@
             if ($consulta_comprobacion->num_rows != 0) {
                 
                 if ((DAOReserva::getInstance())->borrarReserva($reservaAEditar->getId())) {
-                    return (DAOReserva::getInstance())->crearReserva($reservaAEditar);
+                    return (DAOReserva::getInstance())->crearReserva($reservaAEditar,$reservaAEditar->getId());
                 }                
                 else {
                     return false;

@@ -135,9 +135,16 @@ INSERT INTO `usuarios` (`idUsuario`, `Nombre`, `Apellidos`, `Correo`, `Contrase�
 (205753803, 'Maria', 'Santos Aguillera', 'masa@ej.com', 'masa', '00000000Y', 0, NULL, 'Calle Umbria, ', 0, 1, 0, 1);
 
 --
--- Índices para tablas volcadas
---
+-- volcado de datos para la tabla `cuidadores`
 
+INSERT INTO `cuidadores` (`idUsuario`, `TiposDeMascotas`, `Tarifa`, `Descripcion`, `ServiciosAdicionales`, `Valoracion`, `ZonasAtendidas`) VALUES
+(205753803, 'Peros y Gatos', 11, 'Soy cuidador mejor de la ciudad.','Baño y Tosa',5,'Chamberí, Malasaña');
+--
+-- volcado de datos para la tabla `reservas`
+INSERT INTO `reservas` (`idReserva`, `idUsuario`, `idMascota`, `idCuidador`, `FechaInicio`, `FechaFin`, `esAceptadaPorCuidador`, `Valoracion`, `Resena`, `ComentariosAdicionales`, `esReservaActiva`) VALUES
+(1, 1203472, 1, 205753803, '2025-03-01 10:00:00', '2025-03-05 18:00:00', 1, 5, 'Excelente servicio', 'El cuidador fue muy atento y profesional', 1),
+(2, 205753802, 2, 205753803, '2025-03-10 09:00:00', '2025-03-15 17:00:00', 0, NULL, NULL, 'Necesito cuidado para mi perro', 1),
+(3, 205753803, 3, 1203472, '2025-03-20 08:00:00', '2025-03-25 16:00:00', 1, 4, 'Buen servicio', 'El cuidador fue puntual y responsable', 1);
 --
 -- Indices de la tabla `cuidadores`
 --
