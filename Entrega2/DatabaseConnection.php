@@ -6,6 +6,7 @@
         private ?mysqli $connection = null;
 
         private function __construct() {
+            /* OLD
             $env = parse_ini_file(__DIR__ . '/.env');
 
             $this->connection = new mysqli(
@@ -14,6 +15,18 @@
                 $env['DB_CONTRASENA'],
                 $env['DB_NOMBRE']
             );
+            */
+
+            // NEW
+            require_once __DIR__ . '/config.php';
+
+            $this->connection = new mysqli(
+                BD_HOST,
+                BD_USER,
+                BD_PASS,
+                BD_NAME
+            );
+
 
             if ($this->connection->connect_error) {
                 die("Fallo en la conexión: " . $this->connection->connect_error);
