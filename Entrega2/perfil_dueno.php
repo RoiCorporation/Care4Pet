@@ -89,7 +89,7 @@
     
         <h2 style="text-align:center">Hola, <?php echo $usuario->getNombre() ?>! Bienvedinos a tu perfil! </h2>
 
-        <p>Info basica de tu perfil:</p>
+        <h2>Info basica de tu perfil:</h2>
         <?php 
             echo "<p><strong>Nombre y apellidos:</strong> " . $usuario->getNombre() . " " . $usuario->getApellidos() . "</p>";
             echo "<p><strong>Correo electronico:</strong> " . $usuario->getCorreo() . "</p>";
@@ -98,9 +98,15 @@
             echo "<p><strong>Direccion:</strong> " . $usuario->getDireccion() . "</p>";
         ?>
 
+        <?php if ($usuario->getFotoPerfil()) { ?>
+            <img src="<?php echo $usuario->getFotoPerfil(); ?>" alt="Foto de dueno">
+        <?php } else { ?>
+            <img src="img/perfil_rand.png" alt="Foto de dueno" width="100" height="100">
+        <?php } ?>
+
         <!-- Mostramos la lista de mascotas del dueno -->
         <br>
-		<p>Lista de tus mascotas:</p>
+		<h2>Lista de tus mascotas:</h2>
         <button onclick="togglePopup(true)">Agregar Mascota +</button>
         <ul>
             <?php foreach ($listaMascotas as $mascota) : ?>
@@ -108,6 +114,8 @@
                     <div class="mascota-info">
                         <?php if ($mascota->getFoto()) { ?>
                             <img src="<?php echo $mascota->getFoto(); ?>" alt="Foto de Mascota">
+                        <?php } else { ?>
+                            <img src="/img/icon-pet-paw.png" alt="Foto de mascota" width="50" height="50">
                         <?php } ?>
                         <p><strong>Descripción:</strong> <?php echo $mascota->getDescripcion(); ?></p>
                         <p><strong>Tipo de Mascota:</strong> 
