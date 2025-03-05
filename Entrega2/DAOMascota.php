@@ -29,9 +29,11 @@
         // Crear mascota.
         public function crearMascota($mascotaACrear, $idUsuario) {
             // Crea la sentencia sql de inserción a ejecutar.
+            $tipoMascota = intval($mascotaACrear->getTipoMascota());
+
             $sentencia_sql = 
-            "INSERT INTO mascotas VALUES ('{$mascotaACrear->getId()}', '{$mascotaACrear->getFotoMascota()}', 
-            '{$mascotaACrear->getDescripcion()}', '{$mascotaACrear->getTipoMascota()}')";
+            "INSERT INTO mascotas VALUES ('{$mascotaACrear->getId()}', '{$mascotaACrear->getFoto()}', 
+            '{$mascotaACrear->getDescripcion()}', '{$tipoMascota}')";
 
             $consulta_insercion = $this->con->query($sentencia_sql);
 
@@ -63,7 +65,7 @@
                 $descripcion = $valores_resultado["Descripcion"];
                 $tipoMascota = $valores_resultado["TipoMascota"];
 
-                $mascotaBuscada = new tMascota($idMascota, $fotoMascota, $descripcion, $tipoMascota);
+                $mascotaBuscada = new tMascota($idMascota, $tipoMascota, $descripcion, $fotoMascota);
                 return $mascotaBuscada;
             }
             else {
@@ -98,7 +100,7 @@
                     $descripcion = $mascotaActual["Descripcion"];
                     $tipoMascota = $mascotaActual["TipoMascota"];
     
-                    $mascotaAAnadir = new tMascota($idMascota, $fotoMascota, $descripcion, $tipoMascota);
+                    $mascotaAAnadir = new tMascota($idMascota, $tipoMascota, $descripcion, $fotoMascota);
                     $arrayMascotas[] = $mascotaAAnadir;
                 }
                 return $arrayMascotas;

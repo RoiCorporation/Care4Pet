@@ -5,9 +5,11 @@
     require 'DAOUsuario.php';
     require 'Mascota_t.php';
     require 'DAOMascota.php';
+    require 'DAOTipoDeMascota.php';
 
     $usuario = NULL;
     $listaMascotas = [];
+    $listaTiposDeMascotas = [];
 
     if (isset($_SESSION["login"]) && $_SESSION["login"] == true) {
         // obtenemos informacion basica sobre el dueno de BD
@@ -18,6 +20,9 @@
 
         // consulatmos la BD para obtener las mascotas del dueno y las agregamos a una lista
         $listaMascotas = (DAOMascota::getInstance())->leerMascotasDelUsuario($id);
+
+        // consulatmos la BD para obtener los tipos de mascotas potenciales y los agregamos a una lista
+        $listaTiposDeMascotas = (DAOTipoDeMascota::getInstance())->leerTodosLosTipoDeMascotas();
 
         // Usuario entrega el formulario para manejar mascota
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -103,7 +108,10 @@
 		<p>Lista de tus mascotas:</p>
         <button onclick="togglePopup(true)">Agregar Mascota +</button>
         <ul>
-            <?php foreach ($listaMascotas as $mascota) : ?>
+            <?php if ($listaMascotas == NULL) {
+                echo "No tiene ninguna mascota agregada";
+            } else { 
+                foreach ($listaMascotas as $mascota) : ?>
                 <div class="mascota-card">
                     <div class="mascota-info">
                         <?php if ($mascota->getFoto()) { ?>
@@ -129,10 +137,10 @@
                         </form>
 
                         <!-- boton para abrir formulario de editar -->
-                        <button onclick="openEditPopup('<?php echo $mascota->getId(); ?>','<?php echo htmlspecialchars($mascota->getDescripcion(), ENT_QUOTES); ?>','<?php echo $mascota->getTipoMascota(); ?>')">Editar</button>
+                        <button onclick="openEditPopup('<?php echo $mascota->getId(); ?>','<?php echo htmlspecialchars($mascota->getDescripcion(), ENT_QUOTES); ?>','<?php echo htmlspecialchars($mascota->getTipoMascota()); ?>')">Editar</button>
                     </div>
                 </div>
-            <?php endforeach; ?>
+            <?php endforeach; } ?>
             <?php 
             if (count($listaMascotas) == 0) {
                 echo "Actualmente no has agregado ninguna mascota. Haz un click sobre 'Agregar Mascota +' para agregar una mascota.";
@@ -148,11 +156,14 @@
                 <label for="descripcion">Descripción:</label><br>
                 <input type="text" name="descripcion" id="descripcion" required><br>
                 <label for="tipoMascota">Tipo de Mascota:</label><br>
-                <select name="tipoMascota" id="tipoMascota" required>
-                    <option value="1">Perro</option>
-                    <option value="2">Gato</option>
-                    <option value="3">Pájaro</option>
-                    <option value="4">Otro</option>
+                <select name="tipoMascota" id="tipoMascota" required>                
+                    <?php
+                    if ($listaTiposDeMascotas != NULL && count($listaTiposDeMascotas) > 0) {
+                        foreach ($listaTiposDeMascotas as $tipo) {
+                            echo '<option value="' . htmlspecialchars($tipo->id) . '">' . htmlspecialchars($tipo->nombre) . '</option>';
+                        }
+                    }                    
+                    ?>
                 </select><br>
                 <button type="submit" name="crearMascota">Crear Mascota</button>
                 <button type="button" onclick="togglePopup(false)">Cancelar</button>
@@ -169,10 +180,13 @@
                 <input type="text" name="descripcion" id="editDescripcion" required><br>
                 <label for="editTipoMascota">Tipo de Mascota:</label><br>
                 <select name="tipoMascota" id="editTipoMascota" required>
-                    <option value="1">Perro</option>
-                    <option value="2">Gato</option>
-                    <option value="3">Pájaro</option>
-                    <option value="4">Otro</option>
+                    <?php
+                    if ($listaTiposDeMascotas != NULL && count($listaTiposDeMascotas) > 0) {
+                        foreach ($listaTiposDeMascotas as $tipo) {
+                            echo '<option value="' . htmlspecialchars($tipo->id) . '">' . htmlspecialchars($tipo->nombre) . '</option>';
+                        }
+                    }                    
+                    ?>
                 </select><br>
                 <button type="submit" name="editarMascota">Guardar</button>
                 <button type="button" onclick="toggleEditPopup(false)">Cancelar</button>
@@ -202,7 +216,9 @@
         function openEditPopup(idMascota, descripcion, tipoMascota) {
             document.getElementById("editIdMascota").value = idMascota;
             document.getElementById("editDescripcion").value = descripcion;
-            document.getElementById("editTipoMascota").value = tipoMascota;
+            document.getElementById("editTipoMascota").value = String(tipoMascota);
+
+            console.log(tipoMascota);
 
             document.getElementById("popupEditForm").classList.add("active");
             document.getElementById("overlayEdit").classList.add("active");
