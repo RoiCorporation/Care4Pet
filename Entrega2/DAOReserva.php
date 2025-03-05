@@ -130,6 +130,23 @@
             }
         }
 
+        // Leer las reservas relacionadas a una mascota
+        public function leerReservasDeUnaMascota($idMascota) {
+            $sentencia_sql = "SELECT idReserva FROM reservas WHERE idMascota = '$idMascota'";
+            $consulta_resultado = $this->con->query($sentencia_sql);
+            $arrayIDReservas = [];
+
+            if ($consulta_resultado->num_rows > 0) {
+                while ($reservaActual = $consulta_resultado->fetch_assoc()) {
+                    $idReserva = $reservaActual["idReserva"];
+                    $arrayIDReservas[] = $idReserva;
+                }
+                return $arrayIDReservas;
+            } else {
+                return NULL;
+            }
+        }
+
         // Leer todos las reservas de un usuario.
         public function leerReservasDelUsuario($idUsuario) {
 
@@ -152,13 +169,6 @@
                 m.TipoMascota,
                 
                 -- obtenemos info de cuidador
-                c.idUsuario AS idCuidador,
-                c.TiposDeMascotas,
-                c.Tarifa,
-                c.Descripcion AS DescripcionCuidador,
-                c.ServiciosAdicionales,
-                c.Valoracion AS ValoracionCuidador,
-                
                 u.Nombre AS NombreCuidador,
                 u.Apellidos AS ApellidosCuidador,
                 u.Correo AS CorreoCuidador,
@@ -174,7 +184,6 @@
             FROM 
                 reservas r
                 INNER JOIN mascotas m ON r.idMascota = m.idMascota
-                INNER JOIN cuidadores c ON r.idCuidador = c.idUsuario
                 INNER JOIN usuarios u ON r.idCuidador = u.idUsuario
                 INNER JOIN usuarios d ON r.idUsuario = d.idUsuario
 
@@ -223,6 +232,7 @@
                 return $arrayReservas;
             }
             else {
+                echo "\n0 reservas en BD !!!";
                 return NULL;
             }
         }
@@ -308,10 +318,15 @@
                     $valoracion, $resena, $comentariosAdicionales, $esReservaActiva, $nombreCuidador, $apellidosCuidador, $correoCuidador,
                     $telefonoCuidador, $fotoCuidador, $direccionCuidador, $fotoMascota, $descripcionMascota, $tipoMascota, $esAceptadaPorCuidador, $nombreDueno, $apellidosDueno);    
                     $arrayReservas[] = $reservaAAnadir;
-                }
+                
             }
             return $arrayReservas;
         }
+        else{
+            return NULL;
+        }
+    }
+
 
         // Editar reserva.
         public function editarReserva($reservaAEditar) {

@@ -32,6 +32,9 @@
     $telefono = htmlspecialchars(trim(strip_tags($_REQUEST["telefono"])));
     $contrasena = htmlspecialchars(trim(strip_tags($_REQUEST["contrasena"])));
     $contrasena_repetida = htmlspecialchars(trim(strip_tags($_REQUEST["contrasena_repetida"])));
+    $valorEsCuidador = htmlspecialchars(trim(strip_tags($_REQUEST["esCuidador"])));
+    $esDueno = false;
+    $esCuidador = false;
 
 
     if (hayCamposVacios($nombre, $apellidos, $dni, $direccion, $email, $telefono, 
@@ -44,13 +47,22 @@
         echo "<h3>Las contraseñas no coinciden.</h3>";
         exit();
     }
-
+    
     else {
+    
+        if ($valorEsCuidador == "Si") {
+            $esCuidador = 1;
+            $esDueno = 0;
+        }
+        else {
+            $esCuidador = 0;
+            $esDueno = 1;
+        }
 
         $id_usuario = rand();
 
         $nuevoUsuario = new tUsuario($id_usuario, $nombre, $apellidos,
-            $email, $contrasena, $dni, $telefono, NULL, $direccion);
+            $email, $contrasena, $dni, $telefono, NULL, $direccion, $esDueno, $esCuidador);
             
             // Si la inserción ha creado una entrada nueva, el usuario se ha 
             // registrado correctamente. Por lo tanto, se inicia su sesión con 

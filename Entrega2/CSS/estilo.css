@@ -1,5 +1,5 @@
 /* estilos pop up */
-.popup {
+/* .popup {
     display: none;
     position: fixed;
     top: 50%;
@@ -32,7 +32,7 @@
 
 .overlay.active {
     display: block;
-}
+} */
 
 /* estilos item de reserva */
 .reserva-box {

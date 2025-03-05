@@ -78,15 +78,15 @@
 			echo "<input type='hidden' name='idReserva' value='" . $reserva->getId() . "'>";
 			echo "<a href='detalles_reserva.php?reserva=" . $reserva->getId() . "'>Ver reserva</a>";
 
-			$ffin = new DateTime($reserva->getFechaFin());
+			$finicio = new DateTime($reserva->getFechaInicio());
 			$now = new DateTime();
 
-			if ($ffin > $now) {
+			if ($finicio > $now) {
 				echo "<button type='submit'>Cancelar</button>";
 			}
 			echo "</form>";
 			echo "</div>";
-		}
+		}			
 		if (count($listaReservas) == 0) {
 			echo "<p>Actualmente no tienes ninguna reserva. Puedes <a href='pagina_contratacion.php'> contratar cuidadores aqui</a>.</p>";
 		}

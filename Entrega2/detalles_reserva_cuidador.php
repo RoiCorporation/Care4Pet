@@ -22,8 +22,6 @@
             $sentencia_sql_valoracion = 
             "UPDATE reservas SET valoracion = '$valoracion_form', resena = '$resena_form' WHERE idReserva = '$idReserva'";
 
-			// Guardamos la valoracion y resena en la BD
-			$con = (DatabaseConnection::getInstance())->getConnection();
             $consulta_agrega_valoracion = $con->query($sentencia_sql_valoracion);
 
             if ($con->affected_rows > 0) {
@@ -59,8 +57,8 @@
     
 		<?php
 
-        echo "<h2 style='text-align:center'>Reserva nr. " . $reserva->getId() . " - Cuidador: " . $reserva->getNombreCuidador() . " " . $reserva->getApellidosCuidador() . "</h2>";
-		echo "<a href='mis_reservas.php'>Volver a la lista de reservas</a>";
+        echo "<h2 style='text-align:center'>Reserva nr. " . $reserva->getId() . " - Dueno: " . $reserva->getNombreDueno() . " " . $reserva->getApellidosDueno() . "</h2>";
+		echo "<a href='perfil_cuidador.php'>Volver a mi perfil</a>";
 
 		echo "<div class='reserva-box'>";
 
@@ -97,42 +95,7 @@
 		echo "<p><strong>Descripción:</strong> " . $reserva->getDescripcionMascota() . "</p>";
 		echo "</div>";
 		// info cuidador
-		echo "<div class='cuidador-info'>";
-		echo "<h4>Cuidador</h4>";
-		if ($reserva->getFotoPerfilCuidador() != NULL) {
-			echo "<img src='" . $reserva->getFotoPerfilCuidador() . "' alt='Foto del Cuidador'>";
-		}
-		echo "<p><strong>Nombre:</strong> " . $reserva->getNombreCuidador() . " " . $reserva->getApellidosCuidador() . "</p>";
-		echo "<p><strong>Correo:</strong> " . $reserva->getCorreoCuidador() . "</p>";
-		echo "<p><strong>Telefono:</strong> " . $reserva->getTelefonoCuidador() . "</p>";
-		echo "<p><strong>Dirección:</strong> " . $reserva->getDireccionCuidador() . "</p>";
-		echo "</div>";	
-		echo "</div>";
-
-
-		$ffin = new DateTime($reserva->getFechaFin());
-		$now = new DateTime();
-
-		if ($reserva->getValoracion() == NULL && $reserva->getEsAceptadaPorCuidador() == true && $ffin < $now) {
-			echo "<div class='reserva-details'>";
-			// formulario valoracion
-			echo "<div class='form-valoracion'>";
-			echo "
-			<form method='POST'>
-				<label for='valoracion'>Estrellas:</label><br>
-				<input type='range' name='valoracion' id='valoracion' min='1' max='5' value='3' oninput='valoracionOutput.value = valoracion.value' required>
-				<output id='valoracionOutput'>3</output>/5 <br>
-
-				<label for='resena'>Reseña:</label><br>
-				<input type='text' name='resena' id='resena' required><br>
-				<button type='submit' name='crearValoracion'>Subir valoracion</button>
-			</form>
-			";
-
-			echo "</div>";
-			echo "</div>";
-		}
-
+		
 		echo "</div>";
 		echo "</div>";
 		?>

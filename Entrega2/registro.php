@@ -63,8 +63,16 @@
 						<input type="password" name="contrasena repetida" placeholder="Repita la contraseña" size="18">
 					</div>
 				</div>
-
-			</div>
+				
+			</div><br>
+			
+			<legend>Darse de alta como cuidador</legend>
+			<div style="display: inline-block; text-align: center;">
+				<input type="radio" id="CuidadorSi" name="esCuidador" value="Si">
+				<label for="CuidadorSi">Sí</label>&nbsp&nbsp&nbsp
+				<input type="radio" id="CuidadorNo" name="esCuidador" value="No" checked>
+				<label for="CuidadorNo">No</label>
+			</div><br>
 
 			<br>
 			<div style="text-align: center;">
