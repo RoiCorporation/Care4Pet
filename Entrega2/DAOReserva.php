@@ -127,6 +127,7 @@
             // Crea la sentencia sql para obtener todos los usuarios en la base de datos.
             $sentencia_sql = "SELECT 
                 r.idReserva,
+                r.idCuidador,
                 r.FechaInicio,
                 r.FechaFin,
                 r.esAceptadaPorCuidador,
@@ -142,13 +143,6 @@
                 m.TipoMascota,
                 
                 -- obtenemos info de cuidador
-                c.idUsuario AS idCuidador,
-                c.TiposDeMascotas,
-                c.Tarifa,
-                c.Descripcion AS DescripcionCuidador,
-                c.ServiciosAdicionales,
-                c.Valoracion AS ValoracionCuidador,
-                
                 u.Nombre AS NombreCuidador,
                 u.Apellidos AS ApellidosCuidador,
                 u.Correo AS CorreoCuidador,
@@ -160,7 +154,6 @@
             FROM 
                 reservas r
                 INNER JOIN mascotas m ON r.idMascota = m.idMascota
-                INNER JOIN cuidadores c ON r.idCuidador = c.idUsuario
                 INNER JOIN usuarios u ON r.idCuidador = u.idUsuario
 
             WHERE 
@@ -201,6 +194,7 @@
                 return $arrayReservas;
             }
             else {
+                echo "\n0 reservas en BD !!!";
                 return NULL;
             }
         }
