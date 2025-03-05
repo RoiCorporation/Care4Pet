@@ -49,6 +49,8 @@
             // y da de alta al usuario -junto con los valores que ha introducido-
             // en la base de datos.
             else {
+                // Establecer la fecha actual para fecha_registro
+                $fecha_registro = date('Y-m-d H:i:s'); // Fecha en formato 'YYYY-MM-DD HH:MM:SS'
 
                 // Crea la sentencia sql de inserción a ejecutar.
                 $sentencia_sql = 
@@ -56,7 +58,7 @@
                     '{$usuarioACrear->getApellidos()}', '{$usuarioACrear->getCorreo()}', '{$usuarioACrear->getContrasena()}', 
                     '{$usuarioACrear->getDNI()}', '{$usuarioACrear->getTelefono()}', 'NULL', '{$usuarioACrear->getDireccion()}',
                     '{$usuarioACrear->getEsDueno()}', '{$usuarioACrear->getEsCuidador()}', '{$usuarioACrear->getEsAdmin()}',
-                    '{$usuarioACrear->getCuentaActiva()}')";
+                    '{$usuarioACrear->getCuentaActiva()}', '{$fecha_registro}')";
 
                 $consulta_insercion = $this->con->query($sentencia_sql);
 
@@ -96,10 +98,11 @@
                 $esCuidador = $valores_resultado["esCuidador"];
                 $esAdmin = $valores_resultado["esAdmin"];
                 $cuentaActiva = $valores_resultado["cuentaActiva"];
+                $fecha_registro = $valores_resultado["fecha_registro"];
 
                 $usuarioBuscado = new tUsuario($idUsuario, $nombre, $apellidos,
                     $correo, $contrasena, $dni, $telefono, $fotoPerfil,
-                    $direccion, $esDueno, $esCuidador, $esAdmin, $cuentaActiva);
+                    $direccion, $esDueno, $esCuidador, $esAdmin, $cuentaActiva, $fecha_registro);
                 
                 return $usuarioBuscado;
             }
@@ -144,10 +147,11 @@
                     $esCuidador = $usuarioActual["esCuidador"];
                     $esAdmin = $usuarioActual["esAdmin"];
                     $cuentaActiva = $usuarioActual["cuentaActiva"];
+                     $fecha_registro = $usuarioActual["fecha_registro"];
     
                     $usuarioAAnadir = new tUsuario($idUsuario, $nombre, $apellidos,
                         $correo, $contrasena, $dni, $telefono, $fotoPerfil,
-                        $direccion, $esDueno, $esCuidador, $esAdmin, $cuentaActiva);
+                        $direccion, $esDueno, $esCuidador, $esAdmin, $cuentaActiva, $fecha_registro);
 
                     $arrayUsuarios[] = $usuarioAAnadir;
                 }
