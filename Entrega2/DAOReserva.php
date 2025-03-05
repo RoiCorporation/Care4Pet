@@ -278,7 +278,6 @@
                     $arrayReservas = [];
         
                     if ($consulta_resultado->num_rows > 0) {
-                        echo "hola";	
                         while ($reservaActual = $consulta_resultado->fetch_assoc()) {
         
                             $idReserva = $reservaActual["idReserva"];
