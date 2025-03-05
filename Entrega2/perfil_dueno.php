@@ -173,7 +173,7 @@
                 ?>
             </select><br>
             <button type="submit" name="crearMascota">Crear Mascota</button>
-            <button type="button" onclick="togglePopup(false)">Cancelar</button>
+            <!-- <button type="button" onclick="togglePopup(false)">Cancelar</button> -->
         </form>
         <!-- </div> -->
 
