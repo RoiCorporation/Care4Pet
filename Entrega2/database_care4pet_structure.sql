@@ -123,7 +123,8 @@ CREATE TABLE `usuarios` (
   `esDueno` tinyint(1) NOT NULL DEFAULT '0',
   `esCuidador` tinyint(1) NOT NULL DEFAULT '0',
   `esAdmin` tinyint(1) NOT NULL DEFAULT '0',
-  `cuentaActiva` tinyint(1) NOT NULL DEFAULT '1'
+  `cuentaActiva` tinyint(1) NOT NULL DEFAULT '1',
+  `fecha_registro` TIMESTAMP DEFAULT CURRENT_TIMESTAMP  --ALTER TABLE `usuarios` ADD COLUMN `fecha_registro` TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 
 --
