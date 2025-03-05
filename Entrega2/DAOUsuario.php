@@ -207,6 +207,10 @@
 
             $consulta_comprobacion = $this->con->query($sentencia_sql);
 
+            // TODO: si esta borrado el usuario:
+            // 1. si es dueno: borramos tambien las reservas y mascotas relacionadas
+            // 2. si es cuidador: borramos tambien las reservas y datos de cuidador relacionados
+
             // Si el usuario con ese id está en la base de datos, se elimina de la misma.
             if ($consulta_comprobacion->num_rows != 0) {
                 

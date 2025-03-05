@@ -121,6 +121,23 @@
             }
         }
 
+        // Leer las reservas relacionadas a una mascota
+        public function leerReservasDeUnaMascota($idMascota) {
+            $sentencia_sql = "SELECT idReserva FROM reservas WHERE idMascota = '$idMascota'";
+            $consulta_resultado = $this->con->query($sentencia_sql);
+            $arrayIDReservas = [];
+
+            if ($consulta_resultado->num_rows > 0) {
+                while ($reservaActual = $consulta_resultado->fetch_assoc()) {
+                    $idReserva = $reservaActual["idReserva"];
+                    $arrayIDReservas[] = $idReserva;
+                }
+                return $arrayIDReservas;
+            } else {
+                return NULL;
+            }
+        }
+
         // Leer todos las reservas de un usuario.
         public function leerReservasDelUsuario($idUsuario) {
 
