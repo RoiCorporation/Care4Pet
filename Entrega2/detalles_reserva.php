@@ -22,6 +22,8 @@
             $sentencia_sql_valoracion = 
             "UPDATE reservas SET valoracion = '$valoracion_form', resena = '$resena_form' WHERE idReserva = '$idReserva'";
 
+			// Guardamos la valoracion y resena en la BD
+			$con = (DatabaseConnection::getInstance())->getConnection();
             $consulta_agrega_valoracion = $con->query($sentencia_sql_valoracion);
 
             if ($con->affected_rows > 0) {

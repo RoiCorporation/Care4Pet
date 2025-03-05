@@ -10,6 +10,7 @@
         private function __construct() { 
             require_once 'Mascota_t.php';
             require_once 'DatabaseConnection.php';
+            require_once 'DAOReserva.php';
             $con = null;
             $this->con = (DatabaseConnection::getInstance())->getConnection();
         }
@@ -29,9 +30,11 @@
         // Crear mascota.
         public function crearMascota($mascotaACrear, $idUsuario) {
             // Crea la sentencia sql de inserción a ejecutar.
+            $tipoMascota = intval($mascotaACrear->getTipoMascota());
+
             $sentencia_sql = 
-            "INSERT INTO mascotas VALUES ('{$mascotaACrear->getId()}', '{$mascotaACrear->getFotoMascota()}', 
-            '{$mascotaACrear->getDescripcion()}', '{$mascotaACrear->getTipoMascota()}')";
+            "INSERT INTO mascotas VALUES ('{$mascotaACrear->getId()}', '{$mascotaACrear->getFoto()}', 
+            '{$mascotaACrear->getDescripcion()}', '{$tipoMascota}')";
 
             $consulta_insercion = $this->con->query($sentencia_sql);
 
@@ -63,7 +66,7 @@
                 $descripcion = $valores_resultado["Descripcion"];
                 $tipoMascota = $valores_resultado["TipoMascota"];
 
-                $mascotaBuscada = new tMascota($idMascota, $fotoMascota, $descripcion, $tipoMascota);
+                $mascotaBuscada = new tMascota($idMascota, $tipoMascota, $descripcion, $fotoMascota);
                 return $mascotaBuscada;
             }
             else {
@@ -98,7 +101,7 @@
                     $descripcion = $mascotaActual["Descripcion"];
                     $tipoMascota = $mascotaActual["TipoMascota"];
     
-                    $mascotaAAnadir = new tMascota($idMascota, $fotoMascota, $descripcion, $tipoMascota);
+                    $mascotaAAnadir = new tMascota($idMascota, $tipoMascota, $descripcion, $fotoMascota);
                     $arrayMascotas[] = $mascotaAAnadir;
                 }
                 return $arrayMascotas;
@@ -125,7 +128,8 @@
         }
 
         // Borrar Mascota.
-        public function borrarMascota($idMascota) {            
+        public function borrarMascota($idMascota) {    
+            // Comprobamos si la mascota existe antes de borrarla        
             $sentencia_sql = "SELECT * FROM mascotas WHERE idMascota = '{$idMascota}'";
             $consulta_comprobacion = $this->con->query($sentencia_sql);
 
@@ -139,8 +143,19 @@
                     "DELETE FROM duenos WHERE idMascota = '{$idMascota}'";
     
                     $consulta_borra_link_md = $this->con->query($sentencia_sql_borra_link_md);    
-                    
-                    return $this->con->affected_rows > 0;
+                    $linkBorradoSuceso = $this->con->affected_rows > 0;
+
+                    // Si esta borrada la mascota, borramos tambien las reservas relacionadas
+                    $reservasRelacionadas = (DAOReserva::getInstance())->leerReservasDeUnaMascota($idMascota);
+                    if ($reservasRelacionadas != NULL) {
+                        if (count($reservasRelacionadas) > 0) {
+                            foreach ($reservasRelacionadas as $res) {
+                                (DAOReserva::getInstance())->borrarReserva($res);
+                            }
+                        }
+                    }
+
+                    return $linkBorradoSuceso;
                 } else {
                     return false;
                 }
