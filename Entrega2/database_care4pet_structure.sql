@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db
--- Generation Time: Mar 05, 2025 at 12:57 PM
+-- Generation Time: Mar 05, 2025 at 05:01 PM
 -- Server version: 8.1.0
 -- PHP Version: 8.2.27
 
@@ -29,11 +29,12 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `cuidadores` (
   `idUsuario` bigint UNSIGNED NOT NULL,
-  `TiposDeMascotas` longtext COLLATE utf8mb3_spanish_ci,
+  `TiposDeMascotas` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci,
   `Tarifa` decimal(10,0) UNSIGNED NOT NULL,
-  `Descripcion` text COLLATE utf8mb3_spanish_ci,
-  `ServiciosAdicionales` longtext COLLATE utf8mb3_spanish_ci,
-  `Valoracion` tinyint UNSIGNED DEFAULT NULL
+  `Descripcion` text CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci,
+  `ServiciosAdicionales` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci,
+  `Valoracion` tinyint UNSIGNED DEFAULT NULL,
+  `ZonasAtendidas` longtext COLLATE utf8mb3_spanish_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 
 -- --------------------------------------------------------
@@ -55,8 +56,8 @@ CREATE TABLE `duenos` (
 
 CREATE TABLE `mascotas` (
   `idMascota` bigint UNSIGNED NOT NULL,
-  `FotoMascota` text COLLATE utf8mb3_spanish_ci,
-  `Descripcion` text COLLATE utf8mb3_spanish_ci,
+  `FotoMascota` text CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci,
+  `Descripcion` text CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci,
   `TipoMascota` bigint UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 
@@ -75,8 +76,8 @@ CREATE TABLE `reservas` (
   `FechaFin` datetime NOT NULL,
   `esAceptadaPorCuidador` tinyint UNSIGNED NOT NULL DEFAULT '0',
   `Valoracion` tinyint UNSIGNED DEFAULT NULL,
-  `Resena` text COLLATE utf8mb3_spanish_ci,
-  `ComentariosAdicionales` text COLLATE utf8mb3_spanish_ci,
+  `Resena` text CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci,
+  `ComentariosAdicionales` text CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci,
   `esReservaActiva` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 
@@ -88,7 +89,7 @@ CREATE TABLE `reservas` (
 
 CREATE TABLE `servicios_adicionales` (
   `idServicio` bigint UNSIGNED NOT NULL,
-  `Nombre` varchar(255) COLLATE utf8mb3_spanish_ci NOT NULL,
+  `Nombre` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
   `Coste` decimal(10,0) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 
@@ -100,7 +101,7 @@ CREATE TABLE `servicios_adicionales` (
 
 CREATE TABLE `tipos_de_mascotas` (
   `idTipoMascota` bigint UNSIGNED NOT NULL,
-  `Nombre` varchar(255) COLLATE utf8mb3_spanish_ci NOT NULL
+  `Nombre` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 
 -- --------------------------------------------------------
@@ -111,14 +112,14 @@ CREATE TABLE `tipos_de_mascotas` (
 
 CREATE TABLE `usuarios` (
   `idUsuario` bigint UNSIGNED NOT NULL,
-  `Nombre` varchar(255) COLLATE utf8mb3_spanish_ci NOT NULL,
-  `Apellidos` varchar(255) COLLATE utf8mb3_spanish_ci NOT NULL,
-  `Correo` varchar(255) COLLATE utf8mb3_spanish_ci NOT NULL,
-  `Contraseña` varchar(255) COLLATE utf8mb3_spanish_ci NOT NULL,
-  `DNI` varchar(255) COLLATE utf8mb3_spanish_ci NOT NULL,
+  `Nombre` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `Apellidos` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `Correo` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `Contraseña` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `DNI` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
   `Telefono` int NOT NULL,
-  `FotoPerfil` text COLLATE utf8mb3_spanish_ci,
-  `Direccion` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `FotoPerfil` text CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci,
+  `Direccion` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci DEFAULT NULL,
   `esDueno` tinyint(1) NOT NULL DEFAULT '0',
   `esCuidador` tinyint(1) NOT NULL DEFAULT '0',
   `esAdmin` tinyint(1) NOT NULL DEFAULT '0',

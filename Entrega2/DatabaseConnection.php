@@ -13,7 +13,8 @@
                 $env['DB_SERVIDOR'],
                 $env['DB_USUARIO'],
                 $env['DB_CONTRASENA'],
-                $env['DB_NOMBRE']
+                $env['DB_NOMBRE'],
+                port: $env['DB_PUERTO']
             );
             */
 
