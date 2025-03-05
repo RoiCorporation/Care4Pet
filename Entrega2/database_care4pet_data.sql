@@ -70,6 +70,7 @@ INSERT INTO `tipos_de_mascotas` (`idTipoMascota`, `Nombre`) VALUES
 --
 
 INSERT INTO `usuarios` (`idUsuario`, `Nombre`, `Apellidos`, `Correo`, `Contraseña`, `DNI`, `Telefono`, `FotoPerfil`, `Direccion`, `esDueno`, `esCuidador`, `esAdmin`, `cuentaActiva`, `fecha_registro`) VALUES
+(01, 'admin', 'admin', 'admin@ad.com', 'admin', '1', 1, 'NULL', 'Calle falsa', 0, 0, 1, 0, '2025-03-05 00:00:00'), 
 (1203472, 'Maria', 'José', 'mariajose@gmail.com', 'maria', '00000000Z', 0, NULL, 'Calle del Amor Hermoso, 80', 1, 0, 0, 1, '2025-03-05 00:00:00'),
 (205753802, 'Maria', 'Santos Aguillera', 'masa@ej.com', 'masa', '00000000Z', 0, 'NULL', 'Calle del Amor Hermoso, 80', 0, 1, 0, 1, '2025-03-05 00:00:00'),
 (205753803, 'Blahblah', 'blahblah', 'usuario1@usuario.cm', 'masa', '00000000Y', 0, NULL, 'Calle Umbria, ', 0, 1, 0, 1, '2025-03-05 00:00:00'),
