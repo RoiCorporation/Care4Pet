@@ -25,6 +25,7 @@
 				# dependiente de quien es el usario, le mostramos diferente pagina de perfil
 				$esDueno = $filaResultado["esDueno"];
 				$esCuidador = $filaResultado["esCuidador"];
+				$esAdmin = $filaResultado["esAdmin"];
 
 				if ($esDueno) {
 					echo "<span><a href=\"perfil_dueno.php\">Mi perfil</a></span> &emsp;&emsp;";
@@ -32,6 +33,9 @@
 				if ($esCuidador) {
 					echo "<span><a href=\"perfil_cuidador.php\">Mi perfil</a></span> &emsp;&emsp;";
 				}
+				if ($esAdmin) {
+                  			echo "<span><a href=\"admin_Pc.php\">Admin</a></span> &emsp;&emsp;";
+               			}
 			} 
 			
 			echo "<span><a href=\"logout.php\">Cerrar sesión</a></span> &emsp;&emsp;";
