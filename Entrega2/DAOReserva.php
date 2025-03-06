@@ -215,7 +215,7 @@
                     $apellidosDueno = $reservaActual["ApellidosDueno"];
     
                     $idReserva = $reservaActual["idReserva"];
-                    $idUsuario = $reservaActual["idUsuario"];
+                    // $idUsuario = $reservaActual["idUsuario"];
                     $idMascota = $reservaActual["idMascota"];
                     $idCuidador = $reservaActual["idCuidador"];
                     $fechaInicio = $reservaActual["FechaInicio"];
@@ -232,7 +232,6 @@
                 return $arrayReservas;
             }
             else {
-                echo "\n0 reservas en BD !!!";
                 return NULL;
             }
         }

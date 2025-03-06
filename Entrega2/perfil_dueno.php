@@ -154,12 +154,9 @@
                         <!-- <button onclick="openEditPopup('<?php echo $mascota->getId(); ?>','<?php echo htmlspecialchars($mascota->getDescripcion(), ENT_QUOTES); ?>','<?php echo htmlspecialchars($mascota->getTipoMascota()); ?>')">Editar</button> -->
                     </div>
                 </div>
-            <?php endforeach; } ?>
-            <?php 
-            if (count($listaMascotas) == 0) {
+            <?php endforeach; if (count($listaMascotas) == 0) {
                 echo "Actualmente no has agregado ninguna mascota. Haz un click sobre 'Agregar Mascota +' para agregar una mascota.";
-            }
-            ?>
+            } } ?>
         </ul>
 
         <!-- Un popup para agregar mascotas -->

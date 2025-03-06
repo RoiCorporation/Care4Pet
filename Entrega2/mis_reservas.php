@@ -53,42 +53,46 @@
         <h2 style="text-align:center">Mis reservas</h2>
 
 		<?php
-		foreach ($listaReservas as $reserva) {
-			echo "<div class='reserva-box'>";
-			echo "<h3>Reserva #" . $reserva->getId() . "</h3>";
-			echo "<div class='reserva-details'>";
-	
-			// info mascota
-			echo "<div class='mascota-info'>";
-			echo "<h4>Mascota</h4>";
-			if ($reserva->getFotoMascota()) {
-				echo "<img src='" . $reserva->getFotoMascota() . "' alt='Foto de Mascota'>";
-			}
-			echo "<p><strong>Descripción:</strong> " . $reserva->getDescripcionMascota() . "</p>";
-			echo "</div>";
-	
-			// info cuidador
-			echo "<div class='cuidador-info'>";
-			echo "<h4>Cuidador</h4>";
-			echo "<p><strong>Nombre:</strong> " . $reserva->getNombreCuidador() . " " . $reserva->getApellidosCuidador() . "</p>";
-			echo "</div>";	
-			echo "</div>";
-	
-			echo "<form method='POST'>";
-			echo "<input type='hidden' name='idReserva' value='" . $reserva->getId() . "'>";
-			echo "<a href='detalles_reserva.php?reserva=" . $reserva->getId() . "'>Ver reserva</a>";
-
-			$finicio = new DateTime($reserva->getFechaInicio());
-			$now = new DateTime();
-
-			if ($finicio > $now) {
-				echo "<button type='submit'>Cancelar</button>";
-			}
-			echo "</form>";
-			echo "</div>";
-		}			
-		if (count($listaReservas) == 0) {
+		if ($listaReservas == NULL) {
 			echo "<p>Actualmente no tienes ninguna reserva. Puedes <a href='pagina_contratacion.php'> contratar cuidadores aqui</a>.</p>";
+		} else {
+			foreach ($listaReservas as $reserva) {
+				echo "<div class='reserva-box'>";
+				echo "<h3>Reserva #" . $reserva->getId() . "</h3>";
+				echo "<div class='reserva-details'>";
+		
+				// info mascota
+				echo "<div class='mascota-info'>";
+				echo "<h4>Mascota</h4>";
+				if ($reserva->getFotoMascota()) {
+					echo "<img src='" . $reserva->getFotoMascota() . "' alt='Foto de Mascota'>";
+				}
+				echo "<p><strong>Descripción:</strong> " . $reserva->getDescripcionMascota() . "</p>";
+				echo "</div>";
+		
+				// info cuidador
+				echo "<div class='cuidador-info'>";
+				echo "<h4>Cuidador</h4>";
+				echo "<p><strong>Nombre:</strong> " . $reserva->getNombreCuidador() . " " . $reserva->getApellidosCuidador() . "</p>";
+				echo "</div>";	
+				echo "</div>";
+		
+				echo "<form method='POST'>";
+				echo "<input type='hidden' name='idReserva' value='" . $reserva->getId() . "'>";
+				echo "<a href='detalles_reserva.php?reserva=" . $reserva->getId() . "'>Ver reserva</a>";
+
+				$finicio = new DateTime($reserva->getFechaInicio());
+				$now = new DateTime();
+
+				if ($finicio > $now) {
+					echo "<button type='submit'>Cancelar</button>";
+				}
+				echo "</form>";
+				echo "</div>";
+			}			
+			if (count($listaReservas) == 0) {
+				echo "<p>Actualmente no tienes ninguna reserva. Puedes <a href='pagina_contratacion.php'> contratar cuidadores aqui</a>.</p>";
+			}
 		}
 		?>
 	</div>
