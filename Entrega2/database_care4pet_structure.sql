@@ -133,7 +133,8 @@ CREATE TABLE visitas (
   `id` INT AUTO_INCREMENT NOT NULL,
   `fecha` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `ip` VARCHAR(50) NOT NULL,
-  `idUsuario` INT NULL
+  `idUsuario` INT NULL,
+  PRIMARY KEY (`id`)
 );
 
 --
@@ -181,12 +182,6 @@ ALTER TABLE `tipos_de_mascotas`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`idUsuario`);
-
---
--- Indexes for table `visitas`
---
-ALTER TABLE `visitas`
-  ADD PRIMARY KEY (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
