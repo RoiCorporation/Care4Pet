@@ -51,7 +51,7 @@ session_start();
         if ($result->num_rows > 0) {
             while ($cuidador = $result->fetch_assoc()) {
                 echo '<div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">';
-                echo '<img src="' . $cuidador['FotoPerfil'] . '" alt="' . $cuidador['Nombre'] . ' ' . $cuidador['Apellidos'] . '" style="width:100px; height:100px;">';
+                echo '<img src="img/' . $cuidador['FotoPerfil'] . '" alt="' . $cuidador['Nombre'] . ' ' . $cuidador['Apellidos'] . '" style="width:100px; height:100px;">';
                 echo '<h3>' . $cuidador['Nombre'] . ' ' . $cuidador['Apellidos'] . '</h3>';
                 echo '<p>Valoración: ' . $cuidador['Valoracion'] . '/5</p>';
                 echo '<p>' . $cuidador['Descripcion'] . '</p>';

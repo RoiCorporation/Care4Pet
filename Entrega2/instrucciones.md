@@ -9,5 +9,4 @@ Creacion de base de datos:
 
 Para poder utilizar conectar a la BD:
 
-1. Copiar fichero `.env.sample` y cambiar el nombre de copia a `.env`.
-2. En el fichero `.env`, cambiar los detalles de conexion a su BD.
+1. Configurar el archivo config.php según los valores que escoja cada uno.
