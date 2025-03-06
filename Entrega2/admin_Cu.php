@@ -71,7 +71,7 @@
 					</fieldset>
 					<br>
 					<div style="text-align: center;">
-						<input type="submit" value="Registrarse">
+						<input type="submit" value="Crear Usuario">
 					</div>
 
 				</form>
