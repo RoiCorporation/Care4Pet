@@ -8,8 +8,8 @@
         
         // Constructor privado para evitar nuevas instancias con new().
         private function __construct() { 
-            require_once 'Reserva_t.php';
-            require_once 'DatabaseConnection.php';
+            require_once __DIR__ . '/../../clases/Reserva_t.php';
+            require_once __DIR__ . '/../DatabaseConnection.php';
             $con = null;
             $this->con = (DatabaseConnection::getInstance())->getConnection();
         }

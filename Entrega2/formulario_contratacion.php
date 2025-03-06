@@ -27,7 +27,7 @@ if (!isset($_SESSION["email"])) {
 $correo_usuario = $_SESSION["email"];
 
 // Conectar a la base de datos
-require 'DatabaseConnection.php';
+require_once __DIR__ . '/includes/mysql/DatabaseConnection.php';
 $db = DatabaseConnection::getInstance();
 $con = $db->getConnection();
 
@@ -61,7 +61,7 @@ if ($result_usuario->num_rows > 0) {
 <body>
 
 <?php
-require 'cabecera.php';
+require_once __DIR__ . '/includes/vistas/cabecera.php';
 ?>
 
 <!-- Contenido principal del formulario de contratación -->
@@ -110,8 +110,8 @@ require 'cabecera.php';
     </form>
 </div>
 
-<?php require 'pie_pagina.php'; ?>
-<?php require 'aviso_legal.php'; ?>
+<?php require_once __DIR__ . '/includes/vistas/pie_pagina.php';?>
+<?php require_once __DIR__ . '/includes/vistas/aviso_legal.php'; ?>
 
 </body>
 </html>

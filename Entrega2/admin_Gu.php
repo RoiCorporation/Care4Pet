@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-require_once 'DatabaseConnection.php';
+require_once __DIR__ . '/includes/mysql/DatabaseConnection.php';
 
 // Verificar si el usuario ha iniciado sesión y es administrador
 if (!isset($_SESSION['login']) || $_SESSION['login'] !== true || $_SESSION['esAdmin'] != 1) {
@@ -26,10 +26,10 @@ $result = $conn->query($sql);
 
     <body>
 
-        <?php require 'cabecera.php'; ?>
+        <?php require_once __DIR__ . '/includes/vistas/cabecera.php'; ?>
 
         <div class="contenedorAd">
-            <?php require 'sidebarAd.php'; ?>
+            <?php require_once __DIR__ . '/sidebarAd.php'; ?>
 
             <main class="contenidoAd">
                 <div class="titulosAd">
@@ -56,8 +56,8 @@ $result = $conn->query($sql);
             </main>
         </div>
 
-        <?php require 'pie_pagina.php'; ?>
-        <?php require 'aviso_legal.php'; ?>
+        <?php require_once __DIR__ . '/includes/vistas/pie_pagina.php';?>
+        <?php require_once __DIR__ . '/includes/vistas/aviso_legal.php'; ?>
 
         <script>
             function desplazarIzquierda() { // Nuevo nombre

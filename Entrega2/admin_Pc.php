@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once 'DatabaseConnection.php';
+    require_once __DIR__ . '/includes/mysql/DatabaseConnection.php';
 
     // Verificar si el usuario ha iniciado sesión
     if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
@@ -29,12 +29,12 @@
 <body>
 
    
-<?php require 'cabecera.php'; ?>
+<?php require_once __DIR__ . '/includes/vistas/cabecera.php'; ?>
     
  
 <div class="contenedorAd">
         <!-- Barra lateral (menú de navegación) -->
-        <?php require 'sidebarAd.php'; ?>
+        <?php require_once __DIR__ . '/sidebarAd.php'; ?>
 
         <!-- Contenido principal dividido en dos partes -->
       
@@ -60,8 +60,8 @@
 
     </div>
 
-    <?php require 'pie_pagina.php'; ?>
-    <?php require 'aviso_legal.php'; ?>
+    <?php require_once __DIR__ . '/includes/vistas/pie_pagina.php';?>
+    <?php require_once __DIR__ . '/includes/vistas/aviso_legal.php'; ?>
 
     
 

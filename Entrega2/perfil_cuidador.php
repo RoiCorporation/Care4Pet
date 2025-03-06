@@ -1,10 +1,11 @@
 <?php
     session_start();
     
-    require_once 'DatabaseConnection.php';
-    require 'DAOUsuario.php';
-    require 'DAOCuidador.php';
-    require 'DAOReserva.php';
+    require_once __DIR__ . '/includes/mysql/DatabaseConnection.php';
+    require_once __DIR__ . '/includes/mysql/DAOs/DAOUsuario.php';
+    require_once __DIR__ . '/includes/mysql/DAOs/DAOCuidador.php';
+    require_once __DIR__ . '/includes/mysql/DAOs/DAOReserva.php';
+
 
     $usuario = NULL;
     $cuidador = NULL;
@@ -72,7 +73,7 @@
 <body>
 
 <?php
-    require 'cabecera.php';
+    require_once __DIR__ . '/includes/vistas/cabecera.php';
 ?>
 
 <!-- Contenido principal de la página de mis reservas -->

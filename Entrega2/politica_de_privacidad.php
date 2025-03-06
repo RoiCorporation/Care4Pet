@@ -15,7 +15,7 @@
 	<body>
 
     <?php
-		require 'cabecera.php';
+		require_once __DIR__ . '/includes/vistas/cabecera.php';
 	?>
 
 	<!-- Contenido de la política de privacidad -->

@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'DatabaseConnection.php';
+require_once __DIR__ . '/includes/mysql/DatabaseConnection.php';
 
 // Verificar si el usuario ha iniciado sesión y es administrador
 if (!isset($_SESSION['login']) || $_SESSION['login'] !== true || $_SESSION['esAdmin'] != 1) {
@@ -71,9 +71,9 @@ $stmt->free_result(); // Liberar el resultado de la consulta
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Cargar Chart.js para las gráficas -->
 </head>
 <body>
-    <?php require 'cabecera.php'; ?> <!-- Incluir la cabecera -->
+    <?php require_once __DIR__ . '/includes/vistas/cabecera.php'; ?> <!-- Incluir la cabecera -->
     <div class="contenedorAd">
-        <?php require 'sidebarAd.php'; ?> <!-- Incluir la barra lateral -->
+        <?php require_once __DIR__ . '/sidebarAd.php'; ?> <!-- Incluir la barra lateral -->
 
         <main class="contenidoAd">
             <div class="titulosAd">
@@ -95,8 +95,8 @@ $stmt->free_result(); // Liberar el resultado de la consulta
         </main>
     </div>  
 
-    <?php require 'pie_pagina.php'; ?> <!-- Incluir el pie de página -->
-    <?php require 'aviso_legal.php'; ?> <!-- Incluir el aviso legal -->
+    <?php require_once __DIR__ . '/includes/vistas/pie_pagina.php';?> <!-- Incluir el pie de página -->
+    <?php require_once __DIR__ . '/includes/vistas/aviso_legal.php'; ?> <!-- Incluir el aviso legal -->
 
     <script>
         document.addEventListener("DOMContentLoaded", function () { // Cuando el DOM esté completamente cargado

@@ -1,8 +1,8 @@
 <?php 
     session_start();
 
-    require_once 'DatabaseConnection.php';
-    require 'DAOUsuario.php';
+    require_once __DIR__ . '/includes/mysql/DatabaseConnection.php';
+    require_once __DIR__ . '/includes/mysql/DAOs/DAOUsuario.php';
     
     $email = htmlspecialchars(trim(strip_tags($_REQUEST["email"])));
     $contrasena = htmlspecialchars(trim(strip_tags($_REQUEST["contrasena"])));

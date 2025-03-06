@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require_once 'DatabaseConnection.php';
+    require_once __DIR__ . '/includes/mysql/DatabaseConnection.php';
 
     // Verificar si el usuario ha iniciado sesión
     if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {

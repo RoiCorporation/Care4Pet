@@ -11,9 +11,10 @@ return $nombre == "" || $apellidos == "" || $dni == "" ||
     $contrasena == "" || $contrasena_repetida == "";
 }
 
-require_once 'DatabaseConnection.php';
-require 'Usuario_t.php';
-require 'DAOUsuario.php';
+require_once __DIR__ . '/includes/mysql/DatabaseConnection.php';
+require_once __DIR__ . '/includes/clases/Usuario_t.php';
+require_once __DIR__ . '/includes/mysql/DAOs/DAOUsuario.php';
+
 
 // Obtener y sanitizar datos del formulario
 $nombre = htmlspecialchars(trim(strip_tags($_REQUEST["nombre"])));

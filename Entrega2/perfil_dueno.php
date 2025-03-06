@@ -1,12 +1,13 @@
 <?php
 	session_start();
 
-    require_once 'DatabaseConnection.php';
-    require 'DAOUsuario.php';
-    require 'Mascota_t.php';
-    require 'DAOMascota.php';
-    require 'DAOTipoDeMascota.php';
-
+    require_once __DIR__ . '/includes/mysql/DatabaseConnection.php';
+    require_once __DIR__ . '/includes/clases/Mascota_t.php';
+    require_once __DIR__ . '/includes/mysql/DAOs/DAOUsuario.php';
+    require_once __DIR__ . '/includes/mysql/DAOs/DAOMascota.php';
+    require_once __DIR__ . '/includes/mysql/DAOs/DAOTipoDeMascota.php';
+    
+    
     $usuario = NULL;
     $listaMascotas = [];
     $listaTiposDeMascotas = [];
@@ -94,7 +95,7 @@
 	<body>
 
     <?php
-		require 'cabecera.php';
+		require_once __DIR__ . '/includes/vistas/cabecera.php';
 	?>
 
 	<!-- Contenido principal de la página de mis reservas -->

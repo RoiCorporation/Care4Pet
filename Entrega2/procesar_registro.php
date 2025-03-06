@@ -20,9 +20,9 @@
 
     session_start();
 
-    require_once 'DatabaseConnection.php';
-    require 'Usuario_t.php';
-    require 'DAOUsuario.php';
+    require_once __DIR__ . '/includes/mysql/DatabaseConnection.php';
+    require_once __DIR__ . '/includes/clases/Usuario_t.php';
+    require_once __DIR__ . '/includes/mysql/DAOs/DAOUsuario.php';
     
     $nombre = htmlspecialchars(trim(strip_tags($_REQUEST["nombre"])));
     $apellidos = htmlspecialchars(trim(strip_tags($_REQUEST["apellidos"])));

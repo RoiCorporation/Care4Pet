@@ -2,7 +2,7 @@
 //Esta página es la que muestra los cuidadores disponibles en nuestra web, el dueño puede elegir uno
 //dandole al boton de contratar que le llevará a formulario_contratacion.php
 session_start();
-require 'DatabaseConnection.php'; 
+    require_once __DIR__ . '/includes/mysql/DatabaseConnection.php';
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +15,7 @@ require 'DatabaseConnection.php';
 <body>
 
 <?php
-require 'cabecera.php';
+    require_once __DIR__ . '/includes/vistas/cabecera.php';
 ?>
 
 <!-- Contenido principal de la página de contratación -->
@@ -73,8 +73,8 @@ require 'cabecera.php';
     </div>
 </div>
 
-<?php require 'pie_pagina.php'; ?>
-<?php require 'aviso_legal.php'; ?>
+<?php require_once __DIR__ . '/includes/vistas/pie_pagina.php'; ?>
+<?php require_once __DIR__ . '/includes/vistas/aviso_legal.php'; ?>
 
 </body>
 </html>

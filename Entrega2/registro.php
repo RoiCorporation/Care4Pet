@@ -15,7 +15,7 @@
 	<body>
 
 	<?php
-		require 'cabecera.php';
+		require_once __DIR__ . '/includes/vistas/cabecera.php';
 	?>
 
 	<!-- Sección de los campos de entrada de datos -->

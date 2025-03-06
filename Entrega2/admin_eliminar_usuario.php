@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'DatabaseConnection.php';
+require_once __DIR__ . '/includes/mysql/DatabaseConnection.php';
 
 // Verificar que el usuario sea administrador
 if (!isset($_SESSION['login']) || $_SESSION['login'] !== true || $_SESSION['esAdmin'] != 1) {

@@ -1,7 +1,7 @@
 <?php
 	session_start();
 
-	require_once __DIR__ . '/includes/mysql/DatabaseConnection.php';
+    require_once __DIR__ . '/includes/mysql/DatabaseConnection.php';
 
 ?>
 

@@ -5,7 +5,7 @@
 	<span><a href="sobre_nosotros.php">Sobre nosotros</a></span> &emsp;&emsp;
 	
 	<?php
-	    require_once __DIR__ . 'Entrega2\includes\mysql\DatabaseConnection.php';
+	    require_once __DIR__ . '/../mysql/DatabaseConnection.php';
 
 		// Si el usuario ha iniciado sesión, le aparecerá el link a sus reservas y el 
 		// botón de cerrar sesión.

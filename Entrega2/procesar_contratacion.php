@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Conectar a la base de datos
-    require 'DatabaseConnection.php';
+    require_once __DIR__ . '\includes\mysql\DatabaseConnection.php';
     require 'Reserva_t.php';
     require 'DAOReserva.php';
 
