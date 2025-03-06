@@ -60,15 +60,15 @@
 						</div>
 						
 					</div><br>
-					
-					<legend>Darse de alta como cuidador</legend>
-					<div style="display: inline-block; text-align: center;">
-						<input type="radio" id="CuidadorSi" name="esCuidador" value="Si">
-						<label for="CuidadorSi">Sí</label>&nbsp&nbsp&nbsp
-						<input type="radio" id="CuidadorNo" name="esCuidador" value="No" checked>
-						<label for="CuidadorNo">No</label>
-					</div><br>
-
+					<fieldset>
+						<legend>Darse de alta como cuidador</legend>
+						<div style="display: inline-block; text-align: center;">
+							<input type="radio" id="CuidadorSi" name="esCuidador" value="Si">
+							<label for="CuidadorSi">Sí</label>&nbsp;&nbsp;&nbsp;
+							<input type="radio" id="CuidadorNo" name="esCuidador" value="No" checked>
+							<label for="CuidadorNo">No</label>
+						</div><br>
+					</fieldset>
 					<br>
 					<div style="text-align: center;">
 						<input type="submit" value="Registrarse">
