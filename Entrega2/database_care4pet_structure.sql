@@ -133,7 +133,7 @@ CREATE TABLE visitas (
   `id` INT AUTO_INCREMENT NOT NULL,
   `fecha` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `ip` VARCHAR(50) NOT NULL,
-  `idUsuario` INT NULL,
+  `idUsuario` bigint NULL,
   PRIMARY KEY (`id`)
 );
 
