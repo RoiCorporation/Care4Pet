@@ -41,7 +41,7 @@ INSERT INTO `duenos` (`idUsuario`, `idMascota`) VALUES
 --
 
 INSERT INTO `mascotas` (`idMascota`, `FotoMascota`, `Descripcion`, `TipoMascota`) VALUES
-(386894591, NULL, 'Amable perro Juan', 0);
+(386894591, NULL, 'Amable perro Juan', 1);
 
 --
 -- Dumping data for table `reservas`
