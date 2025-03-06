@@ -30,10 +30,15 @@
                 $_SESSION["login"] = true;
                 $_SESSION["email"] = $usuarioObtenido->getCorreo();
                 $_SESSION["nombreUsuario"] = $usuarioObtenido->getNombre();
-                $_SESSION["id"] = $usuarioObtenido->getId();
+                $_SESSION["id"] = $usuarioObtenido->getId();   
+                $_SESSION["esAdmin"] = $usuarioObtenido->getEsAdmin();
         
-                // Redirige al usuario a la página de inicio.
-                header("Location: index.php");
+               // Redirige al usuario a la página de inicio.
+                if ($_SESSION["esAdmin"] == 1) {
+                    header("Location: admin_Pc.php");
+                } else {
+                    header("Location: index.php");
+                }
             }
 
             // Si la contraseña es incorrecta, no se inicia sesión y se informa de ello 

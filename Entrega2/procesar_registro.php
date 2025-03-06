@@ -33,6 +33,7 @@
     $contrasena = htmlspecialchars(trim(strip_tags($_REQUEST["contrasena"])));
     $contrasena_repetida = htmlspecialchars(trim(strip_tags($_REQUEST["contrasena_repetida"])));
     $valorEsCuidador = htmlspecialchars(trim(strip_tags($_REQUEST["esCuidador"])));
+    $esAdmin = 0; 
     $esDueno = false;
     $esCuidador = false;
 

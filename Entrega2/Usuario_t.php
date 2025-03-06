@@ -5,7 +5,7 @@
         // Atributos de la clase.
         public $id, $nombre, $apellidos, $correo, $contrasena, 
             $dni, $telefono, $fotoPerfil, $direccion, $esDueno, 
-            $esCuidador, $esAdmin, $cuentaActiva;
+            $esCuidador, $esAdmin, $cuentaActiva, $fecha_registro;
 
 
             
@@ -13,7 +13,7 @@
         public function __construct($id = NULL, $nombre = "", $apellidos = "", 
             $correo = "", $contrasena = "", $dni = "", $telefono = "", $fotoPerfil = "", 
             $direccion = "", $esDueno = 0, $esCuidador = 0, $esAdmin = 0, 
-            $cuentaActiva = 1) {
+            $cuentaActiva = 1, $fecha_registro = NULL) {
             if ($id == NULL) $this->id = rand();
             else $this->id = $id;
             $this->nombre = $nombre;
@@ -28,6 +28,7 @@
             $this->esCuidador = $esCuidador;
             $this->esAdmin = $esAdmin;
             $this->cuentaActiva = $cuentaActiva;
+            $this->fecha_registro = $fecha_registro ? $fecha_registro : date('Y-m-d H:i:s');
         }
 
         // Resto de funciones (getters y setters).
@@ -46,6 +47,7 @@
         public function getEsCuidador() { return $this->esCuidador; }
         public function getEsAdmin() { return $this->esAdmin; }
         public function getCuentaActiva() { return $this->cuentaActiva; }
+        public function getFechaRegistro() { return $this->fecha_registro; }
     
         // Setters
         public function setId($id) { $this->id = $id; }
@@ -61,6 +63,7 @@
         public function setEsCuidador($esCuidador) { $this->esCuidador = $esCuidador; }
         public function setEsAdmin($esAdmin) { $this->esAdmin = $esAdmin; }
         public function setCuentaActiva($cuentaActiva) { $this->cuentaActiva = $cuentaActiva; }
+        public function setFechaRegistro($fecha_registro) { $this->fecha_registro = $fecha_registro; }
     }
 
 ?>
