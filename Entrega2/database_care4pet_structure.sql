@@ -109,7 +109,6 @@ CREATE TABLE `tipos_de_mascotas` (
 --
 -- Table structure for table `usuarios`
 --
-
 CREATE TABLE `usuarios` (
   `idUsuario` bigint UNSIGNED NOT NULL,
   `Nombre` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
@@ -124,8 +123,18 @@ CREATE TABLE `usuarios` (
   `esCuidador` tinyint(1) NOT NULL DEFAULT '0',
   `esAdmin` tinyint(1) NOT NULL DEFAULT '0',
   `cuentaActiva` tinyint(1) NOT NULL DEFAULT '1',
-  `fecha_registro` TIMESTAMP DEFAULT CURRENT_TIMESTAMP  --ALTER TABLE `usuarios` ADD COLUMN `fecha_registro` TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+  `fecha_registro` TIMESTAMP DEFAULT CURRENT_TIMESTAMP  
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
+
+--
+-- Table structure for table `visitas`
+--
+CREATE TABLE visitas (
+  `id` INT AUTO_INCREMENT NOT NULL,
+  `fecha` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `ip` VARCHAR(50) NOT NULL,
+  `idUsuario` INT NULL
+);
 
 --
 -- Indexes for dumped tables
@@ -172,6 +181,12 @@ ALTER TABLE `tipos_de_mascotas`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`idUsuario`);
+
+--
+-- Indexes for table `visitas`
+--
+ALTER TABLE `visitas`
+  ADD PRIMARY KEY (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
