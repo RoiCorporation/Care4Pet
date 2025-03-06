@@ -13,7 +13,7 @@
             if ($id == NULL) $this->id = rand();
             else $this->id = $id;
             $this->tipoMascota = $tipoMascota;
-            $this->descripcion = $descripcion;
+            $this->descripcion = $descripcion; //nombre de la mascota
             $this->foto = $foto;
         }
 

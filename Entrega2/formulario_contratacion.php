@@ -1,18 +1,22 @@
 <?php
+//Esta es la pagina que muestra los campos que tiene que rellenar el dueño para hacer la reserva,
+//y lleva a procesar_contratacion.php
 session_start();
 
-// Verificar si se ha enviado el nombre del cuidadorMIRAR SI ES NECESARIO
+// Verificar si se ha enviado el nombre del cuidador y ID
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['cuidador_nombre'])) {
     $_SESSION['nombre_cuidador'] = $_POST['cuidador_nombre'];
+    $_SESSION['idCuidador'] = $_POST['idCuidador']; // Almacena el ID del cuidador en la sesión
 }
 
-// Redirigir si no hay un cuidador seleccionado CREO QUE NO ES NECESARIO
+// Redirigir si no hay un cuidador seleccionado
 if (!isset($_SESSION['nombre_cuidador'])) {
     header('Location: pagina_contratacion.php');
     exit();
 }
 
 $nombre_cuidador = $_SESSION['nombre_cuidador'];
+$idCuidador = $_SESSION['idCuidador']; // Recupera el ID del cuidador de la sesión
 
 // Obtener el correo del usuario conectado desde la sesión
 if (!isset($_SESSION["email"])) {
@@ -53,26 +57,6 @@ if ($result_usuario->num_rows > 0) {
     <link rel="stylesheet" type="text/css" href="CSS/estilo.css" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Vas a contratar a <?php echo $nombre_cuidador; ?></title>
-    <style>
-        .mascota-option {
-            display: inline-block;
-            margin: 10px;
-            text-align: center;
-        }
-        .mascota-option img {
-            width: 150px;
-            height: 150px;
-            border-radius: 10px;
-            border: 2px solid #ccc;
-            cursor: pointer;
-        }
-        .mascota-option input[type="radio"] {
-            display: none; /* Oculta el radio button */
-        }
-        .mascota-option input[type="radio"]:checked + img {
-            border-color: #4CAF50;
-        }
-    </style>
 </head>
 <body>
 

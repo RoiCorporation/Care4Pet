@@ -1,5 +1,7 @@
 <?php
+//esta pagina crea la reserva pero todavia no funciona completamente
 session_start();
+
 
 // Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION["login"]) || $_SESSION["login"] !== true) {
@@ -15,7 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fechaFin = $_POST['fecha_fin'] . ' ' . $_POST['hora_fin'];
     $comentariosAdicionales = $_POST['comentarios'];
     $idUsuario = $_SESSION["id"]; // ID del dueño conectado
-    $idCuidador = $_SESSION['idCuidador']; // ID del cuidador seleccionado (debe estar en la sesión)
+    $idCuidador = $_SESSION['idCuidador'];
+
 
     // Validar que los datos no estén vacíos
     if (empty($idMascota) || empty($fechaInicio) || empty($fechaFin)) {
@@ -45,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Guardar la reserva en la base de datos
     if ((DAOReserva::getInstance())->crearReserva($reserva, $idUsuario)) {
-        // Redirigir al usuario a una página de confirmación o a su perfil
+        // Redirigir al usuario a la página de "Mis Reservas"
         header("Location: mis_reservas.php");
         exit();
     } else {

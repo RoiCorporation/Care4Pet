@@ -1,4 +1,6 @@
 <?php
+//Esta página es la que muestra los cuidadores disponibles en nuestra web, el dueño puede elegir uno
+//dandole al boton de contratar que le llevará a formulario_contratacion.php
 session_start();
 require 'DatabaseConnection.php'; 
 ?>
@@ -58,6 +60,7 @@ require 'cabecera.php';
                 // Formulario para contratar
                 echo '<form action="formulario_contratacion.php" method="post" style="display:inline;">';
                 echo '<input type="hidden" name="cuidador_nombre" value="' . $cuidador['Nombre'] . ' ' . $cuidador['Apellidos'] . '">';
+                echo '<input type="hidden" name="idCuidador" value="' . $cuidador['idUsuario'] . '">'; // Envía el ID del cuidador, lo usare el procesar_contratacion
                 echo '<button type="submit">Contratar</button>';
                 echo '</form>';
 
