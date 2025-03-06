@@ -99,8 +99,8 @@
 	</div>
 	<a href=""></a>
 
-	<?php require 'pie_pagina.php'?>
-	<?php require 'aviso_legal.php'?>
+	<?php require_once __DIR__ . '/includes/vistas/pie_pagina.php'; ?>
+	<?php require_once __DIR__ . '/includes/vistas/aviso_legal.php'; ?>
 
 	</body>
 

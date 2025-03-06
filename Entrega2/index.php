@@ -46,8 +46,8 @@
 	</div>
 
 
-	<?php require __DIR__ . '/includes/vistas/pie_pagina.php'?>
-	<?php require __DIR__ . '/includes/vistas/aviso_legal.php'?>
+	<?php require __DIR__ . '/includes/vistas/pie_pagina.php'; ?>
+	<?php require __DIR__ . '/includes/vistas/aviso_legal.php'; ?>
 
 
 	</body>
