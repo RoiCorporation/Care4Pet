@@ -239,6 +239,7 @@
         public function leerReservasDelCuidador($idCuidador) {
             $sentencia_sql = "SELECT 
                 r.idReserva,
+                r.idUsuario,
                 r.FechaInicio,
                 r.FechaFin,
                 r.esAceptadaPorCuidador,
