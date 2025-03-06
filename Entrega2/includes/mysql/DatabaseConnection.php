@@ -6,20 +6,8 @@
         private ?mysqli $connection = null;
 
         private function __construct() {
-            /* OLD
-            $env = parse_ini_file(__DIR__ . '/.env');
-
-            $this->connection = new mysqli(
-                $env['DB_SERVIDOR'],
-                $env['DB_USUARIO'],
-                $env['DB_CONTRASENA'],
-                $env['DB_NOMBRE'],
-                port: $env['DB_PUERTO']
-            );
-            */
-
-            // NEW
-            require_once __DIR__ . '/config.php';
+            
+            require_once __DIR__ . 'config.php';
 
             $this->connection = new mysqli(
                 BD_HOST,
