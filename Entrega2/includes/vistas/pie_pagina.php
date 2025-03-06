@@ -8,7 +8,7 @@ y "Contacto" y todos los enlaces a nuestros perfiles de redes sociales -->
             width="112" style="display: inline-block; margin: 0 175px; vertical-align: middle">
 
         <!-- Sección de los enlaces a las páginas de interés arriba mencionadas -->
-        <div align="center">
+         <div style="text-align: center;">
             <span style="display: inline-block; margin: 0 50px; vertical-align: middle">
                 <a href="sobre_nosotros.php">Sobre nosotros</a></span>
             <span style="display: inline-block; margin: 0 50px; vertical-align: middle">

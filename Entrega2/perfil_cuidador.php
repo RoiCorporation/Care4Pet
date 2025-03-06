@@ -113,7 +113,8 @@
             <h3>Solicitudes de tus servicios</h3>
             <?php if (is_array($listaReservas) && count($listaReservas) > 0): ?>
                 <?php foreach ($listaReservas as $reserva) : ?>
-                    <div class='reserva-box'>
+                    <div>
+                        <hr>
                         <h4>Reserva #<?= htmlspecialchars($reserva->getId()); ?></h4>
                         <p><strong>Fecha de inicio:</strong> <?= htmlspecialchars($reserva->getFechaInicio()); ?></p>
                         <p><strong>Fecha de fin:</strong> <?= htmlspecialchars($reserva->getFechaFin()); ?></p>
