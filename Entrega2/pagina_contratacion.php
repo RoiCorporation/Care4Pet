@@ -1,5 +1,6 @@
 <?php
 session_start();
+require 'DatabaseConnection.php'; 
 ?>
 
 <!DOCTYPE html>
@@ -22,46 +23,48 @@ require 'cabecera.php';
     <!-- Lista de cuidadores -->
     <div>
         <?php
-        // Supongamos que obtienes los datos de los cuidadores desde la base de datos
-        $cuidadores = [
-            [
-                'nombre' => 'Juan Perez',
-                'imagen' => 'img/cuidador1.png',
-                'valoracion' => 4.5,
-                'descripcion' => 'Me encantan los animales. Cuidarlos y mimarlos es un privilegio para mi.',
-                'id' => 1
-            ],
-            [
-                'nombre' => 'Ali Morales',
-                'imagen' => 'img/cuidador2.png',
-                'valoracion' => 4.0,
-                'descripcion' => 'Si quieres que tu mascota se sienta como en casa, acabas de tropezarte con el cuidador ideal.',
-                'id' => 2
-            ],
-            [
-                'nombre' => 'Sara Benomar',
-                'imagen' => 'img/cuidador3.png',
-                'valoracion' => 5.0,
-                'descripcion' => 'Soy Sara y mi periquito Pipo. Nos encanta la compañia.',
-                'id' => 3
-            ]
-        ];
+        // Conectar a la base de datos
+        $db = DatabaseConnection::getInstance();
+        $con = $db->getConnection();
 
-        foreach ($cuidadores as $cuidador) {
-            echo '<div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">';
-            echo '<img src="' . $cuidador['imagen'] . '" alt="' . $cuidador['nombre'] . '" style="width:100px; height:100px;">';
-            echo '<h3>' . $cuidador['nombre'] . '</h3>';
-            echo '<p>Valoración: ' . $cuidador['valoracion'] . '/5</p>';
-            echo '<p>' . $cuidador['descripcion'] . '</p>';
-            echo '<a href="informacion_cuidador.php?id=' . $cuidador['id'] . '">Ver más</a>';
+        // obtener los cuidadores y sus datos
+        $sql = "SELECT 
+                    u.idUsuario, 
+                    u.Nombre, 
+                    u.Apellidos, 
+                    u.FotoPerfil, 
+                    c.Descripcion, 
+                    c.Valoracion 
+                FROM 
+                    usuarios u
+                INNER JOIN 
+                    cuidadores c 
+                ON 
+                    u.idUsuario = c.idUsuario
+                WHERE 
+                    u.esCuidador = 1"; // Solo usuarios que son cuidadores
 
-            // Formulario para contratar
-            echo '<form action="formulario_contratacion.php" method="post" style="display:inline;">';
-            echo '<input type="hidden" name="cuidador_nombre" value="' . $cuidador['nombre'] . '">';
-            echo '<button type="submit">Contratar</button>';
-            echo '</form>';
+        $result = $con->query($sql);
 
-            echo '</div>';
+        if ($result->num_rows > 0) {
+            while ($cuidador = $result->fetch_assoc()) {
+                echo '<div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">';
+                echo '<img src="' . $cuidador['FotoPerfil'] . '" alt="' . $cuidador['Nombre'] . ' ' . $cuidador['Apellidos'] . '" style="width:100px; height:100px;">';
+                echo '<h3>' . $cuidador['Nombre'] . ' ' . $cuidador['Apellidos'] . '</h3>';
+                echo '<p>Valoración: ' . $cuidador['Valoracion'] . '/5</p>';
+                echo '<p>' . $cuidador['Descripcion'] . '</p>';
+                echo '<a href="perfil_cuidador.php?id=' . $cuidador['idUsuario'] . '">Ver más</a>';
+
+                // Formulario para contratar
+                echo '<form action="formulario_contratacion.php" method="post" style="display:inline;">';
+                echo '<input type="hidden" name="cuidador_nombre" value="' . $cuidador['Nombre'] . ' ' . $cuidador['Apellidos'] . '">';
+                echo '<button type="submit">Contratar</button>';
+                echo '</form>';
+
+                echo '</div>';
+            }
+        } else {
+            echo '<p>No hay cuidadores disponibles en este momento.</p>';
         }
         ?>
     </div>

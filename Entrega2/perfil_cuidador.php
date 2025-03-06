@@ -23,7 +23,7 @@
     
         <h2 style="text-align:center">Mi perfil</h2>
 
-		<p>Contenido...</p>
+		<p>perfil cuidador...</p>
 	</div>
 
 	<?php require 'pie_pagina.php'?>
