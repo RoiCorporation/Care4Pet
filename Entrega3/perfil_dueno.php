@@ -95,7 +95,7 @@
 	<body>
 
     <?php
-		require_once __DIR__ . '/includes/vistas/cabecera.php';
+		require_once __DIR__ . '/includes/vistas/comun/cabecera.php';
 	?>
 
 	<!-- Contenido principal de la página de mis reservas -->
@@ -209,8 +209,8 @@
 
 	</div>
 
-	<?php require_once __DIR__ . '/includes/vistas/pie_pagina.php'; ?>
-	<?php require_once __DIR__ . '/includes/vistas/aviso_legal.php'; ?>
+	<?php require_once __DIR__ . '/includes/vistas/comun/pie_pagina.php'; ?>
+	<?php require_once __DIR__ . '/includes/vistas/comun/aviso_legal.php'; ?>
 
     <script>
         // mostrar popop "crear nueva mascota"

@@ -11,7 +11,7 @@
 		<title>Página de creación de cuenta</title>	
 	</head>
 	<body>
-		<?php require_once __DIR__ . '/includes/vistas/cabecera.php'; ?>
+		<?php require_once __DIR__ . '/includes/vistas/comun/cabecera.php'; ?>
 		<div class="contenedorAd">
 			<?php require_once __DIR__ . '/sidebarAd.php'; 
 			require_once __DIR__ . '/sidebarAd.php'; ?>			
@@ -81,8 +81,8 @@
 
 		</div>
 
-		<?php require_once __DIR__ . '/includes/vistas/pie_pagina.php'; ?>
-		<?php require_once __DIR__ . '/includes/vistas/aviso_legal.php'; ?>
+		<?php require_once __DIR__ . '/includes/vistas/comun/pie_pagina.php'; ?>
+		<?php require_once __DIR__ . '/includes/vistas/comun/aviso_legal.php'; ?>
 	
 	</body>
 </html>

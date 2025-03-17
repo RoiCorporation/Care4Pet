@@ -7,7 +7,7 @@
 
         private function __construct() {
             
-            require_once __DIR__ . '/../../config.php';
+            require_once dirname(__DIR__) . '/config.php';
 
             $this->connection = new mysqli(
                 BD_HOST,

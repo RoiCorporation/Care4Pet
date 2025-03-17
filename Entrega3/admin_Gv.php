@@ -71,7 +71,7 @@ $stmt->free_result(); // Liberar el resultado de la consulta
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Cargar Chart.js para las gráficas -->
 </head>
 <body>
-    <?php require_once __DIR__ . '/includes/vistas/cabecera.php'; ?> <!-- Incluir la cabecera -->
+    <?php require_once __DIR__ . '/includes/vistas/comun/cabecera.php'; ?> <!-- Incluir la cabecera -->
     <div class="contenedorAd">
         <?php require_once __DIR__ . '/sidebarAd.php'; ?> <!-- Incluir la barra lateral -->
 
@@ -95,8 +95,8 @@ $stmt->free_result(); // Liberar el resultado de la consulta
         </main>
     </div>  
 
-    <?php require_once __DIR__ . '/includes/vistas/pie_pagina.php';?> <!-- Incluir el pie de página -->
-    <?php require_once __DIR__ . '/includes/vistas/aviso_legal.php'; ?> <!-- Incluir el aviso legal -->
+    <?php require_once __DIR__ . '/includes/vistas/comun/pie_pagina.php';?> <!-- Incluir el pie de página -->
+    <?php require_once __DIR__ . '/includes/vistas/comun/aviso_legal.php'; ?> <!-- Incluir el aviso legal -->
 
     <script>
         document.addEventListener("DOMContentLoaded", function () { // Cuando el DOM esté completamente cargado
