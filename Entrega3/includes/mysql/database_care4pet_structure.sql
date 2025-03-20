@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.2
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: db
--- Generation Time: Mar 05, 2025 at 05:01 PM
--- Server version: 8.1.0
--- PHP Version: 8.2.27
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 20-03-2025 a las 03:37:19
+-- Versión del servidor: 10.4.32-MariaDB
+-- Versión de PHP: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,170 +18,262 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `database_care4pet`
+-- Base de datos: `database_care4pet`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cuidadores`
+-- Estructura de tabla para la tabla `cuidadores`
 --
 
 CREATE TABLE `cuidadores` (
-  `idUsuario` bigint UNSIGNED NOT NULL,
-  `TiposDeMascotas` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci,
+  `idUsuario` bigint(20) UNSIGNED NOT NULL,
+  `TiposDeMascotas` longtext DEFAULT NULL,
   `Tarifa` decimal(10,0) UNSIGNED NOT NULL,
-  `Descripcion` text CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci,
-  `ServiciosAdicionales` longtext CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci,
-  `Valoracion` tinyint UNSIGNED DEFAULT NULL,
-  `ZonasAtendidas` longtext COLLATE utf8mb3_spanish_ci
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
+  `Descripcion` text DEFAULT NULL,
+  `ServiciosAdicionales` longtext DEFAULT NULL,
+  `Valoracion` tinyint(3) UNSIGNED DEFAULT NULL,
+  `ZonasAtendidas` longtext DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- RELACIONES PARA LA TABLA `cuidadores`:
+--
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `duenos`
+-- Estructura de tabla para la tabla `duenos`
 --
 
 CREATE TABLE `duenos` (
-  `idUsuario` bigint UNSIGNED NOT NULL,
-  `idMascota` bigint UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
+  `idUsuario` bigint(20) UNSIGNED NOT NULL,
+  `idMascota` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- RELACIONES PARA LA TABLA `duenos`:
+--
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mascotas`
+-- Estructura de tabla para la tabla `mascotas`
 --
 
 CREATE TABLE `mascotas` (
-  `idMascota` bigint UNSIGNED NOT NULL,
-  `FotoMascota` text CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci,
-  `Descripcion` text CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci,
-  `TipoMascota` bigint UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
+  `idMascota` bigint(20) UNSIGNED NOT NULL,
+  `FotoMascota` text DEFAULT NULL,
+  `Descripcion` text DEFAULT NULL,
+  `TipoMascota` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- RELACIONES PARA LA TABLA `mascotas`:
+--
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reservas`
+-- Estructura de tabla para la tabla `mensajes`
+--
+
+CREATE TABLE `mensajes` (
+  `idMensaje` bigint(20) UNSIGNED NOT NULL,
+  `idUsuarioEmisor` bigint(20) UNSIGNED NOT NULL,
+  `idUsuarioReceptor` bigint(20) UNSIGNED NOT NULL,
+  `fecha` timestamp NOT NULL DEFAULT current_timestamp(),
+  `mensaje` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- RELACIONES PARA LA TABLA `mensajes`:
+--   `idUsuarioEmisor`
+--       `usuarios` -> `idUsuario`
+--   `idUsuarioReceptor`
+--       `usuarios` -> `idUsuario`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `reservas`
 --
 
 CREATE TABLE `reservas` (
-  `idReserva` bigint UNSIGNED NOT NULL,
-  `idUsuario` bigint UNSIGNED NOT NULL,
-  `idMascota` bigint UNSIGNED NOT NULL,
-  `idCuidador` bigint UNSIGNED NOT NULL,
+  `idReserva` bigint(20) UNSIGNED NOT NULL,
+  `idUsuario` bigint(20) UNSIGNED NOT NULL,
+  `idMascota` bigint(20) UNSIGNED NOT NULL,
+  `idCuidador` bigint(20) UNSIGNED NOT NULL,
   `FechaInicio` datetime NOT NULL,
   `FechaFin` datetime NOT NULL,
-  `esAceptadaPorCuidador` tinyint UNSIGNED NOT NULL DEFAULT '0',
-  `Valoracion` tinyint UNSIGNED DEFAULT NULL,
-  `Resena` text CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci,
-  `ComentariosAdicionales` text CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci,
-  `esReservaActiva` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
+  `esAceptadaPorCuidador` tinyint(3) UNSIGNED NOT NULL DEFAULT 0,
+  `Valoracion` tinyint(3) UNSIGNED DEFAULT NULL,
+  `Resena` text DEFAULT NULL,
+  `ComentariosAdicionales` text DEFAULT NULL,
+  `esReservaActiva` tinyint(1) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- RELACIONES PARA LA TABLA `reservas`:
+--
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `servicios_adicionales`
+-- Estructura de tabla para la tabla `servicios_adicionales`
 --
 
 CREATE TABLE `servicios_adicionales` (
-  `idServicio` bigint UNSIGNED NOT NULL,
-  `Nombre` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
+  `idServicio` bigint(20) UNSIGNED NOT NULL,
+  `Nombre` varchar(255) NOT NULL,
   `Coste` decimal(10,0) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- RELACIONES PARA LA TABLA `servicios_adicionales`:
+--
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tipos_de_mascotas`
+-- Estructura de tabla para la tabla `tipos_de_mascotas`
 --
 
 CREATE TABLE `tipos_de_mascotas` (
-  `idTipoMascota` bigint UNSIGNED NOT NULL,
-  `Nombre` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
+  `idTipoMascota` bigint(20) UNSIGNED NOT NULL,
+  `Nombre` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- RELACIONES PARA LA TABLA `tipos_de_mascotas`:
+--
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuarios`
+-- Estructura de tabla para la tabla `usuarios`
 --
+
 CREATE TABLE `usuarios` (
-  `idUsuario` bigint UNSIGNED NOT NULL,
-  `Nombre` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
-  `Apellidos` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
-  `Correo` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
-  `Contraseña` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
-  `DNI` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci NOT NULL,
-  `Telefono` int NOT NULL,
-  `FotoPerfil` text CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci,
-  `Direccion` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_spanish_ci DEFAULT NULL,
-  `esDueno` tinyint(1) NOT NULL DEFAULT '0',
-  `esCuidador` tinyint(1) NOT NULL DEFAULT '0',
-  `esAdmin` tinyint(1) NOT NULL DEFAULT '0',
-  `cuentaActiva` tinyint(1) NOT NULL DEFAULT '1',
-  `fecha_registro` TIMESTAMP DEFAULT CURRENT_TIMESTAMP  
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
+  `idUsuario` bigint(20) UNSIGNED NOT NULL,
+  `Nombre` varchar(255) NOT NULL,
+  `Apellidos` varchar(255) NOT NULL,
+  `Correo` varchar(255) NOT NULL,
+  `Contraseña` varchar(255) NOT NULL,
+  `DNI` varchar(255) NOT NULL,
+  `Telefono` int(11) NOT NULL,
+  `FotoPerfil` text DEFAULT NULL,
+  `Direccion` varchar(255) DEFAULT NULL,
+  `esDueno` tinyint(1) NOT NULL DEFAULT 0,
+  `esCuidador` tinyint(1) NOT NULL DEFAULT 0,
+  `esAdmin` tinyint(1) NOT NULL DEFAULT 0,
+  `cuentaActiva` tinyint(1) NOT NULL DEFAULT 1,
+  `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Table structure for table `visitas`
---
-CREATE TABLE visitas (
-  `id` INT AUTO_INCREMENT NOT NULL,
-  `fecha` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  `ip` VARCHAR(50) NOT NULL,
-  `idUsuario` bigint NULL,
-  PRIMARY KEY (`id`)
-);
-
---
--- Indexes for dumped tables
+-- RELACIONES PARA LA TABLA `usuarios`:
 --
 
+-- --------------------------------------------------------
+
 --
--- Indexes for table `cuidadores`
+-- Estructura de tabla para la tabla `visitas`
+--
+
+CREATE TABLE `visitas` (
+  `id` int(11) NOT NULL,
+  `fecha` timestamp NOT NULL DEFAULT current_timestamp(),
+  `ip` varchar(50) NOT NULL,
+  `idUsuario` bigint(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- RELACIONES PARA LA TABLA `visitas`:
+--
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `cuidadores`
 --
 ALTER TABLE `cuidadores`
   ADD PRIMARY KEY (`idUsuario`);
 
 --
--- Indexes for table `duenos`
+-- Indices de la tabla `duenos`
 --
 ALTER TABLE `duenos`
   ADD PRIMARY KEY (`idUsuario`,`idMascota`);
 
 --
--- Indexes for table `mascotas`
+-- Indices de la tabla `mascotas`
 --
 ALTER TABLE `mascotas`
   ADD PRIMARY KEY (`idMascota`);
 
 --
--- Indexes for table `reservas`
+-- Indices de la tabla `mensajes`
+--
+ALTER TABLE `mensajes`
+  ADD PRIMARY KEY (`idMensaje`),
+  ADD KEY `FK_id_emisor` (`idUsuarioEmisor`),
+  ADD KEY `FK_id_receptor` (`idUsuarioReceptor`);
+
+--
+-- Indices de la tabla `reservas`
 --
 ALTER TABLE `reservas`
   ADD PRIMARY KEY (`idReserva`);
 
 --
--- Indexes for table `servicios_adicionales`
+-- Indices de la tabla `servicios_adicionales`
 --
 ALTER TABLE `servicios_adicionales`
   ADD PRIMARY KEY (`idServicio`);
 
 --
--- Indexes for table `tipos_de_mascotas`
+-- Indices de la tabla `tipos_de_mascotas`
 --
 ALTER TABLE `tipos_de_mascotas`
   ADD PRIMARY KEY (`idTipoMascota`);
 
 --
--- Indexes for table `usuarios`
+-- Indices de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`idUsuario`);
+
+--
+-- Indices de la tabla `visitas`
+--
+ALTER TABLE `visitas`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `visitas`
+--
+ALTER TABLE `visitas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `mensajes`
+--
+ALTER TABLE `mensajes`
+  ADD CONSTRAINT `FK_id_emisor` FOREIGN KEY (`idUsuarioEmisor`) REFERENCES `usuarios` (`idUsuario`) ON DELETE CASCADE,
+  ADD CONSTRAINT `FK_id_receptor` FOREIGN KEY (`idUsuarioReceptor`) REFERENCES `usuarios` (`idUsuario`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
