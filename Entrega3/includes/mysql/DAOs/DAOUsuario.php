@@ -54,11 +54,21 @@
 
                 // Crea la sentencia sql de inserción a ejecutar.
                 $sentencia_sql = 
-                "INSERT INTO usuarios VALUES ('{$usuarioACrear->getId()}', '{$usuarioACrear->getNombre()}', 
-                    '{$usuarioACrear->getApellidos()}', '{$usuarioACrear->getCorreo()}', '{$usuarioACrear->getContrasena()}', 
-                    '{$usuarioACrear->getDNI()}', '{$usuarioACrear->getTelefono()}', 'NULL', '{$usuarioACrear->getDireccion()}',
-                    '{$usuarioACrear->getEsDueno()}', '{$usuarioACrear->getEsCuidador()}', '{$usuarioACrear->getEsAdmin()}',
-                    '{$usuarioACrear->getCuentaActiva()}', '{$fecha_registro}')";
+                "INSERT INTO usuarios VALUES (
+                    '{$usuarioACrear->getId()}',
+                    '{$usuarioACrear->getNombre()}',
+                    '{$usuarioACrear->getApellidos()}',
+                    '{$usuarioACrear->getCorreo()}',
+                    '{$usuarioACrear->getContrasena()}',
+                    '{$usuarioACrear->getDNI()}',
+                    '{$usuarioACrear->getTelefono()}',
+                    'NULL',
+                    '{$usuarioACrear->getDireccion()}',
+                    '{$usuarioACrear->getEsDueno()}',
+                    '{$usuarioACrear->getEsCuidador()}',
+                    '{$usuarioACrear->getEsAdmin()}',
+                    '{$usuarioACrear->getCuentaActiva()}',
+                    '{$fecha_registro}')";
 
                 $consulta_insercion = $this->con->query($sentencia_sql);
 
@@ -218,6 +228,7 @@
             // Si el usuario con ese id está en la base de datos, se elimina de la misma.
             if ($consulta_comprobacion->num_rows != 0) {
                 
+                // Crea la sentencia sql de borrado.
                 $sentencia_sql = "DELETE FROM usuarios WHERE idUsuario = '{$idUsuario}'";
 
                 $consulta_borrado = $this->con->query($sentencia_sql);
