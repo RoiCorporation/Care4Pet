@@ -54,15 +54,17 @@
         public function leerMensajesUsuario($idUsuario) {
 
             // Crea la sentencia sql para comprobar el id.
-            $sentencia_sql = "SELECT * FROM mensajes WHERE idUsuarioEmisor = '$idUsuario' OR idUsuarioReceptor = '$idUsuario'";
+            $sentencia_sql = "SELECT * FROM mensajes 
+                WHERE idUsuarioEmisor = '$idUsuario' OR idUsuarioReceptor = '$idUsuario'
+                ORDER BY fecha DESC";
             
             $consulta_resultado = $this->con->query($sentencia_sql);
 
             // Si ha obtenido un resultado, entonces se ha encontrado a ese usuario.
             // Se procede a generar un nuevo objeto tMensaje con los valores extraídos
             // de la base de datos, y se añade a un array de mensajes.
+            $mensajes = [];
             if ($consulta_resultado->num_rows > 0) {
-                $mensajes = [];
                 while ($valoresMensajeActual = $consulta_resultado->fetch_assoc()) {
                     $idMensaje = $valoresMensajeActual["idMensaje"];
                     $idUsuarioEmisor = $valoresMensajeActual["idUsuarioEmisor"];
