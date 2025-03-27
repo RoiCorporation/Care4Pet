@@ -53,16 +53,17 @@
         // Leer los mensajes de un usuario específico.
         public function leerMensajesUsuario($idUsuario) {
 
-            // Crea la sentencia sql para comprobar el id.
+            // Crea la sentencia sql para obtener los mensajes.
             $sentencia_sql = "SELECT * FROM mensajes 
                 WHERE idUsuarioEmisor = '$idUsuario' OR idUsuarioReceptor = '$idUsuario'
                 ORDER BY fecha DESC";
             
             $consulta_resultado = $this->con->query($sentencia_sql);
 
-            // Si ha obtenido un resultado, entonces se ha encontrado a ese usuario.
-            // Se procede a generar un nuevo objeto tMensaje con los valores extraídos
-            // de la base de datos, y se añade a un array de mensajes.
+            // Si ha obtenido un resultado, entonces se han encontrado mensajes asociados
+            // a ese usuario. Se procede a generar un nuevo objeto tMensaje con los valores 
+            // extraídos de la base de datos -un objeto por cada mensaje-, y se añade a 
+            // un array de mensajes.
             $mensajes = [];
             if ($consulta_resultado->num_rows > 0) {
                 while ($valoresMensajeActual = $consulta_resultado->fetch_assoc()) {
@@ -118,6 +119,43 @@
 
 
 
+        // Leer los mensajes de una conversación entre dos usuarios.
+        public function leerMensajesConversacion($idPrimerUsuario, $idSegundoUsuario) {
+
+            // Crea la sentencia sql para obtener todos los mensajes entre esos usuarios.
+            $sentencia_sql = "SELECT * FROM mensajes 
+                WHERE 
+                    (idUsuarioEmisor = '$idPrimerUsuario' AND idUsuarioReceptor = '$idSegundoUsuario') OR 
+                    (idUsuarioEmisor = '$idSegundoUsuario' AND idUsuarioReceptor = '$idPrimerUsuario')
+                ORDER BY fecha ASC";
+            
+            $consulta_resultado = $this->con->query($sentencia_sql);
+
+            // Si ha obtenido un resultado, entonces se han encontrado mensajes enviados 
+            // entre ambos usuarios. Se procede a generar un nuevo objeto tMensaje con los 
+            // valores extraídos de la base de datos -un objeto por cada mensaje-, y se 
+            // añade a un array de mensajes.
+            $mensajes = [];
+            if ($consulta_resultado->num_rows > 0) {
+                while ($valoresMensajeActual = $consulta_resultado->fetch_assoc()) {
+                    $idMensaje = $valoresMensajeActual["idMensaje"];
+                    $idUsuarioEmisor = $valoresMensajeActual["idUsuarioEmisor"];
+                    $idUsuarioReceptor = $valoresMensajeActual["idUsuarioReceptor"];
+                    $fecha = $valoresMensajeActual["fecha"];
+                    $mensaje = $valoresMensajeActual["mensaje"];
+
+                    $mensaje = new tMensaje(
+                        $idUsuarioEmisor, $idUsuarioReceptor, $fecha, $mensaje, $idMensaje
+                    );
+
+                    $mensajes[] = $mensaje;
+                }
+            }
+            return $mensajes;
+        }
+
+
+
         // Editar mensaje.
         public function editarMensaje($idMensajeAEditar, $nuevoTexto) {
 
@@ -160,30 +198,6 @@
         }
     
 
-
-        /* CÓDIGO INÚTIL SI SE VA A GUARDAR LA CLAVE EN LA BD.
-
-        // Funciones auxiliares de cifrado y descifrado de mensajes. El algortimo de cifrado utilizado 
-        // es AES-256-CBC, con una clave de cifrado aleatoria de 32 bytes y un vector de inicialización. 
-        // El mensaje cifrado se codifica en base64 para poder ser almacenado en la base de datos.
-
-        // Función de cifrado del mensaje en claro.
-        public function cifrarMensaje($textoEnClaro, $objetoMensaje) {
-            $vi = openssl_random_pseudo_bytes(openssl_cipher_iv_length('AES-256-CBC'));
-            $cifrado = openssl_encrypt($textoEnClaro, 'AES-256-CBC', $objetoMensaje->getClaveCifrado(), 0, $vi);
-            return base64_encode($vi . $cifrado);
-        }
-        
-        // Función de descifrado del mensaje cifrado.
-        public function descifrarMensaje($textoCifrado, $objetoMensaje) {
-            $datos = base64_decode($textoCifrado);
-            $longitudVI = openssl_cipher_iv_length('AES-256-CBC');
-            $vi = substr($datos, 0, $longitudVI);
-            $cifrado = substr($datos, $longitudVI);
-            return openssl_decrypt($cifrado, 'AES-256-CBC', $objetoMensaje->getClaveCifrado(), 0, $vi);
-        }
-
-        */
 
     }
 

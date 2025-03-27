@@ -64,7 +64,7 @@
 		// php necesario para abrir la pantalla de visualización del chat con ese usuario en concreto,
 		// con los parámetros pasados por el correspondiente campo del formulario.
 		$renderConversacionActual = 
-			'<form method="post" action="index.php">
+			'<form method="post" action="chat_particular.php">
 				<button type="submit" style="all: unset; cursor: pointer; width: 100%;">
 					<div style="display: flex; align-items: center; border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
 						<img src="/img/cuidador1.png" style="width:100px; height:100px; margin-right: 20px;">

@@ -154,3 +154,22 @@
     width: 100%;
     display: block;
 }
+
+/* Clase para el scroll view de los mensajes */
+.scroller-mensajes {
+    position: relative; /* Changed to relative for better compatibility */
+    width: 400px;
+    height: 300px;
+    overflow-y: auto; /* Ensure vertical scrolling is enabled */
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    background-color: #fff;
+}
+
+
+.mi-caja {
+    background-color: red !important;
+    color: white;
+    padding: 20px;
+}
