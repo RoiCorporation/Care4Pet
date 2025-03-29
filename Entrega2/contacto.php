@@ -15,7 +15,7 @@
 	<body>
 
     <?php
-		require 'cabecera.php';
+		require_once __DIR__ . '/includes/vistas/cabecera.php';
 	?>
 
     <!-- Contenido principal de la página de contacto -->
@@ -23,11 +23,21 @@
         
         <h2 style="text-align:center">Contacto</h2>
 
-        <p>Contenido...</p>
+        <p>
+			¡Buenas! Gracias por tu interés en contactar con nosotros.
+			En breves tendremos configurada esta página de contacto.
+			Mientras tanto, puedes mandar tus preguntas al correo 
+			care4pet@info.com. 
+		</p>
+
+		<p>
+			¡Nos vemos pronto! 
+		</p>
+
     </div>
 
-	<?php require 'pie_pagina.php'?>
-	<?php require 'aviso_legal.php'?>
+	<?php require_once __DIR__ . '/includes/vistas/pie_pagina.php'; ?>
+	<?php require_once __DIR__ . '/includes/vistas/aviso_legal.php'; ?>
 
 	</body>
 

@@ -1,11 +1,12 @@
 <?php
 	session_start();
 
-    require_once 'DatabaseConnection.php';
-	require 'Mascota_t.php';
-    require 'DAOMascota.php';
-	require 'Reserva_t.php';
-    require 'DAOReserva.php';
+    require_once __DIR__ . '/includes/mysql/DatabaseConnection.php';
+	require_once __DIR__ . '/includes/clases/Mascota_t.php';
+	require_once __DIR__ . '/includes/clases/Reserva_t.php';
+	require_once __DIR__ . '/includes/mysql/DAOs/DAOMascota.php';
+	require_once __DIR__ . '/includes/mysql/DAOs/DAOReserva.php';
+	
 
 	$idReserva = $_GET['reserva'];
 
@@ -51,7 +52,7 @@
 	<body>
 
     <?php
-		require 'cabecera.php';
+		require_once __DIR__ . '/includes/vistas/cabecera.php';
 	?>
 
 	<!-- Contenido principal de la página de mis reservas -->
@@ -138,8 +139,8 @@
 		?>
 	</div>
 
-	<?php require 'pie_pagina.php'?>
-	<?php require 'aviso_legal.php'?>
+	<?php require_once __DIR__ . '/includes/vistas/pie_pagina.php'; ?>
+	<?php require_once __DIR__ . '/includes/vistas/aviso_legal.php'; ?>
 
 	</body>
 

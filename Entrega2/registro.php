@@ -15,7 +15,7 @@
 	<body>
 
 	<?php
-		require 'cabecera.php';
+		require_once __DIR__ . '/includes/vistas/cabecera.php';
 	?>
 
 	<!-- Sección de los campos de entrada de datos -->
@@ -66,13 +66,15 @@
 				
 			</div><br>
 			
-			<legend>Darse de alta como cuidador</legend>
-			<div style="display: inline-block; text-align: center;">
-				<input type="radio" id="CuidadorSi" name="esCuidador" value="Si">
-				<label for="CuidadorSi">Sí</label>&nbsp&nbsp&nbsp
-				<input type="radio" id="CuidadorNo" name="esCuidador" value="No" checked>
-				<label for="CuidadorNo">No</label>
-			</div><br>
+			<fieldset>
+				<legend>Darse de alta como cuidador</legend>
+				<div style="display: inline-block; text-align: center;">
+					<input type="radio" id="CuidadorSi" name="esCuidador" value="Si">
+					<label for="CuidadorSi">Sí</label>&nbsp;&nbsp;&nbsp;
+					<input type="radio" id="CuidadorNo" name="esCuidador" value="No" checked>
+					<label for="CuidadorNo">No</label>
+				</div><br>
+			</fieldset>
 
 			<br>
 			<div style="text-align: center;">
@@ -84,8 +86,8 @@
 
 	</div>
 
-	<?php require 'pie_pagina.php'?>
-	<?php require 'aviso_legal.php'?>
+	<?php require_once __DIR__ . '/includes/vistas/pie_pagina.php'; ?>
+	<?php require_once __DIR__ . '/includes/vistas/aviso_legal.php'; ?>
 	
 	</body>
 

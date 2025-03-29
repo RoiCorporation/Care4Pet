@@ -1,10 +1,11 @@
 <?php
     session_start();
     
-    require_once 'DatabaseConnection.php';
-    require 'DAOUsuario.php';
-    require 'DAOCuidador.php';
-    require 'DAOReserva.php';
+    require_once __DIR__ . '/includes/mysql/DatabaseConnection.php';
+    require_once __DIR__ . '/includes/mysql/DAOs/DAOUsuario.php';
+    require_once __DIR__ . '/includes/mysql/DAOs/DAOCuidador.php';
+    require_once __DIR__ . '/includes/mysql/DAOs/DAOReserva.php';
+
 
     $usuario = NULL;
     $cuidador = NULL;
@@ -72,7 +73,7 @@
 <body>
 
 <?php
-    require 'cabecera.php';
+    require_once __DIR__ . '/includes/vistas/cabecera.php';
 ?>
 
 <!-- Contenido principal de la página de mis reservas -->
@@ -112,7 +113,8 @@
             <h3>Solicitudes de tus servicios</h3>
             <?php if (is_array($listaReservas) && count($listaReservas) > 0): ?>
                 <?php foreach ($listaReservas as $reserva) : ?>
-                    <div class='reserva-box'>
+                    <div>
+                        <hr>
                         <h4>Reserva #<?= htmlspecialchars($reserva->getId()); ?></h4>
                         <p><strong>Fecha de inicio:</strong> <?= htmlspecialchars($reserva->getFechaInicio()); ?></p>
                         <p><strong>Fecha de fin:</strong> <?= htmlspecialchars($reserva->getFechaFin()); ?></p>
@@ -156,8 +158,7 @@
     </main>
 </div>
 
-<?php require 'pie_pagina.php'?>
-<?php require 'aviso_legal.php'?>
-
+<?php require_once __DIR__ . '/includes/vistas/pie_pagina.php'; ?>
+<?php require_once __DIR__ . '/includes/vistas/aviso_legal.php'; ?>
 </body>
 </html>

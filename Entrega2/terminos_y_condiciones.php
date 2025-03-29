@@ -1,7 +1,7 @@
 <?php
 	session_start();
 
-	require_once 'DatabaseConnection.php';
+    require_once __DIR__ . '/includes/mysql/DatabaseConnection.php';
 
 ?>
 
@@ -18,7 +18,7 @@
 	<body>
 
     <?php
-		require 'cabecera.php';
+		require_once __DIR__ . '/includes/vistas/cabecera.php';
 	?>
 
 	<!-- Contenido principal de la página de términos y condiciones -->
@@ -91,8 +91,8 @@
 	</div>
 
 
-	<?php require 'pie_pagina.php'?>
-	<?php require 'aviso_legal.php'?>
+	<?php require_once __DIR__ . '/includes/vistas/pie_pagina.php'; ?>
+	<?php require_once __DIR__ . '/includes/vistas/aviso_legal.php'; ?>
 
 
 	</body>

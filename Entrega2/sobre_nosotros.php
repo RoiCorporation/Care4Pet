@@ -15,7 +15,7 @@
 	<body>
 
     <?php
-		require 'cabecera.php';
+		require_once __DIR__ . '/includes/vistas/cabecera.php';
 	?>
 
 	<!-- Contenido principal de la página de sobre nosotros -->
@@ -23,12 +23,27 @@
     
         <h2 style="text-align:center">Sobre nosotros</h2>
 
-		<p>Contenido...</p>
+		<p> ¡Hola! </p>
+
+		<p>
+			Somos un grupo de 5 estudiantes de la Facultad de 
+			Informática de la Universidad Complutense de Madrid.
+			En este proyecto académico -sin ningún fin comercial-, 
+			estamos desarrollando una aplicación web para la gestión 
+			del cuidado de mascotas. Te invitamos a que continúes 
+			navegando por esta plataforma y descubras por ti mism@ 
+			algunas de las funcionalidades más innovadoras de la misma. 
+		</p>
+
+		<p>
+			¡Gracias por utilizar Care4Pet!
+		</p>
+
 	</div>
 
 
-	<?php require 'pie_pagina.php'?>
-	<?php require 'aviso_legal.php'?>
+	<?php require_once __DIR__ . '/includes/vistas/pie_pagina.php'; ?>
+	<?php require_once __DIR__ . '/includes/vistas/aviso_legal.php'; ?>
 
 
 	</body>
