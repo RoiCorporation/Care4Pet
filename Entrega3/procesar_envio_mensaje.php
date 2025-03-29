@@ -30,7 +30,8 @@
 
     // Si no se consigue guardar el mensaje en la base de datos, muestra un error por pantalla.
     else {
-        echo "<h3>No se ha podido enviar su mensaje. Por favor, inténtelo de nuevo más tarde.</hs><br>";
+        echo "<h3>Ha habido un error al enviar su mensaje. Por favor, inténtelo de nuevo 
+            más tarde.</hs><br>";
     }
 
     require __DIR__ . '/includes/vistas/plantillas/plantilla.php';
