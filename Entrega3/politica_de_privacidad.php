@@ -5,9 +5,9 @@
     $tituloPagina = 'Página de política de privacidad';
 
     $contenidoPagina = <<<EOS
-        <div style="padding-left: 200px; padding-right: 200px">
+        <div class="contenedor-general">
 
-            <h2 style="text-align:center">Política de privacidad</h2>
+            <h2 class="titulo-pagina"> Política de privacidad </h2>
 
             <p><strong>Última actualización: 21/02/2025</strong></p>
 

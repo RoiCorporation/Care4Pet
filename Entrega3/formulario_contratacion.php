@@ -65,8 +65,8 @@ require_once __DIR__ . '/includes/vistas/comun/cabecera.php';
 ?>
 
 <!-- Contenido principal del formulario de contratación -->
-<div style="padding-left: 200px; padding-right: 200px">
-    <h2 style="text-align:center">Vas a contratar a <?php echo $nombre_cuidador; ?></h2>
+<div class="contenedor-general">
+    <h2 class="titulo-pagina">Vas a contratar a <?php echo $nombre_cuidador; ?></h2>
 
     <form action="procesar_contratacion.php" method="post">
         <!-- Selección de mascota -->

@@ -99,9 +99,9 @@
 	?>
 
 	<!-- Contenido principal de la página de mis reservas -->
-	<div style="padding-left: 200px; padding-right: 200px">
+	<div class="contenedor-general">
     
-        <h2 style="text-align:center">Hola, <?php echo $usuario->getNombre() ?>! Bienvedinos a tu perfil! </h2>
+        <h2 class="titulo-pagina">Hola, <?php echo $usuario->getNombre() ?>! Bienvedinos a tu perfil! </h2>
 
         <h2>Info basica de tu perfil:</h2>
         <?php 
