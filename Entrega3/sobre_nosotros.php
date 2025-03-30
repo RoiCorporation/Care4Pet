@@ -5,9 +5,9 @@
 	$tituloPagina = 'Sobre nosotros';
 
 	$contenidoPagina = <<<EOS
-		<div style="padding-left: 200px; padding-right: 200px">
+		<div class="contenedor-general">
 			
-			<h2 style="text-align:center">Sobre nosotros</h2>
+			<h2 class="titulo-pagina"> Sobre nosotros </h2>
 
 			<p> ¡Hola! </p>
 

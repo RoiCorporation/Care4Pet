@@ -49,9 +49,9 @@
 	?>
 
 	<!-- Contenido principal de la página de mis reservas -->
-	<div style="padding-left: 200px; padding-right: 200px">
+	<div class="contenedor-general">
     
-        <h2 style="text-align:center">Mis reservas</h2>
+        <h2 class="titulo-pagina">Mis reservas</h2>
 
 		<?php
 		if ($listaReservas == NULL) {

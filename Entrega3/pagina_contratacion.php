@@ -19,8 +19,8 @@ session_start();
 ?>
 
 <!-- Contenido principal de la página de contratación -->
-<div style="padding-left: 200px; padding-right: 200px">
-    <h2 style="text-align:center">Página de Contratación</h2>
+<div class="contenedor-general">
+    <h2 class="titulo-pagina">Página de Contratación</h2>
 
     <!-- Lista de cuidadores -->
     <div>

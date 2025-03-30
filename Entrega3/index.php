@@ -7,7 +7,8 @@
 	$tituloPagina = 'Landing page';
 
 	$contenidoPagina = <<<EOS
-		<div style="padding-left: 200px; padding-right: 200px">
+		<div class="contenedor-general">
+
 			<p>
 				Care4Pet es una aplicación web diseñada para conectar a dueños de mascotas con cuidadores de confianza, 
 				ofreciendo servicios personalizados para garantizar el bienestar de los animales. A través de esta plataforma, 
@@ -28,6 +29,7 @@
 			</p>
 
 			<img src="img/LogoCare4PetTransparente.png" alt="Logo de Care4Pet" style="display: block; margin: auto;"><br><br>
+
 		</div>
 	EOS;
 

@@ -77,7 +77,7 @@
 ?>
 
 <!-- Contenido principal de la página de mis reservas -->
-<div style="padding-left: 200px; padding-right: 200px">
+<div class="contenedor-general">
     <main class="perfil-container">
         <section class="perfil-info">
             <h2>Información personal</h2>
