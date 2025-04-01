@@ -1,8 +1,10 @@
 <?php
 
+    require_once __DIR__ . '/../../FormularioBorrarMensaje.php';
+
     // Función auxiliar que carga los mensajes de un determinado chat desde la base 
     // de datos y puebla con ellos la ventana de mensajes de esa conversación concreta.
-    function cargarMensajes($idOtroUsuario) {
+    function cargarMensajes($idOtroUsuario, $nombreOtroUsuario) {
 
         // Variable en la que se guarden los mensajes y su formato.
         $contenidoSeccionMensajes = '<div style="text-align:center">
@@ -20,8 +22,22 @@
             // mensaje la clase de estilos "mensaje-propio".
             if ($mensaje->getIdUsuarioEmisor() == $_SESSION['id']) {
                 $contenidoSeccionMensajes .=
-                    '<div class="mensaje-propio">
-                        <p>' . $mensaje->getMensaje() . '</p>
+                    '<div class="mensaje-propio">';
+
+                // Crea el formulario de borrado de mensaje (es decir, el "botón" de 
+                // borrado).
+                $formularioBorrarMensaje = new FormularioBorrarMensaje(
+                    $idOtroUsuario, 
+                    $nombreOtroUsuario,
+                    $mensaje->getId()
+                );
+
+                // Añade el formulario de borrado al mensaje.
+                $contenidoSeccionMensajes .= '<p>' . $htmlFormularioMensaje = $formularioBorrarMensaje->gestiona() . '</p>';
+
+                // Añade al div del mensaje el texto del mismo.
+                $contenidoSeccionMensajes .= 
+                        '<p>' . $mensaje->getMensaje() . '</p>
                     </div><br>';               
             }
 
