@@ -1,9 +1,10 @@
 <!-- Menú principal de la aplicación -->
 <nav style="text-align:center">
+	<div class="menu-bar">
 	<span><a href="index.php" class="button">Care4Pet</a></span> &emsp;&emsp;
 	<span><a href="pagina_contratacion.php" class="button">Contratar cuidadores</a></span> &emsp;&emsp;
 	<span><a href="sobre_nosotros.php" class="button">Sobre nosotros</a></span> &emsp;&emsp;
-	
+
 	<?php
 	    require_once '/xampp/htdocs/Care4Pet/Entrega3/includes/mysql/DatabaseConnection.php';
 
@@ -49,5 +50,5 @@
 			echo "<span><a href=\"login.php\" class=\"button\">Iniciar sesión</a></span> &emsp;&emsp;";
 		}
 	?>
-	
+	</div>
 </nav>
