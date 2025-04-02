@@ -65,7 +65,7 @@
    }
   
   /* Imagem com transparência */
-  header img {
+  .logo_menor {
     position: absolute;
     left: 20px;      /* Distância da borda esquerda */
     top: 20px;       /* Distância do topo */
