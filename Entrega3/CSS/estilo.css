@@ -57,15 +57,30 @@
       HEADER
       ========================= */
    header {
+     position: relative;
      background-color: #ffb077; /* Fundo um pouco mais vibrante */
      color: #062932;
      padding: 20px 0;
      text-align: center;
    }
+
+   header .logo-container {
+    position: absolute;
+    left: 20px;      /* Distância da borda esquerda */
+    top: 20px;       /* Distância do topo */
+    /* Ajuste conforme a altura do header */
+  }
+  
+  /* Imagem com transparência */
+  header .logo-container img {
+    width: 80px;     /* Ajuste conforme desejado */
+    opacity: 0.6;    /* Transparência: 1 = opaco, 0 = totalmente transparente */
+  }
    
    /* Título principal */
    header h1 {
      margin: 0;
+     padding-bottom: 10px;
      font-size: 2.5rem;
      letter-spacing: 1px;
      font-weight: 700;
@@ -88,6 +103,8 @@
   }
 
   header nav a.button {
+    margin: 0;
+    margin-bottom: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
