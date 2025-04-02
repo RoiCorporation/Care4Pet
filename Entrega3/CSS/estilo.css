@@ -58,23 +58,21 @@
       ========================= */
    header {
      position: relative;
-     background-color: #ffb077; /* Fundo um pouco mais vibrante */
+     background-color: #ffb077; 
      color: #062932;
      padding: 20px 0;
      text-align: center;
    }
   
-  /* Imagem com transparência */
   .logo_menor {
     background-color: transparent;
-    position: absolute;
-    left: 20px;      /* Distância da borda esquerda */
-    top: 15px;       /* Distância do topo */
-    width: 180px;     /* Ajuste conforme desejado */
-    opacity: 0.8;    /* Transparência: 1 = opaco, 0 = totalmente transparente */
+    margin-right: 20px;       
+    width: 180px;
+    height: auto;     
+    opacity: 0.8;    /* Transparencia: 1 = opaco, 0 = total transparente */
   }
    
-   /* Título principal */
+   /* Titulo principal */
    header h1 {
      margin: 0;
      font-size: 2.5rem;
@@ -89,36 +87,20 @@
      color: #062932; 
    }
    
-   /* Menu de navegação */
+   /* Menu nav */
    
    header nav {
     margin-bottom: 0;
     margin-top: 10px;
     display: flex;
     justify-content: center;
-    gap: 0; /* Remove o espaçamento entre os botões */
+    gap: 0; 
   }
 
   header nav .menu-bar {
-    display: inline-block;      /* Para que fique centralizado e agrupe os botões */  
-    overflow: hidden;           /* Garante que os botões fiquem “dentro” da barra */
+    display: inline-block;      /* buttons agrupados */  
+    overflow: hidden;           
   }
-
-  /*
-  header nav a.button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #ffddc5; 
-    color: #062932;
-    text-decoration: none;
-    border-radius: 0; 
-    margin: 0;       
-    transition: background-color 0.3s, transform 0.3s;
-    font-weight: 600;
-    font-size: 0.8rem; 
-    text-align: center;
-  } */
 
   header nav .menu-bar a.button {
     display: inline-block;
@@ -128,19 +110,18 @@
     text-decoration: none;
     font-weight: 600;
     transition: background-color 0.3s, transform 0.3s;
-    margin: 0;          /* Remove margens para encostar */
-    border: none;       /* Sem borda entre eles */
-    border-radius: 0;   /* Para não arredondar individualmente */
+    margin: 0;          
+    border: none;      
+    border-radius: 0;   
   }
-   
-   /* Efeito hover nos botões */
+   /* efecto hover */
    header nav .menu-bar a.button:hover {
      background-color: #ffddc5;;
      transform: scale(1.05);
    }
    
    /* =========================
-      MAIN
+      MAIN --- texto/contenido principal
       ========================= */
    main {
      max-width: 1500px;
@@ -163,18 +144,18 @@
      margin-top: 40px;
    }
 
-   /* Define o tamanho da logo */
+   /* logo de homepage*/
    .logo {
-    width: 200px;            /* ajuste o valor conforme necessário */
+    width: 200px;            
     display: block;
     margin: 0 auto;
-    opacity: 0;              /* inicia invisível */
-    transform: translateY(20px); /* desloca levemente para baixo */
-    animation: fadeIn 1s forwards; /* anima a opacidade e o deslocamento */
-    animation-delay: 0.5s;   /* atraso opcional para dar efeito */
+    opacity: 0;              /* inicia invisible */
+    transform: translateY(20px); /* deslocamento pequeño */
+    animation: fadeIn 1s forwards; /* animacion sencilla */
+    animation-delay: 0.7s;   /* delay */
   }
   
-  /* Define a animação de fadeIn */
+  /* Definicion del fadeIn */
   @keyframes fadeIn {
     to {
       opacity: 1;
@@ -197,10 +178,10 @@
     color: #062932;
     text-decoration: underline;
     font-weight: 600;
-    /*transition: background-color 0.3s, transform 0.3s;*/
-    margin: 0;          /* Remove margens para encostar */
-    border: none;       /* Sem borda entre eles */
-    border-radius: 0;   /* Para não arredondar individualmente */
+    /*transition: background-color 0.3s, transform 0.3s;*/ /* activa esto para cambiar el color del fondo al hacer hover */
+    margin: 0;          
+    border: none;      
+    border-radius: 0;   
 
 }
    
@@ -212,10 +193,11 @@
         text-decoration: underline;
         font-weight: 600;
         /*transition: background-color 0.3s, transform 0.3s;*/
-        margin: 0;          /* Remove margens para encostar */
-        border: none;       /* Sem borda entre eles */
-        border-radius: 0;   /* Para não arredondar individualmente */
+        margin: 0;          
+        border: none;       
+        border-radius: 0;   
 }
+
 .reserva-box {
     background-color: #fff;
     border: 1px solid #ccc;
