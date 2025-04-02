@@ -22,7 +22,6 @@
             
             <?php
                 require(dirname(__DIR__) . '/comun/pie_pagina.php');
-                require(dirname(__DIR__) . '/comun/aviso_legal.php');
             ?>
         </div>
 

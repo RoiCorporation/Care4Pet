@@ -8,11 +8,13 @@ y "Contacto" y todos los enlaces a nuestros perfiles de redes sociales -->
             width="112" style="display: inline-block; margin: 0 175px; vertical-align: middle">
 
         <!-- Sección de los enlaces a las páginas de interés arriba mencionadas -->
-         <div style="text-align: center;">
+         <div  class="enlaces_footer">
             <span style="display: inline-block; margin: 0 50px; vertical-align: middle">
-                <a href="sobre_nosotros.php">Sobre nosotros</a></span>
+                <a href="sobre_nosotros.php" class="button">Sobre nosotros</a></span>
             <span style="display: inline-block; margin: 0 50px; vertical-align: middle">
-                <a href="contacto.php">Contacto</a></span>
+                <a href="contacto.php" class="button">Contacto</a></span>
         </div>
     </div>
+
+    <?php require(dirname(__DIR__) . '/comun/aviso_legal.php'); ?>
 </footer><br><br><br><br>

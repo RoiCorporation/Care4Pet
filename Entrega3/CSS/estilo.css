@@ -143,13 +143,13 @@
       MAIN
       ========================= */
    main {
-     max-width: 900px;
+     max-width: 1500px;
      margin: 20px auto;
      padding: 0 20px;
    }
 
    main p {
-    text-align: justify;
+    text-align: center;
   }
    
    /* =========================
@@ -195,7 +195,7 @@
     padding: 10px 20px;
     background-color:  #ffddc5; 
     color: #062932;
-    text-decoration: none;
+    text-decoration: underline;
     font-weight: 600;
     /*transition: background-color 0.3s, transform 0.3s;*/
     margin: 0;          /* Remove margens para encostar */
@@ -204,6 +204,18 @@
 
 }
    
+.enlaces_footer a.button{
+        display: inline-block;
+        padding: 10px 20px;
+        background-color:  #ffddc5; 
+        color: #062932;
+        text-decoration: underline;
+        font-weight: 600;
+        /*transition: background-color 0.3s, transform 0.3s;*/
+        margin: 0;          /* Remove margens para encostar */
+        border: none;       /* Sem borda entre eles */
+        border-radius: 0;   /* Para não arredondar individualmente */
+}
 .reserva-box {
     background-color: #fff;
     border: 1px solid #ccc;
