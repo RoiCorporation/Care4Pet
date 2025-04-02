@@ -73,7 +73,7 @@
   
   /* Imagem com transparência */
   header .logo-container img {
-    width: 80px;     /* Ajuste conforme desejado */
+    width: 140px;     /* Ajuste conforme desejado */
     opacity: 0.6;    /* Transparência: 1 = opaco, 0 = totalmente transparente */
   }
    
