@@ -321,6 +321,139 @@
 }
 
 
+/*estilo para pagina_contratacion*/
+.contenedor-principal {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.titulo-centrado {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-size: 2em;
+}
+
+.lista-cuidadores {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 25px;
+    padding: 10px;
+}
+
+.tarjeta-cuidador {
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tarjeta-cuidador:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.foto-cuidador {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+}
+
+.info-cuidador h3 {
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.valoracion {
+    color: #f39c12;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.descripcion {
+    color: #555;
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+.tipos-mascotas, .zonas-atendidas, .tarifa, .serviciosAdicionales{
+    color: #333;
+    margin: 8px 0;
+    font-size: 0.95em;
+}
+
+.tipos-mascotas strong, .zonas-atendidas strong, .tarifa strong, .serviciosAdicionales strong{
+    color: #2c3e50;
+}
+
+/* Botones y acciones */
+.acciones-cuidador {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
+
+.btn-vermas {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+
+.btn-vermas:hover {
+    color: #2980b9;
+    text-decoration: underline;
+}
+
+.btn-contratar {
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.btn-contratar:hover {
+    background-color: #27ae60;
+}
+
+/* Mensajes */
+.sin-resultados {
+    text-align: center;
+    color: #7f8c8d;
+    font-style: italic;
+    grid-column: 1 / -1;
+    padding: 40px 0;
+}
+
+.error {
+    color: #e74c3c;
+    text-align: center;
+    font-weight: bold;
+    padding: 20px;
+    background-color: #fdecea;
+    border-radius: 4px;
+    margin: 20px 0;
+}
+
 /* Clase para el título de cada página */
 .titulo-pagina {
     text-align: center;
