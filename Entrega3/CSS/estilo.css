@@ -69,7 +69,7 @@
     background-color: transparent;
     position: absolute;
     left: 20px;      /* Distância da borda esquerda */
-    top: 20px;       /* Distância do topo */
+    top: 15px;       /* Distância do topo */
     width: 180px;     /* Ajuste conforme desejado */
     opacity: 0.8;    /* Transparência: 1 = opaco, 0 = totalmente transparente */
   }
