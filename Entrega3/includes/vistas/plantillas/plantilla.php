@@ -4,10 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <title><?= $tituloPagina ?></title>
-        <!--<link rel="stylesheet" type="text/css" href="/Entrega3/CSS/estilo.css" />-->
-        <style>
-            <?php readfile(__DIR__ . '/../../../Css/estilo.css'); ?>
-        </style>
+        <link rel="stylesheet" type="text/css" href="../../../CSS/estilo.css" />
 
     </head>
 

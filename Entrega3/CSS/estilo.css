@@ -35,6 +35,49 @@
 } */
 
 /* estilos item de reserva */
+
+a.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ffb077; 
+    color: #062932; /* text */
+    text-decoration: none;
+    border-radius: 5px;
+    border-color: #062932;
+    border-style: solid;
+    border-width: 2px;
+    transition: background-color 0.3s, transform 0.3s;
+    margin: 5px;
+}
+
+a.button:hover {
+    background-color: #ffddc5; /* variação para o efeito hover */
+    transform: scale(1.05);
+}
+
+/* Estilização do header com as cores da logo */
+header {
+    background-color: #ffddc5;
+    color: #062932;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Estilização do footer com as cores da logo */
+footer {
+    background-color: #ffddc5;
+    color:#062932;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Caso queira centralizar links do menu (dentro do header) */
+header nav a.button {
+    margin: 0 10px;
+}
+
+
+
 .reserva-box {
     background-color: #fff;
     border: 1px solid #ccc;

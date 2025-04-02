@@ -4,6 +4,7 @@
 
     require_once __DIR__ . '/includes/mysql/DatabaseConnection.php';
 
+
 	$tituloPagina = 'Landing page';
 
 	$contenidoPagina = <<<EOS
