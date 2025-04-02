@@ -28,7 +28,7 @@
             return <<<EOS
                 $htmlErroresGlobales
                     <div>
-                        <button type="submit" name="borrarMensaje">🗑️</button>
+                        <button type="submit" name="borrarMensaje" title="Borrar Mensaje">🗑️</button>
                         <input type="hidden" name="idOtroUsuario" value="$this->idOtroUsuario">
                         <input type="hidden" name="nombreOtroUsuario" value="$this->nombreOtroUsuario">
                     </div>
@@ -46,7 +46,6 @@
             // Invoca a la función de borrado del DAOMensaje para que elimine dicho mensaje
             // de la base de datos.
             $resultadoBorradoMensaje = (DAOMensaje::getInstance())->borrarMensaje($this->idMensaje);
-            echo "UNA VEZ";
 
             // Si se ha borrado el mensaje exitosamente, edita la url de redirección para que vuelva a 
             // cargar la página de la conversación, pero ya sin el mensaje en cuestión.

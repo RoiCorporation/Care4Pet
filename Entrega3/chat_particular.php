@@ -5,7 +5,7 @@
     require_once __DIR__ . '/includes/mysql/DatabaseConnection.php';
     require_once __DIR__ . '/includes/mysql/DAOs/DAOMensaje.php';
     require_once __DIR__ . '/includes/vistas/helpers/utils.php';
-    require_once __DIR__ . '/includes/FormularioMensaje.php';
+    require_once __DIR__ . '/includes/FormularioEnviarMensaje.php';
 
     
     // Obtiene el ID y el nombre del otro usuario.
@@ -29,10 +29,9 @@
     // propios de la conversación.
     $contenidoPagina .= cargarMensajes($idOtroUsuario, $nombreOtroUsuario);
 
-    // Crea e incluye el formulario de envío de mensaje (es decir, el 
-    // "botón" de enviar).
-    $form = new FormularioMensaje($idOtroUsuario, $nombreOtroUsuario);
-	$contenidoPagina .= $htmlFormularioMensaje = $form->gestiona();
+    // Crea e incluye el formulario de envío de mensaje (es decir, el "botón" de enviar.
+    $formularioEnvioMensaje = new FormularioEnviarMensaje($idOtroUsuario, $nombreOtroUsuario);
+	$contenidoPagina .= $htmlFormularioMensaje = $formularioEnvioMensaje->gestiona();
 
     require __DIR__ . '/includes/vistas/plantillas/plantilla.php';
 

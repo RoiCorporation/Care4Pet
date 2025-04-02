@@ -24,6 +24,13 @@
                 $contenidoSeccionMensajes .=
                     '<div class="mensaje-propio">';
 
+                // Crea el enlace que lleve al usuario a la página de edición del mensaje.
+                $contenidoSeccionMensajes .= '<a href="editar_mensaje.php?idOtroUsuario=' . $idOtroUsuario .
+                '&nombreOtroUsuario=' . $nombreOtroUsuario .
+                '&idMensaje=' . $mensaje->getId() .
+                '&textoMensajeOriginal=' . $mensaje->getMensaje() .
+                '" title="Editar Mensaje">✏️</a>';
+                
                 // Crea el formulario de borrado de mensaje (es decir, el "botón" de 
                 // borrado).
                 $formularioBorrarMensaje = new FormularioBorrarMensaje(
@@ -33,7 +40,7 @@
                 );
 
                 // Añade el formulario de borrado al mensaje.
-                $contenidoSeccionMensajes .= '<p>' . $htmlFormularioMensaje = $formularioBorrarMensaje->gestiona() . '</p>';
+                $contenidoSeccionMensajes .= $htmlFormularioMensaje = $formularioBorrarMensaje->gestiona();
 
                 // Añade al div del mensaje el texto del mismo.
                 $contenidoSeccionMensajes .= 

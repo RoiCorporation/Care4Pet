@@ -4,7 +4,7 @@
     require_once __DIR__ . '/Formulario.php';
 
 
-    class FormularioMensaje extends Formulario {
+    class FormularioEnviarMensaje extends Formulario {
 
         private $idOtroUsuario, $nombreOtroUsuario;
 
@@ -13,7 +13,7 @@
             $this->idOtroUsuario = $idOtroUsuario;
             $this->nombreOtroUsuario = $nombreOtroUsuario;
 
-            parent::__construct('formularioMensaje', [
+            parent::__construct('formularioEnviarMensaje', [
                 'urlRedireccion' => 'chat_particular.php', 
                 'class' => 'formulario-envio-mensaje'
             ]);
@@ -30,7 +30,7 @@
                         <input id="textoMensaje" type="text" name="textoMensaje" 
                             placeholder="Escribe un mensaje" size="68" value="$textoMensaje" />
                         {$erroresCampos['textoMensaje']}
-                        <button type="submit" name="enviarMensaje">📨</button>
+                        <button type="submit" name="enviarMensaje" title="Enviar Mensaje">📨</button>
                         <input type="hidden" name="idOtroUsuario" value="$this->idOtroUsuario">
                         <input type="hidden" name="nombreOtroUsuario" value="$this->nombreOtroUsuario">
                     </div>
