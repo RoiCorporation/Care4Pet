@@ -80,47 +80,64 @@
    /* Título principal */
    header h1 {
      margin: 0;
-     padding-bottom: 10px;
      font-size: 2.5rem;
      letter-spacing: 1px;
      font-weight: 700;
    }
 
    header h3 {
-     margin: 0;
-     font-size: 1rem;
-     font-weight: 400;
+     margin: 5px 0 20px;
+     font-size: 1.2rem;
+     font-weight: 500;
      color: #062932; 
    }
    
    /* Menu de navegação */
    
    header nav {
+    margin-bottom: 0;
     margin-top: 10px;
     display: flex;
     justify-content: center;
     gap: 0; /* Remove o espaçamento entre os botões */
   }
 
+  header nav .menu-bar {
+    display: inline-block;      /* Para que fique centralizado e agrupe os botões */  
+    overflow: hidden;           /* Garante que os botões fiquem “dentro” da barra */
+  }
+
+  /*
   header nav a.button {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 80px;      /* Largura do quadrado */
-    height: 80px;     /* Altura do quadrado */
     background-color: #ffddc5; 
     color: #062932;
     text-decoration: none;
-    border-radius: 0; /* Remove cantos arredondados */
-    margin: 0;        /* Remove margem */
+    border-radius: 0; 
+    margin: 0;       
     transition: background-color 0.3s, transform 0.3s;
     font-weight: 600;
     font-size: 0.8rem; 
     text-align: center;
+  } */
+
+  header nav .menu-bar a.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ffddc5;
+    color: #062932;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s, transform 0.3s;
+    margin: 0;          /* Remove margens para encostar */
+    border: none;       /* Sem borda entre eles */
+    border-radius: 0;   /* Para não arredondar individualmente */
   }
    
    /* Efeito hover nos botões */
-   header nav a.button:hover {
+   header nav .menu-bar a.button:hover {
      background-color: #ffb077;
      transform: scale(1.05);
    }
@@ -150,24 +167,22 @@
    }
 
    /* Define o tamanho da logo */
-img.logo {
+   .logo {
+    width: 200px;            /* ajuste o valor conforme necessário */
     display: block;
-    margin: auto;
-    max-width: 200px;   /* Ajuste esse valor conforme necessário */
-    width: 100%;        /* Garante responsividade */
-    
-    /* Estado inicial: invisível e deslocada para baixo */
-    opacity: 0;
-    transform: translateY(20px);
-    
-    /* Transição suave */
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    margin: 0 auto;
+    opacity: 0;              /* inicia invisível */
+    transform: translateY(20px); /* desloca levemente para baixo */
+    animation: fadeIn 1s forwards; /* anima a opacidade e o deslocamento */
+    animation-delay: 0.5s;   /* atraso opcional para dar efeito */
   }
   
-  /* Quando a classe 'visible' for adicionada, a logo ficará visível e sem deslocamento */
-  img.logo.visible {
-    opacity: 1;
-    transform: translateY(0);
+  /* Define a animação de fadeIn */
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
   
    
