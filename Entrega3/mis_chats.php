@@ -38,6 +38,8 @@
 
 	$contenidoPagina = '<div class="contenedor-general">';
 
+	$renderConversacionActual = '';
+
 	foreach($conversaciones as $idOtroUsuario => $conversacion) {
 
 		// Obtiene los atributos del otro usuario con el que se comunica en ese chat.
@@ -45,7 +47,7 @@
 
 		// Construye el "recuadro" gráfico con información del otro usuario -su foto y nombre-, 
 		// así como con el último mensaje que se ha enviado.
-		$renderConversacionActual = '
+		$renderConversacionActual .= '
 			<form method="post" action="chat_particular.php" style="margin: 0;">
 				<div onclick="this.closest(\'form\').submit();" style="display: flex; align-items: center; border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; cursor: pointer;">
 					<img src="/img/cuidador1.png" alt="Foto cuidador" style="width:100px; height:100px; margin-right: 20px;">

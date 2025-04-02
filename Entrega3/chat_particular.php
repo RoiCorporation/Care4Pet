@@ -5,7 +5,7 @@
     require_once __DIR__ . '/includes/mysql/DatabaseConnection.php';
     require_once __DIR__ . '/includes/mysql/DAOs/DAOMensaje.php';
     require_once __DIR__ . '/includes/vistas/helpers/utils.php';
-    require_once __DIR__ . '/includes/FormularioMensaje.php';
+    require_once __DIR__ . '/includes/FormularioEnviarMensaje.php';
 
     
     // Obtiene el ID y el nombre del otro usuario.
@@ -25,30 +25,13 @@
 
     EOS;
 
-    $contenidoPagina .= cargarMensajes($idOtroUsuario);
+    // Procede a generar la ventana de mensajes y popularla con aquellos
+    // propios de la conversación.
+    $contenidoPagina .= cargarMensajes($idOtroUsuario, $nombreOtroUsuario);
 
-    // Incluye el formulario para enviar un mensaje.
-    /*
-    $contenidoPagina .= <<<EOS
-            <div class="formulario-envio-mensaje">
-
-                <form name="form_envio_mensaje" method="post" action="procesar_envio_mensaje.php">
-
-                    <input type="text" name="textoMensaje" placeholder="Escribe un mensaje" size="47">
-                    <button type="submit">📨</button>
-                    <input type="hidden" name="idOtroUsuario" value="$idOtroUsuario">
-                    <input type="hidden" name="nombreOtroUsuario" value="$nombreOtroUsuario">
-
-                </form>
-
-            </div>
-
-        </div>
-    EOS;
-    */
-
-    $form = new FormularioMensaje($idOtroUsuario, $nombreOtroUsuario);
-	$contenidoPagina .= $htmlFormularioMensaje = $form->gestiona();
+    // Crea e incluye el formulario de envío de mensaje (es decir, el "botón" de enviar.
+    $formularioEnvioMensaje = new FormularioEnviarMensaje($idOtroUsuario, $nombreOtroUsuario);
+	$contenidoPagina .= $htmlFormularioMensaje = $formularioEnvioMensaje->gestiona();
 
     require __DIR__ . '/includes/vistas/plantillas/plantilla.php';
 
