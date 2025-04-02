@@ -35,48 +35,89 @@
 } */
 
 /* estilos item de reserva */
+/* =========================
+   IMPORTAR FONTE
+   ========================= */
+   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
-a.button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #ffb077; 
-    color: #062932; /* text */
-    text-decoration: none;
-    border-radius: 5px;
-    border-color: #062932;
-    border-style: solid;
-    border-width: 2px;
-    transition: background-color 0.3s, transform 0.3s;
-    margin: 5px;
-}
-
-a.button:hover {
-    background-color: #ffddc5; /* variação para o efeito hover */
-    transform: scale(1.05);
-}
-
-/* Estilização do header com as cores da logo */
-header {
-    background-color: #ffddc5;
-    color: #062932;
-    padding: 20px;
-    text-align: center;
-}
-
-/* Estilização do footer com as cores da logo */
-footer {
-    background-color: #ffddc5;
-    color:#062932;
-    padding: 20px;
-    text-align: center;
-}
-
-/* Caso queira centralizar links do menu (dentro do header) */
-header nav a.button {
-    margin: 0 10px;
-}
-
-
+   /* ESTILOS GLOBALES */
+   * {
+     box-sizing: border-box;
+   }
+   
+   body {
+     margin: 0;
+     padding: 0;
+     font-family: 'Poppins', sans-serif; /* Fonte amigável */
+     background-color: #ffffff;
+     color: #062932;
+   }
+   
+   /* =========================
+      HEADER
+      ========================= */
+   header {
+     background-color: #ffb077; /* Fundo um pouco mais vibrante */
+     color: #062932;
+     padding: 20px 0;
+     text-align: center;
+   }
+   
+   /* Título principal */
+   header h1 {
+     margin: 0;
+     font-size: 2.5rem;
+     letter-spacing: 1px;
+     font-weight: 700;
+   }
+   
+   /* Menu de navegação */
+   header nav {
+     margin-top: 10px; 
+     display: flex;
+     justify-content: center; /* Centraliza os itens horizontalmente */
+     gap: 10px; /* Espaçamento entre botões */
+   }
+   
+   /* Botões do menu */
+   header nav a.button {
+     display: inline-block;
+     padding: 10px 20px;
+     background-color: #ffddc5; 
+     color: #062932;
+     text-decoration: none;
+     border-radius: 5px;
+     border: 2px solid #062932;
+     transition: background-color 0.3s, transform 0.3s;
+     font-weight: 600;
+   }
+   
+   /* Efeito hover nos botões */
+   header nav a.button:hover {
+     background-color: #ffb077;
+     transform: scale(1.05);
+   }
+   
+   /* =========================
+      MAIN
+      ========================= */
+   main {
+     max-width: 900px;
+     margin: 20px auto;
+     padding: 0 20px;
+   }
+   
+   /* =========================
+      FOOTER
+      ========================= */
+   footer {
+     background-color: #ffddc5;
+     color: #062932;
+     padding: 20px;
+     text-align: center;
+     margin-top: 40px;
+   }
+   
 .reserva-box {
     background-color: #fff;
     border: 1px solid #ccc;
