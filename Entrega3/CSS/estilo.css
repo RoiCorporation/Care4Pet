@@ -68,13 +68,13 @@
     position: absolute;
     left: 20px;      /* Distância da borda esquerda */
     top: 20px;       /* Distância do topo */
-    /* Ajuste conforme a altura do header */
+    background-color: #ffb077;;
   }
   
   /* Imagem com transparência */
   header .logo-container img {
-    width: 140px;     /* Ajuste conforme desejado */
-    opacity: 0.6;    /* Transparência: 1 = opaco, 0 = totalmente transparente */
+    width: 180px;     /* Ajuste conforme desejado */
+    opacity: 0;    /* Transparência: 1 = opaco, 0 = totalmente transparente */
   }
    
    /* Título principal */
@@ -126,7 +126,7 @@
   header nav .menu-bar a.button {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #ffddc5;
+    background-color: #ffb077; 
     color: #062932;
     text-decoration: none;
     font-weight: 600;
@@ -138,7 +138,7 @@
    
    /* Efeito hover nos botões */
    header nav .menu-bar a.button:hover {
-     background-color: #ffb077;
+     background-color: #ffddc5;;
      transform: scale(1.05);
    }
    
