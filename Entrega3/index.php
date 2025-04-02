@@ -29,7 +29,8 @@
 				dispositivo con conexión a internet.<br><br>
 			</p>
 
-			<img src="img/LogoCare4PetTransparente.png" alt="Logo de Care4Pet" style="display: block; margin: auto;"><br><br>
+			<img src="img/LogoCare4PetTransparente.png" alt="Logo de Care4Pet" class="logo">
+
 
 		</div>
 	EOS;
