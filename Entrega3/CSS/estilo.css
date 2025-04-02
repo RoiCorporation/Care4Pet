@@ -103,8 +103,6 @@
   }
 
   header nav a.button {
-    margin: 0;
-    margin-bottom: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -119,7 +117,6 @@
     font-weight: 600;
     font-size: 0.8rem; 
     text-align: center;
-    text-transform: uppercase; /* Opcional: deixar tudo em maiúsculas */
   }
    
    /* Efeito hover nos botões */
