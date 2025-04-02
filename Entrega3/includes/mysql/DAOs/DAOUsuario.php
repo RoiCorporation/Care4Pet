@@ -80,8 +80,55 @@
 
 
 
+
+        // Leer un usuario dado su ID.
+        public function leerUnUsuarioPorID($id) {
+
+            // Crea la sentencia sql para comprobar el id.
+            $sentencia_sql = "SELECT * FROM usuarios WHERE idUsuario = '{$id}'";
+
+            $consulta_resultado = $this->con->query($sentencia_sql);
+            
+            // Si ha obtenido un resultado, entonces se ha encontrado a ese usuario.
+            // Se procede a extraer los valores de ese usuario, generar un nuevo objeto 
+            // de tipo tUsuario, y devolver dicho objeto.
+            if ($consulta_resultado->num_rows > 0) {
+                $valores_resultado = $consulta_resultado->fetch_assoc();
+
+                $idUsuario = $valores_resultado["idUsuario"];
+                $nombre = $valores_resultado["Nombre"];
+                $apellidos = $valores_resultado["Apellidos"];
+                $correo = $valores_resultado["Correo"];
+                $contrasena = $valores_resultado["Contraseña"];
+                $dni = $valores_resultado["DNI"];
+                $telefono = $valores_resultado["Telefono"];
+                $fotoPerfil = $valores_resultado["FotoPerfil"];
+                $direccion = $valores_resultado["Direccion"];
+                $esDueno = $valores_resultado["esDueno"];
+                $esCuidador = $valores_resultado["esCuidador"];
+                $esAdmin = $valores_resultado["esAdmin"];
+                $cuentaActiva = $valores_resultado["cuentaActiva"];
+                $fecha_registro = $valores_resultado["fecha_registro"];
+
+                $usuarioBuscado = new tUsuario($idUsuario, $nombre, $apellidos,
+                    $correo, $contrasena, $dni, $telefono, $fotoPerfil,
+                    $direccion, $esDueno, $esCuidador, $esAdmin, $cuentaActiva, $fecha_registro);
+                
+                return $usuarioBuscado;
+            }
+
+            // Si no se ha obtenido un resultado, devuelve NULL -pues no existe un
+            // usuario con ese id-.
+            else {
+                return NULL;
+            }
+            
+        }
+
+
+
         
-        // Leer un usuario. CREO QUE DEBERIA DE BUSCAR POR ID PARA QUE SEA MAS EFECTIVO.
+        // Leer un usuario dado su correo.
         public function leerUnUsuario($correo) {
 
             // Crea la sentencia sql para comprobar el id.

@@ -5,9 +5,9 @@
 	$tituloPagina = 'Contacto';
 
 	$contenidoPagina = <<<EOS
-		<div style="padding-left: 200px; padding-right: 200px">
+		<div class="contenedor-general">
 				
-			<h2 style="text-align:center">Contacto</h2>
+			<h2 class="titulo-pagina"> Contacto </h2>
 
 			<p>
 				¡Buenas! Gracias por tu interés en contactar con nosotros.

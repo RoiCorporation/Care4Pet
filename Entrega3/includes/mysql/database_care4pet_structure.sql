@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-03-2025 a las 03:37:19
+-- Tiempo de generación: 31-03-2025 a las 12:00:36
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -15,7 +15,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Base de datos: `database_care4pet`
@@ -85,7 +85,7 @@ CREATE TABLE `mensajes` (
   `idUsuarioReceptor` bigint(20) UNSIGNED NOT NULL,
   `fecha` timestamp NOT NULL DEFAULT current_timestamp(),
   `mensaje` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- RELACIONES PARA LA TABLA `mensajes`:
@@ -188,7 +188,7 @@ CREATE TABLE `visitas` (
   `fecha` timestamp NOT NULL DEFAULT current_timestamp(),
   `ip` varchar(50) NOT NULL,
   `idUsuario` bigint(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- RELACIONES PARA LA TABLA `visitas`:

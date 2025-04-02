@@ -288,3 +288,61 @@
     border-radius: 4px;
     margin: 20px 0;
 }
+
+/* Clase para el título de cada página */
+.titulo-pagina {
+    text-align: center;
+}
+
+/* Clase para el bloque principal de contenido de cada página */
+.contenedor-general {
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
+/* Clase para la ventana scroll de los mensajes */
+.scroller-mensajes {
+    position: relative;
+    width: 500px;
+    height: 300px;
+    overflow-y: scroll;
+    padding: 15px;
+    border: 1px solid black;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+/* Atributos comunes para ambas clases de mensajes */
+.mensaje-propio,
+.mensaje-otro-usuario {
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+/* Atributos específicos para la clase de mensajes enviados 
+por el propio usuario */
+.mensaje-propio {
+    align-self: flex-end;
+    background-color: lightblue;
+}
+
+/* Atributos específicos para la clase de mensajes enviados 
+por el otro usuario */
+.mensaje-otro-usuario {
+    align-self: flex-start;
+    background-color: lightgrey;
+}
+
+/* Clase para el formulario de envío de un mensaje */
+.formulario-envio-mensaje {
+    text-align: center;
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+}

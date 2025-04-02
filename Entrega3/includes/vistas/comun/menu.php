@@ -5,12 +5,14 @@
 	<span><a href="sobre_nosotros.php">Sobre nosotros</a></span> &emsp;&emsp;
 	
 	<?php
-	    require_once __DIR__ . '/../../mysql/DatabaseConnection.php';
+	
+		require_once __DIR__ . '/../../mysql/DatabaseConnection.php';
 
 		// Si el usuario ha iniciado sesión, le aparecerá el link a sus reservas y el 
 		// botón de cerrar sesión.
 		if (isset($_SESSION["login"]) && $_SESSION["login"] == true) {
 			echo "<span><a href=\"mis_reservas.php\">Mis reservas</a></span> &emsp;&emsp;";
+			echo "<span><a href=\"mis_chats.php\">Mis chats</a></span> &emsp;&emsp;";
 
 			# consultamos BD para comprobar el tipo de usario (dueno o cuidador)
 			$id = $_SESSION["id"];
@@ -22,7 +24,7 @@
 			if ($consulta->num_rows > 0) {	
 				$filaResultado = $consulta->fetch_assoc();
 	
-				# dependiente de quien es el usario, le mostramos diferente pagina de perfil
+				# Dependiendo de quién es el usario, le mostramos diferente página de perfil
 				$esDueno = $filaResultado["esDueno"];
 				$esCuidador = $filaResultado["esCuidador"];
 				$esAdmin = $filaResultado["esAdmin"];
