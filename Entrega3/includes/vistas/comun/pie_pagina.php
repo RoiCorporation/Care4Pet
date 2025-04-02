@@ -5,7 +5,7 @@ y "Contacto" y todos los enlaces a nuestros perfiles de redes sociales -->
 
     <!-- Sección para el logo de Care4Pet -->
         <img src="img/LogoCare4PetTransparente.png" alt="Logo de Care4Pet" height="100" 
-            width="112" style="display: inline-block; margin: 0 175px; vertical-align: middle">
+            width="112" style="display: inline-block; margin: 0 175px; vertical-align: middle; horizontal-align: left">
 
         <!-- Sección de los enlaces a las páginas de interés arriba mencionadas -->
          <div  class="enlaces_footer">
