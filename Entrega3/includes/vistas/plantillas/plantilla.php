@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <title><?= $tituloPagina ?></title>
-        <link rel="stylesheet" type="text/css" href="/Entrega3/CSS/estilo.css" />
+        <link rel="stylesheet" type="text/css" href="/Care4Pet/Entrega3/CSS/estilo.css" />
 
     </head>
 
