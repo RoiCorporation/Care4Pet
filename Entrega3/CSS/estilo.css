@@ -63,18 +63,14 @@
      padding: 20px 0;
      text-align: center;
    }
-
-   header .logo-container {
+  
+  /* Imagem com transparência */
+  header img {
     position: absolute;
     left: 20px;      /* Distância da borda esquerda */
     top: 20px;       /* Distância do topo */
-    background-color: #ffb077;;
-  }
-  
-  /* Imagem com transparência */
-  header .logo-container img {
-    width: 180px;     /* Ajuste conforme desejado */
-    opacity: 0;    /* Transparência: 1 = opaco, 0 = totalmente transparente */
+    width: 160px;     /* Ajuste conforme desejado */
+    opacity: 0.6;    /* Transparência: 1 = opaco, 0 = totalmente transparente */
   }
    
    /* Título principal */
