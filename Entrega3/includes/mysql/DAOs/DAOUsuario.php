@@ -81,7 +81,7 @@
 
 
         
-        // Leer un usuario.
+        // Leer un usuario. CREO QUE DEBERIA DE BUSCAR POR ID PARA QUE SEA MAS EFECTIVO.
         public function leerUnUsuario($correo) {
 
             // Crea la sentencia sql para comprobar el id.
