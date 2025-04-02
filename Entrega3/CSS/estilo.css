@@ -65,8 +65,10 @@
    }
   
   .logo_menor {
+    position: absolute;
     background-color: transparent;
-    margin-right: 20px;       
+    left: 20px; 
+    top: 20px;      
     width: 180px;
     height: auto;     
     opacity: 0.8;    /* Transparencia: 1 = opaco, 0 = total transparente */
