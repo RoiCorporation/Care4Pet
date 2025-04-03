@@ -71,7 +71,7 @@ try {
                                  class="foto-cuidador">
                         <?php endif; ?>
                         
-                        <!-- Información cuidador -->
+                        <!-- Info cuidador -->
                         <div class="info-cuidador">
                             <h3><?= htmlspecialchars($usuario->getNombre() . ' ' . $usuario->getApellidos()) ?></h3>
                             <p class="valoracion">Valoración: <?= htmlspecialchars($cuidador->getValoracion()) ?>/5</p>
