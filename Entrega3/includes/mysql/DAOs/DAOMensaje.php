@@ -1,7 +1,7 @@
 <?php
 
-    require_once dirname(__DIR__) . '/DatabaseConnection.php';
-    require_once '/xampp/htdocs/Care4Pet/Entrega3/includes/clases/Mensaje_t.php';
+    require_once __DIR__ . '/../DatabaseConnection.php';
+    require_once __DIR__ . '/../../clases/Mensaje_t.php';
 
     class DAOMensaje {
         
