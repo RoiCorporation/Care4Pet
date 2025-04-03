@@ -50,7 +50,7 @@
 		$renderConversacionActual .= '
 			<form method="post" action="chat_particular.php" style="margin: 0;">
 				<div onclick="this.closest(\'form\').submit();" style="display: flex; align-items: center; border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; cursor: pointer;">
-					<img src="/img/cuidador1.png" alt="Foto cuidador" style="width:100px; height:100px; margin-right: 20px;">
+					<img src="img/' . $otroUsuario->getFotoPerfil() . '" alt="Foto cuidador" style="width:100px; height:100px; margin-right: 20px;">
 					<div>
 						<h3><strong>' . $otroUsuario->getNombre() . '</strong></h3>
 						<p>' . $conversacion[0]->getMensaje() . '</p>
