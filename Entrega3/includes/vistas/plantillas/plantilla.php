@@ -6,7 +6,7 @@
         <title><?= $tituloPagina ?></title>
         <!--<link rel="stylesheet" type="text/css" href="/Entrega3/CSS/estilo.css" />-->
         <style>
-            <?php readfile(__DIR__ . '/../../../Css/estilo.css'); ?>
+            <?php readfile(__DIR__ . '/../../../CSS/estilo.css'); ?>
         </style>
 
     </head>
