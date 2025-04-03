@@ -17,9 +17,10 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
+--
+-- Base de datos: `database_care4pet`
+--
 
-<<<<<<< HEAD
-=======
 --
 -- Volcado de datos para la tabla `usuarios`
 --
@@ -35,7 +36,6 @@ COMMIT;
 --
 -- Volcado de datos para la tabla `cuidadores`
 --
->>>>>>> 5f4a17969050e65bdaf6c68f3efd7a8768398dfb
 
 INSERT INTO `cuidadores` (`idUsuario`, `TiposDeMascotas`, `Tarifa`, `Descripcion`, `ServiciosAdicionales`, `Valoracion`, `ZonasAtendidas`) VALUES
 (205753802, 'Gatos, Perros', 11, 'Soy cuidador mejor de la ciudad.', 'Lavar, Comer', 4, 'Madrid'),
@@ -59,8 +59,6 @@ INSERT INTO `mascotas` (`idMascota`, `FotoMascota`, `Descripcion`, `TipoMascota`
 -- Volcado de datos para la tabla `mensajes`
 --
 
-<<<<<<< HEAD
-=======
 INSERT INTO `mensajes` (`idMensaje`, `idUsuarioEmisor`, `idUsuarioReceptor`, `fecha`, `mensaje`) VALUES
 (173, 205753803, 1203472, '2025-03-27 13:11:24', '¿A que sí? A propósito, vino el cartero y te dejó un paquete en la entrada del piso. Lucía lo cogió para dentro de su piso, que sino el perro... hace de las suyas jajaja.'),
 (1626, 1320644188, 1203472, '2025-03-24 11:34:36', 'Otra prueba...'),
@@ -115,7 +113,6 @@ INSERT INTO `mensajes` (`idMensaje`, `idUsuarioEmisor`, `idUsuarioReceptor`, `fe
 (1953774610, 205753802, 205753803, '2025-03-28 00:32:46', 'no?'),
 (2141478817, 205753802, 205753803, '2025-03-29 17:31:31', 'Alg&uacute;n d&iacute;a, Jos&eacute;.');
 
->>>>>>> 5f4a17969050e65bdaf6c68f3efd7a8768398dfb
 --
 -- Volcado de datos para la tabla `reservas`
 --
@@ -138,26 +135,8 @@ INSERT INTO `tipos_de_mascotas` (`idTipoMascota`, `Nombre`) VALUES
 (3, 'Conejo'),
 (4, 'Otro');
 
-<<<<<<< HEAD
---
--- Volcado de datos para la tabla `usuarios`
---
-
-INSERT INTO `usuarios` (`idUsuario`, `Nombre`, `Apellidos`, `Correo`, `Contraseña`, `DNI`, `Telefono`, `FotoPerfil`, `Direccion`, `esDueno`, `esCuidador`, `esAdmin`, `cuentaActiva`, `fecha_registro`) VALUES
-(1, 'Administrador', '', 'admin@admin.com', 'admin', '99999999Z', 999999999, NULL, 'Calle falsa', 0, 0, 1, 0, '2025-03-05 00:00:00'),
-(1203472, 'Maria', 'José', 'mariajose@gmail.com', 'maria', '00000000Z', 0, NULL, 'Calle del Amor Hermoso, 80', 1, 0, 0, 1, '2025-03-05 00:00:00'),
-(205753802, 'Maria', 'Santos Aguillera', 'masa@ej.com', 'masa', '00000000Z', 0, 'cuidador3.png', 'Calle del Amor Hermoso, 80', 0, 1, 0, 1, '2025-03-05 00:00:00'),
-(205753803, 'José', 'Gómez Rodríguez', 'usuario@usuario.com', 'usuario', '00000000Y', 111111111, 'cuidador1.png', 'Calle Umbria, 14', 0, 1, 0, 1, '2025-03-05 00:00:00'),
-(1320644188, 'Blah', 'Blah', 'ejemplo1@ejemplo.com', 'maria', '000001', 2147483647, NULL, 'Calle ABC, 17', 1, 0, 0, 1, '2025-03-05 00:00:00');
-
-INSERT INTO `mensajes` (`idMensaje`, `idUsuarioEmisor`, `idUsuarioReceptor`, `fecha`, `mensaje`) VALUES
-(1235932626, 1203472, 205753803, '2025-03-20 02:21:10', 'Hola, ¿qué tal?'),
-(1667624745, 1203472, 1320644188, '2025-03-20 02:21:10', 'TORTILLAAAAAA');
-
-COMMIT;
-=======
->>>>>>> 5f4a17969050e65bdaf6c68f3efd7a8768398dfb
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_MODE=@OLD_SQL_MODE */;
