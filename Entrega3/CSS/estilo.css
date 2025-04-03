@@ -96,51 +96,78 @@
     margin-right: 20px;
 }
 
-.sidebarAd {
-    width: 300px; /* Barra lateral con un ancho fijo */
-    flex-shrink: 0; /* No permite que la barra lateral se reduzca */
-    z-index: 1000; 
+main {
+    flex-grow: 1;
+    padding: 10px; /* Espaciado dentro del contenido */
+    display: flex;
+    flex-direction: column;
+    position: relative; /* Para que los botones se posicionen correctamente */
+    overflow: hidden;
 }
 
-.contenidoAd {
-    display: flex;
-    flex-direction: column; /* Asegura que los elementos se apilen verticalmente */
-    align-items: center;
-    padding-left: 20px;
-    gap: 20px;
-    width: 80%;
-}
+
 .contenedorAd {
     display: flex; /* Coloca los elementos en fila */
-    width: 80%;
-}
-.contenedorAdGu {
-    display: flex;
-    align-items: center;       
+    align-items: stretch;
     width: 100%;
+    box-sizing: border-box;
+   
+
 }
+.contenidoAd {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    gap: 20px;
+    width: 100%;
+    position: relative;
+
+}
+
 .listaAdGu {
     display: flex;
     gap: 20px;
     overflow-x: auto;
     padding: 10px;
     scroll-behavior: smooth;
-    width: 80%;
+    width: 85%; 
+    white-space: nowrap;
+   
 }
 .cuadroAdGu {
     min-width: 250px;
     border: 1px solid #ccc;
     padding: 15px;
     text-align: center;
-    border-radius: 8px;            
+    border-radius: 8px;
+    display: inline-block;            
 }
+
 .prev, .next {
-    background: none;
-    border: none;
-    font-size: 24px;
+    background: none; /* Elimina el fondo */
+    border: none; /* Elimina el borde */
+    font-size: 32px; /* Aumenta el tamaño del símbolo */
+    font-weight: bold; /* Hace que el símbolo sea más visible */
     cursor: pointer;
-    z-index: 10; /* Asegurar que esté sobre los demás elementos */
+    color: black; /* Cambia el color según tu diseño */
+    padding: 0 10px; /* Espaciado para que sea fácil de hacer clic */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }
+
+.prev {
+    left: 20px; /* Ajusta la posición */
+}
+
+.next {
+    right: 20px;
+}
+
+.prev:hover, .next:hover {
+    color: #007bff; /* Cambia de color al pasar el cursor */
+}
+
 
 .estadisticas {
     text-align: center;
@@ -151,8 +178,105 @@
 }
 
 .titulosAd {  
-    width: 100%;
+    display: flex;
+  
+   
+}
+
+
+/* Sidebar */
+.sidebarAd {
+    flex: 0 0 300px;
+    padding: 10px;
+}
+
+.sidebarAd h2 {
+
+ 
+    text-align: left; /* Asegura que el título esté alineado a la izquierda */
+}
+
+/* Lista de elementos */
+.sidebarAd ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebarAd li {
+    margin: 10px 0;
+}
+
+.sidebarAd li a {
+    text-decoration: none;
+    color: #bdc3c7;
+    font-size: 18px;
     display: block;
+    padding: 8px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sidebarAd li a:hover {
+    background-color: #34495e;
+    color: #ecf0f1;
+}
+
+/* Submenú */
+.submenu {
+    cursor: pointer;
+    font-size: 18px;
+    color: #bdc3c7;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.submenu:hover {
+    background-color: #34495e;
+    color: #ecf0f1;
+}
+
+.submenu-list {
+    display: none;
+    list-style: none;
+    padding-left: 0; /* Ajuste para eliminar la indentación */
+    margin-top: 5px;
+}
+
+.submenu-list li {
+    margin: 5px 0;
+    padding: 5px;
+}
+
+.sidebarAd li a {
+    background-color: transparent !important;
+}
+
+.submenu-list li a:hover {
+    background-color: #34495e;
+    color: #ecf0f1;
+}
+
+/* Submenú abierto */
+.submenu.open .submenu-list {
+    display: block;
+    animation: slideDown 0.3s ease-out; /* Animación para hacer que el submenú se deslice hacia abajo */
+}
+
+/* Animación para el despliegue */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 

@@ -75,22 +75,24 @@ $stmt->free_result(); // Liberar el resultado de la consulta
     <div class="contenedorAd">
         <?php require_once __DIR__ . '/sidebarAd.php'; ?> <!-- Incluir la barra lateral -->
 
-        <main class="contenidoAd">
+        <main>
+           
             <div class="titulosAd">
                 <h2>Gestión de visitantes</h2>
             </div>
+            <div class="contenidoAd">
+                <!-- Gráfica de visitas -->
+                <div>
+                    <canvas id="graficaVisitas"></canvas> <!-- Elemento donde se mostrará la gráfica -->
+                </div>
 
-            <!-- Gráfica de visitas -->
-            <div>
-                <canvas id="graficaVisitas"></canvas> <!-- Elemento donde se mostrará la gráfica -->
-            </div>
-
-            <div class="estadisticas">
-                <h3>Estadísticas</h3>
-                <p>Número total de Visitantes: <?php echo $totalVisitantes; ?></p>
-                <p>Nuevos usuarios registrados: <?php echo $nuevosUsuarios; ?></p>
-                <p>Número total de usuarios registrados: <?php echo $totalUsuariosRegistrados; ?></p>
-                <p>Número de usuarios no registrados: <?php echo $usuariosNoRegistrados; ?></p>
+                <div class="estadisticas">
+                    <h3>Estadísticas</h3>
+                    <p>Número total de Visitantes: <?php echo $totalVisitantes; ?></p>
+                    <p>Nuevos usuarios registrados: <?php echo $nuevosUsuarios; ?></p>
+                    <p>Número total de usuarios registrados: <?php echo $totalUsuariosRegistrados; ?></p>
+                    <p>Número de usuarios no registrados: <?php echo $usuariosNoRegistrados; ?></p>
+                </div>
             </div>
         </main>
     </div>  

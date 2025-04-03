@@ -31,12 +31,12 @@ $result = $conn->query($sql);
         <div class="contenedorAd">
             <?php require_once __DIR__ . '/sidebarAd.php'; ?>
 
-            <main class="contenidoAd">
+            <main>
                 <div class="titulosAd">
                     <h2>Gestión de usuarios</h2>  
                 </div>
 
-                <div class="contenedorAdGu">
+                <div class="contenidoAd">
                     <button class="prev" onclick="desplazarIzquierda()">&#10094;</button> <!--botón con esta forma < -->
 
                     <div class="listaAdGu">
