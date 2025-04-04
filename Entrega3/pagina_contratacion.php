@@ -12,24 +12,25 @@ $todosUsuarios = [];
 $error = null;
 
 
-try {
-    //instancias de los DAOs
-    $daoCuidador = DAOCuidador::getInstance();
-    $daoUsuario = DAOUsuario::getInstance();
+        try {
+             // DAOs
+             $daoCuidador = DAOCuidador::getInstance();
+            $daoUsuario = DAOUsuario::getInstance();
     
-    //todos los cuidadores y usuarios
-    $cuidadores = $daoCuidador->leerTodosLosCuidadores();
-    $todosUsuarios = $daoUsuario->leerTodosLosUsuarios();
+            //todos los cuidadores y usuarios
+            $cuidadores = $daoCuidador->leerTodosLosCuidadores();
+            $todosUsuarios = $daoUsuario->leerTodosLosUsuarios();
     
-    // ---------------------indexo usuarios por su ID para búsqueda rápida
-    $usuariosIndexados = [];
-    foreach ($todosUsuarios as $usuario) {
-        $usuariosIndexados[$usuario->getId()] = $usuario;
-    }
-} catch (Exception $e) {
-    error_log("Error en pagina_contratacion.php: " . $e->getMessage());
-    $error = "Ocurrió un error al cargar los cuidadores. Por favor, inténtelo más tarde.";
-}
+            // ---------------------indexo usuarios por su ID para búsqueda rápida
+            $usuariosIndexados = [];
+            foreach ($todosUsuarios as $usuario) {
+                    $usuariosIndexados[$usuario->getId()] = $usuario;
+            }
+        } 
+        catch (Exception $e) {
+            error_log("Error en pagina_contratacion.php: " . $e->getMessage());
+            $error = "Ocurrió un error al cargar los cuidadores. Por favor, inténtelo más tarde.";
+        }
 
 ?>
 
@@ -82,9 +83,7 @@ try {
                             <p class="tarifa"><strong>Tarifa:</strong> <?= htmlspecialchars($cuidador->getTarifa()) ?>€/hora</p>
                             
                             <div class="acciones-cuidador">
-                                <a href="perfil_cuidador.php?id=<?= $cuidador->getId() ?>" class="btn-vermas">Ver perfil completo</a>
-                                
-                                <form action="formulario_contratacion.php" method="post">
+                            <a href="perfil_cuidador.php?id=<?= $usuario->getId() ?>" class="btn-vermas">Ver perfil completo</a>                                <form action="formulario_contratacion.php" method="post">
                                     <input type="hidden" name="idCuidador" value="<?= $cuidador->getId() ?>">
                                     <input type="hidden" name="nombreCuidador" value="<?= htmlspecialchars($usuario->getNombre() . ' ' . $usuario->getApellidos()) ?>">
                                     <button type="submit" class="btn-contratar">Contratar</button>

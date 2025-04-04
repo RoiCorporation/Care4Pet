@@ -1,63 +1,68 @@
 <?php
-//esta pagina crea la reserva pero todavia no funciona completamente
 session_start();
 
+//error_reporting(E_ALL);
+//ini_set('display_errors', 1);
 
-// Verificar si el usuario ha iniciado sesión
-if (!isset($_SESSION["login"]) || $_SESSION["login"] !== true) {
-    header("Location: login.php");
+require_once __DIR__ . '/includes/config.php';
+require_once __DIR__ . '/includes/mysql/DatabaseConnection.php';
+require_once __DIR__ . '/includes/clases/Reserva_t.php';
+require_once __DIR__ . '/includes/mysql/DAOs/DAOUsuario.php';
+require_once __DIR__ . '/includes/mysql/DAOs/DAOMascota.php';
+require_once __DIR__ . '/includes/mysql/DAOs/DAOReserva.php';
+
+
+if (!isset($_SESSION['idCuidador']) || !isset($_SESSION['email']) || 
+    $_SERVER['REQUEST_METHOD'] !== 'POST') {
+    header('Location: pagina_contratacion.php');
     exit();
 }
 
-// Verificar si se han enviado los datos del formulario
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Recoger los datos del formulario
-    $idMascota = $_POST['mascota'];
-    $fechaInicio = $_POST['fecha_inicio'] . ' ' . $_POST['hora_inicio'];
-    $fechaFin = $_POST['fecha_fin'] . ' ' . $_POST['hora_fin'];
-    $comentariosAdicionales = $_POST['comentarios'];
-    $idUsuario = $_SESSION["id"]; // ID del dueño conectado
-    $idCuidador = $_SESSION['idCuidador'];
+// obtengo datos inroducidos en formulario
+$idMascota = $_POST['idMascota'];
+$fechaInicio = $_POST['fecha_inicio'];
+$fechaFin = $_POST['fecha_fin'];
+$comentarios = !empty($_POST['comentarios']) ? $_POST['comentarios'] : 'NULL';
+//los datos bancarios no los almaceno por ahora
 
+///daos que uso
+$daoUsuario = DAOUsuario::getInstance();
+$daoMascota = DAOMascota::getInstance();
+$daoReserva = DAOReserva::getInstance();
 
-    // Validar que los datos no estén vacíos
-    if (empty($idMascota) || empty($fechaInicio) || empty($fechaFin)) {
-        echo "Error: Todos los campos son obligatorios.";
-        exit();
-    }
+// datos de dueno, cuidador y mascota
+$dueno = $daoUsuario->leerUnUsuario($_SESSION["email"]);
+$cuidador = $daoUsuario->leerUnUsuarioPorId($_SESSION['idCuidador']);
+$mascota = $daoMascota->leerUnaMacota($idMascota);
 
-    // Conectar a la base de datos
-    require_once __DIR__ . '\includes\mysql\DatabaseConnection.php';
-    require 'Reserva_t.php';
-    require 'DAOReserva.php';
+// genera el id de la reserva de 7 digitos 
+$idReserva = mt_rand(1000000, 9999999);
 
-    // Crear un objeto tReserva
-    $reserva = new tReserva(
-        null, // ID se generará automáticamente
-        $idUsuario,
-        $idMascota,
-        $idCuidador,
-        $fechaInicio,
-        $fechaFin,
-        0, // esAceptadaPorCuidador (inicialmente no aceptada)
-        null, // valoración (inicialmente nula)
-        "", // reseña (inicialmente vacía)
-        $comentariosAdicionales,
-        1 // esReservaActiva (inicialmente activa)
-    );
+// chequeo que ID no exista
+while ($daoReserva->leerUnaReserva($idReserva) !== null) {
+    $idReserva = mt_rand(1000000, 9999999);
+}
 
-    // Guardar la reserva en la base de datos
-    if ((DAOReserva::getInstance())->crearReserva($reserva, $idUsuario)) {
-        // Redirigir al usuario a la página de "Mis Reservas"
-        header("Location: mis_reservas.php");
-        exit();
-    } else {
-        echo "Error: No se pudo crear la reserva.";
-        exit();
-    }
+// Creo la reserva
+$reserva = new tReserva();
+$reserva->setId($idReserva); 
+$reserva->setIdUsuario($dueno->getId());
+$reserva->setIdMascota($mascota->getId());
+$reserva->setIdCuidador($cuidador->getId());
+$reserva->setFechaInicio($fechaInicio);
+$reserva->setFechaFin($fechaFin);
+$reserva->setEsAceptadaPorCuidador(0); // inicialmente no aceptada
+$reserva->setValoracion(0); // Sin valoración inicial
+$reserva->setResena('NULL'); // Sin reseña inicial
+$reserva->setComentariosAdicionales($comentarios);
+$reserva->setEsReservaActiva(1); // activa por defecto
+
+// Insertar reserva en la base de datos
+if ($daoReserva->crearReserva($reserva, $dueno->getId())) {
+    header('Location: detalles_reserva.php?reserva=' . $reserva->getId());
+    exit();
 } else {
-    // Si no se enviaron datos por POST, redirigir al formulario de contratación
-    header("Location: pagina_contratacion.php");
+    $_SESSION['error'] = "Error al crear la reserva. Por favor, inténtalo de nuevo.";
+    header('Location: formulario_contratacion.php');
     exit();
 }
-?>
