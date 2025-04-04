@@ -511,3 +511,15 @@ por el otro usuario */
     display: flex;
     justify-content: center;
 }
+
+
+
+/* |-----------------   LOGIN   -----------------| */
+
+/* Clase para centrar el formulario */
+.formulario-login-campos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}

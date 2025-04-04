@@ -2,7 +2,7 @@
 
 	session_start();
 
-    $tituloPagina = 'Página de términos y condiciones';
+    $tituloPagina = 'Términos y condiciones';
 
     $contenidoPagina = <<<EOS
         <div class="contenedor-general">

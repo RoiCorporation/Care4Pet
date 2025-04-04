@@ -29,7 +29,7 @@
     // propios de la conversación.
     $contenidoPagina .= cargarMensajes($idOtroUsuario, $nombreOtroUsuario);
 
-    // Crea e incluye el formulario de envío de mensaje (es decir, el "botón" de enviar.
+    // Crea e incluye el formulario de envío de mensaje (es decir, el "botón" de enviar).
     $formularioEnvioMensaje = new FormularioEnviarMensaje($idOtroUsuario, $nombreOtroUsuario);
 	$contenidoPagina .= $htmlFormularioMensaje = $formularioEnvioMensaje->gestiona();
 

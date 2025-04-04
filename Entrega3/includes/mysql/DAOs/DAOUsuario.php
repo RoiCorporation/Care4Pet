@@ -41,8 +41,7 @@
             // Si ya hay una cuenta asociada a ese email, se pide al usuario que 
             // escoja otro correo electrónico.
             if ($consulta_comprobacion->num_rows != 0) {
-                echo "<h3>Ya existe una cuenta asociada a ese correo.</h3>";
-                exit();
+                return false;
             }
 
             // Si no hay ninguna cuenta asociada a ese email, crea una nueva cuenta 

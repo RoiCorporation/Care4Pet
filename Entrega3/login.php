@@ -1,42 +1,25 @@
 <?php
 	session_start();
+
+	require_once __DIR__ . '/includes/FormularioLogin.php';
+
+	$tituloPagina = 'Inicio de sesión';
+
+	$contenidoPagina = <<<EOS
+        <div class="contenedor-general">
+        
+            <h2 class="titulo-pagina">
+                Inicio de sesión 
+            </h2>
+
+    EOS;
+
+	// Crea e incluye el formulario de login.
+    $formularioLogin = new FormularioLogin();
+	$contenidoPagina .= $htmlFormularioMensaje = $formularioLogin->gestiona();
+
+	$contenidoPagina .= '</div>';
+
+	require_once __DIR__ . '/includes/vistas/plantillas/plantilla.php';
+
 ?>
-
-
-<!DOCTYPE html>
-<html lang="es">
-	<head>
-		<link rel="stylesheet" type="text/css" href="CSS/estilo.css" />
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<title>Página de inicio de sesión</title>
-	</head>
-
-
-	<body>
-
-	<?php
-		require_once __DIR__ . '/includes/vistas/comun/cabecera.php';
-	?>
-
-	<!-- Sección de los campos de entrada de datos -->
-	<div style="text-align:center">
-
-		<h2>Iniciar sesión</h2>
-
-		<!-- Formulario para introducir el email y la contraseña -->
-		<form name="form_inicio_sesion" method="post" action="procesar_login.php">
-			<input type="email" name="email" placeholder="Email" size="18"><br><br>
-			<input type="password" name="contrasena" placeholder="Contraseña" size="18"><br><br>
-			<input style="text-align:center" type="submit" value="Iniciar sesión" size="20">
-		</form>
-
-		<p>¿No tienes una cuenta todavía? <a href="registro.php">¡Regístrate!</a></p>
-
-	</div>
-
-	<?php require_once __DIR__ . '/includes/vistas/comun/pie_pagina.php'; ?>
-	<?php require_once __DIR__ . '/includes/vistas/comun/aviso_legal.php'; ?>
-
-	</body>
-
-</html>
