@@ -2,7 +2,7 @@
 
 	session_start();
 
-    $tituloPagina = 'Página de política de privacidad';
+    $tituloPagina = 'Política de privacidad';
 
     $contenidoPagina = <<<EOS
         <div class="contenedor-general">

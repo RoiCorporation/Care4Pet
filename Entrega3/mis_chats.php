@@ -6,7 +6,7 @@
     require_once __DIR__ . '/includes/mysql/DAOs/DAOMensaje.php';
     require_once __DIR__ . '/includes/mysql/DAOs/DAOUsuario.php';
 
-	$tituloPagina = 'Landing page';
+	$tituloPagina = 'Mis chats';
 
 	// Obtener todos los mensajes en los que participe ese usuario.
 	$mensajesUsuario = (DAOMensaje::getInstance())->leerMensajesUsuario($_SESSION['id']);

@@ -35,6 +35,171 @@
 } */
 
 /* estilos item de reserva */
+/* =========================
+   IMPORTAR FONTE
+   ========================= */
+   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+   /* ESTILOS GLOBALES */
+   * {
+     box-sizing: border-box;
+   }
+   
+   body {
+     margin: 0;
+     padding: 0;
+     font-family: 'Poppins', sans-serif; /* Fonte amigável */
+     background-color: #ffffff;
+     color: #062932;
+   }
+   
+   /* =========================
+      HEADER
+      ========================= */
+   header {
+     position: relative;
+     background-color: #ffb077; 
+     color: #062932;
+     padding: 20px 0;
+     text-align: center;
+   }
+  
+  .logo_menor {
+    position: absolute;
+    background-color: transparent;
+    left: 20px; 
+    top: 20px;      
+    width: 180px;
+    height: auto;     
+    opacity: 0.8;    /* Transparencia: 1 = opaco, 0 = total transparente */
+  }
+   
+   /* Titulo principal */
+   header h1 {
+     margin: 0;
+     font-size: 2.5rem;
+     letter-spacing: 1px;
+     font-weight: 700;
+   }
+
+   header h3 {
+     margin: 5px 0 20px;
+     font-size: 1.2rem;
+     font-weight: 500;
+     color: #062932; 
+   }
+   
+   /* Menu nav */
+   
+   header nav {
+    margin-bottom: 0;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 0; 
+  }
+
+  header nav .menu-bar {
+    display: inline-block;      /* buttons agrupados */  
+    overflow: hidden;           
+  }
+
+  header nav .menu-bar a.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ffb077; 
+    color: #062932;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s, transform 0.3s;
+    margin: 0;          
+    border: none;      
+    border-radius: 0;   
+  }
+   /* efecto hover */
+   header nav .menu-bar a.button:hover {
+     background-color: #ffddc5;;
+     transform: scale(1.05);
+   }
+   
+   /* =========================
+      MAIN --- texto/contenido principal
+      ========================= */
+   main {
+     max-width: 1500px;
+     margin: 20px auto;
+     padding: 0 20px;
+   }
+
+   main p {
+    text-align: center;
+  }
+   
+   /* =========================
+      FOOTER
+      ========================= */
+   footer {
+     background-color: #ffddc5;
+     color: #062932;
+     padding: 20px;
+     text-align: center;
+     margin-top: 40px;
+   }
+
+   /* logo de homepage*/
+   .logo {
+    width: 200px;            
+    display: block;
+    margin: 0 auto;
+    opacity: 0;              /* inicia invisible */
+    transform: translateY(20px); /* deslocamento pequeño */
+    animation: fadeIn 1s forwards; /* animacion sencilla */
+    animation-delay: 0.7s;   /* delay */
+  }
+  
+  /* Definicion del fadeIn */
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+
+.aviso-legal {
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    background-color: #ffddc5;
+}
+
+.aviso-legal a.button{
+    display: inline-block;
+    padding: 10px 20px;
+    background-color:  #ffddc5; 
+    color: #062932;
+    text-decoration: underline;
+    font-weight: 600;
+    /*transition: background-color 0.3s, transform 0.3s;*/ /* activa esto para cambiar el color del fondo al hacer hover */
+    margin: 0;          
+    border: none;      
+    border-radius: 0;   
+
+}
+   
+.enlaces_footer a.button{
+        display: inline-block;
+        padding: 10px 20px;
+        background-color:  #ffddc5; 
+        color: #062932;
+        text-decoration: underline;
+        font-weight: 600;
+        /*transition: background-color 0.3s, transform 0.3s;*/
+        margin: 0;          
+        border: none;       
+        border-radius: 0;   
+}
+
 .reserva-box {
     background-color: #fff;
     border: 1px solid #ccc;
@@ -469,4 +634,16 @@ por el otro usuario */
     margin-bottom: 15px;
     display: flex;
     justify-content: center;
+}
+
+
+
+/* |-----------------   LOGIN   -----------------| */
+
+/* Clase para centrar el formulario */
+.formulario-login-campos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
 }

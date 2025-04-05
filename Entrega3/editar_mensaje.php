@@ -23,7 +23,7 @@
         $textoMensajeOriginal
     );
 
-    $contenidoPagina .= $htmlFormularioMensaje = $formularioEdicionMensaje->gestiona();
+    $contenidoPagina .= $formularioEdicionMensaje->gestiona();
 
     $contenidoPagina .= <<<EOS
         </div>
