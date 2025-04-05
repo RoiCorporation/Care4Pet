@@ -39,6 +39,7 @@ $error = null;
 <head>
     <link rel="stylesheet" type="text/css" href="<?= RUTA_CSS ?>estilo.css" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <title>Página de Contratación</title>
 </head>
 <body>
@@ -74,7 +75,16 @@ $error = null;
                         
                         <!-- Info cuidador -->
                         <div class="info-cuidador">
-                            <h3><?= htmlspecialchars($usuario->getNombre() . ' ' . $usuario->getApellidos()) ?></h3>
+                            <h3>
+                                <?= htmlspecialchars($usuario->getNombre() . ' ' . $usuario->getApellidos()) ?>
+                                <?php
+                                    echo "<!-- Verificado para " . $usuario->getId() . ": " . $usuario->getVerificado() . " -->";
+                                ?>
+
+                                <?php if ($usuario->getVerificado() == 1): ?>
+                                    <i class="fas fa-check-circle" style="color: #1DA1F2; margin-left: 5px;"></i> <!-- Ícono de verificación -->
+                                <?php endif; ?>
+                            </h3>
                             <p class="valoracion">Valoración: <?= htmlspecialchars($cuidador->getValoracion()) ?>/5</p>
                             <p class="descripcion"><?= htmlspecialchars($cuidador->getDescripcion()) ?></p>
                             <p class="serviciosAdicionales"><strong>Servicios adicionales:</strong> <?= htmlspecialchars($cuidador->getServiciosAdicionales()) ?></p>

@@ -170,7 +170,9 @@ CREATE TABLE `usuarios` (
   `esCuidador` tinyint(1) NOT NULL DEFAULT 0,
   `esAdmin` tinyint(1) NOT NULL DEFAULT 0,
   `cuentaActiva` tinyint(1) NOT NULL DEFAULT 1,
-  `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp()
+  `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp(),
+  `verificado` tinyint(1) NOT NULL DEFAULT 0,
+  `documento_verificacion` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --

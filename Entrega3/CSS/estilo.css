@@ -34,6 +34,32 @@
     display: block;
 } */
 
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    width: 100%;
+    overflow-x: hidden; /* Evita scroll horizontal en móviles */
+}
+@media (max-width: 768px) {
+    body {
+        overflow-x: hidden;
+    }
+
+    html {
+        overflow-x: hidden;
+    }
+}
+
+
+
+
 /* estilos item de reserva */
 /* =========================
    IMPORTAR FONTE
@@ -263,21 +289,20 @@
 
 main {
     flex-grow: 1;
-    padding: 10px; /* Espaciado dentro del contenido */
-    display: flex;
+    padding: 10px;
     flex-direction: column;
-    position: relative; /* Para que los botones se posicionen correctamente */
+    position: relative; 
     overflow: hidden;
+  
 }
 
 
 .contenedorAd {
-    display: flex; /* Coloca los elementos en fila */
+    display: flex; 
     align-items: stretch;
     width: 100%;
     box-sizing: border-box;
-   
-
+    height: 400px;
 }
 .contenidoAd {
     display: flex;
@@ -286,7 +311,6 @@ main {
     gap: 20px;
     width: 100%;
     position: relative;
-
 }
 
 .listaAdGu {
@@ -308,14 +332,15 @@ main {
     display: inline-block;            
 }
 
+
 .prev, .next {
-    background: none; /* Elimina el fondo */
-    border: none; /* Elimina el borde */
-    font-size: 32px; /* Aumenta el tamaño del símbolo */
-    font-weight: bold; /* Hace que el símbolo sea más visible */
+    background: none; 
+    border: none; 
+    font-size: 32px; 
+    font-weight: bold;
     cursor: pointer;
-    color: black; /* Cambia el color según tu diseño */
-    padding: 0 10px; /* Espaciado para que sea fácil de hacer clic */
+    color: black; 
+    padding: 0 10px;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -333,6 +358,21 @@ main {
     color: #007bff; /* Cambia de color al pasar el cursor */
 }
 
+.boton-link {
+    display: inline-block;
+    padding: 2px 4px;
+    background-color: none;
+    color: black;
+    text-decoration: none;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.boton-link:hover {
+    background-color: none;
+}
+
 
 .estadisticas {
     text-align: center;
@@ -344,21 +384,15 @@ main {
 
 .titulosAd {  
     display: flex;
-  
-   
+    
 }
-
-
-/* Sidebar */
 .sidebarAd {
     flex: 0 0 300px;
     padding: 10px;
 }
 
 .sidebarAd h2 {
-
- 
-    text-align: left; /* Asegura que el título esté alineado a la izquierda */
+    text-align: left; 
 }
 
 /* Lista de elementos */
@@ -383,7 +417,7 @@ main {
 }
 
 .sidebarAd li a:hover {
-    background-color: #34495e;
+
     color: #ecf0f1;
 }
 
@@ -401,14 +435,14 @@ main {
 }
 
 .submenu:hover {
-    background-color: #34495e;
+
     color: #ecf0f1;
 }
 
 .submenu-list {
     display: none;
     list-style: none;
-    padding-left: 0; /* Ajuste para eliminar la indentación */
+    padding-left: 0; 
     margin-top: 5px;
 }
 
@@ -422,7 +456,7 @@ main {
 }
 
 .submenu-list li a:hover {
-    background-color: #34495e;
+
     color: #ecf0f1;
 }
 
@@ -441,6 +475,60 @@ main {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+
+
+@media (max-width: 768px) {
+    .contenedorAd {
+        flex-direction: column; 
+    }
+
+    .sidebarAd {
+        width: 100%;
+        flex: none;
+        padding: 10px 0;
+        box-sizing: border-box;
+    }
+
+    main {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    .contenidoAd {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .listaAdGu {
+        flex-direction: column;
+        align-items: center;
+        overflow-x: hidden;
+        width: 100%;
+        padding: 0;
+    }
+
+    .cuadroAdGu {
+        width: 90%;
+        min-width: unset;
+        margin-bottom: 20px;
+        display: block;
+    }
+
+    .prev,
+    .next {
+        display: none; 
+    }
+
+    .titulosAd {
+        justify-content: center;
+        text-align: center;
+        width: 100%;
     }
 }
 

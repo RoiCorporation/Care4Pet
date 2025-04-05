@@ -67,7 +67,11 @@
                     '{$usuarioACrear->getEsCuidador()}',
                     '{$usuarioACrear->getEsAdmin()}',
                     '{$usuarioACrear->getCuentaActiva()}',
-                    '{$fecha_registro}')";
+                    '{$fecha_registro}',  
+                    '0',
+                    NULL
+                )";
+                    
 
                 $consulta_insercion = $this->con->query($sentencia_sql);
 
@@ -108,10 +112,13 @@
                 $esAdmin = $valores_resultado["esAdmin"];
                 $cuentaActiva = $valores_resultado["cuentaActiva"];
                 $fecha_registro = $valores_resultado["fecha_registro"];
+                $verificado = $valores_resultado["verificado"];
+                $documento_verificacion = $valores_resultado["documento_verificacion"];
 
                 $usuarioBuscado = new tUsuario($idUsuario, $nombre, $apellidos,
                     $correo, $contrasena, $dni, $telefono, $fotoPerfil,
-                    $direccion, $esDueno, $esCuidador, $esAdmin, $cuentaActiva, $fecha_registro);
+                    $direccion, $esDueno, $esCuidador, $esAdmin, $cuentaActiva, $fecha_registro, 
+                    $verificado, $documento_verificacion);
                 
                 return $usuarioBuscado;
             }
@@ -203,8 +210,10 @@
                     $esCuidador = $usuarioActual["esCuidador"];
                     $esAdmin = $usuarioActual["esAdmin"];
                     $cuentaActiva = $usuarioActual["cuentaActiva"];
-                     $fecha_registro = $usuarioActual["fecha_registro"];
-    
+                    $fecha_registro = $usuarioActual["fecha_registro"];
+                    $verificado = $usuarioActual["verificado"];
+                    $documento_verificacion = $usuarioActual["documento_verificacion"];
+                    
                     $usuarioAAnadir = new tUsuario($idUsuario, $nombre, $apellidos,
                         $correo, $contrasena, $dni, $telefono, $fotoPerfil,
                         $direccion, $esDueno, $esCuidador, $esAdmin, $cuentaActiva, $fecha_registro);
@@ -227,35 +236,50 @@
 
 
         // Editar usuario.
-        public function editarUsuario($usuarioAEditar) {
-
-            // Crea la sentencia sql para comprobar el id.
-            $sentencia_sql = "SELECT * FROM usuarios WHERE idUsuario = '{$usuarioAEditar->getId()}'";
-
-            $consulta_comprobacion = $this->con->query($sentencia_sql);
-
-            // Si el usuario con ese id está en la base de datos, reemplaza todos sus
-            // atributos por los del objeto tUsuario pasado como parámetro.
-            if ($consulta_comprobacion->num_rows != 0) {
-                
-                // Si se borra con éxito ese usuario, a continuación se inserta un nuevo
-                // usuario con el mismo id que el anterior, pero con los nuevos valores  
-                // de los atributos.
-                if ((DAOUsuario::getInstance())->borrarUsuario($usuarioAEditar->getId())) {
-                    // Devuelve true si se ha podido insertar el usuario, false en caso
-                    // contrario.
-                    return (DAOUsuario::getInstance())->crearUsuario($usuarioAEditar);
-                }
-                
-                // Devuelve false si no se ha podido borrar con éxito el usuario con los 
-                // valores sin actualizar.
-                else {
-                    return false;
-                }
+        public function actualizarUsuario($usuarioAActualizar) {
+            // Escapar los valores para prevenir inyecciones SQL
+            $nombre = $this->con->real_escape_string($usuarioAActualizar->getNombre());
+            $apellidos = $this->con->real_escape_string($usuarioAActualizar->getApellidos());
+            $dni = $this->con->real_escape_string($usuarioAActualizar->getDni());
+            $direccion = $this->con->real_escape_string($usuarioAActualizar->getDireccion());
+            $correo = $this->con->real_escape_string($usuarioAActualizar->getCorreo());
+            $telefono = $this->con->real_escape_string($usuarioAActualizar->getTelefono());
+            $esCuidador = $this->con->real_escape_string($usuarioAActualizar->getEsCuidador());
+            $esDueno = $this->con->real_escape_string($usuarioAActualizar->getEsDueno());
+            $idUsuario = $this->con->real_escape_string($usuarioAActualizar->getId());
+            $verificado = $this->con->real_escape_string($usuarioAActualizar->getVerificado());
+            $documento_verificacion = $usuarioAActualizar->getDocumentoVerificacion();
+            $valorDocumentoVerificacion = $documento_verificacion === null
+                ? "NULL"
+                : "'" . $this->con->real_escape_string($documento_verificacion) . "'";
+                    
+        
+            // Crear la sentencia SQL para actualizar los datos del usuario
+            $sentencia_sql = "UPDATE usuarios SET 
+                                Nombre = '$nombre',
+                                Apellidos = '$apellidos',
+                                DNI = '$dni',
+                                Direccion = '$direccion',
+                                Correo = '$correo',
+                                Telefono = '$telefono',
+                                esCuidador = '$esCuidador',
+                                esDueno = '$esDueno',
+                                verificado = '$verificado',
+                               documento_verificacion = $valorDocumentoVerificacion
+                              WHERE idUsuario = '$idUsuario'";
+        
+            // Ejecutar la consulta SQL
+            $consulta = $this->con->query($sentencia_sql);
+        
+            // Verificar si la actualización fue exitosa
+            if ($consulta) {
+                return true;  // Devolver true si la actualización fue exitosa
+            } else {
+                return false; // Devolver false si hubo un error
             }
-
         }
-
+        
+        
 
 
 
@@ -290,6 +314,18 @@
             }
 
         }
+
+        public function marcarUsuarioVerificado($idUsuario) {
+            $conn = DatabaseConnection::getInstance()->getConexion();
+        
+    $query = "UPDATE usuarios SET verificado = 1 WHERE idUsuario = ?";
+
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("i", $idUsuario);
+        
+            return $stmt->execute();
+        }
+        
 
 
     }

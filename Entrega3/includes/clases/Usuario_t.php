@@ -5,7 +5,8 @@
         // Atributos de la clase.
         public $id, $nombre, $apellidos, $correo, $contrasena, 
             $dni, $telefono, $fotoPerfil, $direccion, $esDueno, 
-            $esCuidador, $esAdmin, $cuentaActiva, $fecha_registro;
+            $esCuidador, $esAdmin, $cuentaActiva, $fecha_registro,
+            $verificado, $documento_verificacion;
 
 
             
@@ -13,7 +14,7 @@
         public function __construct($id = NULL, $nombre = "", $apellidos = "", 
             $correo = "", $contrasena = "", $dni = "", $telefono = "", $fotoPerfil = "", 
             $direccion = "", $esDueno = 0, $esCuidador = 0, $esAdmin = 0, 
-            $cuentaActiva = 1, $fecha_registro = NULL) {
+            $cuentaActiva = 1, $fecha_registro = NULL, $verificado = 0, $documento_verificacion = NULL) {
             if ($id == NULL) $this->id = rand();
             else $this->id = $id;
             $this->nombre = $nombre;
@@ -29,6 +30,8 @@
             $this->esAdmin = $esAdmin;
             $this->cuentaActiva = $cuentaActiva;
             $this->fecha_registro = $fecha_registro ? $fecha_registro : date('Y-m-d H:i:s');
+            $this->verificado = $verificado;
+            $this->documento_verificacion = $documento_verificacion;
         }
 
         // Resto de funciones (getters y setters).
@@ -48,6 +51,8 @@
         public function getEsAdmin() { return $this->esAdmin; }
         public function getCuentaActiva() { return $this->cuentaActiva; }
         public function getFechaRegistro() { return $this->fecha_registro; }
+        public function getVerificado() { return $this->verificado; }
+        public function getDocumentoVerificacion() { return $this->documento_verificacion; }
     
         // Setters
         public function setId($id) { $this->id = $id; }
@@ -64,6 +69,10 @@
         public function setEsAdmin($esAdmin) { $this->esAdmin = $esAdmin; }
         public function setCuentaActiva($cuentaActiva) { $this->cuentaActiva = $cuentaActiva; }
         public function setFechaRegistro($fecha_registro) { $this->fecha_registro = $fecha_registro; }
+        public function setVerificado($verificado) { $this->verificado = $verificado; }
+        public function setDocumentoVerificacion($documento_verificacion) { 
+            $this->documento_verificacion = $documento_verificacion; 
+        }
     }
 
 ?>
