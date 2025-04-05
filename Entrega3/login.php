@@ -16,7 +16,7 @@
 
 	// Crea e incluye el formulario de login.
     $formularioLogin = new FormularioLogin();
-	$contenidoPagina .= $htmlFormularioMensaje = $formularioLogin->gestiona();
+	$contenidoPagina .= $formularioLogin->gestiona();
 
 	$contenidoPagina .= '</div>';
 

@@ -11,9 +11,9 @@
 
         protected function generaCamposFormulario(&$datos) {
             $emailUsuario = $datos['emailUsuario'] ?? '';
-            $password = $datos['password'] ?? '';
+            $contrasena = $datos['contrasena'] ?? '';
             $htmlErroresGlobales = self::generaListaErroresGlobales($this->errores);
-            $erroresCampos = self::generaErroresCampos(['emailUsuario', 'password'], $this->errores);
+            $erroresCampos = self::generaErroresCampos(['emailUsuario', 'contrasena'], $this->errores);
 
             return <<<EOS
                 $htmlErroresGlobales
@@ -23,9 +23,9 @@
                         <input id="emailUsuario" type="text" name="emailUsuario" value="$emailUsuario" />
                         {$erroresCampos['emailUsuario']}
                         
-                        <label for="password">Contraseña</label>
-                        <input id="password" type="password" name="password" value="$password" />
-                        {$erroresCampos['password']}
+                        <label for="contrasena">Contraseña</label>
+                        <input id="contrasena" type="password" name="contrasena" value="$contrasena" />
+                        {$erroresCampos['contrasena']}
                         
                         <button type="submit" name="login">Iniciar sesión</button>
                         
@@ -42,10 +42,10 @@
                 $this->errores['emailUsuario'] = 'El email de usuario no puede estar vacío.';
             }
 
-            $password = trim($datos['password'] ?? '');
-            $password = filter_var($password, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            if ( ! $password || empty($password) ) {
-                $this->errores['password'] = 'La contraseña no puede estar vacía.';
+            $contrasena = trim($datos['contrasena'] ?? '');
+            $contrasena = filter_var($contrasena, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            if ( ! $contrasena || empty($contrasena) ) {
+                $this->errores['contrasena'] = 'La contraseña no puede estar vacía.';
             }
 
             if (count($this->errores) === 0) {
@@ -57,7 +57,7 @@
                 }
 
                 // Si la contraseña introducida no es correcta, imprime un mensaje.
-                else if ($usuario->getContrasena() != $password) {
+                else if ($usuario->getContrasena() != $contrasena) {
                     $this->errores[] = "La contraseña es incorrecta. Por favor, inténtelo de nuevo.";
                 }
 
