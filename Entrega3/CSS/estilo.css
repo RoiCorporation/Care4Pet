@@ -383,9 +383,9 @@ main {
 }
 
 .titulosAd {  
-    display: flex;
-    
+    text-align: center;
 }
+
 .sidebarAd {
     flex: 0 0 300px;
     padding: 10px;
