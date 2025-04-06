@@ -1,34 +1,11 @@
 <?php
-    session_start();
-    require_once __DIR__ . '/includes/mysql/DatabaseConnection.php';
+require_once __DIR__ . '/includes/config.php';
 
-    // Verificar si el usuario ha iniciado sesión
-    if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
-        header("Location: login.php");
-        exit();
-    }
+$tituloPagina = 'Ajustes (próximamente)';
 
-    // Verificar si el usuario es administrador
-    $esAdmin = isset($_SESSION['esAdmin']) ? $_SESSION['esAdmin'] : 0;
+$contenidoPrincipal = <<<EOS
+    <h2>Coming Soon...</h2>
+    <button onclick="location.href='index.php'">Inicio</button>
+EOS;
 
-    if ($esAdmin != 1) {
-        echo "<h1>Acceso Denegado</h1>";
-        echo "<p>No tienes permisos para acceder a la consola de administración.</p>";
-        exit();
-    }
-?>
-
-<!DOCTYPE html>
-<html lang="es">
-    <head>
-        <link rel="stylesheet" type="text/css" href="CSS/estilo.css">
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <title>Ajustes</title>
-    
-    </head>
-    <body>
-        <h2>Coming Soon...</h2>
-        <button onclick="location.href='index.php'">Inicio</button>   
-
-    </body>
-</html>
+require __DIR__ . '/includes/vistas/plantillas/plantilla_admin.php';

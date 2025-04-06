@@ -1,0 +1,6 @@
+<FilesMatch "\.(pdf|jpg|jpeg|png)$">
+    SetEnvIf Referer "admin" esAdmin
+    Order Deny,Allow
+    Deny from all
+    Allow from env=esAdmin
+</FilesMatch>

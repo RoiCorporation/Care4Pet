@@ -1,5 +1,5 @@
 <aside class="sidebarAd">
-    <h3>Consola de Administración</h3>
+    <h2>Consola de Administración</h2>
     <ul>
         <li><a href="admin_Pc.php">Panel de control</a></li>
         <li><a href="admin_ajustes.php">Ajustes</a></li>
@@ -19,19 +19,24 @@
 
 <script>
    function toggleSubMenu(element) {
-       let submenu = element.nextElementSibling;
-       submenu.style.display = submenu.style.display === "block" ? "none" : "block";
-   }
+    let submenu = element.nextElementSibling;
+    submenu.style.display = submenu.style.display === "block" ? "none" : "block";
 
-   // Abrir el submenú si la URL corresponde a una página relacionada con usuarios
-   document.addEventListener("DOMContentLoaded", function() {
-       let currentPage = window.location.pathname.split("/").pop(); // Obtiene la página actual
-       let userPages = ["admin_Gu.php", "admin_Gv.php", "admin_Cu.php"]; // Lista de páginas relacionadas
+    // Agregar o quitar la clase 'open' para manejar la animación
+    element.parentElement.classList.toggle('open');
+    }
 
-       let submenu = document.querySelector(".submenu-list");
-       if (userPages.includes(currentPage)) {
-           submenu.style.display = "block"; // Mantiene abierto el submenú
-       }
-   });
+    // Abrir el submenú si la URL corresponde a una página relacionada con usuarios
+    document.addEventListener("DOMContentLoaded", function() {
+        let currentPage = window.location.pathname.split("/").pop(); // Obtiene la página actual
+        let userPages = ["admin_Gu.php", "admin_Gv.php", "admin_Cu.php"]; // Lista de páginas relacionadas
+
+        let submenu = document.querySelector(".submenu-list");
+        if (userPages.includes(currentPage)) {
+            submenu.style.display = "block"; // Mantiene abierto el submenú
+            document.querySelector(".submenu").classList.add('open'); // Asegura que el submenú esté abierto si la página está relacionada
+        }
+    });
+
 </script>
 

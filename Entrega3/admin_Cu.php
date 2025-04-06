@@ -1,88 +1,26 @@
 <?php
-	session_start();
-?>
+session_start();
 
+// Mostrar mensaje de éxito si está disponible en la sesión
+if (isset($_SESSION['mensaje_exito'])) {
+    echo "<script type='text/javascript'>
+            alert('" . $_SESSION['mensaje_exito'] . "');
+          </script>";
+    unset($_SESSION['mensaje_exito']);
+}
 
-<!DOCTYPE html>
-<html lang="es">
-	<head>
-		<link rel="stylesheet" type="text/css" href="CSS/estilo.css">
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<title>Página de creación de cuenta</title>	
-	</head>
-	<body>
-		<?php require_once __DIR__ . '/includes/vistas/comun/cabecera.php'; ?>
-		<div class="contenedorAd">
-			<?php require_once __DIR__ . '/sidebarAd.php'; 
-			require_once __DIR__ . '/sidebarAd.php'; ?>			
-			<main class="contenidoAd">
-				<div class="titulosAd">
-					<h2>Crear usuario</h2>
-				</div>
-				<!-- Formulario para introducir los datos para registrarse en la página web -->
-				<form name="form_inicio_sesion" method="post" action="admin_procesar_registro.php">
+require_once __DIR__ . '/includes/FormularioAdminRegistro.php';
+$formulario = new FormularioAdminRegistro();
+$htmlFormulario = $formulario->gestiona();
 
-					<div style="display: table; margin: 0 auto;">
+// Definir título y contenido principal
+$tituloPagina = 'Crear Usuario';
+$contenidoPrincipal = <<<HTML
+    <div class="titulosAd">
+        <h2>Crear usuario</h2> 
+    </div>
+    $htmlFormulario
+HTML;
 
-						<div style="display: table-row;">
-							<div style="display: table-cell; padding: 10px;">
-								<input type="text" name="nombre" placeholder="Nombre" size="18">
-							</div>
-							<div style="display: table-cell; padding: 10px;">
-								<input type="text" name="apellidos" placeholder="Apellidos" size="18">
-							</div>
-						</div>
-
-						<div style="display: table-row;">
-							<div style="display: table-cell; padding: 10px;">
-								<input type="text" name="dni" placeholder="DNI" size="18">
-							</div>
-							<div style="display: table-cell; padding: 10px;">
-								<input type="text" name="direccion" placeholder="Dirección" size="18">
-							</div>
-						</div>
-
-						<div style="display: table-row;">
-							<div style="display: table-cell; padding: 10px;">
-								<input type="email" name="email" placeholder="Email" size="18">
-							</div>
-							<div style="display: table-cell; padding: 10px;">
-								<input type="tel" name="telefono" placeholder="Teléfono" size="18">
-							</div>
-						</div>
-
-						<div style="display: table-row;">
-							<div style="display: table-cell; padding: 10px;">
-								<input type="password" name="contrasena" placeholder="Contraseña" size="18">
-							</div>
-							<div style="display: table-cell; padding: 10px;">
-								<input type="password" name="contrasena repetida" placeholder="Repita la contraseña" size="18">
-							</div>
-						</div>
-						
-					</div><br>
-					<fieldset>
-						<legend>Darse de alta como cuidador</legend>
-						<div style="display: inline-block; text-align: center;">
-							<input type="radio" id="CuidadorSi" name="esCuidador" value="Si">
-							<label for="CuidadorSi">Sí</label>&nbsp;&nbsp;&nbsp;
-							<input type="radio" id="CuidadorNo" name="esCuidador" value="No" checked>
-							<label for="CuidadorNo">No</label>
-						</div><br>
-					</fieldset>
-					<br>
-					<div style="text-align: center;">
-						<input type="submit" value="Crear Usuario">
-					</div>
-
-				</form>
-			
-			</main>
-
-		</div>
-
-		<?php require_once __DIR__ . '/includes/vistas/comun/pie_pagina.php'; ?>
-		<?php require_once __DIR__ . '/includes/vistas/comun/aviso_legal.php'; ?>
-	
-	</body>
-</html>
+// Incluir la plantilla principal
+require_once __DIR__ . '/includes/vistas/plantillas/plantilla_admin.php';

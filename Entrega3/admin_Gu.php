@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 require_once __DIR__ . '/includes/mysql/DatabaseConnection.php';
 
@@ -8,72 +7,87 @@ if (!isset($_SESSION['login']) || $_SESSION['login'] !== true || $_SESSION['esAd
     die("Acceso denegado");
 }
 
+// Mostrar mensaje de éxito (si lo hay)
+if (isset($_SESSION['mensaje_exito'])) {
+    $mensajeExito = $_SESSION['mensaje_exito'];
+    unset($_SESSION['mensaje_exito']);
+}
+
+// Obtener usuarios no administradores
 $db = DatabaseConnection::getInstance();
 $conn = $db->getConnection();
-
-// Obtener los usuarios (excluyendo administradores)
 $sql = "SELECT idUsuario, Nombre, Apellidos, Correo, DNI, FotoPerfil FROM usuarios WHERE esAdmin = 0";
 $result = $conn->query($sql);
+
+// Título de la página
+$tituloPagina = "Gestión de usuarios";
+
+// Contenido principal
+ob_start();
 ?>
 
-<!DOCTYPE html>
-<html lang="es">
-    <head>
-        <link rel="stylesheet" type="text/css" href="CSS/estilo.css">
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <title>Gestión de usuarios</title>    
-    </head>
+<?php if (!empty($mensajeExito)): ?>
+    <script>alert('<?= htmlspecialchars($mensajeExito) ?>');</script>
+<?php endif; ?>
 
-    <body>
+<div class="contenidoAd">
+    <button class="prev" onclick="desplazarIzquierda()">&#10094;</button>
 
-        <?php require_once __DIR__ . '/includes/vistas/comun/cabecera.php'; ?>
+    <div class="listaAdGu">
+        <?php while ($usuario = $result->fetch_assoc()) { ?>
+            <div class="cuadroAdGu">
+                <p><b>Nombre: </b><?= htmlspecialchars(trim($usuario['Nombre'])) ?></p>
+                <p><b>Apellidos: </b><?= htmlspecialchars(trim($usuario['Apellidos'])) ?></p>
+                <p><b>Correo: </b><?= htmlspecialchars(trim($usuario['Correo'])) ?></p>
+                <h4>Opciones:</h4>
+                <button onclick="confirmarEliminacion(<?= $usuario['idUsuario'] ?>)">Eliminar</button>
+                <button onclick="window.location.href='admin_editar_usuario.php?idUsuario=<?= $usuario['idUsuario'] ?>'">Editar</button>
 
-        <div class="contenedorAd">
-            <?php require_once __DIR__ . '/sidebarAd.php'; ?>
+                <?php
+                $idUsuario = $usuario['idUsuario'];
+                $consultaDatos = $conn->query("SELECT verificado, documento_verificacion FROM usuarios WHERE idUsuario = $idUsuario");
+                $datosUsuario = $consultaDatos ? $consultaDatos->fetch_assoc() : ['verificado' => 0, 'documento_verificacion' => null];
+                ?>
 
-            <main class="contenidoAd">
-                <div class="titulosAd">
-                    <h2>Gestión de usuarios</h2>  
-                </div>
+                <?php if ($datosUsuario['verificado']): ?>
+                    <p style="color: green; font-weight: bold;">✔ Verificado</p>
+                <?php elseif ($datosUsuario['documento_verificacion']): ?>
+                    <a href="uploads/<?= htmlspecialchars($datosUsuario['documento_verificacion']) ?>" target="_blank" class="boton-link">Ver documento</a>
+                    <form method="POST" action="admin_verificar_usuario.php" style="margin-top: 10px;">
+                        <input type="hidden" name="idUsuario" value="<?= $idUsuario ?>">
+                        <button type="submit">Verificar</button>
+                    </form>
+                <?php else: ?>
+                    <p style="color: red;">No ha subido documento</p>
+                <?php endif; ?>
+            </div>
+        <?php } ?>
+    </div>
 
-                <div class="contenedorAdGu">
-                    <button class="prev" onclick="desplazarIzquierda()">&#10094;</button> <!--botón con esta forma < -->
+    <button class="next" onclick="desplazarDerecha()">&#10095;</button>
+</div>
 
-                    <div class="listaAdGu">
-                        <?php while ($usuario = $result->fetch_assoc()) { ?> <!--Recorrer la lista de usuarios y mostrar nombre, correo... -->
-                            <div class="cuadroAdGu">
-                                <p><b>Nombre: </b><?php echo htmlspecialchars(trim(strip_tags($usuario['Nombre']))); ?></p>
-                                <p><b>Apellidos: </b><?php htmlspecialchars(trim(strip_tags($usuario['Apellidos']))); ?></p>
-                                <p><b>Correo: </b><?php echo htmlspecialchars(trim(strip_tags($usuario['Correo']))); ?></p>
-                                <h4>Opciones:</h4>
-                                <button onclick="confirmarEliminacion(<?php echo $usuario['idUsuario']; ?>)">Eliminar</button>
-                            </div>
-                            <?php } 
-                        ?>
-                    </div>
-                    <button class="next" onclick="desplazarDerecha()">&#10095;</button>  <!--botón con esta forma > -->
-                </div>
-            </main>
-        </div>
+<?php
+$contenidoPrincipal = ob_get_clean();
 
-        <?php require_once __DIR__ . '/includes/vistas/comun/pie_pagina.php';?>
-        <?php require_once __DIR__ . '/includes/vistas/comun/aviso_legal.php'; ?>
+// JavaScript adicional
+$jsExtra = <<<EOT
+<script>
+    function desplazarIzquierda() {
+        document.querySelector(".listaAdGu").scrollBy({ left: -300, behavior: 'smooth' });
+    }
 
-        <script>
-            function desplazarIzquierda() { // Nuevo nombre
-                document.querySelector(".listaAdGu").scrollBy({ left: -300, behavior: 'smooth' });
-            }
+    function desplazarDerecha() {
+        document.querySelector(".listaAdGu").scrollBy({ left: 300, behavior: 'smooth' });
+    }
 
-            function desplazarDerecha() {
-                document.querySelector(".listaAdGu").scrollBy({ left: 300, behavior: 'smooth' });
-            }
+    function confirmarEliminacion(userId) {
+        if (confirm("¿Estás seguro de que deseas eliminar este usuario? Esta acción no se puede deshacer.")) {
+            window.location.href = "admin_eliminar_usuario.php?idUsuario=" + userId;
+        }
+    }
+</script>
+EOT;
 
-            function confirmarEliminacion(userId) {
-                if (confirm("¿Estás seguro de que deseas eliminar este usuario? Esta acción no se puede deshacer.")) {
-                    window.location.href = "admin_eliminar_usuario.php?idUsuario=" + userId;
-                }
-            }
-        </script>
-
-    </body>
-</html>
+// Incluir la plantilla
+require_once __DIR__ . '/includes/vistas/plantillas/plantilla_admin.php';

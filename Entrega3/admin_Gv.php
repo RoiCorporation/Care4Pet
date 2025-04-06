@@ -60,70 +60,28 @@ $stmt->execute();
 $stmt->bind_result($nuevosUsuarios); // Asociar el resultado a la variable $nuevosUsuarios
 $stmt->fetch();
 $stmt->free_result(); // Liberar el resultado de la consulta
-?>
 
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <link rel="stylesheet" type="text/css" href="CSS/estilo.css"> <!-- Cargar el archivo de estilo CSS -->
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Gestión de visitantes</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Cargar Chart.js para las gráficas -->
-</head>
-<body>
-    <?php require_once __DIR__ . '/includes/vistas/comun/cabecera.php'; ?> <!-- Incluir la cabecera -->
-    <div class="contenedorAd">
-        <?php require_once __DIR__ . '/sidebarAd.php'; ?> <!-- Incluir la barra lateral -->
+// Definir título y contenido principal
+$tituloPagina = 'Gestión de Visitantes';
+$contenidoPrincipal = <<<HTML
+    <div class="titulosAd">
+        <h2>Gestión de visitantes</h2>
+    </div>
+    <div class="contenidoAd">
+        <!-- Gráfica de visitas -->
+        <div>
+            <canvas id="graficaVisitas"></canvas> <!-- Elemento donde se mostrará la gráfica -->
+        </div>
 
-        <main class="contenidoAd">
-            <div class="titulosAd">
-                <h2>Gestión de visitantes</h2>
-            </div>
+        <div class="estadisticas">
+            <h3>Estadísticas</h3>
+            <p>Número total de Visitantes: $totalVisitantes</p>
+            <p>Nuevos usuarios registrados: $nuevosUsuarios</p>
+            <p>Número total de usuarios registrados: $totalUsuariosRegistrados</p>
+            <p>Número de usuarios no registrados: $usuariosNoRegistrados</p>
+        </div>
+    </div>
+HTML;
 
-            <!-- Gráfica de visitas -->
-            <div>
-                <canvas id="graficaVisitas"></canvas> <!-- Elemento donde se mostrará la gráfica -->
-            </div>
-
-            <div class="estadisticas">
-                <h3>Estadísticas</h3>
-                <p>Número total de Visitantes: <?php echo $totalVisitantes; ?></p>
-                <p>Nuevos usuarios registrados: <?php echo $nuevosUsuarios; ?></p>
-                <p>Número total de usuarios registrados: <?php echo $totalUsuariosRegistrados; ?></p>
-                <p>Número de usuarios no registrados: <?php echo $usuariosNoRegistrados; ?></p>
-            </div>
-        </main>
-    </div>  
-
-    <?php require_once __DIR__ . '/includes/vistas/comun/pie_pagina.php';?> <!-- Incluir el pie de página -->
-    <?php require_once __DIR__ . '/includes/vistas/comun/aviso_legal.php'; ?> <!-- Incluir el aviso legal -->
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () { // Cuando el DOM esté completamente cargado
-            const ctx = document.getElementById('graficaVisitas').getContext('2d'); // Obtener el contexto de la gráfica
-            const graficaVisitas = new Chart(ctx, {
-                type: 'bar', // Tipo de gráfica (barra)
-                data: {
-                    labels: ['Visitantes Totales', 'Nuevos Usuarios', 'Usuarios Registrados', 'Usuarios No Registrados'], // Etiquetas de las barras
-                    datasets: [{
-                        data: [<?php echo $totalVisitantes; ?>, <?php echo $nuevosUsuarios; ?>, <?php echo $totalUsuariosRegistrados; ?>, <?php echo $usuariosNoRegistrados; ?>], // Datos dinámicos de las visitas
-                        backgroundColor: 'black', // Color de las barras
-                        borderColor: 'gray',
-                        borderWidth: 1,
-                        label: 'Datos de usuarios' // Etiqueta de la gráfica
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false, // Mantener la proporción de la gráfica
-                    scales: {
-                        y: {
-                            beginAtZero: true // Hacer que el eje Y empiece desde 0
-                        }
-                    }
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+// Incluir la plantilla principal
+require_once __DIR__ . '/includes/vistas/plantillas/plantilla_admin.php';
