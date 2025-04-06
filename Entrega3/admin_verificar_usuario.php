@@ -20,11 +20,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['idUsuario'])) {
 
     // Comprobar si el documento existe físicamente
     if ($documento && file_exists(__DIR__ . '/uploads/' . $documento)) {
-        // Actualizar verificado = 1
-        $stmt = $conn->prepare("UPDATE usuarios SET verificado = 1 WHERE idUsuario = ?");
-        $stmt->bind_param("i", $idUsuario);
-        $stmt->execute();
-        $stmt->close();
+        // Llamar al método marcarUsuarioVerificado
+        $daoUsuario = DAOUsuario::getInstance();
+        $daoUsuario->marcarUsuarioVerificado($idUsuario);
 
         header("Location: admin_Gu.php?mensaje=verificado");
         exit();
