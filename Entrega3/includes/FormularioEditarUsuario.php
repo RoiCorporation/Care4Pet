@@ -113,9 +113,7 @@ class FormularioEditarUsuario extends Formulario {
                     </div>
                 </fieldset>
 
-                <div style="text-align: center;">
-                    <input type="submit" value="Actualizar Usuario">
-                </div>
+                <button type="submit" name="signup" class="btn-delete">Editar Usuario</button>
             </div>
 
                 

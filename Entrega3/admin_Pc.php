@@ -1,5 +1,12 @@
 <?php
+session_start();
 require_once __DIR__ . '/includes/config.php';
+
+// Verificar si el usuario ha iniciado sesión y es administrador
+if (!isset($_SESSION['login']) || $_SESSION['login'] !== true || $_SESSION['esAdmin'] != 1) {
+    die("Acceso denegado");
+}
+
 
 $tituloPagina = 'Panel de Administración';
 ob_start();

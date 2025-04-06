@@ -13,8 +13,7 @@
                 BD_HOST,
                 BD_USER,
                 BD_PASS,
-                BD_NAME,
-                BD_PORT
+                BD_NAME
             );
 
 
