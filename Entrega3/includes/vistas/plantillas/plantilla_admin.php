@@ -7,15 +7,17 @@ if (isset($_SESSION['mensaje_exito'])) {
 $tituloPagina = $tituloPagina ?? 'Administración';
 $contenidoPrincipal = $contenidoPrincipal ?? '';
 $jsExtra = $jsExtra ?? '';
+$jsExtra .= '<script src="/js/editarUsuario.js" defer></script>';
+$jsExtra .= '<script src="js/admin_Gu.js" defer></script>';
+
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="stylesheet" type="text/css" href="CSS/estilo.css" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="UTF-8">
+    <style><?php readfile(__DIR__ . '/../../../CSS/estilo.css'); ?></style>
     <title><?= htmlspecialchars($tituloPagina) ?></title>
-
 </head>
 <body>
 
@@ -35,6 +37,7 @@ $jsExtra = $jsExtra ?? '';
 
     <?php require(dirname(__DIR__) . '/comun/pie_pagina.php'); ?>
     <?php require(dirname(__DIR__) . '/comun/aviso_legal.php'); ?>
+
 
     <?= $jsExtra ?>
 </body>

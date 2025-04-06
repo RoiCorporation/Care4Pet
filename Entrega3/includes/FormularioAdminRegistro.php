@@ -97,7 +97,6 @@ class FormularioAdminRegistro extends Formulario {
         EOS;
     }
 
-
     protected function procesaFormulario(&$datos) {
         $this->errores = [];
 

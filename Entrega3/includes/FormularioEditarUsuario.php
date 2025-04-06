@@ -173,6 +173,7 @@ class FormularioEditarUsuario extends Formulario {
         }
         
     }
+    
     public function procesarFormularioExterno($datos) {
         $this->procesaFormulario($datos);
     }
@@ -213,15 +214,3 @@ class FormularioEditarUsuario extends Formulario {
     
 }
 ?>
-<script>
-window.onload = function () {
-    document.getElementById("CuidadorSi").addEventListener("click", function () {
-        document.getElementById("esDueno").value = "0";
-    });
-
-    document.getElementById("CuidadorNo").addEventListener("click", function () {
-        document.getElementById("esDueno").value = "1";
-    });
-}
-</script>
-
