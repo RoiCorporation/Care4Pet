@@ -44,6 +44,41 @@ class FormularioAdminRegistro extends Formulario {
                         <input type="text" name="apellidos" placeholder="Apellidos" value="$apellidos">
                         {$erroresCampos['apellidos']}
                     </div>
+
+                    <div style="display: table-row;">
+                        <div style="display: table-cell; padding: 10px;">
+                            <input type="email" name="email" placeholder="Email" value="$email">
+                            {$erroresCampos['email']}
+                        </div>
+                        <div style="display: table-cell; padding: 10px;">
+                            <input type="text" name="telefono" placeholder="Teléfono" value="$telefono">
+                            {$erroresCampos['telefono']}
+                        </div>
+                    </div>
+
+                    <div style="display: table-row;">
+                        <div style="display: table-cell; padding: 10px;">
+                            <input type="password" name="contrasena" placeholder="Contraseña" value="$contrasena">
+                            {$erroresCampos['contrasena']}
+                        </div>
+                        <div style="display: table-cell; padding: 10px;">
+                            <input type="password" name="contrasenaRepetida" placeholder="Repita la contraseña" value="$contrasenaRepetida">
+                            {$erroresCampos['contrasenaRepetida']}
+                        </div>
+                    </div>
+
+                    <fieldset>
+                        <legend>Darse de alta como cuidador</legend>
+                        <div style="display: inline-block; text-align: center;">
+                            <input type="radio" id="CuidadorSi" name="esCuidador" value="Si">
+                            <label for="CuidadorSi">Sí</label>&nbsp;&nbsp;&nbsp;
+                            <input type="radio" id="CuidadorNo" name="esCuidador" value="No" checked>
+                            <label for="CuidadorNo">No</label>
+                        </div><br>
+                    </fieldset>
+                    
+                    <button type="submit" name="signup" class="btn-delete">Crear Usuario</button>
+                    
                 </div>
 
                 <div style="display: flex; flex-wrap: wrap; gap: 20px;">

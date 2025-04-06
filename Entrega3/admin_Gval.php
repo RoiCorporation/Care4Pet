@@ -21,7 +21,7 @@ if ($esAdmin != 1) {
 $tituloPagina = 'Gestión de Valoraciones (próximamente)';
 $contenidoPrincipal = <<<HTML
     
-    <button onclick="location.href='index.php'">Inicio</button>
+    <button onclick="location.href='index.php'" class="btn-delete">Inicio</button>
 HTML;
 
 // Incluir la plantilla principal

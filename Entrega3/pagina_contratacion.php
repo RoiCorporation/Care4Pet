@@ -96,7 +96,7 @@ $error = null;
                             <a href="perfil_cuidador.php?id=<?= $usuario->getId() ?>" class="btn-vermas">Ver perfil completo</a>                                <form action="formulario_contratacion.php" method="post">
                                     <input type="hidden" name="idCuidador" value="<?= $cuidador->getId() ?>">
                                     <input type="hidden" name="nombreCuidador" value="<?= htmlspecialchars($usuario->getNombre() . ' ' . $usuario->getApellidos()) ?>">
-                                    <button type="submit" class="btn-contratar">Contratar</button>
+                                    <button type="submit" class="btn-delete">Contratar</button>
                                 </form>
                             </div>
                         </div>

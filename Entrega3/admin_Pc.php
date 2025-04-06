@@ -9,7 +9,7 @@ ob_start();
     <div class="seccion" style="flex: 1;">
         <h2>Inicio</h2>
         <p>Se muestra la página de inicio y la posibilidad de acceder a ella con un botón.</p>
-        <button onclick="location.href='index.php'">Inicio</button>
+        <button onclick="location.href='index.php'" class="btn-delete">Inicio</button>
     </div>
 
     <div class="seccion" style="flex: 1;">

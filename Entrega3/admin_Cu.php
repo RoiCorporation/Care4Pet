@@ -17,7 +17,7 @@ $htmlFormulario = $formulario->gestiona();
 $tituloPagina = 'Crear Usuario';
 $contenidoPrincipal = <<<HTML
     <div class="titulosAd">
-        <h2>Crear usuario</h2> 
+        <h2>Creación de Usuario</h2> 
     </div>
     $htmlFormulario
 HTML;

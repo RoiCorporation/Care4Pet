@@ -61,7 +61,7 @@
 		<?php
 
         echo "<h2 style='text-align:center'>Reserva nr. " . $reserva->getId() . " - Cuidador: " . $reserva->getNombreCuidador() . " " . $reserva->getApellidosCuidador() . "</h2>";
-		echo "<a href='mis_reservas.php'>Volver a la lista de reservas</a>";
+		echo "<a href='mis_reservas.php' class=button>Volver a la lista de reservas</a>";
 
 		echo "<div class='reserva-box'>";
 
@@ -74,7 +74,7 @@
 		if ($reserva->getEsAceptadaPorCuidador()) { 
 			echo "<p style='color:green'><strong>Estado:</strong> Acceptada por cuidador</p>";
 		} else {
-			echo "<p style='color:orange'><strong>Estado:</strong> Pendiente</p>";
+			echo "<p style='color:#ff8e3d'><strong>Estado:</strong> Pendiente</p>";
 		}
 		echo "</div>";
 		echo "</div>";

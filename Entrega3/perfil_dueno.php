@@ -101,9 +101,9 @@
 	<!-- Contenido principal de la página de mis reservas -->
 	<div class="contenedor-general">
     
-        <h2 class="titulo-pagina">Hola, <?php echo $usuario->getNombre() ?>! Bienvedinos a tu perfil! </h2>
+        <h2 class="titulo-pagina">Hola, <?php echo $usuario->getNombre() ?> <br> ¡Bienvenid@ a tu perfil! </h2>
 
-        <h2>Info basica de tu perfil:</h2>
+        <h2>Información basica de tu perfil:</h2>
         <?php 
             echo "<p><strong>Nombre y apellidos:</strong> " . $usuario->getNombre() . " " . $usuario->getApellidos() . "</p>";
             echo "<p><strong>Correo electronico:</strong> " . $usuario->getCorreo() . "</p>";
@@ -129,11 +129,11 @@
                 foreach ($listaMascotas as $mascota) : ?>
                 <div class="mascota-card">
                     <div class="mascota-info">
-                        <?php if ($mascota->getFoto()) { ?>
-                            <img src="<?php echo $mascota->getFoto(); ?>" alt="Foto de Mascota">
-                        <?php } else { ?>
-                            <img src="/img/icon-pet-paw.png" alt="Foto de mascota" width="50" height="50">
-                        <?php } ?>
+                       <!-- <?php #if mascota->getFoto()) { ?>
+                            <img src="<?#php#echo $mascota->getFoto(); ?>" alt="Foto de Mascota">
+                        <?php # else { ?> -->
+                            <img src="Entrega3/img/icon-pet-paw.png" alt="Foto de mascota" width="100" height="100">
+                        <!--<?#php#} ?>-->
                         <p><strong>Descripción:</strong> <?php echo $mascota->getDescripcion(); ?></p>
                         <p><strong>Tipo de Mascota:</strong> 
                             <?php
@@ -141,14 +141,14 @@
                                     $nombreTipoMascota = getNombreTipoMascotaById($listaTiposDeMascotas, intval($mascota->getTipoMascota()));
                                     echo $nombreTipoMascota;
                                 }
-                            ?>
+                            ?> 
                         </p>
                     </div>
-                    <div>
+                    <div class="mascota-actions">
                         <!-- formulario borrar mascota -->
                         <form method="POST" style="display:inline;">
                             <input type="hidden" name="idMascota" value="<?php echo $mascota->getId(); ?>">
-                            <button type="submit" name="deleteMascota">Eliminar</button>
+                            <button type="submit" name="deleteMascota" class="btn-delete">Eliminar Mascota</button>
                         </form>
 
                         <!-- boton para abrir formulario de editar -->
@@ -165,12 +165,13 @@
 
         <!-- <div class="overlay" id="overlay" onclick="togglePopup(false)"></div> -->
         <!-- <div class="popup" id="popupForm"> -->
-        <p>Agregar Nueva Mascota</p>
-        <form method="POST">
-            <label for="descripcion">Descripción:</label><br>
-            <input type="text" name="descripcion" id="descripcion" required><br>
+        <div class="mascota-form">
+        <h3>Agregar Nueva Mascota</h3>
+        <form method="POST" class="formulario-login-campos">
+            <label for="descripcion"><strong>Descripción:</strong></label><br>
+            <input type="text" name="descripcion" id="descripcion" required class="formulario-login-campos"><br>
             <label for="tipoMascota">Tipo de Mascota:</label><br>
-            <select name="tipoMascota" id="tipoMascota" required>                
+            <select name="tipoMascota" id="tipoMascota" required class="formulario-login-campos">                
                 <?php
                 if ($listaTiposDeMascotas != NULL && count($listaTiposDeMascotas) > 0) {
                     foreach ($listaTiposDeMascotas as $tipo) {
@@ -179,9 +180,10 @@
                 }                    
                 ?>
             </select><br>
-            <button type="submit" name="crearMascota">Crear Mascota</button>
+            <button type="submit" name="crearMascota" class="btn-delete">Crear Mascota</button>
             <!-- <button type="button" onclick="togglePopup(false)">Cancelar</button> -->
         </form>
+        </div>
         <!-- </div> -->
 
         <!-- Un popup para editar mascota -->
