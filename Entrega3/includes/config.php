@@ -5,8 +5,9 @@
  */
 define('BD_HOST', 'localhost');
 define('BD_NAME', 'database_care4pet');
-define('BD_USER', 'root');
+define('BD_USER', 'clarisse');
 define('BD_PASS', '');
+define('BD_PORT', 3307);
 
 /**
  * Parámetros de configuración utilizados para generar las URLs y las rutas a ficheros en la aplicación

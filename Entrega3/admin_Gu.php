@@ -40,8 +40,8 @@ ob_start();
                 <p><b>Apellidos: </b><?= htmlspecialchars(trim($usuario['Apellidos'])) ?></p>
                 <p><b>Correo: </b><?= htmlspecialchars(trim($usuario['Correo'])) ?></p>
                 <h4>Opciones:</h4>
-                <button onclick="confirmarEliminacion(<?= $usuario['idUsuario'] ?>)">Eliminar</button>
-                <button onclick="window.location.href='admin_editar_usuario.php?idUsuario=<?= $usuario['idUsuario'] ?>'">Editar</button>
+                <button onclick="confirmarEliminacion(<?= $usuario['idUsuario'] ?>)" class="btn-delete">Eliminar</button>
+                <button onclick="window.location.href='admin_editar_usuario.php?idUsuario=<?= $usuario['idUsuario'] ?>'" class="btn-delete">Editar</button>
 
                 <?php
                 $idUsuario = $usuario['idUsuario'];
@@ -55,7 +55,7 @@ ob_start();
                     <a href="uploads/<?= htmlspecialchars($datosUsuario['documento_verificacion']) ?>" target="_blank" class="boton-link">Ver documento</a>
                     <form method="POST" action="admin_verificar_usuario.php" style="margin-top: 10px;">
                         <input type="hidden" name="idUsuario" value="<?= $idUsuario ?>">
-                        <button type="submit">Verificar</button>
+                        <button type="submit" class="btn-delete">Verificar</button>
                     </form>
                 <?php else: ?>
                     <p style="color: red;">No ha subido documento</p>

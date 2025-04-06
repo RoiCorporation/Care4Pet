@@ -25,7 +25,7 @@ if ($esAdmin != 1) {
 $tituloPagina = 'Chat (próximamente)';
 $contenidoPrincipal = <<<HTML
     
-    <button onclick="location.href='index.php'">Inicio</button>
+    <button onclick="location.href='index.php'" class="btn-delete">Inicio</button>
 HTML;
 
 require_once __DIR__ . '/includes/vistas/plantillas/plantilla_admin.php';

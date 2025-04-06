@@ -89,7 +89,7 @@ class FormularioAdminRegistro extends Formulario {
                         </div><br>
                     </fieldset>
                     
-                    <button type="submit" name="signup">Crear Usuario</button>
+                    <button type="submit" name="signup" class="btn-delete">Crear Usuario</button>
                     
                 </div>
         EOS;

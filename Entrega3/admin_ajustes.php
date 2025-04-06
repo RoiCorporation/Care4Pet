@@ -5,7 +5,7 @@ $tituloPagina = 'Ajustes (próximamente)';
 
 $contenidoPrincipal = <<<EOS
     <h2>Coming Soon...</h2>
-    <button onclick="location.href='index.php'">Inicio</button>
+    <button onclick="location.href='index.php'" class="btn-delete">Inicio</button>
 EOS;
 
 require __DIR__ . '/includes/vistas/plantillas/plantilla_admin.php';
