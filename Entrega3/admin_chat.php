@@ -1,11 +1,10 @@
 <?php
 session_start();
-require_once __DIR__ . '/includes/mysql/DatabaseConnection.php';
+require_once __DIR__ . '/includes/config.php';
 
-// Verificar si el usuario ha iniciado sesión
-if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
-    header("Location: login.php");
-    exit();
+// Verificar si el usuario ha iniciado sesión y es administrador
+if (!isset($_SESSION['login']) || $_SESSION['login'] !== true || $_SESSION['esAdmin'] != 1) {
+    die("Acceso denegado");
 }
 
 // Verificar si el usuario es administrador

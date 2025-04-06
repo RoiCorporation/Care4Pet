@@ -94,24 +94,25 @@
                 <p>No se pudo cargar la información del usuario.</p>
             <?php endif; ?>
             <?php
-            $verificado = false;
-            $consultaVerificacion = $con->query("SELECT verificado FROM usuarios WHERE idUsuario = $id");
-            if ($consultaVerificacion) {
-                $verificado = $consultaVerificacion->fetch_assoc()['verificado'] ?? false;
-            }
-            ?>
+                $verificado = false;
+                $consultaVerificacion = $con->query("SELECT verificado FROM usuarios WHERE idUsuario = $id");
+                if ($consultaVerificacion) {
+                    $verificado = $consultaVerificacion->fetch_assoc()['verificado'] ?? false;
+                }
+                ?>
 
-            <h3>Verificación de identidad</h3>
-            <?php if ($verificado): ?>
-                <p style="color: green; font-weight: bold;">✔ Ya estás verificado</p>
-            <?php else: ?>
-                <p style="color: red;">❌ No estás verificado todavía.</p>
-                <form action="subir_documento_verificacion.php" method="POST" enctype="multipart/form-data">
-                    <label for="documento">Sube tu DNI o pasaporte:</label><br>
-                    <input type="file" name="documento_verificacion" id="documento" accept=".jpg,.jpeg,.png,.pdf" required><br><br>
-                    <button type="submit">Enviar documento</button>
-                </form>
+                <h3>Verificación de identidad</h3>
+                <?php if ($verificado): ?>
+                    <p class="verificado">✔ Ya estás verificado</p>
+                <?php else: ?>
+                    <p class="no-verificado">❌ No estás verificado todavía.</p>
+                    <form action="subir_documento_verificacion.php" method="POST" enctype="multipart/form-data">
+                        <label for="documento">Sube tu DNI o pasaporte:</label><br>
+                        <input type="file" name="documento_verificacion" id="documento" accept=".jpg,.jpeg,.png,.pdf" required><br><br>
+                        <button type="submit">Enviar documento</button>
+                    </form>
             <?php endif; ?>
+
 
 		</section>
             <section div class="detalles-servicios">

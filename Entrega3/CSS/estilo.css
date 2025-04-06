@@ -349,7 +349,7 @@ main {
     gap: 30px;
     padding: 20px;
     position: relative;
-    width: 80%;
+    width: 85%;
     overflow: visible; 
 }
 .cuadroAdGu {
@@ -360,12 +360,13 @@ main {
     background-color: #f9f9f9;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
     flex-shrink: 0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Añadimos transición */
 }
-.carousel-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
+
+/* Efecto al pasar el cursor */
+.cuadroAdGu:hover {
+    transform: scale(1.05); /* Aumenta ligeramente el tamaño */
+    box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.2); /* Sombra más grande */
 }
 
 .listaAdGu {
@@ -376,31 +377,40 @@ main {
     scroll-behavior: smooth;
     padding: 15px 0;
     white-space: nowrap;
+    width: 100%; 
 }
-
+.carousel-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
 .prev, .next {
     position: static; /* Ya no están encima */
     font-size: 24px;
     font-weight: bold;
-    background-color: #007bff;
     color: white;
     border: none;
     padding: 10px 16px;
     border-radius: 50%;
     cursor: pointer;
+    background-color: #ff964b; /* Fondo igual al del contenedor */
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1); /* Opcional, agrega sombra */
     transition: background-color 0.3s ease;
     flex-shrink: 0;
+    margin: 0 20px;
+    z-index: 2; 
 }
 
 .prev:hover, .next:hover {
-    color: #ff964b; /* Cambia de color al pasar el cursor */
+    color: #ff7512; /* Cambia de color al pasar el cursor */
 }
 
 
 .boton-link, .cuadroAdGu button {
     display: inline-block;
     padding: 8px 14px;
-    background-color: #007bff;
+    background-color: #ff964b;
     color: white;
     border: none;
     border-radius: 8px;
@@ -410,11 +420,6 @@ main {
     transition: background-color 0.3s ease;
     margin: 5px 5px 0 0;
 }
-
-.boton-link:hover, .cuadroAdGu button:hover {
-    background-color: #0056b3;
-}
-
 
 .estadisticas {
     text-align: center;
@@ -591,6 +596,40 @@ main {
     }
 }
 
+/* Estilos para la verificación */
+.verificado {
+    color: green;
+    font-weight: bold;
+}
+
+.no-verificado {
+    color: red;
+}
+
+form label {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+form input[type="file"] {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+form button {
+    background-color: #ff964b;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #ff7512;
+}
 
 
 

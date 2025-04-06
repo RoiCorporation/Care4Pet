@@ -64,9 +64,6 @@ $stmt->free_result(); // Liberar el resultado de la consulta
 // Definir título y contenido principal
 $tituloPagina = 'Gestión de Visitantes';
 $contenidoPrincipal = <<<HTML
-    <div class="titulosAd">
-        <h2>Gestión de visitantes</h2>
-    </div>
     <div class="contenidoAd">
         <!-- Gráfica de visitas -->
         <div>
