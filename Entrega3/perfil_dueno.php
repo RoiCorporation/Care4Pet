@@ -121,15 +121,15 @@
 
             <h3>Verificación de identidad</h3>
             <?php if ($verificado): ?>
-                <p class="verificado">✔ Ya estás verificado</p>
+                <p>✔ Ya estás verificado</p>
             <?php else: ?>
-                <p class="no-verificado">❌ No estás verificado todavía.</p>
+                <p>❌ No estás verificado todavía.</p>
                 <form action="subir_documento_verificacion.php" method="POST" enctype="multipart/form-data">
-                <label for="documento">Sube tu DNI o pasaporte:</label><br>
+                    <label for="documento">Sube tu DNI o pasaporte:</label><br>
                     <input type="file" name="documento_verificacion" id="documento" accept=".jpg,.jpeg,.png,.pdf" required><br><br>
                     <button type="submit">Enviar documento</button>
                 </form>
-        <?php endif; ?>
+            <?php endif; ?>
 
         <?php if ($usuario->getFotoPerfil()) { ?>
             <img src="<?php echo $usuario->getFotoPerfil(); ?>" alt="Foto de dueno">

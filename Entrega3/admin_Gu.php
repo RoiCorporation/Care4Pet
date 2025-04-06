@@ -14,12 +14,12 @@ if (isset($_SESSION['mensaje_exito'])) {
 }
 
 // Obtener usuarios no administradores
+// Obtener usuarios no administradores
 $db = DatabaseConnection::getInstance();
 $conn = $db->getConnection();
-$sql = "SELECT idUsuario, Nombre, Apellidos, Correo, DNI, FotoPerfil FROM usuarios WHERE esAdmin = 0";
+$sql = "SELECT idUsuario, Nombre, Apellidos, Correo, DNI, FotoPerfil, esCuidador, esDueno FROM usuarios WHERE esAdmin = 0";
 $result = $conn->query($sql);
 
-// Título de la página
 $tituloPagina = "Gestión de usuarios";
 
 // Contenido principal
@@ -72,23 +72,7 @@ ob_start();
 $contenidoPrincipal = ob_get_clean();
 
 
-$jsExtra = <<<EOT
-<script>
-    function desplazarIzquierda() {
-        document.querySelector(".listaAdGu").scrollBy({ left: -300, behavior: 'smooth' });
-    }
-
-    function desplazarDerecha() {
-        document.querySelector(".listaAdGu").scrollBy({ left: 300, behavior: 'smooth' });
-    }
-
-    function confirmarEliminacion(userId) {
-        if (confirm("¿Estás seguro de que deseas eliminar este usuario? Esta acción no se puede deshacer.")) {
-            window.location.href = "admin_eliminar_usuario.php?idUsuario=" + userId;
-        }
-    }
-</script>
-EOT;
+$jsExtra = '<script src="js/admin_Gu.js" defer></script>';
 
 // Incluir la plantilla
 require_once __DIR__ . '/includes/vistas/plantillas/plantilla_admin.php';
