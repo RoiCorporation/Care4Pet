@@ -49,7 +49,7 @@
 <div class="contenedor-general">
     <h2 class="titulo-pagina">Vas a contratar a <?= htmlspecialchars($_SESSION['nombreCuidador']) ?></h2>
 
-    <form action="procesar_contratacion.php" method="post">
+    <form action="procesar_contratacion.php" method="post" class="formulario-reserva">
         <!-- Selección de mascota -->
         <label>1. Elige la mascota:</label><br>
         <select id="mascota" name="idMascota" required>
@@ -83,7 +83,7 @@
         <input type="text" id="cvv" name="cvv" required><br><br>
 
         <!-- Botón de reserva -->
-        <input type="submit" value="Confirmar reserva">
+        <input type="submit" value="Confirmar reserva" class="btn-delete">
     </form>
 </div>
 

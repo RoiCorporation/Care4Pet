@@ -80,13 +80,13 @@
 		
 				echo "<form method='POST'>";
 				echo "<input type='hidden' name='idReserva' value='" . $reserva->getId() . "'>";
-				echo "<a href='detalles_reserva.php?reserva=" . $reserva->getId() . "'>Ver reserva</a>";
+				echo "<a href='detalles_reserva.php?reserva=" . $reserva->getId() . "' class='button'>Ver reserva</a>";
 
 				$finicio = new DateTime($reserva->getFechaInicio());
 				$now = new DateTime();
 
 				if ($finicio > $now) {
-					echo "<button type='submit'>Cancelar</button>";
+					echo "<button type='submit'class='btn-delete'>Cancelar reserva</button>";
 				}
 				echo "</form>";
 				echo "</div>";

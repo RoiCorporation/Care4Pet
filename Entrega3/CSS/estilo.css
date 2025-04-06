@@ -48,7 +48,7 @@
    body {
      margin: 0;
      padding: 0;
-     font-family: 'Poppins', sans-serif; /* Fonte amigável */
+     font-family: 'Poppins', sans-serif; 
      background-color: #ffffff;
      color: #062932;
    }
@@ -58,22 +58,21 @@
       ========================= */
    header {
      position: relative;
-     background-color: #ffb077; 
+     background-color: #ff964b; 
      color: #062932;
      padding: 20px 0;
      text-align: center;
    }
   
-  .logo_menor {
+.logo_menor {
     position: absolute;
     background-color: transparent;
-    left: 20px; 
-    top: 20px;      
+    left: 5px; 
+    top: 0px;  
     width: 180px;
     height: auto;     
     opacity: 0.8;    /* Transparencia: 1 = opaco, 0 = total transparente */
-  }
-   
+}
    /* Titulo principal */
    header h1 {
      margin: 0;
@@ -93,7 +92,7 @@
    
    header nav {
     margin-bottom: 0;
-    margin-top: 10px;
+    margin-top: 0px;
     display: flex;
     justify-content: center;
     gap: 0; 
@@ -173,7 +172,7 @@
     background-color: #ffddc5;
 }
 
-.aviso-legal a.button{
+.aviso-legal a.button, .enlaces_footer a.button {
     display: inline-block;
     padding: 10px 20px;
     background-color:  #ffddc5; 
@@ -186,19 +185,25 @@
     border-radius: 0;   
 
 }
-   
-.enlaces_footer a.button{
-        display: inline-block;
-        padding: 10px 20px;
-        background-color:  #ffddc5; 
-        color: #062932;
-        text-decoration: underline;
-        font-weight: 600;
-        /*transition: background-color 0.3s, transform 0.3s;*/
-        margin: 0;          
-        border: none;       
-        border-radius: 0;   
+
+.contenedor-general a.button{
+    display: inline-block;
+    padding: 10px 20px;
+    background-color:  transparent; 
+    color: #062932;
+    text-decoration: underline;
+    font-weight: 600;
+    /*transition: background-color 0.3s, transform 0.3s;*/ /* activa esto para cambiar el color del fondo al hacer hover */
+    margin: 15px;          
+    border: none;      
+    border-radius: 0;
 }
+
+.contenedor-general a.button:hover {
+    background-color: #fee6d5;;
+    transform: scale(1.0);
+}
+   
 
 .reserva-box {
     background-color: #fff;
@@ -247,20 +252,49 @@
     padding: 20px;
     margin: 20px 0;
     display: flex;
-    align-items: center;
+    flex-direction: row;
+    align-items: flex-start;
+    position: relative;
     justify-content: space-between;
+}
+
+.mascota-actions {
+    align-self: flex-end;
+    margin-top: auto;
+    margin-left: 20px;
 }
 
 .mascota-info {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .mascota-info img {
     max-width: 150px;
+    max-height: 150px;
     border-radius: 8px;
     margin-right: 20px;
+    object-fit: cover;
 }
 
+
+.mascota-form {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px; 
+    margin: 20px auto; 
+    width: 90%; 
+    max-width: 600px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
 .sidebarAd {
     width: 300px; /* Barra lateral con un ancho fijo */
     flex-shrink: 0; /* No permite que la barra lateral se reduzca */
@@ -375,7 +409,7 @@
 }
 
 .valoracion {
-    color: #f39c12;
+    color: #fca05f;
     font-weight: bold;
     margin-bottom: 10px;
     display: flex;
@@ -409,31 +443,17 @@
 }
 
 .btn-vermas {
-    color: #3498db;
+    color: #062932;
     text-decoration: none;
     font-weight: bold;
     transition: color 0.2s;
 }
 
 .btn-vermas:hover {
-    color: #2980b9;
+    color: #062932;
     text-decoration: underline;
 }
 
-.btn-contratar {
-    background-color: #2ecc71;
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.2s;
-}
-
-.btn-contratar:hover {
-    background-color: #27ae60;
-}
 
 /* Mensajes */
 .sin-resultados {
@@ -457,12 +477,18 @@
 /* Clase para el título de cada página */
 .titulo-pagina {
     text-align: center;
+    margin-bottom: 50px;
+    margin-top: 0px;
+    padding-top: 0;
+    font-size: 2em;
 }
 
 /* Clase para el bloque principal de contenido de cada página */
 .contenedor-general {
-    margin-left: 200px;
+    margin-top: 0px;
     margin-right: 200px;
+    margin-left: 200px;
+    
 }
 
 /* Clase para la ventana scroll de los mensajes */
@@ -512,7 +538,24 @@ por el otro usuario */
     justify-content: center;
 }
 
+.btn-delete{
+    padding: 10px 20px;
+    background-color: #ffb077; 
+    color: #062932;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.3s;
+    margin: 0;          
+    border: none;      
+    border-radius: 5px; 
+    bottom: 0px;
 
+}
+
+.btn-delete:hover {
+    background-color: #ffddc5;;
+    transform: scale(1.05);
+}
+    
 
 /* |-----------------   LOGIN   -----------------| */
 
@@ -520,6 +563,14 @@ por el otro usuario */
 .formulario-login-campos {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.formulario-reserva {
+    display: flex;
+    flex-direction: row;
     align-items: center;
     gap: 10px;
 }
