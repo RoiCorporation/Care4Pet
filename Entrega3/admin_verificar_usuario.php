@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once __DIR__ . '/includes/mysql/DatabaseConnection.php';
+require_once __DIR__ . '/includes/mysql/DAOs/DAOUsuario.php';
 
 if (!isset($_SESSION['login']) || $_SESSION['login'] !== true || $_SESSION['esAdmin'] != 1) {
     die("Acceso denegado");

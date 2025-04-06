@@ -67,6 +67,7 @@ $htmlFormulario = $form->gestiona();
     <main>
         <div class="titulosAd">
             <h2>Editar Usuario</h2>
+            <p class="subtitulo">Modifica los detalles del usuario en esta sección.</p>
         </div>
 
         <div class="seccion" style="padding: 20px;">

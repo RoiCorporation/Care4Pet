@@ -1,5 +1,3 @@
-
-
 <?php
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
@@ -103,12 +101,7 @@ class FormularioEditarUsuario extends Formulario {
                         <input id="documento_verificacion" type="file" name="documento_verificacion" size="18" />
                     </div>
                 </div>
-
-                
-
-            </div><br>  
-
-            <div style="display: table-row; position: absolute; left: 32%;">
+            <div class="formulario-container">
                 <fieldset>
                     <legend>Darse de alta como cuidador</legend>
                     <div style="display: inline-block; text-align: center;">
@@ -116,14 +109,20 @@ class FormularioEditarUsuario extends Formulario {
                         <label for="CuidadorSi">Sí</label>&nbsp;&nbsp;&nbsp;
                         <input type="radio" id="CuidadorNo" name="esCuidador" value="0" {$checkedCuidadorNo}>
                         <label for="CuidadorNo">No</label>
-                        <input type="hidden" id="esDueno" name="esDueno" value="1"> <!-- Valor inicial es 1 -->
-                        </div><br>
+                        <input type="hidden" id="esDueno" name="esDueno" value="1">
+                    </div>
                 </fieldset>
-                <br>
+
                 <div style="text-align: center;">
                     <input type="submit" value="Actualizar Usuario">
                 </div>
             </div>
+
+                
+
+            </div><br>  
+
+        
         EOS;
         
     }

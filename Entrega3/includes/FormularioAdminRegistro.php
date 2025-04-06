@@ -33,66 +33,68 @@ class FormularioAdminRegistro extends Formulario {
 
         return <<<EOS
             $htmlErroresGlobales
-                <div style="display: table; margin: 0 auto;">
+            <div style="max-width: 900px; margin: 0 auto; padding: 20px; display: flex; flex-direction: column; gap: 20px;">
 
-                    <div style="display: table-row;">
-                        <div style="display: table-cell; padding: 10px;">
-                            <input type="text" name="nombre" placeholder="Nombre" value="$nombre">
-                            {$erroresCampos['nombre']}
-                        </div>
-                        <div style="display: table-cell; padding: 10px;">
-                            <input type="text" name="apellidos" placeholder="Apellidos" value="$apellidos">
-                            {$erroresCampos['apellidos']}
-                        </div>
+                <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+                    <div style="flex: 1; min-width: 250px;">
+                        <input type="text" name="nombre" placeholder="Nombre" value="$nombre">
+                        {$erroresCampos['nombre']}
                     </div>
-
-                    <div style="display: table-row;">
-                        <div style="display: table-cell; padding: 10px;">
-                            <input type="text" name="dni" placeholder="DNI" value="$dni">
-                            {$erroresCampos['dni']}
-                        </div>
-                        <div style="display: table-cell; padding: 10px;">
-                            <input type="text" name="direccion" placeholder="Dirección" value="$direccion">
-                            {$erroresCampos['direccion']}
-                        </div>
+                    <div style="flex: 1; min-width: 250px;">
+                        <input type="text" name="apellidos" placeholder="Apellidos" value="$apellidos">
+                        {$erroresCampos['apellidos']}
                     </div>
-
-                    <div style="display: table-row;">
-                        <div style="display: table-cell; padding: 10px;">
-                            <input type="email" name="email" placeholder="Email" value="$email">
-                            {$erroresCampos['email']}
-                        </div>
-                        <div style="display: table-cell; padding: 10px;">
-                            <input type="text" name="telefono" placeholder="Teléfono" value="$telefono">
-                            {$erroresCampos['telefono']}
-                        </div>
-                    </div>
-
-                    <div style="display: table-row;">
-                        <div style="display: table-cell; padding: 10px;">
-                            <input type="password" name="contrasena" placeholder="Contraseña" value="$contrasena">
-                            {$erroresCampos['contrasena']}
-                        </div>
-                        <div style="display: table-cell; padding: 10px;">
-                            <input type="password" name="contrasenaRepetida" placeholder="Repita la contraseña" value="$contrasenaRepetida">
-                            {$erroresCampos['contrasenaRepetida']}
-                        </div>
-                    </div>
-
-                    <fieldset>
-                        <legend>Darse de alta como cuidador</legend>
-                        <div style="display: inline-block; text-align: center;">
-                            <input type="radio" id="CuidadorSi" name="esCuidador" value="Si">
-                            <label for="CuidadorSi">Sí</label>&nbsp;&nbsp;&nbsp;
-                            <input type="radio" id="CuidadorNo" name="esCuidador" value="No" checked>
-                            <label for="CuidadorNo">No</label>
-                        </div><br>
-                    </fieldset>
-                    
-                    <button type="submit" name="signup">Crear Usuario</button>
-                    
                 </div>
+
+                <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+                    <div style="flex: 1; min-width: 250px;">
+                        <input type="text" name="dni" placeholder="DNI" value="$dni">
+                        {$erroresCampos['dni']}
+                    </div>
+                    <div style="flex: 1; min-width: 250px;">
+                        <input type="text" name="direccion" placeholder="Dirección" value="$direccion">
+                        {$erroresCampos['direccion']}
+                    </div>
+                </div>
+
+                <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+                    <div style="flex: 1; min-width: 250px;">
+                        <input type="email" name="email" placeholder="Email" value="$email">
+                        {$erroresCampos['email']}
+                    </div>
+                    <div style="flex: 1; min-width: 250px;">
+                        <input type="text" name="telefono" placeholder="Teléfono" value="$telefono">
+                        {$erroresCampos['telefono']}
+                    </div>
+                </div>
+
+                <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+                    <div style="flex: 1; min-width: 250px;">
+                        <input type="password" name="contrasena" placeholder="Contraseña" value="$contrasena">
+                        {$erroresCampos['contrasena']}
+                    </div>
+                    <div style="flex: 1; min-width: 250px;">
+                        <input type="password" name="contrasenaRepetida" placeholder="Repita la contraseña" value="$contrasenaRepetida">
+                        {$erroresCampos['contrasenaRepetida']}
+                    </div>
+                </div>
+
+                <fieldset style="text-align: center;">
+                    <legend>Darse de alta como cuidador</legend>
+                    <div style="display: inline-block;">
+                        <input type="radio" id="CuidadorSi" name="esCuidador" value="Si">
+                        <label for="CuidadorSi">Sí</label>&nbsp;&nbsp;&nbsp;
+                        <input type="radio" id="CuidadorNo" name="esCuidador" value="No" checked>
+                        <label for="CuidadorNo">No</label>
+                    </div>
+                </fieldset>
+
+                <div style="text-align: center;">
+                    <button type="submit" name="signup">Crear Usuario</button>
+                </div>
+            </div>
         EOS;
+
     }
 
 

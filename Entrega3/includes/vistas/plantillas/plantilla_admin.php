@@ -6,15 +6,16 @@ if (isset($_SESSION['mensaje_exito'])) {
 
 $tituloPagina = $tituloPagina ?? 'Administración';
 $contenidoPrincipal = $contenidoPrincipal ?? '';
-$jsExtra = $jsExtra ?? ''; // JS opcional
+$jsExtra = $jsExtra ?? '';
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="CSS/estilo.css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title><?= htmlspecialchars($tituloPagina) ?></title>
-    <link rel="stylesheet" type="text/css" href="CSS/estilo.css">
+
 </head>
 <body>
 

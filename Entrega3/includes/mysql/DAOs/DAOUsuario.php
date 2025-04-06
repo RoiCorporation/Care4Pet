@@ -316,15 +316,14 @@
         }
 
         public function marcarUsuarioVerificado($idUsuario) {
-            $conn = DatabaseConnection::getInstance()->getConexion();
-        
             $query = "UPDATE usuarios SET verificado = 1 WHERE idUsuario = ?";
-
-            $stmt = $conn->prepare($query);
+        
+            $stmt = $this->con->prepare($query);
             $stmt->bind_param("i", $idUsuario);
         
             return $stmt->execute();
         }
+        
         
 
 
