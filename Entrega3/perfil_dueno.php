@@ -157,45 +157,47 @@
                 echo "No tiene ninguna mascota agregada";
             } else { 
                 foreach ($listaMascotas as $mascota) : ?>
-                <div class="mascota-card">
-                    <div class="mascota-info">
-                        <!--FOTO mascota--> 
-                        <?php
-                            $foto = $mascota->getFoto();
-                            $rutaFoto = RUTA_APP . 'img/' . $foto;
-
-                            // Asegura que la URL completa esté correcta
-                            $rutaFotoCompleta = 'http://' . $_SERVER['HTTP_HOST'] . $rutaFoto;
-
-                            if ($foto) { 
-                        ?>
-                                <img src="<?= $rutaFotoCompleta ?>" alt="Foto de Mascota" width="100" height="100">
-                            <?php } else { ?>
-                                            <img src="<?= RUTA_IMGS ?>icon-pet-paw.png" alt="Foto de mascota" width="100" height="100">
-                                    <?php } ?>
-                        <!--TERMINA MOSTRAR FOTO-->
-
-                        <p><strong>Descripción:</strong> <?php echo $mascota->getDescripcion(); ?></p>
-                        <p><strong>Tipo de Mascota:</strong> 
+                <li>
+                    <div class="mascota-card">
+                        <div class="mascota-info">
+                            <!--FOTO mascota--> 
                             <?php
-                                if ($listaTiposDeMascotas != NULL) {
-                                    $nombreTipoMascota = getNombreTipoMascotaById($listaTiposDeMascotas, intval($mascota->getTipoMascota()));
-                                    echo $nombreTipoMascota;
-                                }
-                            ?> 
-                        </p>
-                    </div>
-                    <div class="mascota-actions">
-                        <!-- formulario borrar mascota -->
-                        <form method="POST" style="display:inline;">
-                            <input type="hidden" name="idMascota" value="<?php echo $mascota->getId(); ?>">
-                            <button type="submit" name="deleteMascota" class="btn-delete">Eliminar Mascota</button>
-                        </form>
+                                $foto = $mascota->getFoto();
+                                $rutaFoto = RUTA_APP . 'img/' . $foto;
 
-                        <!-- boton para abrir formulario de editar -->
-                        <!-- <button onclick="openEditPopup('<?php echo $mascota->getId(); ?>','<?php echo htmlspecialchars($mascota->getDescripcion(), ENT_QUOTES); ?>','<?php echo htmlspecialchars($mascota->getTipoMascota()); ?>')">Editar</button> -->
+                                // Asegura que la URL completa esté correcta
+                                $rutaFotoCompleta = 'http://' . $_SERVER['HTTP_HOST'] . $rutaFoto;
+
+                                if ($foto) { 
+                            ?>
+                                    <img src="<?= $rutaFotoCompleta ?>" alt="Foto de Mascota" width="100" height="100">
+                                <?php } else { ?>
+                                                <img src="<?= RUTA_IMGS ?>icon-pet-paw.png" alt="Foto de mascota" width="100" height="100">
+                                        <?php } ?>
+                            <!--TERMINA MOSTRAR FOTO-->
+
+                            <p><strong>Descripción:</strong> <?php echo $mascota->getDescripcion(); ?></p>
+                            <p><strong>Tipo de Mascota:</strong> 
+                                <?php
+                                    if ($listaTiposDeMascotas != NULL) {
+                                        $nombreTipoMascota = getNombreTipoMascotaById($listaTiposDeMascotas, intval($mascota->getTipoMascota()));
+                                        echo $nombreTipoMascota;
+                                    }
+                                ?> 
+                            </p>
+                        </div>
+                        <div class="mascota-actions">
+                            <!-- formulario borrar mascota -->
+                            <form method="POST" style="display:inline;">
+                                <input type="hidden" name="idMascota" value="<?php echo $mascota->getId(); ?>">
+                                <button type="submit" name="deleteMascota" class="btn-delete">Eliminar Mascota</button>
+                            </form>
+
+                            <!-- boton para abrir formulario de editar -->
+                            <!-- <button onclick="openEditPopup('<?php echo $mascota->getId(); ?>','<?php echo htmlspecialchars($mascota->getDescripcion(), ENT_QUOTES); ?>','<?php echo htmlspecialchars($mascota->getTipoMascota()); ?>')">Editar</button> -->
+                        </div>
                     </div>
-                </div>
+                </li>
             <?php endforeach; if (count($listaMascotas) == 0) {
                 echo "Actualmente no has agregado ninguna mascota. Haz un click sobre 'Agregar Mascota +' para agregar una mascota.";
             } } ?>
@@ -213,6 +215,7 @@
             <input type="text" name="descripcion" id="descripcion" required class="formulario-login-campos"><br>
             <label for="tipoMascota">Tipo de Mascota:</label><br>
             <select name="tipoMascota" id="tipoMascota" required class="formulario-login-campos">                
+                <option value="" disabled selected>Selecciona un tipo de mascota</option>
                 <?php
                 if ($listaTiposDeMascotas != NULL && count($listaTiposDeMascotas) > 0) {
                     foreach ($listaTiposDeMascotas as $tipo) {

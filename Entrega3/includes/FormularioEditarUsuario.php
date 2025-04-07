@@ -38,92 +38,88 @@ class FormularioEditarUsuario extends Formulario {
         $direccion = $datos['direccion'] ?? $this->direccion;
         $email = $datos['email'] ?? $this->email;
         $telefono = $datos['telefono'] ?? $this->telefono;
-
-        // Definir si los radio buttons estarán marcados o no
-        $checkedCuidadorSi = ($this->esCuidador == 'Si') ? 'checked' : '';
-        $checkedCuidadorNo = ($this->esCuidador == 'No') ? 'checked' : '';
-
-        // Generar errores para cada campo
-        $erroresCampos = self::generaErroresCampos(['nombre', 'apellidos', 'dni', 'direccion', 'email', 'telefono'], $this->errores);
+    
+        $htmlErroresGlobales = self::generaListaErroresGlobales($this->errores);
+        $erroresCampos = self::generaErroresCampos([
+            'nombre', 'apellidos', 'dni', 'direccion', 'email', 'telefono'
+        ], $this->errores);
+    
+        // Marcar radio buttons de cuidador
+        $checkedCuidadorSi = ($this->esCuidador == '1') ? 'checked' : '';
+        $checkedCuidadorNo = ($this->esCuidador == '0') ? 'checked' : '';
+    
+        // Marcar verificado
         $verificadoSiSelected = ($this->verificado == 1) ? 'selected' : '';
         $verificadoNoSelected = ($this->verificado == 0) ? 'selected' : '';
+        $formId = 'formularioEditarUsuario' . $this->idUsuario;
+        
         return <<<EOS
-            <div style="display: table; margin: 0 auto;">
+            <div style="display: table; margin: 0 auto; text-align: center;">
                 <div style="display: table-row;">
                     <div style="display: table-cell; padding: 10px;">
-                        <label for="nombre" style="margin-right: 1px;">Nombre: </label>
-                        <input id="nombre" type="text" name="nombre" value="{$nombre}" size="18" />
+                        <input type="text" name="nombre" placeholder="Nombre" value="$nombre">
                         {$erroresCampos['nombre']}
                     </div>
                     <div style="display: table-cell; padding: 10px;">
-                        <label for="apellidos" style="margin-right: 5px;">Apellidos: </label>           
-                        <input id="apellidos" type="text" name="apellidos" value="{$apellidos}" size="18" />
+                        <input type="text" name="apellidos" placeholder="Apellidos" value="$apellidos">
                         {$erroresCampos['apellidos']}
                     </div>
                 </div>
-
+    
                 <div style="display: table-row;">
                     <div style="display: table-cell; padding: 10px;">
-                        <label for="dni" style="margin-right: 25px;">DNI: </label>
-                        <input id="dni" type="text" name="dni" value="{$dni}" size="18" />
+                        <input type="text" name="dni" placeholder="DNI" value="$dni">
                         {$erroresCampos['dni']}
                     </div>
                     <div style="display: table-cell; padding: 10px;">
-                        <label for="direccion" style="margin-right: 4px;">Dirección: </label>
-                        <input id="direccion" type="text" name="direccion" value="{$direccion}" size="18"/>
+                        <input type="text" name="direccion" placeholder="Dirección" value="$direccion">
                         {$erroresCampos['direccion']}
                     </div>
                 </div>
-
+    
                 <div style="display: table-row;">
                     <div style="display: table-cell; padding: 10px;">
-                        <label for="email" style="margin-right: 15px;">Email:</label>
-                        <input id="email" type="email" name="email" value="{$email}" size="18" />
+                        <input type="email" name="email" placeholder="Email" value="$email">
                         {$erroresCampos['email']}
                     </div>
-                     <div style="display: table-cell; padding: 10px;">
-                        <label for="telefono" style="margin-right: 10px;">Teléfono:</label>
-                        <input id="telefono" type="tel" name="telefono" value="{$telefono}" size="18" />
+                    <div style="display: table-cell; padding: 10px;">
+                        <input type="text" name="telefono" placeholder="Teléfono" value="$telefono">
                         {$erroresCampos['telefono']}
                     </div>
                 </div>
+    
                 <div style="display: table-row;">
                     <div style="display: table-cell; padding: 10px;">
                         <label for="verificado">¿Verificado?:</label>
                         <select name="verificado" id="verificado">
-                            <option value="0" <?php echo $this->verificado == 0 ? 'selected' : ''; ?>No</option>
-                            <option value="1" <?php echo $this->verificado == 1 ? 'selected' : ''; ?>Sí</option>
+                            <option value="0" $verificadoNoSelected>No</option>
+                            <option value="1" $verificadoSiSelected>Sí</option>
                         </select>
-
                     </div>
                     <div style="display: table-cell; padding: 10px;">
                         <label for="documento_verificacion">Documento verificación:</label>
-                        <input id="documento_verificacion" type="file" name="documento_verificacion" size="18" />
+                        <input id="documento_verificacion" type="file" name="documento_verificacion">
                     </div>
                 </div>
-            <div class="formulario-container">
-                <fieldset>
-                    <legend>Darse de alta como cuidador</legend>
-                    <div style="display: inline-block; text-align: center;">
-                        <input type="radio" id="CuidadorSi" name="esCuidador" value="1" {$checkedCuidadorSi}>
-                        <label for="CuidadorSi">Sí</label>&nbsp;&nbsp;&nbsp;
-                        <input type="radio" id="CuidadorNo" name="esCuidador" value="0" {$checkedCuidadorNo}>
-                        <label for="CuidadorNo">No</label>
-                        <input type="hidden" id="esDueno" name="esDueno" value="1">
-                    </div>
-                </fieldset>
-
-                <button type="submit" name="signup" class="btn-delete">Editar Usuario</button>
-            </div>
-
-                
-
-            </div><br>  
-
-        
+    
+                <div class="formulario-container">
+                    <fieldset>
+                        <legend>Darse de alta como cuidador</legend>
+                        <div style="display: inline-block; text-align: center;">
+                            <input type="radio" id="CuidadorSi" name="esCuidador" value="1" $checkedCuidadorSi>
+                            <label for="CuidadorSi">Sí</label>&nbsp;&nbsp;&nbsp;
+                            <input type="radio" id="CuidadorNo" name="esCuidador" value="0" $checkedCuidadorNo>
+                            <label for="CuidadorNo">No</label>
+                            <input type="hidden" id="esDueno" name="esDueno" value="1">
+                        </div>
+                    </fieldset>
+    
+                    <button type="submit" name="signup" class="btn-delete">Editar Usuario</button>
+                </div>
+            </div><br>
         EOS;
-        
     }
+    
 
     protected function procesaFormulario(&$datos) {
         $this->errores = [];

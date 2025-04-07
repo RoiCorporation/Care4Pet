@@ -19,7 +19,7 @@
                 $htmlErroresGlobales
                     <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
 
-                        <label for="email">Email</label>
+                        <label for="emailUsuario">Email</label>
                         <input id="emailUsuario" type="text" name="emailUsuario" value="$emailUsuario" />
                         {$erroresCampos['emailUsuario']}
                         

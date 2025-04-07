@@ -115,7 +115,7 @@
 
 
 		</section>
-            <section div class="detalles-servicios">
+            <section class="detalles-servicios">
                 <h2>Detalles de sus servicios</h2>
                 <?php if ($cuidador): ?> 
 					<p><u>Valoración:</u> <?= htmlspecialchars(number_format($average_valoracion, 2)); ?> ★</p>
@@ -129,7 +129,7 @@
                     <p>No se pudo cargar la información del cuidador.</p>
                 <?php endif; ?>
             </section>
-        </section>
+       
         <section class="solicitudes">
             <h3>Solicitudes de tus servicios</h3>
             <?php if (is_array($listaReservas) && count($listaReservas) > 0): ?>

@@ -22,6 +22,7 @@
             <h2 class="titulo-pagina">
                 Chat con $nombreOtroUsuario 
             </h2>
+        </div>
 
     EOS;
 
