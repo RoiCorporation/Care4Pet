@@ -571,30 +571,32 @@ main {
 @media (max-width: 768px) {
     .contenedorAd {
         flex-direction: column;
-        padding: 20px;
+        padding: 10px;
+        gap: 20px;
     }
 
     .sidebarAd {
         width: 100%;
-        padding: 10px;
+        position: relative;
+        left: 0;
+        box-shadow: none;
     }
 
     .contenidoAd {
         width: 100%;
-        padding: 10px;
-    }
-
-    .listaAdGu {
-        flex-direction: column;
-        align-items: center;
-        overflow-x: hidden;
-        width: 100%;
-        padding: 0;
+        padding: 15px;
+        align-items: stretch; 
     }
 
     .cuadroAdGu {
         width: 100%;
-        margin-bottom: 20px;
+        max-width: 100%;
+    }
+
+    .listaAdGu {
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: stretch;
     }
 
     .prev, .next {
@@ -617,6 +619,14 @@ main {
         padding: 6px 10px; /* Reduce button padding */
         font-size: 12px; /* Reduce font size */
         margin-top: 5px;
+    }
+    .titulosAd h2 {
+        font-size: 1.5rem;
+        margin-top: 20px;
+    }
+
+    .subtitulo {
+        font-size: 0.9rem;
     }
 }
 
