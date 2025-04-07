@@ -177,10 +177,13 @@
                 $esAdmin = $valores_resultado["esAdmin"];
                 $cuentaActiva = $valores_resultado["cuentaActiva"];
                 $fecha_registro = $valores_resultado["fecha_registro"];
+                $verificado = $valores_resultado["verificado"];
+                $documento_verificacion = $valores_resultado["documento_verificacion"];
 
                 $usuarioBuscado = new tUsuario($idUsuario, $nombre, $apellidos,
                     $correo, $contrasena, $dni, $telefono, $fotoPerfil,
-                    $direccion, $esDueno, $esCuidador, $esAdmin, $cuentaActiva, $fecha_registro);
+                    $direccion, $esDueno, $esCuidador, $esAdmin, $cuentaActiva, $fecha_registro, 
+                    $verificado, $documento_verificacion);
                 
                 // Libera memoria.
                 $consulta_resultado->free();
@@ -236,6 +239,11 @@
                         $correo, $contrasena, $dni, $telefono, $fotoPerfil,
                         $direccion, $esDueno, $esCuidador, $esAdmin, $cuentaActiva, $fecha_registro);
 
+                
+                    // Ahora asignamos el valor de 'verificado' al objeto
+                    $usuarioAAnadir->setVerificado($verificado);  // <- Aquí agregamos el 'verificado'
+
+                    // Añadimos el usuario al array
                     $arrayUsuarios[] = $usuarioAAnadir;
                 }
 

@@ -40,6 +40,7 @@ try {
 <html lang="es">
 <head>
     <link rel="stylesheet" type="text/css" href="<?= RUTA_CSS ?>estilo.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Perfil de <?= htmlspecialchars($usuario ? $usuario->getNombre() : 'Cuidador') ?></title>
     <style>
@@ -117,8 +118,8 @@ try {
                 <div class="info-header">
                     <h2>
                         <?= htmlspecialchars($usuario->getNombre() . ' ' . $usuario->getApellidos()) ?>
-                        <?php if ($usuario->getVerificado() == 1): ?>
-                            <i class="fas fa-check-circle verificado-badge"></i>
+                        <?php if ($usuario->getVerificado() == 1): ?> 
+                                <i class="fas fa-check-circle" style="color: #1DA1F2; margin-left: 5px;"></i> <!-- Ícono de verificación -->
                         <?php endif; ?>
                     </h2>
                     <div class="valoracion-grande">

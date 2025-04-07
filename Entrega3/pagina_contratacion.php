@@ -38,6 +38,7 @@ $error = null;
 <html lang="es">
 <head>
     <link rel="stylesheet" type="text/css" href="<?= RUTA_CSS ?>estilo.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Página de Contratación</title>
 </head>
@@ -74,16 +75,16 @@ $error = null;
                         
                         <!-- Info cuidador -->
                         <div class="info-cuidador">
-                            <h3>
-                                <?= htmlspecialchars($usuario->getNombre() . ' ' . $usuario->getApellidos()) ?>
-                                <?php
-                                    echo "<!-- Verificado para " . $usuario->getId() . ": " . $usuario->getVerificado() . " -->";
-                                ?>
+                        <h3>
+                            <?= htmlspecialchars($usuario->getNombre() . ' ' . $usuario->getApellidos()) ?>
+                            <?php
+                                echo "<!-- Verificado para " . $usuario->getId() . ": " . $usuario->getVerificado() . " -->";  // Cambié el acceso aquí
+                            ?>
 
-                                <?php if ($usuario->getVerificado() == 1): ?>
-                                    <i class="fas fa-check-circle" style="color: #1DA1F2; margin-left: 5px;"></i> <!-- Ícono de verificación -->
-                                <?php endif; ?>
-                            </h3>
+                            <?php if ($usuario->getVerificado() == 1): ?> <!-- Cambié el acceso aquí -->
+                                <i class="fas fa-check-circle" style="color: #1DA1F2; margin-left: 5px;"></i> <!-- Ícono de verificación -->
+                            <?php endif; ?>
+                        </h3>
                             <p class="valoracion">Valoración: <?= htmlspecialchars($cuidador->getValoracion()) ?>/5</p>
                             <p class="descripcion"><?= htmlspecialchars($cuidador->getDescripcion()) ?></p>
                             <p class="serviciosAdicionales"><strong>Servicios adicionales:</strong> <?= htmlspecialchars($cuidador->getServiciosAdicionales()) ?></p>
