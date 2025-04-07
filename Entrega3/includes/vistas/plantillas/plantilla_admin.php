@@ -16,6 +16,7 @@ $jsExtra .= '<script src="js/admin_Gu.js" defer></script>';
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style><?php readfile(__DIR__ . '/../../../css/estilo.css'); ?></style>
     <title><?= htmlspecialchars($tituloPagina) ?></title>
 </head>
