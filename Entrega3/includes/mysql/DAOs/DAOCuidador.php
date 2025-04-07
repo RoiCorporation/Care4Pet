@@ -40,9 +40,18 @@ clase que es el DAO -->
         // Crear cuidador.
         public function crearCuidador($cuidadorACrear) {
 
+            // Escapa los atributos del cuidador a insertar en la base de datos.
+            $id = $this->con->real_escape_string($cuidadorACrear->getId());
+            $tiposMascotas = $this->con->real_escape_string($cuidadorACrear->getTiposDeMascotas());
+            $tarifa = $this->con->real_escape_string($cuidadorACrear->getTarifa());
+            $descripcion = $this->con->real_escape_string($cuidadorACrear->getDescripcion());
+            $serviciosAdicionales = $this->con->real_escape_string($cuidadorACrear->getServiciosAdicionales());
+            $valoracion = $this->con->real_escape_string($cuidadorACrear->getValoracion());
+            $zonasAtendidas = $this->con->real_escape_string($cuidadorACrear->getZonasAtendidas());
+
             // Crea la sentencia sql para comprobar que el usuario ya existe en la 
             // base de datos.
-            $sentencia_sql = "SELECT * FROM usuarios WHERE idUsuario = '{$cuidadorACrear->getId()}'";
+            $sentencia_sql = "SELECT * FROM usuarios WHERE idUsuario = '{$id}'";
             
             $consulta_comprobacion = $this->con->query($sentencia_sql);
             
@@ -51,10 +60,10 @@ clase que es el DAO -->
             if ($consulta_comprobacion->num_rows != 0) {
 
                 $sentencia_sql = 
-                "INSERT INTO cuidadores VALUES ('{$cuidadorACrear->getId()}', 
-                    '{$cuidadorACrear->getTiposDeMascotas()}', '{$cuidadorACrear->getTarifa()}', 
-                    '{$cuidadorACrear->getDescripcion()}', '{$cuidadorACrear->getServiciosAdicionales()}', 
-                    '{$cuidadorACrear->getValoracion()}', '{$cuidadorACrear->getZonasAtendidas()}' )";
+                "INSERT INTO cuidadores VALUES (
+                    '$id', '$tiposMascotas', '$tarifa', '$descripcion', 
+                    '$serviciosAdicionales', '$valoracion', '$zonasAtendidas'
+                )";
     
                 $consulta_insercion = $this->con->query($sentencia_sql);
     
@@ -70,8 +79,11 @@ clase que es el DAO -->
         // Leer un cuidador.
         public function leerUnCuidador($idUsuario) {
 
+            // Escapa el valor de $idUsuario.
+            $idEscapado = $this->con->real_escape_string($idUsuario);
+
             // Crea la sentencia sql para comprobar el id.
-            $sentencia_sql = "SELECT * FROM cuidadores WHERE idUsuario = '{$idUsuario}'";
+            $sentencia_sql = "SELECT * FROM cuidadores WHERE idUsuario = '{$idEscapado}'";
 
             $consulta_resultado = $this->con->query($sentencia_sql);
             
@@ -90,6 +102,9 @@ clase que es el DAO -->
 
                 $cuidadorBuscado = new tCuidador($idUsuario, $tiposDeMascotas, $tarifa,
                     $descripcion, $serviciosAdicionales, $valoracion, $zonasAtendidas);
+
+                // Libera memoria.
+                $consulta_resultado->free();
                 
                 return $cuidadorBuscado;
             }
@@ -134,6 +149,9 @@ clase que es el DAO -->
 
                     $arrayCuidadores[] = $cuidadorAAnadir;
                 }
+
+                // Libera memoria.
+                $consulta_resultado->free();
                 
                 return $arrayCuidadores;
             }
@@ -152,8 +170,11 @@ clase que es el DAO -->
         // Editar cuidador.
         public function editarCuidador($cuidadorAEditar) {
 
+            // Escapa el valor del ID de $cuidadorAEditar.
+            $idCuidadorEscapado = $this->con->real_escape_string($cuidadorAEditar->getId());
+
             // Crea la sentencia sql para comprobar el id.
-            $sentencia_sql = "SELECT * FROM cuidadores WHERE idUsuario = '{$cuidadorAEditar->getId()}'";
+            $sentencia_sql = "SELECT * FROM cuidadores WHERE idUsuario = '{$idCuidadorEscapado}'";
 
             $consulta_comprobacion = $this->con->query($sentencia_sql);
 
@@ -164,7 +185,7 @@ clase que es el DAO -->
                 // Si se borra con éxito ese cuidador, a continuación se inserta un nuevo
                 // cuidador con el mismo id que el anterior, pero con los nuevos valores  
                 // de los atributos.
-                if ((DAOCuidador::getInstance())->borrarCuidador($cuidadorAEditar->getId())) {
+                if ((DAOCuidador::getInstance())->borrarCuidador($idCuidadorEscapado)) {
                     // Devuelve true si se ha podido insertar el cuidador, false en caso
                     // contrario.
                     return (DAOCuidador::getInstance())->crearCuidador($cuidadorAEditar);
@@ -184,9 +205,12 @@ clase que es el DAO -->
 
         // Borrar cuidador.
         public function borrarCuidador($idUsuario) {
+
+            // Escapa el valor de $idUsuario.
+            $idEscapado = $this->con->real_escape_string($idUsuario);
             
             // Crea la sentencia sql para comprobar el id.
-            $sentencia_sql = "SELECT * FROM cuidadores WHERE idUsuario = '{$idUsuario}'";
+            $sentencia_sql = "SELECT * FROM cuidadores WHERE idUsuario = '{$idEscapado}'";
 
             $consulta_comprobacion = $this->con->query($sentencia_sql);
 

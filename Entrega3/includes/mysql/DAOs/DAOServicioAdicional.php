@@ -43,10 +43,14 @@
         // Crear servicioAdicional.
         public function crearServicioAdicional($servicioAdicionalACrear) {
 
+            // Escapa los atributos del usuario a insertar en la base de datos.
+            $id = $this->con->real_escape_string($servicioAdicionalACrear->getId());
+            $nombre = $this->con->real_escape_string($servicioAdicionalACrear->getNombre());
+            $coste = $this->con->real_escape_string($servicioAdicionalACrear->getCoste());
+
             // Crea la sentencia sql de inserción a ejecutar.
             $sentencia_sql = 
-            "INSERT INTO servicios_adicionales VALUES ('{$servicioAdicionalACrear->getId()}', 
-                '{$servicioAdicionalACrear->getNombre()}', '{$servicioAdicionalACrear->getCoste()}')";
+            "INSERT INTO servicios_adicionales VALUES ('{$id}', '{$nombre}', '{$coste}')";
 
             $consulta_insercion = $this->con->query($sentencia_sql);
 
@@ -61,8 +65,11 @@
         // Leer un servicioAdicional.
         public function leerUnServicioAdicional($idServicioAdicional) {
 
+            // Escapa el valor de $idServicioAdicional.
+            $idEscapado = $this->con->real_escape_string($idServicioAdicional);
+
             // Crea la sentencia sql para comprobar el id.
-            $sentencia_sql = "SELECT * FROM servicios_adicionales WHERE idServicio = '{$idServicioAdicional}'";
+            $sentencia_sql = "SELECT * FROM servicios_adicionales WHERE idServicio = '{$idEscapado}'";
 
             $consulta_resultado = $this->con->query($sentencia_sql);
             
@@ -76,8 +83,10 @@
                 $nombre = $valores_resultado["Nombre"];
                 $coste = $valores_resultado["Coste"];
                 
-
                 $servicioAdicionalBuscado = new tServicioAdicional($idservicioAdicional, $nombre, $coste);
+
+                // Libera memoria.
+                $consulta_resultado->free();
                 
                 return $servicioAdicionalBuscado;
             }
@@ -117,6 +126,9 @@
 
                     $arrayServiciosAdicionales[] = $servicioAdicionalAAnadir;
                 }
+
+                // Libera memoria.
+                $consulta_resultado->free();
                 
                 return $arrayServiciosAdicionales;
             }
@@ -135,8 +147,11 @@
         // Editar servicioAdicional.
         public function editarServicioAdicional($servicioAdicionalAEditar) {
 
+            // Escapa el valor del ID de $servicioAdicionalAEditar.
+            $idEscapado = $this->con->real_escape_string($servicioAdicionalAEditar->getId());
+
             // Crea la sentencia sql para comprobar el id.
-            $sentencia_sql = "SELECT * FROM servicios_adicionales WHERE idServicio = '{$servicioAdicionalAEditar->getId()}'";
+            $sentencia_sql = "SELECT * FROM servicios_adicionales WHERE idServicio = '{$idEscapado}'";
 
             $consulta_comprobacion = $this->con->query($sentencia_sql);
 
@@ -147,7 +162,7 @@
                 // Si se borra con éxito ese servicioAdicional, a continuación se inserta un nuevo
                 // servicioAdicional con el mismo id que el anterior, pero con los nuevos valores  
                 // de los atributos.
-                if ((DAOservicioAdicional::getInstance())->borrarServicioAdicional($servicioAdicionalAEditar->getId())) {
+                if ((DAOservicioAdicional::getInstance())->borrarServicioAdicional($idEscapado)) {
                     // Devuelve true si se ha podido insertar el servicioAdicional, false en caso
                     // contrario.
                     return (DAOservicioAdicional::getInstance())->crearServicioAdicional($servicioAdicionalAEditar);
@@ -167,16 +182,19 @@
 
         // Borrar servicioAdicional.
         public function borrarServicioAdicional($idServicioAdicional) {
+
+            // Escapa el valor de $idServicioAdicional.
+            $idEscapado = $this->con->real_escape_string($idServicioAdicional);
             
             // Crea la sentencia sql para comprobar el id.
-            $sentencia_sql = "SELECT * FROM servicios_adicionales WHERE idServicio = '{$idServicioAdicional}'";
+            $sentencia_sql = "SELECT * FROM servicios_adicionales WHERE idServicio = '{$idEscapado}'";
 
             $consulta_comprobacion = $this->con->query($sentencia_sql);
 
             // Si el servicioAdicional con ese id está en la base de datos, se elimina de la misma.
             if ($consulta_comprobacion->num_rows != 0) {
                 
-                $sentencia_sql = "DELETE FROM servicios_adicionales WHERE idServicio = '{$idServicioAdicional}'";
+                $sentencia_sql = "DELETE FROM servicios_adicionales WHERE idServicio = '{$idEscapado}'";
 
                 $consulta_borrado = $this->con->query($sentencia_sql);
 

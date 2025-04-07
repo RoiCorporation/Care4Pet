@@ -28,11 +28,26 @@
 
         // Crear Reserva.
         public function crearReserva($reservaACrear, $idUsuario) {
+
+            // Escapa los atributos de la reserva a insertar en la base de datos.
+            $id = $this->con->real_escape_string($reservaACrear->getId());
+            $idUsuario = $this->con->real_escape_string($reservaACrear->getIdUsuario());
+            $idMascota = $this->con->real_escape_string($reservaACrear->getIdMascota());
+            $idCuidador = $this->con->real_escape_string($reservaACrear->getIdCuidador());
+            $fechaInicio = $this->con->real_escape_string($reservaACrear->getFechaInicio());
+            $fechaFin = $this->con->real_escape_string($reservaACrear->getFechaFin());
+            $esAceptada = $this->con->real_escape_string($reservaACrear->getEsAceptadaPorCuidador());
+            $valoracion = $this->con->real_escape_string($reservaACrear->getValoracion());
+            $resena = $this->con->real_escape_string($reservaACrear->getResena());
+            $comentarios = $this->con->real_escape_string($reservaACrear->getComentariosAdicionales());
+            $esActiva = $this->con->real_escape_string($reservaACrear->getEsReservaActiva());                        
+
             // Crea la sentencia sql de inserción a ejecutar.
-            $sentencia_sql = 
-            "INSERT INTO reservas VALUES ('{$reservaACrear->getId()}', '{$reservaACrear->getIdUsuario()}', '{$reservaACrear->getIdMascota()}',
-            '{$reservaACrear->getIdCuidador()}', '{$reservaACrear->getFechaInicio()}', '{$reservaACrear->getFechaFin()}', '{$reservaACrear->getEsAceptadaPorCuidador()}',
-            '{$reservaACrear->getValoracion()}', '{$reservaACrear->getResena()}', '{$reservaACrear->getComentariosAdicionales()}', '{$reservaACrear->getEsReservaActiva()}')";
+            $sentencia_sql = "INSERT INTO reservas VALUES (
+                '$id', '$idUsuario', '$idMascota', '$idCuidador',
+                '$fechaInicio', '$fechaFin', '$esAceptada', '$valoracion',
+                '$resena', '$comentarios', '$esActiva'
+            )";
 
             $consulta_insercion = $this->con->query($sentencia_sql);
 
@@ -41,6 +56,10 @@
 
         // Leer una mascota.
         public function leerUnaReserva($idReserva) {
+
+            // Escapa el valor de $idReserva.
+            $idEscapado = $this->con->real_escape_string($idReserva);
+
             // Crea la sentencia sql para comprobar el id.
             $sentencia_sql = "SELECT 
                 r.idReserva,
@@ -88,7 +107,7 @@
                 INNER JOIN usuarios d ON r.idUsuario = d.idUsuario
 
             WHERE 
-                r.idReserva = '$idReserva'";
+                r.idReserva = '$idEscapado'";
 
             $consulta_resultado = $this->con->query($sentencia_sql);
             
@@ -123,6 +142,10 @@
                 $reservaBuscada = new tReserva($idReserva, $idUsuario, $idMascota, $idCuidador, $fechaInicio, $fechaFin,
                 $valoracion, $resena, $comentariosAdicionales, $esReservaActiva, $nombreCuidador, $apellidosCuidador, $correoCuidador,
                 $telefonoCuidador, $fotoCuidador, $direccionCuidador, $fotoMascota, $descripcionMascota, $tipoMascota, $esAceptadaPorCuidador, $nombreDueno, $apellidosDueno);
+                
+                // Libera memoria.
+                $consulta_resultado->free();
+                
                 return $reservaBuscada;
             }
             else {
@@ -132,7 +155,11 @@
 
         // Leer las reservas relacionadas a una mascota
         public function leerReservasDeUnaMascota($idMascota) {
-            $sentencia_sql = "SELECT idReserva FROM reservas WHERE idMascota = '$idMascota'";
+
+            // Escapa el valor de $idMascota.
+            $idEscapado = $this->con->real_escape_string($idMascota);
+
+            $sentencia_sql = "SELECT idReserva FROM reservas WHERE idMascota = '$idEscapado'";
             $consulta_resultado = $this->con->query($sentencia_sql);
             $arrayIDReservas = [];
 
@@ -141,14 +168,22 @@
                     $idReserva = $reservaActual["idReserva"];
                     $arrayIDReservas[] = $idReserva;
                 }
+
+                // Libera memoria.
+                $consulta_resultado->free();
+
                 return $arrayIDReservas;
-            } else {
+            } 
+            else {
                 return NULL;
             }
         }
 
         // Leer todos las reservas de un usuario.
         public function leerReservasDelUsuario($idUsuario) {
+
+            // Escapa el valor de $idUsuario.
+            $idEscapado = $this->con->real_escape_string($idUsuario);
 
             // Crea la sentencia sql para obtener todos los usuarios en la base de datos.
             $sentencia_sql = "SELECT 
@@ -188,7 +223,7 @@
                 INNER JOIN usuarios d ON r.idUsuario = d.idUsuario
 
             WHERE 
-                r.idUsuario = '$idUsuario'";
+                r.idUsuario = '$idEscapado'";
 
             $consulta_resultado = $this->con->query($sentencia_sql);
             $arrayReservas = [];
@@ -229,6 +264,10 @@
                     );    
                     $arrayReservas[] = $reservaAAnadir;
                 }
+
+                // Libera memoria.
+                $consulta_resultado->free();
+
                 return $arrayReservas;
             }
             else {
@@ -237,6 +276,10 @@
         }
 
         public function leerReservasDelCuidador($idCuidador) {
+
+            // Escapa el valor de $idCuidador.
+            $idEscapado = $this->con->real_escape_string($idCuidador);
+
             $sentencia_sql = "SELECT 
                 r.idReserva,
                 r.idUsuario,
@@ -282,7 +325,7 @@
                 INNER JOIN usuarios d ON r.idUsuario = d.idUsuario
 
             WHERE 
-                r.idCuidador = '$idCuidador'";
+                r.idCuidador = '$idEscapado'";
 
             $consulta_resultado = $this->con->query($sentencia_sql);
             $arrayReservas = [];
@@ -319,24 +362,32 @@
                     $telefonoCuidador, $fotoCuidador, $direccionCuidador, $fotoMascota, $descripcionMascota, $tipoMascota, $esAceptadaPorCuidador, $nombreDueno, $apellidosDueno);    
                     $arrayReservas[] = $reservaAAnadir;
                 
+                }
+
+                // Libera memoria.
+                $consulta_resultado->free();
+
+                return $arrayReservas;
             }
-            return $arrayReservas;
-        }
-        else{
-            return NULL;
-        }
+            else{
+                return NULL;
+            }
     }
 
 
         // Editar reserva.
         public function editarReserva($reservaAEditar) {
-            $sentencia_sql = "SELECT * FROM reservas WHERE idReserva = '{$reservaAEditar->getId()}'";
+
+            // Escapa el ID de la reserva a editar.
+            $idEscapado = $this->con->real_escape_string($reservaAEditar->getId());
+
+            $sentencia_sql = "SELECT * FROM reservas WHERE idReserva = '{$idEscapado}'";
             $consulta_comprobacion = $this->con->query($sentencia_sql);
 
             if ($consulta_comprobacion->num_rows != 0) {
                 
-                if ((DAOReserva::getInstance())->borrarReserva($reservaAEditar->getId())) {
-                    return (DAOReserva::getInstance())->crearReserva($reservaAEditar,$reservaAEditar->getId());
+                if ((DAOReserva::getInstance())->borrarReserva($idEscapado)) {
+                    return (DAOReserva::getInstance())->crearReserva($reservaAEditar,$idEscapado);
                 }                
                 else {
                     return false;
@@ -345,12 +396,16 @@
         }
 
         // Borrar reserva.
-        public function borrarReserva($idReserva) {            
-            $sentencia_sql = "SELECT * FROM reservas WHERE idReserva = '{$idReserva}'";
+        public function borrarReserva($idReserva) {
+
+            // Escapa el valor de $idReserva.
+            $idEscapado = $this->con->real_escape_string($idReserva);
+
+            $sentencia_sql = "SELECT * FROM reservas WHERE idReserva = '{$idEscapado}'";
             $consulta_comprobacion = $this->con->query($sentencia_sql);
 
             if ($consulta_comprobacion->num_rows != 0) {                
-                $sentencia_sql = "DELETE FROM reservas WHERE idReserva = '{$idReserva}'";
+                $sentencia_sql = "DELETE FROM reservas WHERE idReserva = '{$idEscapado}'";
                 $consulta_borrado = $this->con->query($sentencia_sql);    
                 return $this->con->affected_rows > 0;
             }

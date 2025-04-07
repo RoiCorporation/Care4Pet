@@ -33,13 +33,16 @@
         // Crear mensaje.
         public function crearMensaje($mensajeACrear) {
 
+            // Escapa los atributos del mensaje a insertar en la base de datos.
+            $id = $this->con->real_escape_string($mensajeACrear->getId());
+            $idUsuarioEmisor = $this->con->real_escape_string($mensajeACrear->getIdUsuarioEmisor());
+            $idUsuarioReceptor = $this->con->real_escape_string($mensajeACrear->getIdUsuarioReceptor());
+            $fecha = $this->con->real_escape_string($mensajeACrear->getFecha());
+            $mensaje = $this->con->real_escape_string($mensajeACrear->getMensaje());
+
             // Crea la sentencia sentencia_sql de inserción a ejecutar.
             $sentencia_sentencia_sql = "INSERT INTO mensajes VALUES (
-                '{$mensajeACrear->getId()}',
-                '{$mensajeACrear->getIdUsuarioEmisor()}',
-                '{$mensajeACrear->getIdUsuarioReceptor()}',
-                '{$mensajeACrear->getFecha()}',
-                '{$mensajeACrear->getMensaje()}'
+                '{$id}', '{$idUsuarioEmisor}', '{$idUsuarioReceptor}', '{$fecha}', '{$mensaje}'
             )";
 
             $consulta = $this->con->query($sentencia_sentencia_sql);
@@ -53,9 +56,12 @@
         // Leer los mensajes de un usuario específico.
         public function leerMensajesUsuario($idUsuario) {
 
+            // Escapa el valor de $idUsuario.
+            $idEscapado = $this->con->real_escape_string($idUsuario);
+
             // Crea la sentencia sql para obtener los mensajes.
             $sentencia_sql = "SELECT * FROM mensajes 
-                WHERE idUsuarioEmisor = '$idUsuario' OR idUsuarioReceptor = '$idUsuario'
+                WHERE idUsuarioEmisor = '$idEscapado' OR idUsuarioReceptor = '$idEscapado'
                 ORDER BY fecha DESC";
             
             $consulta_resultado = $this->con->query($sentencia_sql);
@@ -79,6 +85,10 @@
 
                     $mensajes[] = $mensaje;
                 }
+
+                // Libera memoria.
+                $consulta_resultado->free();
+
             }
             return $mensajes;
         }
@@ -88,16 +98,19 @@
         // Leer un mensaje.
         public function leerMensajePorId($idMensaje) {
 
-            // Crea la sentencia sql de lectura.
-            $sentencia_sql = "SELECT * FROM mensajes WHERE idMensaje = '$idMensaje'";
+            // Escapa el valor de $idMensaje.
+            $idEscapado = $this->con->real_escape_string($idMensaje);
 
-            $resultado = $this->con->query($sentencia_sql);
+            // Crea la sentencia sql de lectura.
+            $sentencia_sql = "SELECT * FROM mensajes WHERE idMensaje = '$idEscapado'";
+
+            $consulta_resultado = $this->con->query($sentencia_sql);
 
             // Si ha obtenido un resultado, entonces se ha encontrado a ese mensaje.
             // Se procede a extraer los valores de ese mensaje, generar un nuevo objeto
             // de tipo tMensaje, y devolver dicho objeto.
-            if ($resultado->num_rows > 0) {
-                $valoresMensaje = $resultado->fetch_assoc();
+            if ($consulta_resultado->num_rows > 0) {
+                $valoresMensaje = $consulta_resultado->fetch_assoc();
                     $idMensaje = $valoresMensaje["idMensaje"];
                     $idUsuarioEmisor = $valoresMensaje["idUsuarioEmisor"];
                     $idUsuarioReceptor = $valoresMensaje["idUsuarioReceptor"];
@@ -107,6 +120,9 @@
                     $mensaje = new tMensaje(
                         $idUsuarioEmisor, $idUsuarioReceptor, $fecha, $mensaje, $idMensaje
                     );
+
+                    // Libera memoria.
+                    $consulta_resultado->free();
 
                 return $mensaje;
             }
@@ -122,11 +138,15 @@
         // Leer los mensajes de una conversación entre dos usuarios.
         public function leerMensajesConversacion($idPrimerUsuario, $idSegundoUsuario) {
 
+            // Escapa el valor de $idPrimerUsuario y de $idSegundoUsuario.
+            $idEscapadoPrimerUsuario = $this->con->real_escape_string($idPrimerUsuario);
+            $idEscapadoSegundoUsuario = $this->con->real_escape_string($idSegundoUsuario);
+
             // Crea la sentencia sql para obtener todos los mensajes entre esos usuarios.
             $sentencia_sql = "SELECT * FROM mensajes 
                 WHERE 
-                    (idUsuarioEmisor = '$idPrimerUsuario' AND idUsuarioReceptor = '$idSegundoUsuario') OR 
-                    (idUsuarioEmisor = '$idSegundoUsuario' AND idUsuarioReceptor = '$idPrimerUsuario')
+                    (idUsuarioEmisor = '$idEscapadoPrimerUsuario' AND idUsuarioReceptor = '$idEscapadoSegundoUsuario') OR 
+                    (idUsuarioEmisor = '$idEscapadoSegundoUsuario' AND idUsuarioReceptor = '$idEscapadoPrimerUsuario')
                 ORDER BY fecha ASC";
             
             $consulta_resultado = $this->con->query($sentencia_sql);
@@ -150,6 +170,10 @@
 
                     $mensajes[] = $mensaje;
                 }
+
+                // Libera memoria.
+                $consulta_resultado->free();
+
             }
             return $mensajes;
         }
@@ -159,8 +183,12 @@
         // Editar mensaje.
         public function editarMensaje($idMensajeAEditar, $nuevoTexto) {
 
+            // Escapa el valor de $idMensajeAEditar y de $nuevoTexto.
+            $idEscapado = $this->con->real_escape_string($idMensajeAEditar);
+            $nuevoTextoEscapado = $this->con->real_escape_string($nuevoTexto);
+
             // Crea la sentencia sql de lectura.
-            $sentencia_sql = "SELECT * FROM mensajes WHERE idMensaje = '$idMensajeAEditar'";
+            $sentencia_sql = "SELECT * FROM mensajes WHERE idMensaje = '$idEscapado'";
 
             $resultado = $this->con->query($sentencia_sql);
 
@@ -169,8 +197,8 @@
             if ($resultado->num_rows > 0) {
 
                 // Crea la sentencia sql de actualización.
-                $sentencia_sql = "UPDATE mensajes SET mensaje = '$nuevoTexto'
-                    WHERE idMensaje = '$idMensajeAEditar'";
+                $sentencia_sql = "UPDATE mensajes SET mensaje = '$nuevoTextoEscapado'
+                    WHERE idMensaje = '$idEscapado'";
 
                 $consulta = $this->con->query($sentencia_sql);
 
@@ -187,8 +215,11 @@
         // Borrar mensaje.
         public function borrarMensaje($idMensaje) {
 
+            // Escapa el valor de $idMensaje.
+            $idEscapado = $this->con->real_escape_string($idMensaje);
+
             // Crea la sentencia sql de borrado.
-            $sentencia_sql = "DELETE FROM mensajes WHERE idMensaje = '$idMensaje'";
+            $sentencia_sql = "DELETE FROM mensajes WHERE idMensaje = '$idEscapado'";
             
             // Ejecuta la sentencia sql.
             $consulta = $this->con->query($sentencia_sql);

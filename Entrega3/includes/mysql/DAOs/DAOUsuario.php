@@ -238,6 +238,9 @@
 
                     $arrayUsuarios[] = $usuarioAAnadir;
                 }
+
+                // Libera memoria.
+                $consulta_resultado->free();
                 
                 return $arrayUsuarios;
             }

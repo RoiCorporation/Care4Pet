@@ -35,10 +35,14 @@
         // Crear tipoDeMascota.
         public function crearTipoDeMascota($tipoDeMascotaACrear) {
 
+            // Escapa los atributos de la mascota a insertar en la base de datos.
+            $idEscapado = $this->con->real_escape_string($tipoDeMascotaACrear->getId());
+            $nombreEscapado = $this->con->real_escape_string($tipoDeMascotaACrear->getNombre());
+
             // Crea la sentencia sql de inserción a ejecutar.
             $sentencia_sql = 
-            "INSERT INTO tipos_de_mascotas VALUES ('{$tipoDeMascotaACrear->getId()}', 
-                '{$tipoDeMascotaACrear->getNombre()}')";
+            "INSERT INTO tipos_de_mascotas VALUES ('{$idEscapado}', 
+                '{$nombreEscapado}')";
 
             $consulta_insercion = $this->con->query($sentencia_sql);
 
@@ -53,8 +57,11 @@
         // Leer un tipoDeMascota.
         public function leerUnTipoDeMascota($idTipoMascota) {
 
+            // Escapa el valor de $idTipoMascota.
+            $idEscapado = $this->con->real_escape_string($idTipoMascota);
+
             // Crea la sentencia sql para comprobar el id.
-            $sentencia_sql = "SELECT * FROM tipos_de_mascotas WHERE idTipoMascota = '{$idTipoMascota}'";
+            $sentencia_sql = "SELECT * FROM tipos_de_mascotas WHERE idTipoMascota = '{$idEscapado}'";
 
             $consulta_resultado = $this->con->query($sentencia_sql);
             
@@ -67,8 +74,10 @@
                 $idTipoDeMascota = $valores_resultado["idTipoMascota"];
                 $nombre = $valores_resultado["Nombre"];
                 
-
                 $tipoDeMascotaBuscado = new tTipoDeMascota($idTipoDeMascota, $nombre);
+
+                // Libera memoria.
+                $consulta_resultado->free();
                 
                 return $tipoDeMascotaBuscado;
             }
@@ -107,6 +116,9 @@
 
                     $arrayTipoDeMascotas[] = $tipoDeMascotaAAnadir;
                 }
+
+                // Libera memoria.
+                $consulta_resultado->free();
                 
                 return $arrayTipoDeMascotas;
             }
@@ -125,8 +137,11 @@
         // Editar TipoDeMascota.
         public function editarTipoDeMascota($tipoDeMascotaAEditar) {
 
+            // Escapa el valor del ID de $tipoDeMascotaAEditar.
+            $idEscapado = $this->con->real_escape_string($tipoDeMascotaAEditar->getId());
+
             // Crea la sentencia sql para comprobar el id.
-            $sentencia_sql = "SELECT * FROM tipos_de_mascotas WHERE idTipoMascota = '{$tipoDeMascotaAEditar->getId()}'";
+            $sentencia_sql = "SELECT * FROM tipos_de_mascotas WHERE idTipoMascota = '{$idEscapado}'";
 
             $consulta_comprobacion = $this->con->query($sentencia_sql);
 
@@ -137,7 +152,7 @@
                 // Si se borra con éxito ese tipoDeMascota, a continuación se inserta un nuevo
                 // tipoDeMascota con el mismo id que el anterior, pero con los nuevos valores  
                 // de los atributos.
-                if ((DAOTipoDeMascota::getInstance())->borrarTipoDeMascota($tipoDeMascotaAEditar->getId())) {
+                if ((DAOTipoDeMascota::getInstance())->borrarTipoDeMascota($idEscapado)) {
                     // Devuelve true si se ha podido insertar el tipoDeMascota, false en caso
                     // contrario.
                     return (DAOTipoDeMascota::getInstance())->crearTipoDeMascota($tipoDeMascotaAEditar);
@@ -157,9 +172,12 @@
 
         // Borrar TipoDeMascota.
         public function borrarTipoDeMascota($idTipoDeMascota) {
+
+            // Escapa el valor de $idTipoDeMascota.
+            $idEscapado = $this->con->real_escape_string($idTipoDeMascota);
             
             // Crea la sentencia sql para comprobar el id.
-            $sentencia_sql = "SELECT * FROM tipos_de_mascotas WHERE idTipoMascota = '{$idTipoDeMascota}'";
+            $sentencia_sql = "SELECT * FROM tipos_de_mascotas WHERE idTipoMascota = '{$idEscapado}'";
 
             $consulta_comprobacion = $this->con->query($sentencia_sql);
 

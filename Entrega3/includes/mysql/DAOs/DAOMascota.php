@@ -29,19 +29,25 @@
 
         // Crear mascota.
         public function crearMascota($mascotaACrear, $idUsuario) {
-            // Crea la sentencia sql de inserción a ejecutar.
-            $tipoMascota = intval($mascotaACrear->getTipoMascota());
 
+            // Escapa los atributos de la mascota a insertar en la base de datos.
+            $idMascota = $this->con->real_escape_string($mascotaACrear->getId());
+            $tipoMascota = $this->con->real_escape_string(intval($mascotaACrear->getTipoMascota()));
+            $descripcion = $this->con->real_escape_string($mascotaACrear->getDescripcion());
+            $foto = $this->con->real_escape_string($mascotaACrear->getFoto());
+            
+            $idUsuarioEscapado = $this->con->real_escape_string($idUsuario);
+
+            // Crea la sentencia sql de inserción a ejecutar.
             $sentencia_sql = 
-            "INSERT INTO mascotas VALUES ('{$mascotaACrear->getId()}', '{$mascotaACrear->getFoto()}', 
-            '{$mascotaACrear->getDescripcion()}', '{$tipoMascota}')";
+            "INSERT INTO mascotas VALUES ('{$idMascota}', '{$foto}', '{$descripcion}', '{$tipoMascota}')";
 
             $consulta_insercion = $this->con->query($sentencia_sql);
 
             if ($this->con->affected_rows > 0) {
                 // Creamos un link entre la mascota y el dueno
                 $sentencia_sql_link_md = 
-                "INSERT INTO duenos VALUES ('$idUsuario', '{$mascotaACrear->getId()}')";
+                "INSERT INTO duenos VALUES ('$idUsuarioEscapado', '{$idMascota}')";
 
                 $consulta_insercion_link_md = $this->con->query($sentencia_sql_link_md);    
                 
@@ -54,8 +60,11 @@
         // Leer una mascota.
         public function leerUnaMacota($idMascota) {
 
+            // Escapa el valor de $idMascota.
+            $idEscapado = $this->con->real_escape_string($idMascota);
+
             // Crea la sentencia sql para comprobar el id.
-            $sentencia_sql = "SELECT * FROM mascotas WHERE idMascota = '{$idMascota}'";
+            $sentencia_sql = "SELECT * FROM mascotas WHERE idMascota = '{$idEscapado}'";
 
             $consulta_resultado = $this->con->query($sentencia_sql);
             
@@ -67,6 +76,10 @@
                 $tipoMascota = $valores_resultado["TipoMascota"];
 
                 $mascotaBuscada = new tMascota($idMascota, $tipoMascota, $descripcion, $fotoMascota);
+
+                // Libera memoria.
+                $consulta_resultado->free();
+
                 return $mascotaBuscada;
             }
             else {
@@ -76,6 +89,9 @@
 
         // Leer todos las de un usuario.
         public function leerMascotasDelUsuario($idUsuario) {
+
+            // Escapa el valor de $idUsuario.
+            $idEscapado = $this->con->real_escape_string($idUsuario);
 
             // Crea la sentencia sql para obtener todos los usuarios en la base de datos.
             $sentencia_sql = "SELECT 
@@ -88,7 +104,7 @@
                 INNER JOIN duenos d ON u.idUsuario = d.idUsuario
                 INNER JOIN mascotas m ON d.idMascota = m.idMascota
             WHERE 
-                u.idUsuario = '$idUsuario'";
+                u.idUsuario = '$idEscapado'";
 
             $consulta_resultado = $this->con->query($sentencia_sql);
             $arrayMascotas = [];
@@ -104,6 +120,10 @@
                     $mascotaAAnadir = new tMascota($idMascota, $tipoMascota, $descripcion, $fotoMascota);
                     $arrayMascotas[] = $mascotaAAnadir;
                 }
+
+                // Libera memoria.
+                $consulta_resultado->free();
+
                 return $arrayMascotas;
             }
             else {
@@ -113,12 +133,16 @@
 
         // Editar mascota.
         public function editarMascota($mascotaAEditar, $idUsuario) {
-            $sentencia_sql = "SELECT * FROM mascotas WHERE idMascota = '{$mascotaAEditar->getId()}'";
+
+            // Escapa el valor del ID de $mascotaAEditar.
+            $idMascotaEscapado = $this->con->real_escape_string($mascotaAEditar->getId());
+
+            $sentencia_sql = "SELECT * FROM mascotas WHERE idMascota = '{$idMascotaEscapado}'";
             $consulta_comprobacion = $this->con->query($sentencia_sql);
 
             if ($consulta_comprobacion->num_rows != 0) {
                 
-                if ((DAOMascota::getInstance())->borrarMascota($mascotaAEditar->getId())) {
+                if ((DAOMascota::getInstance())->borrarMascota($idMascotaEscapado)) {
                     return (DAOMascota::getInstance())->crearMascota($mascotaAEditar, $idUsuario);
                 }                
                 else {
@@ -128,25 +152,29 @@
         }
 
         // Borrar Mascota.
-        public function borrarMascota($idMascota) {    
+        public function borrarMascota($idMascota) {
+
+            // Escapa el valor de $idMascota.
+            $idEscapado = $this->con->real_escape_string($idMascota);
+
             // Comprobamos si la mascota existe antes de borrarla        
-            $sentencia_sql = "SELECT * FROM mascotas WHERE idMascota = '{$idMascota}'";
+            $sentencia_sql = "SELECT * FROM mascotas WHERE idMascota = '{$idEscapado}'";
             $consulta_comprobacion = $this->con->query($sentencia_sql);
 
             if ($consulta_comprobacion->num_rows != 0) {                
-                $sentencia_sql = "DELETE FROM mascotas WHERE idMascota = '{$idMascota}'";
+                $sentencia_sql = "DELETE FROM mascotas WHERE idMascota = '{$idEscapado}'";
                 $consulta_borrado = $this->con->query($sentencia_sql);
 
                 if ($this->con->affected_rows > 0) {
                     // Borramos un link entre la mascota y el dueno
                     $sentencia_sql_borra_link_md = 
-                    "DELETE FROM duenos WHERE idMascota = '{$idMascota}'";
+                    "DELETE FROM duenos WHERE idMascota = '{$idEscapado}'";
     
                     $consulta_borra_link_md = $this->con->query($sentencia_sql_borra_link_md);    
                     $linkBorradoSuceso = $this->con->affected_rows > 0;
 
                     // Si esta borrada la mascota, borramos tambien las reservas relacionadas
-                    $reservasRelacionadas = (DAOReserva::getInstance())->leerReservasDeUnaMascota($idMascota);
+                    $reservasRelacionadas = (DAOReserva::getInstance())->leerReservasDeUnaMascota($idEscapado);
                     if ($reservasRelacionadas != NULL) {
                         if (count($reservasRelacionadas) > 0) {
                             foreach ($reservasRelacionadas as $res) {
