@@ -102,6 +102,21 @@
 	<div class="contenedor-general">
     
         <h2 class="titulo-pagina">Hola, <?php echo $usuario->getNombre() ?> <br> ¡Bienvenid@ a tu perfil! </h2>
+        
+            <!-- FOTO dueno -->        
+            <?php 
+                // Obtener la ruta de la foto del perfil
+                $fotoPerfil = $usuario->getFotoPerfil(); 
+                if ($fotoPerfil) {
+                    // Si existe la foto, generamos la ruta completa usando RUTA_IMGS
+                    $rutaFotoPerfil = RUTA_IMGS . $fotoPerfil;
+            ?>
+            <img src="<?= $rutaFotoPerfil ?>" alt="Foto de dueno" width="100" height="100">
+            <?php } else { ?>
+                        <!-- Si no hay foto, mostramos la foto por defecto -->
+                        <img src="<?= RUTA_IMGS ?>perfil_rand.png" alt="Foto de dueno" width="100" height="100">
+                    <?php } ?>
+
 
         <h2>Información basica de tu perfil:</h2>
         <?php 
@@ -131,12 +146,7 @@
                 </form>
             <?php endif; ?>
 
-        <?php if ($usuario->getFotoPerfil()) { ?>
-            <img src="<?php echo $usuario->getFotoPerfil(); ?>" alt="Foto de dueno">
-        <?php } else { ?>
-            <!-- usar RUTA_IMGS -->
-            <img src="img/perfil_rand.png" alt="Foto de dueno" width="100" height="100">
-        <?php } ?>
+
 
         <!-- Mostramos la lista de mascotas del dueno -->
         <br>
@@ -149,11 +159,22 @@
                 foreach ($listaMascotas as $mascota) : ?>
                 <div class="mascota-card">
                     <div class="mascota-info">
-                       <!-- <?php #if mascota->getFoto()) { ?>
-                            <img src="<?#php#echo $mascota->getFoto(); ?>" alt="Foto de Mascota">
-                        <?php # else { ?> -->
-                            <img src="Entrega3/img/icon-pet-paw.png" alt="Foto de mascota" width="100" height="100">
-                        <!--<?#php#} ?>-->
+                        <!--FOTO mascota--> 
+                        <?php
+                            $foto = $mascota->getFoto();
+                            $rutaFoto = RUTA_APP . 'img/' . $foto;
+
+                            // Asegura que la URL completa esté correcta
+                            $rutaFotoCompleta = 'http://' . $_SERVER['HTTP_HOST'] . $rutaFoto;
+
+                            if ($foto) { 
+                        ?>
+                                <img src="<?= $rutaFotoCompleta ?>" alt="Foto de Mascota" width="100" height="100">
+                            <?php } else { ?>
+                                            <img src="<?= RUTA_IMGS ?>icon-pet-paw.png" alt="Foto de mascota" width="100" height="100">
+                                    <?php } ?>
+                        <!--TERMINA MOSTRAR FOTO-->
+
                         <p><strong>Descripción:</strong> <?php echo $mascota->getDescripcion(); ?></p>
                         <p><strong>Tipo de Mascota:</strong> 
                             <?php

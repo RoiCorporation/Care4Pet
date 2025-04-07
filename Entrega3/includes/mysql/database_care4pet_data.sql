@@ -31,7 +31,10 @@ VALUES
 (1203472, 'María', 'José', 'mariajose@gmail.com', 'maria', '00000000Z', 0, NULL, 'Calle del Amor Hermoso, 80', 1, 0, 0, 1, '2025-03-05 00:00:00', 0, NULL),
 (205753802, 'Maria', 'Santos Aguillera', 'masa@ej.com', 'masa', '00000000Z', 0, 'cuidador3.png', 'Calle del Amor Hermoso, 80', 0, 1, 0, 1, '2025-03-05 00:00:00', 0, NULL),
 (205753803, 'José', 'Gómez Rodríguez', 'usuario@usuario.com', 'usuario', '00000000Y', 111111111, 'cuidador1.png', 'Calle Umbria, 14', 0, 1, 0, 1, '2025-03-05 00:00:00', 0, NULL),
-(1320644188, 'Blah', 'Blah', 'ejemplo1@ejemplo.com', 'maria', '000001', 2147483647, NULL, 'Calle ABC, 17', 1, 0, 0, 1, '2025-03-05 00:00:00', 0, NULL);
+(1320644188, 'Blah', 'Blah', 'ejemplo1@ejemplo.com', 'maria', '000001', 2147483647, NULL, 'Calle ABC, 17', 1, 0, 0, 1, '2025-03-05 00:00:00', 0, NULL),
+(1234567890, 'Carlos', 'Pérez', 'carlos.perez@gmail.com', 'password123', '11111111A', 612345678, 'cuidador1.png', 'Calle Ficticia, 10', 1, 0, 0, 1, '2025-04-07 12:00:00', 1, NULL),
+(1234567891, 'Laura', 'Martínez', 'laura.martinez@gmail.com', 'password123', '11111111B', 612345679, 'cuidador2.png', 'Avenida Principal, 15', 1, 0, 0, 1, '2025-04-07 12:00:00', 1, NULL),
+(1234567892, 'Fernando', 'López', 'fernando.lopez@gmail.com', 'password123', '11111111C', 612345680, 'cuidador3.png', 'Calle Real, 20', 1, 0, 0, 1, '2025-04-07 12:00:00', 1, NULL);
 
 
 --
@@ -47,14 +50,26 @@ INSERT INTO `cuidadores` (`idUsuario`, `TiposDeMascotas`, `Tarifa`, `Descripcion
 --
 
 INSERT INTO `duenos` (`idUsuario`, `idMascota`) VALUES
-(1203472, 386894591);
+(1203472, 386894591),
+(1234567890, 999001),
+(1234567890, 999002),
+(1234567891, 999003),
+(1234567891, 999004),
+(1234567892, 999005),
+(1234567892, 999006);
 
 --
 -- Volcado de datos para la tabla `mascotas`
 --
 
 INSERT INTO `mascotas` (`idMascota`, `FotoMascota`, `Descripcion`, `TipoMascota`) VALUES
-(386894591, NULL, 'Amable perro Juan', 1);
+(386894591, NULL, 'Amable perro Juan', 1),
+(999001, 'mascota1.jpg', 'Perro de raza pequeña, muy amistoso', 1),
+(999002, 'mascota101.png', 'Gato juguetón, muy activo', 2),
+(999003, 'mascota1.jpg', 'Perro guardián, muy leal', 1),
+(999004, 'mascota101.png', 'Gato tranquilo, amante de la siesta', 2),
+(999005, 'mascota1.jpg', 'Perro grande, muy protector', 1),
+(999006, 'mascota101.png', 'Gato independiente, le gusta explorar', 2);
 
 --
 -- Volcado de datos para la tabla `mensajes`
