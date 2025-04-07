@@ -56,6 +56,6 @@ if (isset($_SESSION['mensaje_exito'])) {
 
 <?php
 $contenidoPrincipal = ob_get_clean();
-$jsExtra = '<script src="/js/editarUsuario.js" defer></script>';
+$jsExtra = '<script src="js/editarUsuario.js" defer></script>';
 require __DIR__ . '/includes/vistas/plantillas/plantilla_admin.php';
 ?>
