@@ -92,7 +92,7 @@ $error = null;
                             <p class="tarifa"><strong>Tarifa:</strong> <?= htmlspecialchars($cuidador->getTarifa()) ?>€/hora</p>
                             
                             <div class="acciones-cuidador">
-                            <a href="perfil_cuidador.php?id=<?= $usuario->getId() ?>" class="btn-vermas">Ver perfil completo</a>                                
+                            <a href="ver_perfil_cuidador.php?id=<?= $usuario->getId() ?>" class="btn-vermas">Ver perfil completo</a>                                
                             <form action="formulario_contratacion.php" method="post">
                                     <input type="hidden" name="idCuidador" value="<?= $cuidador->getId() ?>">
                                     <input type="hidden" name="nombreCuidador" value="<?= htmlspecialchars($usuario->getNombre() . ' ' . $usuario->getApellidos()) ?>">
