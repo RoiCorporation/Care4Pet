@@ -50,9 +50,9 @@ if (isset($_SESSION['mensaje_exito'])) {
 ?>
     <p class="subtitulo">Modifica los detalles del usuario en esta sección.</p>
 
-<div class="seccion" style="padding: 20px;">
-    <?= $form->gestiona() ?>
-</div>
+    <div class="centrarFormulario">
+        <?= $form->gestiona() ?>
+    </div>
 
 <?php
 $contenidoPrincipal = ob_get_clean();
