@@ -18,11 +18,11 @@ if (!isset($_SESSION['idCuidador']) || !isset($_SESSION['email']) ||
     exit();
 }
 
-// obtengo datos inroducidos en formulario
-$idMascota = $_POST['idMascota'];
-$fechaInicio = $_POST['fecha_inicio'];
-$fechaFin = $_POST['fecha_fin'];
-$comentarios = !empty($_POST['comentarios']) ? $_POST['comentarios'] : 'NULL';
+// obtengo datos inroducidos en formulario, uso real_escape_string
+$idMascota = $conn->real_escape_string($_POST['idMascota']);
+$fechaInicio = $conn->real_escape_string($_POST['fecha_inicio']);
+$fechaFin = $conn->real_escape_string($_POST['fecha_fin']);
+$comentarios = !empty($_POST['comentarios']) ? $conn->real_escape_string($_POST['comentarios']) : 'NULL';
 //los datos bancarios no los almaceno por ahora
 
 ///daos que uso
