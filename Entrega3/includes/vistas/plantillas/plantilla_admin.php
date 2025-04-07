@@ -7,7 +7,7 @@ if (isset($_SESSION['mensaje_exito'])) {
 $tituloPagina = $tituloPagina ?? 'Administración';
 $contenidoPrincipal = $contenidoPrincipal ?? '';
 $jsExtra = $jsExtra ?? '';
-$jsExtra .= '<script src="/js/editarUsuario.js" defer></script>';
+$jsExtra .= '<script src="js/editarUsuario.js" defer></script>';
 $jsExtra .= '<script src="js/admin_Gu.js" defer></script>';
 
 ?>
