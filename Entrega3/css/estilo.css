@@ -900,7 +900,7 @@ por el otro usuario */
 
 .formulario-reserva {
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column; /* Change to column for vertical layout */
+    align-items: flex-start; /* Align items to the start for better readability */
     gap: 10px;
 }
