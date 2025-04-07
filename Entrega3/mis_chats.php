@@ -36,7 +36,12 @@
 		}
 	}
 
-	$contenidoPagina = '<div class="contenedor-general">';
+	$contenidoPagina = <<<EOS
+        <div class="contenedor-general">
+
+            <h2 class="titulo-pagina"> Mis chats </h2>
+
+    EOS;
 
 	$renderConversacionActual = '';
 
