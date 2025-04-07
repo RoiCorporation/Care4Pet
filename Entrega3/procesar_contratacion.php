@@ -18,6 +18,8 @@ if (!isset($_SESSION['idCuidador']) || !isset($_SESSION['email']) ||
     exit();
 }
 
+$conn = DatabaseConnection::getInstance()->getConnection();
+
 // obtengo datos inroducidos en formulario, uso real_escape_string
 $idMascota = $conn->real_escape_string($_POST['idMascota']);
 $fechaInicio = $conn->real_escape_string($_POST['fecha_inicio']);
