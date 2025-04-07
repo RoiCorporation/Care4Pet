@@ -34,7 +34,9 @@ VALUES
 (1320644188, 'Blah', 'Blah', 'ejemplo1@ejemplo.com', 'maria', '000001', 2147483647, NULL, 'Calle ABC, 17', 1, 0, 0, 1, '2025-03-05 00:00:00', 0, NULL),
 (1234567890, 'Carlos', 'Pérez', 'carlos.perez@gmail.com', 'password123', '11111111A', 612345678, 'cuidador1.png', 'Calle Ficticia, 10', 1, 0, 0, 1, '2025-04-07 12:00:00', 1, NULL),
 (1234567891, 'Laura', 'Martínez', 'laura.martinez@gmail.com', 'password123', '11111111B', 612345679, 'cuidador2.png', 'Avenida Principal, 15', 1, 0, 0, 1, '2025-04-07 12:00:00', 1, NULL),
-(1234567892, 'Fernando', 'López', 'fernando.lopez@gmail.com', 'password123', '11111111C', 612345680, 'cuidador3.png', 'Calle Real, 20', 1, 0, 0, 1, '2025-04-07 12:00:00', 1, NULL);
+(1234567892, 'Fernando', 'López', 'fernando.lopez@gmail.com', 'password123', '11111111C', 612345680, 'cuidador3.png', 'Calle Real, 20', 1, 0, 0, 1, '2025-04-07 12:00:00', 1, NULL),
+(1234567893, 'Mario', 'López', 'mario.lopez@gmail.com', 'password123', '11111111D', 612345680, 'cuidador100.png', 'Calle Real, 20', 0, 1, 0, 1, '2025-04-07 12:00:00', 1, NULL),
+(1234567894, 'Elena', 'López', 'elena.lopez@gmail.com', 'password123', '11111111E', 612345680, 'cuidadora300.png', 'Calle Real, 20', 0, 1, 0, 1, '2025-04-07 12:00:00', 1, NULL);
 
 
 --
@@ -43,7 +45,9 @@ VALUES
 
 INSERT INTO `cuidadores` (`idUsuario`, `TiposDeMascotas`, `Tarifa`, `Descripcion`, `ServiciosAdicionales`, `Valoracion`, `ZonasAtendidas`) VALUES
 (205753802, 'Gatos, Perros', 11, 'Soy cuidador mejor de la ciudad.', 'Lavar, Comer', 4, 'Madrid'),
-(205753803, 'Peros y Gatos', 11, 'Soy cuidador mejor de la ciudad.', 'Baño y Tosa', 5, 'Chamberí, Malasaña');
+(205753803, 'Peros y Gatos', 11, 'Soy cuidador mejor de la ciudad.', 'Baño y Tosa', 5, 'Chamberí, Malasaña'),
+(1234567893, 'Perros, Gatos y pajaros', 15, 'Amo a los animales', 'Bañar y pasear', 5, 'Fuenlabrada, Madrid'),
+(1234567894, 'Perros, Gatos, Pajaros y Reptiles', 17, 'Amo a los animales', 'Bañar y pasear', 5, 'San blas, Madrid');
 
 --
 -- Volcado de datos para la tabla `duenos`
