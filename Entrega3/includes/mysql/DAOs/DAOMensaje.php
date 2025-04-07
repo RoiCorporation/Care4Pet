@@ -188,7 +188,7 @@
         public function borrarMensaje($idMensaje) {
 
             // Crea la sentencia sql de borrado.
-            $sentencia_sql = "DELETE FROM mensajes WHERE idMensaje = '{$idMensaje}'";
+            $sentencia_sql = "DELETE FROM mensajes WHERE idMensaje = '$idMensaje'";
             
             // Ejecuta la sentencia sql.
             $consulta = $this->con->query($sentencia_sql);

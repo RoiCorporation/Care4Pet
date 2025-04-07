@@ -40,7 +40,7 @@
                 );
 
                 // Añade el formulario de borrado al mensaje.
-                $contenidoSeccionMensajes .= $htmlFormularioMensaje = $formularioBorrarMensaje->gestiona();
+                $contenidoSeccionMensajes .= $formularioBorrarMensaje->gestiona();
 
                 // Añade al div del mensaje el texto del mismo.
                 $contenidoSeccionMensajes .= 
@@ -62,6 +62,7 @@
 
         // Añade el script de JavaScript necesario para que, cada vez que se cargue la
         // ventana de los mensajes, el scroller vaya automáticamente abajo del todo.
+        // Este script ha sido creado utilizando la herramienta ChatGPT de OpenAI.
         $contenidoSeccionMensajes .= '
             <script>
                 window.onload = function() {

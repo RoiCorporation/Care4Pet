@@ -33,14 +33,34 @@
         // Crear usuario.
         public function crearUsuario($usuarioACrear) {
 
+            // Escapa los atributos del usuario a insertar en la base de datos.
+            $id = $this->con->real_escape_string($usuarioACrear->getId());
+            $nombre = $this->con->real_escape_string($usuarioACrear->getNombre());
+            $apellidos = $this->con->real_escape_string($usuarioACrear->getApellidos());
+            $correo = $this->con->real_escape_string($usuarioACrear->getCorreo());
+            $contrasena = $this->con->real_escape_string($usuarioACrear->getContrasena());
+            $dni = $this->con->real_escape_string($usuarioACrear->getDNI());
+            $telefono = $this->con->real_escape_string($usuarioACrear->getTelefono());
+            $fotoPerfil = $usuarioACrear->getFotoPerfil();
+            $direccion = $this->con->real_escape_string($usuarioACrear->getDireccion());
+            $esDueno = $this->con->real_escape_string($usuarioACrear->getEsDueno());
+            $esCuidador = $this->con->real_escape_string($usuarioACrear->getEsCuidador());
+            $esAdmin = $this->con->real_escape_string($usuarioACrear->getEsAdmin());
+            $cuentaActiva = $this->con->real_escape_string($usuarioACrear->getCuentaActiva());
+            $fechaRegistro = date('Y-m-d H:i:s');
+
+            // Escapa foto si existe, si no, usa NULL sin comillas.
+            $fotoSQL = $fotoPerfil ? "'" . $this->con->real_escape_string($fotoPerfil) . "'" : "NULL";
+
             // Crea la sentencia sql para comprobar el email.
-            $sentencia_sql = "SELECT * FROM usuarios WHERE Correo = '{$usuarioACrear->getCorreo()}'";
+            $sentencia_sql = "SELECT * FROM usuarios WHERE Correo = '{$correo}'";
 
             $consulta_comprobacion = $this->con->query($sentencia_sql);
 
             // Si ya hay una cuenta asociada a ese email, se pide al usuario que 
             // escoja otro correo electrónico.
             if ($consulta_comprobacion->num_rows != 0) {
+                $consulta_comprobacion->free();
                 return false;
             }
 
@@ -48,28 +68,14 @@
             // y da de alta al usuario -junto con los valores que ha introducido-
             // en la base de datos.
             else {
-                // Establecer la fecha actual para fecha_registro
-                $fecha_registro = date('Y-m-d H:i:s'); // Fecha en formato 'YYYY-MM-DD HH:MM:SS'
 
                 // Crea la sentencia sql de inserción a ejecutar.
                 $sentencia_sql = 
                 "INSERT INTO usuarios VALUES (
-                    '{$usuarioACrear->getId()}',
-                    '{$usuarioACrear->getNombre()}',
-                    '{$usuarioACrear->getApellidos()}',
-                    '{$usuarioACrear->getCorreo()}',
-                    '{$usuarioACrear->getContrasena()}',
-                    '{$usuarioACrear->getDNI()}',
-                    '{$usuarioACrear->getTelefono()}',
-                    'NULL',
-                    '{$usuarioACrear->getDireccion()}',
-                    '{$usuarioACrear->getEsDueno()}',
-                    '{$usuarioACrear->getEsCuidador()}',
-                    '{$usuarioACrear->getEsAdmin()}',
-                    '{$usuarioACrear->getCuentaActiva()}',
-                    '{$fecha_registro}',  
-                    '0',
-                    NULL
+                    '$id', '$nombre', '$apellidos', '$correo', '$contrasena',
+                    '$dni', '$telefono', $fotoSQL, '$direccion',
+                    '$esDueno', '$esCuidador', '$esAdmin', '$cuentaActiva',
+                    '$fechaRegistro', '0', NULL
                 )";
                     
 
@@ -87,8 +93,11 @@
         // Leer un usuario dado su ID.
         public function leerUnUsuarioPorID($id) {
 
+            // Escapa el valor de $id.
+            $idEscapado = $this->con->real_escape_string($id);
+
             // Crea la sentencia sql para comprobar el id.
-            $sentencia_sql = "SELECT * FROM usuarios WHERE idUsuario = '{$id}'";
+            $sentencia_sql = "SELECT * FROM usuarios WHERE idUsuario = '{$idEscapado}'";
 
             $consulta_resultado = $this->con->query($sentencia_sql);
             
@@ -120,6 +129,9 @@
                     $direccion, $esDueno, $esCuidador, $esAdmin, $cuentaActiva, $fecha_registro, 
                     $verificado, $documento_verificacion);
                 
+                // Libera memoria.
+                $consulta_resultado->free();
+
                 return $usuarioBuscado;
             }
 
@@ -137,8 +149,11 @@
         // Leer un usuario dado su correo.
         public function leerUnUsuario($correo) {
 
+            // Escapa el valor de $correo.
+            $correoEscapado = $this->con->real_escape_string($correo);
+
             // Crea la sentencia sql para comprobar el id.
-            $sentencia_sql = "SELECT * FROM usuarios WHERE Correo = '{$correo}'";
+            $sentencia_sql = "SELECT * FROM usuarios WHERE Correo = '{$correoEscapado}'";
 
             $consulta_resultado = $this->con->query($sentencia_sql);
             
@@ -166,6 +181,9 @@
                 $usuarioBuscado = new tUsuario($idUsuario, $nombre, $apellidos,
                     $correo, $contrasena, $dni, $telefono, $fotoPerfil,
                     $direccion, $esDueno, $esCuidador, $esAdmin, $cuentaActiva, $fecha_registro);
+                
+                // Libera memoria.
+                $consulta_resultado->free();
                 
                 return $usuarioBuscado;
             }
@@ -237,7 +255,8 @@
 
         // Editar usuario.
         public function actualizarUsuario($usuarioAActualizar) {
-            // Escapar los valores para prevenir inyecciones SQL
+
+            // Escapa los atributos del usuario a actualizar en la base de datos.
             $nombre = $this->con->real_escape_string($usuarioAActualizar->getNombre());
             $apellidos = $this->con->real_escape_string($usuarioAActualizar->getApellidos());
             $dni = $this->con->real_escape_string($usuarioAActualizar->getDni());
@@ -254,7 +273,7 @@
                 : "'" . $this->con->real_escape_string($documento_verificacion) . "'";
                     
         
-            // Crear la sentencia SQL para actualizar los datos del usuario
+            // Crea la sentencia SQL para actualizar los datos del usuario.
             $sentencia_sql = "UPDATE usuarios SET 
                                 Nombre = '$nombre',
                                 Apellidos = '$apellidos',
@@ -268,15 +287,12 @@
                                documento_verificacion = $valorDocumentoVerificacion
                               WHERE idUsuario = '$idUsuario'";
         
-            // Ejecutar la consulta SQL
+            // Ejecuta la consulta SQL.
             $consulta = $this->con->query($sentencia_sql);
         
-            // Verificar si la actualización fue exitosa
-            if ($consulta) {
-                return true;  // Devolver true si la actualización fue exitosa
-            } else {
-                return false; // Devolver false si hubo un error
-            }
+            // Si la actualización ha modificado ese registro, se devuelve true; en caso contrario, se devuelve false.
+            return $this->con->affected_rows > 0;
+
         }
         
         
@@ -285,9 +301,12 @@
 
         // Borrar usuario.
         public function borrarUsuario($idUsuario) {
+
+            // Escapa el valor de $id.
+            $idEscapado = $this->con->real_escape_string($idUsuario);
             
             // Crea la sentencia sql para comprobar el id.
-            $sentencia_sql = "SELECT * FROM usuarios WHERE idUsuario = '{$idUsuario}'";
+            $sentencia_sql = "SELECT * FROM usuarios WHERE idUsuario = '{$idEscapado}'";
 
             $consulta_comprobacion = $this->con->query($sentencia_sql);
 
