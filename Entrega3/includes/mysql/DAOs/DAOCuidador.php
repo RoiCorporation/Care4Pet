@@ -49,7 +49,6 @@ clase que es el DAO -->
             // Si ya hay una cuenta con ese id, se procede a dar de alta a ese 
             // usuario como cuidador.
             if ($consulta_comprobacion->num_rows != 0) {
-                echo "SIIII";
 
                 $sentencia_sql = 
                 "INSERT INTO cuidadores VALUES ('{$cuidadorACrear->getId()}', 
