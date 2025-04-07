@@ -88,7 +88,7 @@ class FormularioAdminRegistro extends Formulario {
                                 <label for="CuidadorNo">No</label>
                             </div><br>
                         </fieldset>
-                        <div style="padding: 10px; text-align: center;">
+                        <div style="padding: 10px; text-align: center; align-items: start;">
                             <button type="submit" name="signup" class="btn-delete">Crear Usuario</button>
                         </div>
                     </div>

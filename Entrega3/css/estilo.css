@@ -88,6 +88,9 @@ body {
      color: #062932;
      padding: 20px 0;
      text-align: center;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
    }
   
 .logo_menor {
@@ -95,9 +98,10 @@ body {
     background-color: transparent;
     left: 5px; 
     top: 0px;  
-    width: 180px;
     height: auto;     
     opacity: 0.8;    /* Transparencia: 1 = opaco, 0 = total transparente */
+    width: 120px; /* Adjust logo size for smaller screens */
+    margin-bottom: 10px;
 }
    /* Titulo principal */
    header h1 {
@@ -122,24 +126,25 @@ body {
     display: flex;
     justify-content: center;
     gap: 0; 
-  }
-
-  header nav .menu-bar {
+    flex-wrap: wrap;
+    justify-content: center;
     display: inline-block;      /* buttons agrupados */  
     overflow: hidden;           
   }
 
   header nav .menu-bar a.button {
-    display: inline-block;
-    padding: 10px 20px;
+    display: inline-block;    
     background-color: #ffb077; 
     color: #062932;
     text-decoration: none;
     font-weight: 600;
     transition: background-color 0.3s, transform 0.3s;
-    margin: 0;          
+    margin: 0;
+    margin-top: 5px;           
     border: none;      
     border-radius: 0;   
+    padding: 8px 15px; /* Adjust button padding */
+    font-size: 14px; /* Adjust font size */
   }
    /* efecto hover */
    header nav .menu-bar a.button:hover {
@@ -480,7 +485,7 @@ main {
 }
 
 .sidebarAd h2 {
-    color: #ecf0f1;
+    color: #062932;
     font-size: 20px;
 }
 
@@ -595,6 +600,24 @@ main {
     .prev, .next {
         display: none;
     }
+
+    .logo_menor {
+        width: 100px; /* Further reduce logo size */
+    }
+
+    header h1 {
+        font-size: 1.8rem; /* Adjust title size */
+    }
+
+    header h3 {
+        font-size: 1rem; /* Adjust subtitle size */
+    }
+
+    header nav .menu-bar a.button {
+        padding: 6px 10px; /* Reduce button padding */
+        font-size: 12px; /* Reduce font size */
+        margin-top: 5px;
+    }
 }
 
 /* Estilos para la verificación */
@@ -683,9 +706,10 @@ form button:hover {
 
 .info-cuidador h3 {
     color: #2c3e50;
-    margin-top: 0;
+    margin-top: 15px;
     margin-bottom: 10px;
 }
+
 
 .valoracion {
     color: #fca05f;
@@ -728,11 +752,28 @@ form button:hover {
     transition: color 0.2s;
 }
 
+a.btn-vermas {
+    color: #062932;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s;   
+}
+
 .btn-vermas:hover {
     color: #062932;
     text-decoration: underline;
 }
 
+ a.btn-chat {
+    color: #fca05f;
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+
+a.btn-chat:hover {
+    color: #062932;
+    text-decoration: underline;
+}
 
 /* Mensajes */
 .sin-resultados {
@@ -823,8 +864,7 @@ por el otro usuario */
     color: #062932;
     font-weight: bold;
     transition: background-color 0.3s, transform 0.3s;
-    margin: 0; 
-    margin-top: 8px;         
+    margin-top: 15px;         
     border: none;      
     border-radius: 5px; 
     bottom: 0px;
