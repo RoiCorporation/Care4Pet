@@ -90,9 +90,10 @@
 		// info mascota
 		echo "<div class='mascota-info'>";
 		echo "<h4>Mascota</h4>";
-		if ($reserva->getFotoMascota() != NULL) {
-			echo "<img src='" . $reserva->getFotoMascota() . "' alt='Foto de Mascota'>";
-		}
+		if ($reserva->getFotoMascota()) :
+    		// Aquí mostramos la imagen de la mascota
+    		echo "<img src='" . RUTA_IMGS . htmlspecialchars($reserva->getFotoMascota()) . "' alt='Foto de Mascota'>";
+		endif;
 		echo "<p><strong>Descripción:</strong> " . $reserva->getDescripcionMascota() . "</p>";
 		echo "</div>";
 		// info cuidador
