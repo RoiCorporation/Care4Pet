@@ -141,12 +141,14 @@
                         <p><strong>Fecha de fin:</strong> <?= htmlspecialchars($reserva->getFechaFin()); ?></p>
                         <p><strong>Descripción:</strong> <?= htmlspecialchars($reserva->getComentariosAdicionales()); ?></p>
                         <div class='reserva-details'>
+                            
                             <!-- info mascota -->
                             <div class='mascota-info'>
                                 <h5>Mascota</h5>
                                 <?php if ($reserva->getFotoMascota()) : ?>
-                                    <img src='<?= htmlspecialchars($reserva->getFotoMascota()); ?>' alt='Foto de Mascota'>
+                                    <img src='<?= RUTA_IMGS . htmlspecialchars($reserva->getFotoMascota()); ?>' alt='Foto de Mascota'>
                                 <?php endif; ?>
+
                                 <p><strong>ID Mascota:</strong> <?= htmlspecialchars($reserva->getIdMascota()); ?></p>
                             </div>
 
