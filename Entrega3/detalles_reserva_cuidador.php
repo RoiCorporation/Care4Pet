@@ -41,7 +41,7 @@
 <!DOCTYPE html>
 <html lang="es">
 	<head>
-		<link rel="stylesheet" type="text/css" href="CSS/estilo.css" />
+		<link rel="stylesheet" type="text/css" href="<?= RUTA_CSS ?>estilo.css" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>Detalles reserva</title>
 	</head>

@@ -16,7 +16,7 @@ $jsExtra .= '<script src="js/admin_Gu.js" defer></script>';
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <style><?php readfile(__DIR__ . '/../../../CSS/estilo.css'); ?></style>
+    <style><?php readfile(__DIR__ . '/../../../css/estilo.css'); ?></style>
     <title><?= htmlspecialchars($tituloPagina) ?></title>
 </head>
 <body>

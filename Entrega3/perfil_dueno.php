@@ -86,7 +86,7 @@
 <!DOCTYPE html>
 <html lang="es">
 	<head>
-		<link rel="stylesheet" type="text/css" href="CSS/estilo.css" />
+        <link rel="stylesheet" type="text/css" href="<?= RUTA_CSS ?>estilo.css" />
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<title>Perfil del dueño</title>
 	</head>
@@ -134,6 +134,7 @@
         <?php if ($usuario->getFotoPerfil()) { ?>
             <img src="<?php echo $usuario->getFotoPerfil(); ?>" alt="Foto de dueno">
         <?php } else { ?>
+            <!-- usar RUTA_IMGS -->
             <img src="img/perfil_rand.png" alt="Foto de dueno" width="100" height="100">
         <?php } ?>
 
