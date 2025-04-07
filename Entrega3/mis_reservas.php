@@ -86,7 +86,7 @@
 				$now = new DateTime();
 
 				if ($finicio > $now) {
-					echo "<button type='submit'class='btn-delete'>Cancelar reserva</button>";
+					echo "<button type='submit' class='btn-delete'>Cancelar reserva</button>";
 				}
 				echo "</form>";
 				echo "</div>";

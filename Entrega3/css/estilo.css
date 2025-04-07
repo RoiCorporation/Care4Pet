@@ -336,7 +336,13 @@ main {
 }
 
 
-
+.centrarFormulario {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 60vh; 
+}
 .contenedorAd {
     max-width: 100%;
     background-color: #f9f9f9;
@@ -357,7 +363,9 @@ main {
     position: relative;
     width: 85%;
     overflow: visible; 
+    min-height: 80vh;
 }
+
 .cuadroAdGu {
     min-width: 250px;
     border: 1px solid #ccc;

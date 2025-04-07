@@ -66,7 +66,7 @@ $error = null;
                         <!-- Foto de perfil -->
                         <?php if ($usuario->getFotoPerfil()): ?>
                             <img src="<?= RUTA_IMGS . $usuario->getFotoPerfil() ?>" 
-                                 class="foto-cuidador">
+                                 class="foto-cuidador" alt="Foto de perfil de <?= htmlspecialchars($usuario->getNombre()) ?>">
                         <?php else: ?>
                             <img src="<?= RUTA_IMGS ?>perfil_rand.png" 
                                  alt="Foto de perfil por defecto" 
