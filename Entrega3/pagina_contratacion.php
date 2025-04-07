@@ -90,6 +90,7 @@ $error = null;
                             <p class="tipos-mascotas"><strong>Mascotas que puedo atender:</strong> <?= htmlspecialchars($cuidador->getTiposDeMascotas()) ?></p>
                             <p class="zonas-atendidas"><strong>Zona a la que me puedo desplazar:</strong> <?= htmlspecialchars($cuidador->getZonasAtendidas()) ?></p>
                             <p class="tarifa"><strong>Tarifa:</strong> <?= htmlspecialchars($cuidador->getTarifa()) ?>€/hora</p>
+                            <a href="chat_particular.php?idOtroUsuario=<?= $usuario->getId() ?>&nombreOtroUsuario=<?= $usuario->getNombre() ?>">Ir al chat</a>                                
                             
                             <div class="acciones-cuidador">
                             <a href="ver_perfil_cuidador.php?id=<?= $usuario->getId() ?>" class="btn-vermas">Ver perfil completo</a>                                
