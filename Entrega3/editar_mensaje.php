@@ -14,6 +14,9 @@
 
 	$contenidoPagina = <<<EOS
         <div class="contenedor-general">
+
+            <h2 class="titulo-pagina"> Editar mensaje </h2>
+
     EOS;
 
     $formularioEdicionMensaje = new FormularioEditarMensaje(
