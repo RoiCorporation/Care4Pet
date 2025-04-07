@@ -66,7 +66,7 @@
 				echo "<div class='mascota-info'>";
 				echo "<h4>Mascota</h4>";
 				if ($reserva->getFotoMascota()) {
-					echo "<img src='" . $reserva->getFotoMascota() . "' alt='Foto de Mascota'>";
+					echo "<img src='" . RUTA_IMGS . $reserva->getFotoMascota() . "' alt='Foto de Mascota'>";
 				}
 				echo "<p><strong>Descripción:</strong> " . $reserva->getDescripcionMascota() . "</p>";
 				echo "</div>";
