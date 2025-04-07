@@ -39,7 +39,6 @@ $error = null;
 <head>
     <link rel="stylesheet" type="text/css" href="<?= RUTA_CSS ?>estilo.css" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <title>Página de Contratación</title>
 </head>
 <body>
