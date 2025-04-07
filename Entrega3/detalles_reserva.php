@@ -93,7 +93,7 @@
 		echo "<div class='mascota-info'>";
 		echo "<h4>Mascota</h4>";
 		if ($reserva->getFotoMascota() != NULL) {
-			echo "<img src='" . $reserva->getFotoMascota() . "' alt='Foto de Mascota'>";
+			echo "<img src='" . RUTA_IMGS . $reserva->getFotoMascota() . "' alt='Foto de Mascota'>";
 		}
 		echo "<p><strong>Descripción:</strong> " . $reserva->getDescripcionMascota() . "</p>";
 		echo "</div>";
@@ -101,7 +101,7 @@
 		echo "<div class='cuidador-info'>";
 		echo "<h4>Cuidador</h4>";
 		if ($reserva->getFotoPerfilCuidador() != NULL) {
-			echo "<img src='" . $reserva->getFotoPerfilCuidador() . "' alt='Foto del Cuidador'>";
+			echo "<img src='" . RUTA_IMGS . $reserva->getFotoPerfilCuidador() . "' alt='Foto del Cuidador'>";
 		}
 		echo "<p><strong>Nombre:</strong> " . $reserva->getNombreCuidador() . " " . $reserva->getApellidosCuidador() . "</p>";
 		echo "<p><strong>Correo:</strong> " . $reserva->getCorreoCuidador() . "</p>";
