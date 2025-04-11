@@ -906,9 +906,18 @@ por el otro usuario */
 }
 
 
+/* |-----------------   REGISTRO   -----------------| */
+
+/* Clase para los mensajes de error en los campos */
+.error-campo-formulario-registro {
+    font-size: 0.66rem;
+    color: red;
+}
+
+/* Clase para el formulario de reserva*/
 .formulario-reserva {
     display: flex;
-    flex-direction: column; /* Change to column for vertical layout */
-    align-items: flex-start; /* Align items to the start for better readability */
+    flex-direction: column;
+    align-items: flex-start;
     gap: 10px;
 }

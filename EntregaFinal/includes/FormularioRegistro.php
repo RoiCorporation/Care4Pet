@@ -37,18 +37,22 @@
 
                         <div style="display: table-row;">
                             <div style="display: table-cell; padding: 10px;">
-                                <input type="text" name="nombre" placeholder="Nombre" value="$nombre">
+                                <input type="text" name="nombre" id="campoNombre" placeholder="Nombre" value="$nombre">
+                                <span id="mensajeErrorNombre" class="error-campo-formulario-registro"></span>
                                 {$erroresCampos['nombre']}
                             </div>
                             <div style="display: table-cell; padding: 10px;">
-                                <input type="text" name="apellidos" placeholder="Apellidos" value="$apellidos">
+                                <input type="text" name="apellidos" id="campoApellidos" placeholder="Apellidos" 
+                                    value="$apellidos">
+                                <span id="mensajeErrorApellidos" class="error-campo-formulario-registro"></span>
                                 {$erroresCampos['apellidos']}
                             </div>
                         </div>
 
                         <div style="display: table-row;">
                             <div style="display: table-cell; padding: 10px;">
-                                <input type="text" name="dni" placeholder="DNI" value="$dni">
+                                <input type="text" name="dni" id="campoDni" placeholder="DNI" value="$dni">
+                                <span id="mensajeErrorDni" class="error-campo-formulario-registro"></span>
                                 {$erroresCampos['dni']}
                             </div>
                             <div style="display: table-cell; padding: 10px;">
@@ -59,22 +63,29 @@
 
                         <div style="display: table-row;">
                             <div style="display: table-cell; padding: 10px;">
-                                <input type="email" name="email" placeholder="Email" value="$email">
+                                <input type="email" name="email" id="campoEmail" placeholder="Email" value="$email">
+                                <span id="mensajeErrorEmail" class="error-campo-formulario-registro"></span>
                                 {$erroresCampos['email']}
                             </div>
                             <div style="display: table-cell; padding: 10px;">
-                                <input type="text" name="telefono" placeholder="Teléfono" value="$telefono">
+                                <input type="number" name="telefono" id="campoTelefono" placeholder="Teléfono" 
+                                    value="$telefono" min="1">
+                                <span id="mensajeErrorTelefono" class="error-campo-formulario-registro"></span>
                                 {$erroresCampos['telefono']}
                             </div>
                         </div>
 
                         <div style="display: table-row;">
                             <div style="display: table-cell; padding: 10px;">
-                                <input type="password" name="contrasena" placeholder="Contraseña" value="$contrasena">
+                                <input type="password" name="contrasena" id="campoContrasena" placeholder="Contraseña" 
+                                    value="$contrasena">
+                                <span id="mensajeErrorContrasena" class="error-campo-formulario-registro"></span>
                                 {$erroresCampos['contrasena']}
                             </div>
                             <div style="display: table-cell; padding: 10px;">
-                                <input type="password" name="contrasenaRepetida" placeholder="Repita la contraseña" value="$contrasenaRepetida">
+                                <input type="password" name="contrasenaRepetida" id="campoContrasenaRepetida" 
+                                    placeholder="Repita la contraseña" value="$contrasenaRepetida">
+                                <span id="mensajeErrorContrasenaRepetida" class="error-campo-formulario-registro"></span>
                                 {$erroresCampos['contrasenaRepetida']}
                             </div>
                         </div>
