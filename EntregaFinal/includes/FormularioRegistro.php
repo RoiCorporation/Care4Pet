@@ -63,7 +63,7 @@
 
                         <div style="display: table-row;">
                             <div style="display: table-cell; padding: 10px;">
-                                <input type="email" name="email" id="campoEmail" placeholder="Email" value="$email">
+                                <input type="email" name="email" id="campoEmailRegistro" placeholder="Email" value="$email">
                                 <span id="mensajeErrorEmail" class="error-campo-formulario-registro"></span>
                                 {$erroresCampos['email']}
                             </div>

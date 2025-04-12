@@ -49,6 +49,7 @@ $(document).ready(function() {
                 $('#mensajeErrorDni').hide();
                 break;
         }
+
     });
 
 
@@ -77,8 +78,62 @@ $(document).ready(function() {
             case CODIGO_NINGUN_ERROR:
             $('#mensajeErrorEmail').hide();
             break;
-                
         }
+
+    });
+
+
+    // Caso particular del tratamiento del campo email: si es en el formulario
+    // de registro, ha de comprobar asíncronamente con AJAX si el email introducido
+    // por el usuario ya existe en la base de datos. 
+    $("#campoEmailRegistro").on('blur', function() {
+        let emailIntroducido = $(this).val();
+        let resultadoValidacion = correoValido(emailIntroducido);
+
+        switch(resultadoValidacion) {
+            case CODIGO_ERROR_CAMPO_VACIO:
+                $('#mensajeErrorEmail').text(MENSAJE_ERROR_CAMPO_VACIO).show();
+                break;
+
+            case CODIGO_ERROR_EMAIL_ARROBA:
+                $('#mensajeErrorEmail').text(MENSAJE_ERROR_EMAIL_ARROBA).show();
+                break;
+
+            case CODIGO_ERROR_EMAIL_PUNTO:
+                $('#mensajeErrorEmail').text(MENSAJE_ERROR_EMAIL_PUNTO).show();
+                break;
+
+            case CODIGO_ERROR_EMAIL_SUFIJO:
+                $('#mensajeErrorEmail').text(MENSAJE_ERROR_EMAIL_SUFIJO).show();
+                break;
+                
+            case CODIGO_NINGUN_ERROR:
+            $('#mensajeErrorEmail').hide();
+            break;
+        }
+
+        // Sección de la llamada asíncrona al servidor con AJAX. Objetivo: comprobar
+        // en tiempo real si el email que el usuario ha introducido ya pertenece 
+        // a una cuenta, y hacérselo saber antes de que intente enviar el formulario.
+        
+        // Se utiliza encodeURIComponenent para escapar correctamente signos al 
+        // generar la url.
+        let url = "emailRegistroExisteEnBD.php?email=" + 
+            encodeURIComponent(emailIntroducido);
+
+        // Función AJAX que llama al archivo emailRegistroExisteEnBD.
+        $.get(url, function (data, status) {
+            console.log("Respuesta AJAX:", data);
+
+            // Si el email ya existe en la BD, muestra un mensaje de error.
+            if (data === "Existe")
+                $('#mensajeErrorEmail').text(MENSAJE_ERROR_EMAIL_YA_EXISTE).show();
+            
+            else {}
+                //$('#mensajeErrorEmail').hide();
+
+        });
+
     });
     
 
@@ -99,8 +154,8 @@ $(document).ready(function() {
             case CODIGO_NINGUN_ERROR:
                 $('#mensajeErrorTelefono').hide();
                 break;
-
         }
+
     });
 
 
@@ -183,7 +238,7 @@ $(document).ready(function() {
 });
 
 
-/* |-----------------   FUNCIONES AUXILIARES DE VALIDACIÓN DE DATOS   -----------------| */
+/* |-----------------   FUNCIONES DE VALIDACIÓN DE DATOS   -----------------| */
 
 function dniValido(dni) {
 
@@ -246,6 +301,18 @@ function correoValido(correo) {
 }
 
 
+// Función que procesa el resultado de determinar si el email
+// escrito por el usuario en el formulario de registro existe 
+// ya en la base de datos.
+function emailExisteEnBD(data, status) {
+    console.log("Respuesta AJAX:", data);
+    if (data == "Existe")
+        $('#mensajeErrorEmail').text(MENSAJE_ERROR_EMAIL_YA_EXISTE).show();
+    else
+        $('#mensajeErrorEmail').hide();
+}
+
+
 // Función que comprueba si el teléfono introducido es válido.
 function telefonoValido(telefono) {
 
@@ -268,6 +335,8 @@ function telefonoValido(telefono) {
 
 }
 
+
+/* |-----------------   FUNCIONES AUXILIARES   -----------------| */
 
 // Función auxiliar que comprueba si una determinada cadena
 // de caracteres es un numero o no.
