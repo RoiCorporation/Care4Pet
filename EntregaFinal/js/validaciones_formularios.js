@@ -150,7 +150,7 @@ $(document).ready(function() {
     // errores por subsanar.
     $("#formularioRegistro").on('submit', function (event) {
 
-        // Si hay algún error
+        // Si hay algún error en alguno de los campos, impide el envío del formulario.
         if ($('#mensajeErrorNombre').is(':visible') || 
             $('#mensajeErrorApellidos').is(':visible') || 
             $('#mensajeErrorDni').is(':visible') || 
@@ -159,11 +159,25 @@ $(document).ready(function() {
             $('#mensajeErrorContrasena').is(':visible') || 
             $('#mensajeErrorContrasenaRepetida').is(':visible')            
         ) {
-            console.log("Hay errores, no se envía el formulario.");
-
             event.preventDefault();
         }
     
+    });
+
+
+    // Misma lógica de envío del formulario, pero aplicada al formulario de login.
+    $("#formularioLogin").on('submit', function (event) {
+
+        // Si hay algún error en las credenciales, impide el envío del formulario.
+        if ($('#mensajeErrorEmail').is(':visible') || 
+            $('#mensajeErrorContrasena').is(':visible')
+        )
+            event.preventDefault();
+
+        // Si no hay ningún error, permite el envío.
+        else
+            this.submit();
+
     });
 
 });

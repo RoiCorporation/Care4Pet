@@ -30,7 +30,8 @@
         </div>
 
         <?php
-            if (basename($_SERVER['PHP_SELF']) === 'registro.php') {
+            if (basename($_SERVER['PHP_SELF']) === 'registro.php' || 
+                basename($_SERVER['PHP_SELF']) === 'login.php') {
                 echo '<script src="js/constantes.js"></script>';
                 echo '<script src="js/validaciones_formularios.js"></script>';
             }

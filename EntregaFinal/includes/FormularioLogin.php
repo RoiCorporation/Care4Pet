@@ -20,11 +20,13 @@
                     <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
 
                         <label for="emailUsuario">Email</label>
-                        <input id="emailUsuario" type="text" name="emailUsuario" value="$emailUsuario" />
+                        <input type="text" name="emailUsuario" id="campoEmail"/>
+                        <span id="mensajeErrorEmail" class="error-campo-formulario-registro"></span>
                         {$erroresCampos['emailUsuario']}
                         
                         <label for="contrasena">Contraseña</label>
-                        <input id="contrasena" type="password" name="contrasena" value="$contrasena" />
+                        <input type="password" name="contrasena" id="campoContrasena"/>
+                        <span id="mensajeErrorContrasena" class="error-campo-formulario-registro"></span>
                         {$erroresCampos['contrasena']}
                         
                         <button type="submit" name="login">Iniciar sesión</button>
