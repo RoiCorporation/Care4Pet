@@ -115,7 +115,7 @@ $(document).ready(function() {
         // Sección de la llamada asíncrona al servidor con AJAX. Objetivo: comprobar
         // en tiempo real si el email que el usuario ha introducido ya pertenece 
         // a una cuenta, y hacérselo saber antes de que intente enviar el formulario.
-        
+
         // Se utiliza encodeURIComponenent para escapar correctamente signos al 
         // generar la url.
         let url = "emailRegistroExisteEnBD.php?email=" + 
@@ -128,10 +128,6 @@ $(document).ready(function() {
             // Si el email ya existe en la BD, muestra un mensaje de error.
             if (data === "Existe")
                 $('#mensajeErrorEmail').text(MENSAJE_ERROR_EMAIL_YA_EXISTE).show();
-            
-            else {}
-                //$('#mensajeErrorEmail').hide();
-
         });
 
     });
@@ -298,18 +294,6 @@ function correoValido(correo) {
     else
         return CODIGO_NINGUN_ERROR;
 
-}
-
-
-// Función que procesa el resultado de determinar si el email
-// escrito por el usuario en el formulario de registro existe 
-// ya en la base de datos.
-function emailExisteEnBD(data, status) {
-    console.log("Respuesta AJAX:", data);
-    if (data == "Existe")
-        $('#mensajeErrorEmail').text(MENSAJE_ERROR_EMAIL_YA_EXISTE).show();
-    else
-        $('#mensajeErrorEmail').hide();
 }
 
 

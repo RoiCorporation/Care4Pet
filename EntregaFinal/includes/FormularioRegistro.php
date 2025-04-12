@@ -111,86 +111,65 @@
 
             $nombre = trim($datos['nombre'] ?? '');
             $nombre = filter_var($nombre, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            if ( ! $nombre || empty($nombre) ) {
-                $this->errores['nombre'] = 'El nombre de usuario no puede estar vacío.';
-            }
 
             $apellidos = trim($datos['apellidos'] ?? '');
             $apellidos = filter_var($apellidos, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            if ( ! $apellidos || empty($apellidos) ) {
-                $this->errores['apellidos'] = 'El campo de apellidos no puede estar vacío.';
-            }
 
             $dni = trim($datos['dni'] ?? '');
             $dni = filter_var($dni, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            if ( ! $dni || empty($dni) ) {
-                $this->errores['dni'] = 'Es necesario introducir el DNI.';
-            }
 
             $direccion = trim($datos['direccion'] ?? '');
             $direccion = filter_var($direccion, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
             $email = trim($datos['email'] ?? '');
             $email = filter_var($email, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            if ( ! $email || empty($email) ) {
-                $this->errores['email'] = 'El email de usuario no puede estar vacío.';
-            }
             
             $telefono = trim($datos['telefono'] ?? '');
             $telefono = filter_var($telefono, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            if ( ! $telefono || empty($telefono) ) {
-                $this->errores['telefono'] = 'Es necesario introducir un número de teléfono.';
-            }
 
             $contrasena = trim($datos['contrasena'] ?? '');
             $contrasena = filter_var($contrasena, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            if ( ! $contrasena || empty($contrasena) ) {
-                $this->errores['contrasena'] = 'La contraseña no puede estar vacía.';
-            }
 
             $contrasenaRepetida = trim($datos['contrasenaRepetida'] ?? '');
             $contrasenaRepetida = filter_var($contrasenaRepetida, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            if ( ! $contrasenaRepetida || empty($contrasenaRepetida) ) {
-                $this->errores['contrasenaRepetida'] = 'Introduzca de nuevo la misma contraseña.';
+
+
+            $valorEsCuidador = $datos['esCuidador'] ?? '';
+
+            if ($valorEsCuidador == "Si") {
+                $esCuidador = 1;
+                $esDueno = 0;
+            }
+            else {
+                $esCuidador = 0;
+                $esDueno = 1;
             }
 
-            if (count($this->errores) === 0) {
+            $id_usuario = rand();
+            $nuevoUsuario = new tUsuario($id_usuario, $nombre, $apellidos,
+                $email, $contrasena, $dni, $telefono, NULL, $direccion, $esDueno, $esCuidador);
 
-                $valorEsCuidador = $datos['esCuidador'] ?? '';
+            // Si la inserción ha creado una entrada nueva, el usuario se ha 
+            // registrado correctamente. Por lo tanto, se inicia su sesión con 
+            // las mismas variables de sesión de cualquier otro usuario.
+            if ((DAOUsuario::getInstance())->crearUsuario($nuevoUsuario) == true) {
+                $_SESSION['login'] = true;
+                $_SESSION['email'] = $email;
+                $_SESSION['nombreUsuario'] = $nombre;
+                $_SESSION['id'] = $id_usuario;
 
-                if ($valorEsCuidador == "Si") {
-                    $esCuidador = 1;
-                    $esDueno = 0;
-                }
-                else {
-                    $esCuidador = 0;
-                    $esDueno = 1;
-                }
-
-                $id_usuario = rand();
-                $nuevoUsuario = new tUsuario($id_usuario, $nombre, $apellidos,
-                    $email, $contrasena, $dni, $telefono, NULL, $direccion, $esDueno, $esCuidador);
-
-                // Si la inserción ha creado una entrada nueva, el usuario se ha 
-                // registrado correctamente. Por lo tanto, se inicia su sesión con 
-                // las mismas variables de sesión de cualquier otro usuario.
-                if ((DAOUsuario::getInstance())->crearUsuario($nuevoUsuario) == true) {
-                    $_SESSION['login'] = true;
-                    $_SESSION['email'] = $email;
-                    $_SESSION['nombreUsuario'] = $nombre;
-                    $_SESSION['id'] = $id_usuario;
-
-                    // Redirige al usuario a la página de inicio.
-                    $this->urlRedireccion = "index.php";
-                }
-
-                // Si la inserción ha fallado por algún motivo, se avisa al usuario.
-                else {
-                    echo "Ha habido un problema al intentar registrar esta cuenta.
-                    Por favor, inténtelo de nuevo.<br>";
-                }
+                // Redirige al usuario a la página de inicio.
+                $this->urlRedireccion = "index.php";
             }
+
+            // Si la inserción ha fallado por algún motivo, se avisa al usuario.
+            else {
+                echo "Ha habido un problema al intentar registrar esta cuenta.
+                Por favor, inténtelo de nuevo.<br>";
+            }
+
         }
 
     }
+    
 ?>
