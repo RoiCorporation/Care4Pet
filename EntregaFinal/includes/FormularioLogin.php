@@ -21,12 +21,12 @@
 
                         <label for="emailUsuario">Email</label>
                         <input type="text" name="emailUsuario" id="campoEmail"/>
-                        <span id="mensajeErrorEmail" class="error-campo-formulario-registro"></span>
+                        <span id="mensajeErrorEmail" class="error-campo-formulario"></span>
                         {$erroresCampos['emailUsuario']}
                         
                         <label for="contrasena">Contraseña</label>
                         <input type="password" name="contrasena" id="campoContrasena"/>
-                        <span id="mensajeErrorContrasena" class="error-campo-formulario-registro"></span>
+                        <span id="mensajeErrorContrasena" class="error-campo-formulario"></span>
                         {$erroresCampos['contrasena']}
                         
                         <button type="submit" name="login">Iniciar sesión</button>

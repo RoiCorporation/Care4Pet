@@ -9,6 +9,8 @@ $contenidoPrincipal = $contenidoPrincipal ?? '';
 $jsExtra = $jsExtra ?? '';
 $jsExtra .= '<script src="js/editarUsuario.js" defer></script>';
 $jsExtra .= '<script src="js/admin_Gu.js" defer></script>';
+$jsExtra .= '<script src="js/constantes.js" defer></script>';
+$jsExtra .= '<script src="js/validaciones_formularios.js" defer></script>';
 
 ?>
 
@@ -17,6 +19,7 @@ $jsExtra .= '<script src="js/admin_Gu.js" defer></script>';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <style><?php readfile(__DIR__ . '/../../../css/estilo.css'); ?></style>
     <title><?= htmlspecialchars($tituloPagina) ?></title>
 </head>
