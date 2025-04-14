@@ -128,14 +128,26 @@ function validarEmailRegistro() {
     let url = "emailRegistroExisteEnBD.php?email=" + 
         encodeURIComponent(emailIntroducido);
 
-    // Función AJAX que llama al archivo emailRegistroExisteEnBD.
-    $.get(url, function (data, status) {
+    /*
+     * Función AJAX que llama al archivo emailRegistroExisteEnBD.php. Se hace síncrona porque, 
+     * en la segunda invocación que se hace a esta función -esto es, tras pulsar el botón de 
+     * enviar formulario y no haber otro error en él- es necesario que el programa espere a
+     * recibir la respuesta de esta función antes de continuar su ejecución, para que no se
+     * omita un posible error en este campo.
+    */ 
+    $.ajax({
+        url: url,
+        async: false,  // Fuerza la petición síncrona.
+        success: function (data, status) {
 
-        // Si el email ya existe en la BD, muestra un mensaje de error.
-        if (data === "Existe")
-            $('#mensajeErrorEmail').text(MENSAJE_ERROR_EMAIL_YA_EXISTE).addClass("activo").show();
+            // Si el email ya existe en la BD, muestra un mensaje de error.
+            if (data === "Existe") {
+                $("#mensajeErrorEmail").text(MENSAJE_ERROR_EMAIL_YA_EXISTE).addClass("activo").show();
+            }
 
+        }
     });
+
 }
 
 
@@ -213,9 +225,6 @@ function validarFormulario(event) {
         validarTelefono();
         validarContrasena();
         validarContrasenaRepetida();
-
-        console.log("Tamaño errores: " + formulario.find(".error-campo-formulario.activo").length);
-        event.preventDefault();
     }
 
     else if (formulario.attr("id") === "formularioLogin") {
