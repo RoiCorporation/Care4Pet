@@ -68,6 +68,8 @@
                 $_SESSION['email'] = $usuario->getCorreo();
                 $_SESSION['nombreUsuario'] = $usuario->getNombre();
                 $_SESSION['id'] = $usuario->getId();   
+                $_SESSION['esDueno'] = $usuario->getEsDueno();
+                $_SESSION['esCuidador'] = $usuario->getEsCuidador();
                 $_SESSION['esAdmin'] = $usuario->getEsAdmin();
             }
 

@@ -1,5 +1,7 @@
 <?php
 
+	session_start();
+
 	$tituloPagina = 'Landing page';
 
 	$contenidoPagina = <<<EOS
