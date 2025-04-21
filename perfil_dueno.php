@@ -1,13 +1,6 @@
 <?php
 	session_start();
-
-    //require_once __DIR__ . '/includes/mysql/DatabaseConnection.php';
-    //require_once __DIR__ . '/includes/clases/tMascota.php';
-    //require_once __DIR__ . '/includes/mysql/DAOs/DAOUsuario.php';
-    //require_once __DIR__ . '/includes/mysql/DAOs/DAOMascota.php';
-    //require_once __DIR__ . '/includes/mysql/DAOs/DAOTipoDeMascota.php';
     
-    use Care4Pet\includes\mysql\DatabaseConnection;
 	use Care4Pet\includes\clases\tMascota;
 	use Care4Pet\includes\mysql\DAOs\DAOUsuario;
 	use Care4Pet\includes\mysql\DAOs\DAOMascota;

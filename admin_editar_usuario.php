@@ -1,9 +1,10 @@
 <?php
 session_start();
+
+use Care4Pet\includes\mysql\DAOs\DAOUsuario;
+use Care4Pet\includes\formularios\FormularioEditarUsuario;
+
 require_once __DIR__ . '/includes/config.php';
-require_once __DIR__ . '/includes/mysql/DatabaseConnection.php';
-require_once __DIR__ . '/includes/mysql/DAOs/DAOUsuario.php';
-require_once __DIR__ . '/includes/FormularioEditarUsuario.php';
 
 if (!isset($_SESSION['esAdmin']) || !$_SESSION['esAdmin']) {
     header('Location: index.php');

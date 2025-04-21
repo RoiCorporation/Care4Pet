@@ -1,7 +1,10 @@
 <?php
 session_start();
-require_once __DIR__ . '/includes/mysql/DatabaseConnection.php';
-require_once __DIR__ . '/includes/mysql/DAOs/DAOUsuario.php';
+
+use Care4Pet\includes\mysql\DatabaseConnection;
+use Care4Pet\includes\mysql\DAOs\DAOUsuario;
+
+require_once __DIR__ . '/includes/config.php';
 
 if (!isset($_SESSION['login']) || $_SESSION['login'] !== true || $_SESSION['esAdmin'] != 1) {
     die("Acceso denegado");

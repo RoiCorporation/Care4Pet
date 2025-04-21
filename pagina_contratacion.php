@@ -7,7 +7,6 @@ use Care4Pet\includes\mysql\DAOs\DAOUsuario;
 
 require_once __DIR__ . '/includes/config.php';
 
-
 //inicializo las variables que uso
 $cuidadores = [];
 $todosUsuarios = [];

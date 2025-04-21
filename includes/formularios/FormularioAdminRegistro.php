@@ -1,7 +1,10 @@
 <?php
-require_once 'Formulario.php';
-require_once __DIR__ . '/mysql/DAOs/DAOUsuario.php';
-require_once __DIR__ . '/clases/Usuario_t.php';
+
+namespace Care4Pet\includes\formularios;
+use Care4Pet\includes\mysql\DAOs\DAOUsuario;
+use Care4Pet\includes\clases\tUsuario;
+
+require_once __DIR__ . '/../config.php';
 
 class FormularioAdminRegistro extends Formulario {
     public function __construct() {

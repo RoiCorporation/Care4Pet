@@ -1,8 +1,10 @@
 <?php
 session_start();
+
+use Care4Pet\includes\mysql\DAOs\DAOCuidador;
+use Care4Pet\includes\mysql\DAOs\DAOUsuario;
+
 require_once __DIR__ . '/includes/config.php';
-require_once __DIR__ . '/includes/mysql/DAOs/DAOCuidador.php';
-require_once __DIR__ . '/includes/mysql/DAOs/DAOUsuario.php';
 
 // Verificar que se proporcionó un ID
 if (!isset($_GET['id'])) {

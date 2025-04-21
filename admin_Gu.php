@@ -1,7 +1,10 @@
 <?php
 session_start();
+
+use Care4Pet\includes\mysql\DatabaseConnection;
+
 require_once __DIR__ . '/includes/config.php';
-require_once __DIR__ . '/includes/mysql/DatabaseConnection.php';
+
 // Verificar si el usuario ha iniciado sesión y es administrador
 if (!isset($_SESSION['login']) || $_SESSION['login'] !== true || $_SESSION['esAdmin'] != 1) {
     die("Acceso denegado");

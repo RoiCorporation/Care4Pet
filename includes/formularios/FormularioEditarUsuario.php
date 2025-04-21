@@ -1,8 +1,13 @@
 <?php
+
+namespace Care4Pet\includes\formularios;
+use Care4Pet\includes\mysql\DAOs\DAOUsuario;
+use Care4Pet\includes\clases\tUsuario;
+
+require_once __DIR__ . '/../config.php';
+
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
-require_once __DIR__ . '/Formulario.php';
-require_once __DIR__ . '/mysql/DAOs/DAOUsuario.php';
 
 class FormularioEditarUsuario extends Formulario {
 
