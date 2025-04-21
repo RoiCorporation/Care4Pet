@@ -8,7 +8,7 @@
         
         // Constructor privado para evitar nuevas instancias con new().
         private function __construct() { 
-            require_once __DIR__ . '/../../clases/Mascota_t.php';
+            require_once __DIR__ . '/../../clases/tMascota.php';
             require_once __DIR__ . '/../DatabaseConnection.php';
             require_once 'DAOReserva.php';
             $con = null;

@@ -1,7 +1,7 @@
 <?php
 
     require_once __DIR__ . '/../DatabaseConnection.php';
-    require_once __DIR__ . '/../../clases/Mensaje_t.php';
+    require_once __DIR__ . '/../../clases/tMensaje.php';
 
     class DAOMensaje {
         

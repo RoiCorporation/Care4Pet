@@ -9,7 +9,7 @@
         
         // Constructor privado para evitar nuevas instancias con new().
         private function __construct() { 
-            require_once __DIR__ . '/../../clases/TipoDeMascota_t.php';
+            require_once __DIR__ . '/../../clases/tTipoDeMascota.php';
             require_once __DIR__ . '/../DatabaseConnection.php';
             $con = null;
             $this->con = (DatabaseConnection::getInstance())->getConnection();

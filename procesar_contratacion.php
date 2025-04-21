@@ -6,7 +6,7 @@ session_start();
 
 require_once __DIR__ . '/includes/config.php';
 require_once __DIR__ . '/includes/mysql/DatabaseConnection.php';
-require_once __DIR__ . '/includes/clases/Reserva_t.php';
+require_once __DIR__ . '/includes/clases/tReserva.php';
 require_once __DIR__ . '/includes/mysql/DAOs/DAOUsuario.php';
 require_once __DIR__ . '/includes/mysql/DAOs/DAOMascota.php';
 require_once __DIR__ . '/includes/mysql/DAOs/DAOReserva.php';
