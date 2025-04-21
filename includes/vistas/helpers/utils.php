@@ -1,6 +1,7 @@
 <?php
 
-    require_once __DIR__ . '/../../FormularioBorrarMensaje.php';
+    use Care4Pet\includes\formularios\FormularioBorrarMensaje;
+    use Care4Pet\includes\mysql\DAOs\DAOMensaje;
 
     // Función auxiliar que carga los mensajes de un determinado chat desde la base 
     // de datos y puebla con ellos la ventana de mensajes de esa conversación concreta.

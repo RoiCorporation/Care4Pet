@@ -2,8 +2,9 @@
 
     session_start();
 
-    require_once __DIR__ . '/includes/mysql/DatabaseConnection.php';
-    require_once __DIR__ . '/includes/FormularioEditarMensaje.php';
+    use Care4Pet\includes\formularios\FormularioEditarMensaje;
+
+    require_once __DIR__ . '/includes/config.php';
 
     $idOtroUsuario = $_GET['idOtroUsuario'];
     $nombreOtroUsuario = $_GET['nombreOtroUsuario'];

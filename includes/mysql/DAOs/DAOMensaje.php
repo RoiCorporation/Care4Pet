@@ -1,7 +1,10 @@
 <?php
 
-    require_once __DIR__ . '/../DatabaseConnection.php';
-    require_once __DIR__ . '/../../clases/tMensaje.php';
+    namespace Care4Pet\includes\mysql\DAOs;
+    use Care4Pet\includes\mysql\DatabaseConnection;
+    use Care4Pet\includes\clases\tMensaje;
+
+    require_once __DIR__ . '/../../config.php';
 
     class DAOMensaje {
         

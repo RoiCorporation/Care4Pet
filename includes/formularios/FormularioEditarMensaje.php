@@ -1,8 +1,9 @@
 <?php
 
-    require_once __DIR__ . '/mysql/DatabaseConnection.php';
-    require_once __DIR__ . '/Formulario.php';
-    require_once __DIR__ . '/mysql/DAOs/DAOMensaje.php';
+    namespace Care4Pet\includes\formularios;
+    use Care4Pet\includes\mysql\DAOs\DAOMensaje;
+
+    require_once __DIR__ . '/../config.php';
 
     class FormularioEditarMensaje extends Formulario {
 

@@ -2,12 +2,11 @@
 
     session_start();
 
-    require_once __DIR__ . '/includes/mysql/DatabaseConnection.php';
-    require_once __DIR__ . '/includes/mysql/DAOs/DAOMensaje.php';
-    require_once __DIR__ . '/includes/vistas/helpers/utils.php';
-    require_once __DIR__ . '/includes/FormularioEnviarMensaje.php';
+	use Care4Pet\includes\formularios\FormularioEnviarMensaje;
 
-    
+	require_once __DIR__ . '/includes/config.php';
+	require_once __DIR__ . '/includes/vistas/helpers/utils.php';
+
     // Obtiene el ID y el nombre del otro usuario.
     $idOtroUsuario = htmlspecialchars(trim(strip_tags($_REQUEST["idOtroUsuario"])));
     $nombreOtroUsuario = htmlspecialchars(trim(strip_tags($_REQUEST["nombreOtroUsuario"])));

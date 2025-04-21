@@ -2,9 +2,10 @@
 
 	session_start();
 
-    require_once __DIR__ . '/includes/mysql/DatabaseConnection.php';
-    require_once __DIR__ . '/includes/mysql/DAOs/DAOMensaje.php';
-    require_once __DIR__ . '/includes/mysql/DAOs/DAOUsuario.php';
+	use Care4Pet\includes\mysql\DAOs\DAOMensaje;
+	use Care4Pet\includes\mysql\DAOs\DAOUsuario;
+
+	require_once __DIR__ . '/includes/config.php';
 
 	$tituloPagina = 'Mis chats';
 
