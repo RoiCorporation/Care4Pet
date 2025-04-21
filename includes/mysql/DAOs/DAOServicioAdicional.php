@@ -7,7 +7,11 @@
  * clase que es el DAO.
 */
 
+    namespace Care4Pet\includes\mysql\DAOs;
+    use Care4Pet\includes\mysql\DatabaseConnection;
+    use Care4Pet\includes\clases\tServicioAdicional;
 
+    require_once __DIR__ . '/../../config.php';
 
     class DAOServicioAdicional {
     

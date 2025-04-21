@@ -1,9 +1,11 @@
 <?php
 // esta pagina muestra los cuidadores disponibles en nuestra web
 session_start();
+
+use Care4Pet\includes\mysql\DAOs\DAOCuidador;
+use Care4Pet\includes\mysql\DAOs\DAOUsuario;
+
 require_once __DIR__ . '/includes/config.php';
-require_once __DIR__ . '/includes/mysql/DAOs/DAOCuidador.php';
-require_once __DIR__ . '/includes/mysql/DAOs/DAOUsuario.php';
 
 
 //inicializo las variables que uso

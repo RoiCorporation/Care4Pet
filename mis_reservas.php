@@ -1,12 +1,9 @@
 <?php
 	session_start();
+	
+	use Care4Pet\includes\mysql\DAOs\DAOReserva;
 
-    require_once __DIR__ . '/includes/mysql/DatabaseConnection.php';
-	require_once __DIR__ . '/includes/clases/tMascota.php';
-	require_once __DIR__ . '/includes/clases/tReserva.php';
-	require_once __DIR__ . '/includes/mysql/DAOs/DAOMascota.php';
-	require_once __DIR__ . '/includes/mysql/DAOs/DAOReserva.php';
-
+	require_once __DIR__ . '/includes/config.php';
 
     $listaReservas = [];
 

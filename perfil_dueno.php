@@ -1,13 +1,20 @@
 <?php
 	session_start();
 
-    require_once __DIR__ . '/includes/mysql/DatabaseConnection.php';
-    require_once __DIR__ . '/includes/clases/tMascota.php';
-    require_once __DIR__ . '/includes/mysql/DAOs/DAOUsuario.php';
-    require_once __DIR__ . '/includes/mysql/DAOs/DAOMascota.php';
-    require_once __DIR__ . '/includes/mysql/DAOs/DAOTipoDeMascota.php';
+    //require_once __DIR__ . '/includes/mysql/DatabaseConnection.php';
+    //require_once __DIR__ . '/includes/clases/tMascota.php';
+    //require_once __DIR__ . '/includes/mysql/DAOs/DAOUsuario.php';
+    //require_once __DIR__ . '/includes/mysql/DAOs/DAOMascota.php';
+    //require_once __DIR__ . '/includes/mysql/DAOs/DAOTipoDeMascota.php';
     
-    
+    use Care4Pet\includes\mysql\DatabaseConnection;
+	use Care4Pet\includes\clases\tMascota;
+	use Care4Pet\includes\mysql\DAOs\DAOUsuario;
+	use Care4Pet\includes\mysql\DAOs\DAOMascota;
+	use Care4Pet\includes\mysql\DAOs\DAOTipoDeMascota;
+
+	require_once __DIR__ . '/includes/config.php';
+
     $usuario = NULL;
     $listaMascotas = [];
     $listaTiposDeMascotas = [];
@@ -128,9 +135,11 @@
         ?>    
         <?php
             $verificado = false;
-            $consultaVerificacion = $con->query("SELECT verificado FROM usuarios WHERE idUsuario = $id");
-            if ($consultaVerificacion) {
-                $verificado = $consultaVerificacion->fetch_assoc()['verificado'] ?? false;
+
+            $usuarioObtenido = (DAOUsuario::getInstance())->leerUnUsuarioPorId($id);
+
+            if ($usuario != NULL) {
+                $verificado = $usuarioObtenido->getVerificado();
             }
             ?>
 

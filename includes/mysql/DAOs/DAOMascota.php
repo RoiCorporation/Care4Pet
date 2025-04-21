@@ -1,5 +1,11 @@
 <?php
 
+    namespace Care4Pet\includes\mysql\DAOs;
+    use Care4Pet\includes\mysql\DatabaseConnection;
+    use Care4Pet\includes\clases\tMascota;
+
+    require_once __DIR__ . '/../../config.php';
+
     class DAOMascota {
     
         // Atributos.

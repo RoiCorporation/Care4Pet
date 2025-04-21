@@ -1,5 +1,10 @@
 <?php
 
+    namespace Care4Pet\includes\mysql\DAOs;
+    use Care4Pet\includes\mysql\DatabaseConnection;
+    use Care4Pet\includes\clases\tTipoDeMascota;
+
+    require_once __DIR__ . '/../../config.php';
 
     class DAOTipoDeMascota {
     

@@ -4,12 +4,13 @@ session_start();
 //error_reporting(E_ALL);
 //ini_set('display_errors', 1);
 
+use Care4Pet\includes\mysql\DatabaseConnection;
+use Care4Pet\includes\clases\tReserva;
+use Care4Pet\includes\mysql\DAOs\DAOUsuario;
+use Care4Pet\includes\mysql\DAOs\DAOMascota;
+use Care4Pet\includes\mysql\DAOs\DAOReserva;
+
 require_once __DIR__ . '/includes/config.php';
-require_once __DIR__ . '/includes/mysql/DatabaseConnection.php';
-require_once __DIR__ . '/includes/clases/tReserva.php';
-require_once __DIR__ . '/includes/mysql/DAOs/DAOUsuario.php';
-require_once __DIR__ . '/includes/mysql/DAOs/DAOMascota.php';
-require_once __DIR__ . '/includes/mysql/DAOs/DAOReserva.php';
 
 
 if (!isset($_SESSION['idCuidador']) || !isset($_SESSION['email']) || 

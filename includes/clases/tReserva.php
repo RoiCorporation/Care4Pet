@@ -1,5 +1,7 @@
 <?php
 
+    namespace Care4Pet\includes\clases;
+
     class tReserva {
 
         // Atributos de la clase.

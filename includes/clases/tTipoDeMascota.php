@@ -1,5 +1,7 @@
 <?php
 
+    namespace Care4Pet\includes\clases;
+
     class tTipoDeMascota {
 
         // Atributos de la clase.

@@ -1,11 +1,12 @@
 <?php
     session_start();
     
-    require_once __DIR__ . '/includes/mysql/DatabaseConnection.php';
-    require_once __DIR__ . '/includes/mysql/DAOs/DAOUsuario.php';
-    require_once __DIR__ . '/includes/mysql/DAOs/DAOCuidador.php';
-    require_once __DIR__ . '/includes/mysql/DAOs/DAOReserva.php';
+	use Care4Pet\includes\mysql\DatabaseConnection;
+	use Care4Pet\includes\mysql\DAOs\DAOUsuario;
+	use Care4Pet\includes\mysql\DAOs\DAOCuidador;
+	use Care4Pet\includes\mysql\DAOs\DAOReserva;
 
+	require_once __DIR__ . '/includes/config.php';
 
     $usuario = NULL;
     $cuidador = NULL;

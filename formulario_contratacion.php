@@ -1,5 +1,6 @@
 <?php
-        //esta pagina es el formulario que rellena el dueno de la mascota a la hora de contratar al cuidador
+
+    //esta pagina es el formulario que rellena el dueno de la mascota a la hora de contratar al cuidador
     session_start();
 
     //miro si hay un cuidador seleccionado y usuario logueado
@@ -11,11 +12,11 @@
     // para los errores al depurar
     //error_reporting(E_ALL);
     //ini_set('display_errors', 1);
+    
+    use Care4Pet\includes\mysql\DAOs\DAOUsuario;
+    use Care4Pet\includes\mysql\DAOs\DAOMascota;
 
     require_once __DIR__ . '/includes/config.php';
-    require_once __DIR__ . '/includes/mysql/DatabaseConnection.php';
-    require_once __DIR__ . '/includes/mysql/DAOs/DAOUsuario.php';
-    require_once __DIR__ . '/includes/mysql/DAOs/DAOMascota.php';
 
     // Almacenao datos del cuidador en sesión
     $_SESSION['idCuidador'] = $_POST['idCuidador'];

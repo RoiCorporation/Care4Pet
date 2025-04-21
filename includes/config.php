@@ -19,22 +19,22 @@ spl_autoload_register(function ($class) {
     // Obtiene el nombre de la clase relativa al namespace
     $relative_class = substr($class, $len);
 
-    //echo "<h5>Base dir: " . $base_dir . "</h5>";
-//
-    //echo "<h5>Class: " . $class . "</h5>";
-//
-    //echo "<h5>Relative class: " . $relative_class . "</h5>";
+    echo "<h5>Base dir: " . $base_dir . "</h5>";
+
+    echo "<h5>Class: " . $class . "</h5>";
+
+    echo "<h5>Relative class: " . $relative_class . "</h5>";
 
     // Reemplaza los separadores de namespace con el sistema de archivos
     $file = $base_dir . str_replace('\\', '/', $relative_class) . '.php';
 
     // Si el archivo existe, lo incluye
     if (file_exists($file)) {
-        //echo "<h2>SISISISISISI</h2> " . $file;
+        echo "<h2>SISISISISISI</h2> " . $file;
         require $file;
     }
     else {
-        //echo "<h2>NONONONONO</h2> " . $file;
+        echo "<h2>NONONONONO</h2> " . $file;
     }
 });
 

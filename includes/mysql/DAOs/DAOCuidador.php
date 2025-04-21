@@ -1,10 +1,15 @@
-<!-- Clase DAO ("Data Acces Object") para realizar las operaciones
-CRUD sobre las entidades de tipo tCuidador. Se utilizará el patrón de 
-diseño Singleton, por considerarlo el más apropiado para el tipo de 
-clase que es el DAO -->
-
 <?php
 
+    namespace Care4Pet\includes\mysql\DAOs;
+    use Care4Pet\includes\mysql\DatabaseConnection;
+    use Care4Pet\includes\clases\tCuidador;
+
+    require_once __DIR__ . '/../../config.php';
+
+    // Clase DAO ("Data Acces Object") para realizar las operaciones
+    // CRUD sobre las entidades de tipo tCuidador. Se utilizará el patrón de 
+    // diseño Singleton, por considerarlo el más apropiado para el tipo de 
+    // clase que es el DAO.
 
     class DAOCuidador {
     

@@ -1,6 +1,9 @@
-<!-- Definición de la clase tCuidador, necesaria para almacenar los datos obtenidos 
-mediante las consultas a la base de datos hechas a través del DAOCuidador -->
 <?php
+
+    namespace Care4Pet\includes\clases;
+
+    // Definición de la clase tCuidador, necesaria para almacenar los datos obtenidos 
+    // mediante las consultas a la base de datos hechas a través del DAOCuidador.
 
     class tCuidador {
 
