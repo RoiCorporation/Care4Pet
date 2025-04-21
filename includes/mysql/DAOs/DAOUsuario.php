@@ -1,9 +1,10 @@
 <?php
 
     namespace Care4Pet\includes\mysql\DAOs;
-
     use Care4Pet\includes\mysql\DatabaseConnection;
     use Care4Pet\includes\clases\tUsuario;
+
+    require_once __DIR__ . '/../../config.php';
 
     class DAOUsuario {
     
@@ -12,9 +13,7 @@
         private $con;
         
         // Constructor privado para evitar nuevas instancias con new().
-        private function __construct() { 
-            require_once __DIR__ . '/../../clases/Usuario_t.php';
-            require_once __DIR__ . '/../DatabaseConnection.php';
+        private function __construct() {
             $con = null;
             $this->con = (DatabaseConnection::getInstance())->getConnection();
         }
