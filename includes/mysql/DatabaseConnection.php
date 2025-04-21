@@ -1,6 +1,6 @@
 <?php
 
-    namespace Care4Pet\EntregaFinal\includes\mysql;
+    namespace Care4Pet\includes\mysql;
     require_once __DIR__ . '/../config.php';
 
     class DatabaseConnection {
@@ -10,7 +10,7 @@
 
         private function __construct() {
             
-            require_once dirname(__DIR__) . '/config.php';
+            require_once __DIR__ . '/../config.php';
 
             $this->connection = new \mysqli(
                 BD_HOST,

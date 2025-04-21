@@ -8,7 +8,7 @@ spl_autoload_register(function ($class) {
     $prefix = 'Care4Pet\\';
 
     // Directorio base donde están las clases
-    $base_dir = __DIR__ . '/';
+    $base_dir = __DIR__ . '/../';
 
     // Verifica si la clase pertenece al namespace definido
     $len = strlen($prefix);
@@ -30,7 +30,7 @@ spl_autoload_register(function ($class) {
 
     // Si el archivo existe, lo incluye
     if (file_exists($file)) {
-        echo "SISISISISISI";
+        echo "SISISISISISI " . $file;
         require $file;
     }
     else {
@@ -50,7 +50,7 @@ define('BD_PASS', '');
  * Parámetros de configuración utilizados para generar las URLs y las rutas a ficheros en la aplicación
  */
 define('RAIZ_APP', __DIR__);
-define('RUTA_APP', '/Care4Pet/EntregaFinal/');
+define('RUTA_APP', '/Care4Pet/');
 define('RUTA_IMGS', RUTA_APP.'img/');
 define('RUTA_CSS', RUTA_APP.'css/');
 define('RUTA_JS', RUTA_APP.'js/');

@@ -1,6 +1,6 @@
 <?php
 
-    namespace Care4Pet\EntregaFinal\includes\clases;
+    namespace Care4Pet\includes\clases;
 
     class tUsuario {
 

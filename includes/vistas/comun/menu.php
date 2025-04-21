@@ -7,9 +7,8 @@
 
 	<?php
 	
-	require_once __DIR__ . '/../../config.php';
-		use Care4Pet\EntregaFinal\includes\mysql\DatabaseConnection;
-		//require_once __DIR__ . '/../../mysql/DatabaseConnection.php';
+		require_once __DIR__ . '/../../config.php';
+		use Care4Pet\includes\mysql\DatabaseConnection;
 
 		// Si el usuario ha iniciado sesión, le aparecerá el link a sus reservas y el 
 		// botón de cerrar sesión.

@@ -1,7 +1,7 @@
 <?php
 	
 	require_once __DIR__ . '/includes/config.php';
-	use Care4Pet\formularios\FormularioLogin;
+	use Care4Pet\includes\formularios\FormularioLogin;
 
 	session_start();
 

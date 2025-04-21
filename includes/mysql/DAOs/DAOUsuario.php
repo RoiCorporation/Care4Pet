@@ -1,9 +1,9 @@
 <?php
 
-    namespace Care4Pet\EntregaFinal\includes\mysql\DAOs;
+    namespace Care4Pet\includes\mysql\DAOs;
 
-    use Care4Pet\EntregaFinal\includes\mysql\DatabaseConnection;
-    use Care4Pet\EntregaFinal\includes\clases\tUsuario;
+    use Care4Pet\includes\mysql\DatabaseConnection;
+    use Care4Pet\includes\clases\tUsuario;
 
     class DAOUsuario {
     
