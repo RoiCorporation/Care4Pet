@@ -1,11 +1,10 @@
 <?php
 	
-	require_once __DIR__ . '/includes/config.php';
-	use Care4Pet\includes\formularios\FormularioLogin;
-
 	session_start();
 
-	//require_once __DIR__ . '/includes/formularios/FormularioLogin.php';
+	use Care4Pet\includes\formularios\FormularioLogin;
+
+	require_once __DIR__ . '/includes/config.php';
 
 	$tituloPagina = 'Inicio de sesión';
 

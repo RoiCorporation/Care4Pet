@@ -1,7 +1,10 @@
 <?php
+
 	session_start();
 
-	require_once __DIR__ . '/includes/FormularioRegistro.php';
+	use Care4Pet\includes\formularios\FormularioRegistro;
+	
+	require_once __DIR__ . '/includes/config.php';
 
 	$tituloPagina = 'Registro';
 

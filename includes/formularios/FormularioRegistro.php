@@ -1,7 +1,10 @@
 <?php
-    require_once 'Formulario.php';
-    require_once __DIR__ . '/mysql/DAOs/DAOUsuario.php';
-    require_once __DIR__ . '/clases/Usuario_t.php';
+    
+    namespace Care4Pet\includes\formularios;
+    use Care4Pet\includes\mysql\DAOs\DAOUsuario;
+    use Care4Pet\includes\clases\tUsuario;
+
+    require_once __DIR__ . '/../config.php';
 
     class FormularioRegistro extends Formulario {
         public function __construct() {
@@ -157,6 +160,9 @@
                 $_SESSION['email'] = $email;
                 $_SESSION['nombreUsuario'] = $nombre;
                 $_SESSION['id'] = $id_usuario;
+                $_SESSION['esDueno'] = $nuevoUsuario->getEsDueno();
+                $_SESSION['esCuidador'] = $nuevoUsuario->getEsCuidador();
+                $_SESSION['esAdmin'] = $nuevoUsuario->getEsAdmin();
 
                 // Redirige al usuario a la página de inicio.
                 $this->urlRedireccion = "index.php";

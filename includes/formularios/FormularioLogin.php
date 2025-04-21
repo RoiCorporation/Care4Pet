@@ -3,8 +3,7 @@
     namespace Care4Pet\includes\formularios;
     use Care4Pet\includes\mysql\DAOs\DAOUsuario;
 
-    require_once 'Formulario.php';
-    require_once __DIR__ . '/../mysql/DAOs/DAOUsuario.php';
+    require_once __DIR__ . '/../config.php';
 
     class FormularioLogin extends Formulario {
         public function __construct() {
