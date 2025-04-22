@@ -7,7 +7,9 @@
      * caracteres en función de dicha consulta.
     */
 
-    require_once __DIR__ . '/includes/mysql/DAOs/DAOUsuario.php';
+    use Care4Pet\includes\mysql\DAOs\DAOUsuario;
+
+    require_once __DIR__ . '/includes/config.php';
 
     // Obtiene el email.
     $emailUsuario = $_REQUEST["email"];
