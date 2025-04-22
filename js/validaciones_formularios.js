@@ -143,7 +143,6 @@ function validarEmailRegistro() {
             // Si el email ya existe en la BD, muestra un mensaje de error.
             if (data === "Existe") {
                 $("#mensajeErrorEmail").text(MENSAJE_ERROR_EMAIL_YA_EXISTE).addClass("activo").show();
-                console.log("YA EXISTE");
             }
 
         }
