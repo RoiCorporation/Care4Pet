@@ -8,56 +8,35 @@
 /* |-----------------   VARIABLES GLOBALES   -----------------| */
 
 /*
- * Variable necesaria para obtener el valor introducido en el primer campo
- * referente a la contraseña y evitar errores al compararlo con la introducida
- * en el segundo campo.
+ * Variables necesarias para obtener los valores introducidos en los
+ * campos de las contraseñas y evitar errores al compararlos entre ellos.
 */
-let contrasenaIntroducida = null;
+
+let contrasenaPrimera = null;
+let contrasenaSegunda = null;
 
 
 
 /* |-----------------   FUNCIONES DE VALIDACIÓN   -----------------| */
 
-// Función de validación del campo nombre.
-function validarNombre() {
-    let nombreIntroducido = $("#campoNombre").val();
-
-    if (nombreIntroducido.trim().length === 0)
-        $('#mensajeErrorNombre').text(MENSAJE_ERROR_CAMPO_VACIO).addClass("activo").show();
-
-    else
-        $('#mensajeErrorNombre').removeClass("activo").hide();
-}
-
-
-// Función de validación del campo apellidos.
-function validarApellidos() {
-    let apellidosIntroducido = $("#campoApellidos").val();
-
-    if (apellidosIntroducido.trim().length === 0)
-        $('#mensajeErrorApellidos').text(MENSAJE_ERROR_CAMPO_VACIO).addClass("activo").show();
-
-    else
-        $('#mensajeErrorApellidos').removeClass("activo").hide();
-}
-
-
 // Función de validación del campo DNI.
 function validarDni() {
-    let dniIntroducido = $("#campoDni").val();
-    let resultadoValidacionDni = comprobarDni(dniIntroducido);
+    const campoDni = $("#" + ID_CAMPO_DNI);
+    campoDni[0].setCustomValidity(MENSAJE_NINGUN_ERROR);
+    
+    let resultadoValidacionDni = comprobarDni(campoDni.val());
 
     switch(resultadoValidacionDni) {
         case CODIGO_ERROR_DNI_LONGITUD:
-            $('#mensajeErrorDni').text(MENSAJE_ERROR_DNI_LONGITUD).addClass("activo").show();
+            campoDni[0].setCustomValidity(MENSAJE_ERROR_DNI_LONGITUD);
             break;
 
         case CODIGO_ERROR_DNI_FORMATO:
-            $('#mensajeErrorDni').text(MENSAJE_ERROR_DNI_FORMATO).addClass("activo").show();
+            campoDni[0].setCustomValidity(MENSAJE_ERROR_DNI_FORMATO);
             break;
 
         case CODIGO_NINGUN_ERROR:
-            $('#mensajeErrorDni').removeClass("activo").hide();
+            campoDni[0].setCustomValidity(MENSAJE_NINGUN_ERROR);
             break;
     }
 }
@@ -65,28 +44,27 @@ function validarDni() {
 
 // Función de validación del campo email.
 function validarEmail() {
-    let emailIntroducido = $("#campoEmail").val();
-    let resultadoValidacionEmail = comprobarCorreo(emailIntroducido);
+    const campoEmail = $("#" + ID_CAMPO_EMAIL);
+    campoEmail[0].setCustomValidity(MENSAJE_NINGUN_ERROR);
+
+    let resultadoValidacionEmail = comprobarCorreo(campoEmail.val());
 
     switch(resultadoValidacionEmail) {
-        case CODIGO_ERROR_CAMPO_VACIO:
-            $('#mensajeErrorEmail').text(MENSAJE_ERROR_CAMPO_VACIO).addClass("activo").show();
-            break;
 
         case CODIGO_ERROR_EMAIL_ARROBA:
-            $('#mensajeErrorEmail').text(MENSAJE_ERROR_EMAIL_ARROBA).addClass("activo").show();
+            campoEmail[0].setCustomValidity(MENSAJE_ERROR_EMAIL_ARROBA);
             break;
 
         case CODIGO_ERROR_EMAIL_PUNTO:
-            $('#mensajeErrorEmail').text(MENSAJE_ERROR_EMAIL_PUNTO).addClass("activo").show();
+            campoEmail[0].setCustomValidity(MENSAJE_ERROR_EMAIL_PUNTO);
             break;
 
         case CODIGO_ERROR_EMAIL_SUFIJO:
-            $('#mensajeErrorEmail').text(MENSAJE_ERROR_EMAIL_SUFIJO).addClass("activo").show();
+            campoEmail[0].setCustomValidity(MENSAJE_ERROR_EMAIL_SUFIJO);
             break;
             
         case CODIGO_NINGUN_ERROR:
-            $('#mensajeErrorEmail').removeClass("activo").hide();
+            campoEmail[0].setCustomValidity(MENSAJE_NINGUN_ERROR);
             break;
     }
 }
@@ -94,28 +72,27 @@ function validarEmail() {
 
 // Función de validación del campo email para los formularios de alta de usuario.
 function validarEmailRegistro() {
-    let emailIntroducido = $("#campoEmailRegistro").val();
-    let resultadoValidacionEmailRegistro = comprobarCorreo(emailIntroducido);
+    const campoEmailRegistro = $("#" + ID_CAMPO_EMAIL_REGISTRO);
+    campoEmailRegistro[0].setCustomValidity(MENSAJE_NINGUN_ERROR);
+
+    let resultadoValidacionEmailRegistro = comprobarCorreo(campoEmailRegistro.val());
 
     switch(resultadoValidacionEmailRegistro) {
-        case CODIGO_ERROR_CAMPO_VACIO:
-            $('#mensajeErrorEmail').text(MENSAJE_ERROR_CAMPO_VACIO).addClass("activo").show();
-            break;
 
         case CODIGO_ERROR_EMAIL_ARROBA:
-            $('#mensajeErrorEmail').text(MENSAJE_ERROR_EMAIL_ARROBA).addClass("activo").show();
+            campoEmailRegistro[0].setCustomValidity(MENSAJE_ERROR_EMAIL_ARROBA);
             break;
 
         case CODIGO_ERROR_EMAIL_PUNTO:
-            $('#mensajeErrorEmail').text(MENSAJE_ERROR_EMAIL_PUNTO).addClass("activo").show();
+            campoEmailRegistro[0].setCustomValidity(MENSAJE_ERROR_EMAIL_PUNTO);
             break;
 
         case CODIGO_ERROR_EMAIL_SUFIJO:
-            $('#mensajeErrorEmail').text(MENSAJE_ERROR_EMAIL_SUFIJO).addClass("activo").show();
+            campoEmailRegistro[0].setCustomValidity(MENSAJE_ERROR_EMAIL_SUFIJO);
             break;
             
         case CODIGO_NINGUN_ERROR:
-            $('#mensajeErrorEmail').removeClass("activo").hide();
+            campoEmailRegistro[0].setCustomValidity(MENSAJE_NINGUN_ERROR);
             break;
     }
 
@@ -126,26 +103,20 @@ function validarEmailRegistro() {
     // Se utiliza encodeURIComponenent para escapar correctamente signos al 
     // generar la url.
     let url = "emailRegistroExisteEnBD.php?email=" + 
-        encodeURIComponent(emailIntroducido);
+        encodeURIComponent(campoEmailRegistro.val());
 
     /*
-     * Función AJAX que llama al archivo emailRegistroExisteEnBD.php. Se hace síncrona porque, 
-     * en la segunda invocación que se hace a esta función -esto es, tras pulsar el botón de 
-     * enviar formulario y no haber otro error en él- es necesario que el programa espere a
-     * recibir la respuesta de esta función antes de continuar su ejecución, para que no se
-     * omita un posible error en este campo.
+     * Función AJAX que llama al archivo emailRegistroExisteEnBD.php. Con ella 
+     * se comprueba de forma asíncrona si ya existe un usuario con ese mismo
+     * email en la base de datos.
     */ 
-    $.ajax({
-        url: url,
-        async: false,  // Fuerza la petición síncrona.
-        success: function (data, status) {
+    $.get(url, function(data) {
 
-            // Si el email ya existe en la BD, muestra un mensaje de error.
-            if (data === "Existe") {
-                $("#mensajeErrorEmail").text(MENSAJE_ERROR_EMAIL_YA_EXISTE).addClass("activo").show();
-            }
-
-        }
+        // Si el email ya existe en la BD, muestra un mensaje de error.    
+        if (data == "Existe")
+            campoEmailRegistro[0].setCustomValidity(MENSAJE_ERROR_EMAIL_YA_EXISTE);
+        else
+            campoEmailRegistro[0].setCustomValidity(MENSAJE_NINGUN_ERROR);
     });
 
 }
@@ -153,20 +124,22 @@ function validarEmailRegistro() {
 
 // Función de validación del campo teléfono.
 function validarTelefono() {
-    let telefonoIntroducido = $("#campoTelefono").val();
-    let resultadoValidacionTelefono = comprobarTelefono(telefonoIntroducido);
+    const campoTelefono = $("#" + ID_CAMPO_TELEFONO);
+    campoTelefono[0].setCustomValidity(MENSAJE_NINGUN_ERROR);
+
+    let resultadoValidacionTelefono = comprobarTelefono(campoTelefono.val());
 
     switch(resultadoValidacionTelefono) {
         case CODIGO_ERROR_TELEFONO_LONGITUD:
-            $('#mensajeErrorTelefono').text(MENSAJE_ERROR_TELEFONO_LONGITUD).addClass("activo").show();
+            campoTelefono[0].setCustomValidity(MENSAJE_ERROR_TELEFONO_LONGITUD);
             break;
 
         case CODIGO_ERROR_TELEFONO_FORMATO:
-            $('#mensajeErrorTelefono').text(MENSAJE_ERROR_TELEFONO_FORMATO).addClass("activo").show();
+            campoTelefono[0].setCustomValidity(MENSAJE_ERROR_TELEFONO_FORMATO);
             break;
 
         case CODIGO_NINGUN_ERROR:
-            $('#mensajeErrorTelefono').removeClass("activo").hide();
+            campoTelefono[0].setCustomValidity(MENSAJE_NINGUN_ERROR);
             break;
     }
 }
@@ -174,70 +147,39 @@ function validarTelefono() {
 
 // Función de validación del campo contraseña.
 function validarContrasena() {
-    contrasenaIntroducida = $("#campoContrasena").val();
+    const campoContrasena = $("#" + ID_CAMPO_CONTRASENA);
+    campoContrasena[0].setCustomValidity(MENSAJE_NINGUN_ERROR);
 
-    if (contrasenaIntroducida.length < LONGITUD_MINIMA_CONTRASENA)
-        $('#mensajeErrorContrasena')
-            .text(MENSAJE_ERROR_CONTRASENA_LONGITUD).addClass("activo").show();
+    if (campoContrasena.val().length < LONGITUD_MINIMA_CONTRASENA)
+        campoContrasena[0].setCustomValidity(MENSAJE_ERROR_CONTRASENA_LONGITUD);
 
-    else
-        $('#mensajeErrorContrasena').removeClass("activo").hide();
+    else {
+        contrasenaPrimera = campoContrasena.val();
+        campoContrasena[0].setCustomValidity(MENSAJE_NINGUN_ERROR);
+    }
+
 }
 
 
 // Función de validación del campo de repetición de la contraseña.
 function validarContrasenaRepetida() {
-    let contrasenaRepetida = $("#campoContrasenaRepetida").val();
+    const campoContrasenaRepetida = $("#" + ID_CAMPO_CONTRASENA_REPETIDA);
+    campoContrasenaRepetida[0].setCustomValidity(MENSAJE_NINGUN_ERROR);
 
-    if (contrasenaRepetida.length < LONGITUD_MINIMA_CONTRASENA)
-        $('#mensajeErrorContrasenaRepetida')
-            .text(MENSAJE_ERROR_CONTRASENA_LONGITUD).addClass("activo").show();
+    if (campoContrasenaRepetida.val().length < LONGITUD_MINIMA_CONTRASENA)
+        campoContrasenaRepetida[0].setCustomValidity(MENSAJE_ERROR_CONTRASENA_LONGITUD);
 
-    // Si ya se ha introducido la contraseña en el anterior campo, 
-    // comprueba si ambas coinciden. 
-    if (contrasenaIntroducida != null) {
-        if (contrasenaIntroducida != contrasenaRepetida)
-            $('#mensajeErrorContrasenaRepetida')
-                .text(MENSAJE_ERROR_CONTRASENA_DESIGUALES).addClass("activo").show();
+    else {
+        contrasenaSegunda = campoContrasenaRepetida.val();
 
+        // Comprueba si las dos contraseñas introducidas coinciden.
+        if (contrasenaPrimera != contrasenaSegunda)
+            campoContrasenaRepetida[0].setCustomValidity(MENSAJE_ERROR_CONTRASENA_DESIGUALES);
         else
-            $('#mensajeErrorContrasenaRepetida').removeClass("activo").hide();
-    }
-}
+            campoContrasenaRepetida[0].setCustomValidity(MENSAJE_NINGUN_ERROR);
 
-
-// Función que encapsula la lógica de validación de los formularios.
-function validarFormulario(event) {
-
-    // Obtiene el formulario que invocó esta función.
-    let formulario = $(event.target);
-
-    // Determina los campos a validar, en función de cuál sea el 
-    // formulario que invocó la función.
-    if (formulario.attr("id") === "formularioRegistro" || 
-        formulario.attr("id") === "formularioAdminRegistro" || 
-        formulario.attr("id") === "[id^=formularioEditarUsuario]" 
-    ) {
-        validarNombre();
-        validarApellidos();
-        validarDni();
-        validarEmailRegistro();
-        validarTelefono();
-        validarContrasena();
-        validarContrasenaRepetida();
     }
 
-    else if (formulario.attr("id") === "formularioLogin") {
-        validarEmail();
-        validarContrasena();
-    }
-
-    // Si hay algún error en alguno de los campos o no se ha rellenado ningún 
-    // campo, impide el envío del formulario.
-    if (formulario.find(".error-campo-formulario.activo").length > 0) {
-        event.preventDefault();
-    }
-    
 }
 
 
@@ -246,39 +188,59 @@ function validarFormulario(event) {
 
 $(document).ready(function() {
 
-    // Tratamiento de los campos nombre y appellidos, en los cuales solo 
-    // se puede dar como error el dejarlos vacíos.
-    $("#campoNombre").on('blur', validarNombre);
-    $("#campoApellidos").on('blur', validarApellidos);
-    
+    // Tratamiento del campo nombre.
+    tratamientoCampo(ID_CAMPO_NOMBRE);
+
+    // Tratamiento del campo apellidos.
+    tratamientoCampo(ID_CAMPO_APELLIDOS);
+
     // Tratamiento del campo DNI.
-    $("#campoDni").on('blur', validarDni);
+    tratamientoCampo(ID_CAMPO_DNI);
 
     // Tratamiento del campo email.    
-    $("#campoEmail").on('blur', validarEmail);
+    tratamientoCampo(ID_CAMPO_EMAIL);
 
     // Caso particular del tratamiento del campo email: si es en alguno de los 
     // formularios de alta de usuario, se ha comprobar asíncronamente con AJAX 
     // si el email introducido por el usuario ya existe en la base de datos. 
-    $("#campoEmailRegistro").on('blur', validarEmailRegistro);
+    tratamientoCampo(ID_CAMPO_EMAIL_REGISTRO);
 
     // Tratamiento del campo teléfono.
-    $("#campoTelefono").on('blur', validarTelefono);
+    tratamientoCampo(ID_CAMPO_TELEFONO);
 
     // Tratamiento de ambos campos de contraseña.
-    $("#campoContrasena").on('blur', validarContrasena);
-    $("#campoContrasenaRepetida").on('blur', validarContrasenaRepetida);
-       
-    // Todos los formularios comparten la misma lógica de validación antes de 
-    // ser enviados. El objetivo es impedir el envío de formularios -con la 
-    // consiguiente solicitud al servidor- en cuyos campos haya algún error.
-    $("#formularioRegistro").on('submit', validarFormulario);
-    $("#formularioLogin").on('submit', validarFormulario);
-    $("[id^=formularioEditarUsuario]").on('submit', validarFormulario);
-    $("#formularioAdminRegistro").on('submit', validarFormulario);
+    tratamientoCampo(ID_CAMPO_CONTRASENA);
+    tratamientoCampo(ID_CAMPO_CONTRASENA_REPETIDA);
 
 });
 
+
+function tratamientoCampo(id) {
+    idCampo = "#" + id;
+
+    if (id == ID_CAMPO_DNI)
+        $(idCampo).on('change', validarDni);
+    
+    else if (id == ID_CAMPO_EMAIL)
+        $(idCampo).on('change', validarEmail);
+    
+    else if (id == ID_CAMPO_EMAIL_REGISTRO)
+        $(idCampo).on('change', validarEmailRegistro);
+    
+    else if (id == ID_CAMPO_TELEFONO)
+        $(idCampo).on('change', validarTelefono);
+    
+    else if (id == ID_CAMPO_CONTRASENA)
+        $(idCampo).on('change', validarContrasena);
+    
+    else if (id == ID_CAMPO_CONTRASENA_REPETIDA)
+        $(idCampo).on('change', validarContrasenaRepetida);
+    
+}
+
+
+
+/* |-----------------   FUNCIONES DE COMPROBACIÓN DE LOS VALORES INTRODUCIDOS EN LOS CAMPOS   -----------------| */
 
 // Función que comprueba si el DNI introducido tiene un formato válido.
 function comprobarDni(dni) {
@@ -306,11 +268,6 @@ function comprobarDni(dni) {
 
 // Función que comprueba si el correo introducido es válido.
 function comprobarCorreo(correo) {
-
-    // Comprueba si el correo es vacío.
-    if (correo === "") {
-        return CODIGO_ERROR_CAMPO_VACIO;
-    }
 
     // Elimina los espacios en blanco que pueda haber al
     // principio y al final del correo.
@@ -349,7 +306,7 @@ function comprobarTelefono(telefono) {
     // Elimina los espacios en blanco que pueda haber al
     // principio y al final del teléfono.
     telefono = telefono.trim();
-
+    
     // Comprueba si la longitud del teléfono es correcta.
     if (telefono.length != LONGITUD_TELEFONO)
         return CODIGO_ERROR_TELEFONO_LONGITUD;

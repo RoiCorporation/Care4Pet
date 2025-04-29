@@ -63,22 +63,19 @@ class FormularioEditarUsuario extends Formulario {
                 
                 <div style="display: table-row;">
                     <div style="display: table-cell; padding: 10px;">
-                        <input type="text" name="nombre" id="campoNombre" placeholder="Nombre" value="$nombre">
-                        <span id="mensajeErrorNombre" class="error-campo-formulario"></span>
+                        <input type="text" name="nombre" id="campoNombre" placeholder="Nombre" value="$nombre" required>
                         {$erroresCampos['nombre']}
                     </div>
                     <div style="display: table-cell; padding: 10px;">
                         <input type="text" name="apellidos" id="campoApellidos" placeholder="Apellidos" 
-                            value="$apellidos">
-                        <span id="mensajeErrorApellidos" class="error-campo-formulario"></span>
+                            value="$apellidos" required>
                         {$erroresCampos['apellidos']}
                     </div>
                 </div>
 
                 <div style="display: table-row;">
                     <div style="display: table-cell; padding: 10px;">
-                        <input type="text" name="dni" id="campoDni" placeholder="DNI" value="$dni">
-                        <span id="mensajeErrorDni" class="error-campo-formulario"></span>
+                        <input type="text" name="dni" id="campoDni" placeholder="DNI" value="$dni" required>
                         {$erroresCampos['dni']}
                     </div>
                     <div style="display: table-cell; padding: 10px;">
@@ -89,14 +86,12 @@ class FormularioEditarUsuario extends Formulario {
 
                 <div style="display: table-row;">
                     <div style="display: table-cell; padding: 10px;">
-                        <input type="email" name="email" id="campoEmailRegistro" placeholder="Email" value="$email">
-                        <span id="mensajeErrorEmail" class="error-campo-formulario"></span>
+                        <input type="email" name="email" id="campoEmailRegistro" placeholder="Email" value="$email" required>
                         {$erroresCampos['email']}
                     </div>
                     <div style="display: table-cell; padding: 10px;">
                         <input type="number" name="telefono" id="campoTelefono" placeholder="Teléfono" 
-                            value="$telefono" min="1">
-                        <span id="mensajeErrorTelefono" class="error-campo-formulario"></span>
+                            value="$telefono" min="1" required>
                         {$erroresCampos['telefono']}
                     </div>
                 </div>
@@ -164,14 +159,6 @@ class FormularioEditarUsuario extends Formulario {
                 $this->errores['documento_verificacion'] = 'Error al guardar el documento.';
             }
         }
-    
-
-        if (empty($nombre)) $this->errores['nombre'] = 'El nombre no puede estar vacío.';
-        if (empty($apellidos)) $this->errores['apellidos'] = 'Los apellidos no pueden estar vacíos.';
-        if (empty($dni)) $this->errores['dni'] = 'El DNI no puede estar vacío.';
-        if (empty($direccion)) $this->errores['direccion'] = 'La dirección no puede estar vacía.';
-        if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) $this->errores['email'] = 'El email no es válido.';
-        if (empty($telefono)) $this->errores['telefono'] = 'El teléfono no puede estar vacío.';
 
         if (count($this->errores) === 0) {
             // Se determina el valor de esDueno en función de esCuidador
