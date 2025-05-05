@@ -53,7 +53,7 @@
             }
 
             // Si la contraseña introducida no es correcta, imprime un mensaje.
-            else if ($usuario->getContrasena() != $contrasena) {
+            else if (!password_verify($contrasena, $usuario->getContrasena())) {
                 $this->errores[] = "La contraseña es incorrecta. Por favor, inténtelo de nuevo.";
             }
 

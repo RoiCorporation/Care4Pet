@@ -54,6 +54,11 @@
             $cuentaActiva = $this->con->real_escape_string($usuarioACrear->getCuentaActiva());
             $fechaRegistro = date('Y-m-d H:i:s');
 
+            // Obtiene el hash de la contraseña introducida, junto con una salt que genera,
+            // utiliza e incluye automáticamente en el string hash resultante. Este es el valor
+            // que se guardará en la base de datos. 
+            $hashContrasena = password_hash($contrasena, PASSWORD_DEFAULT);
+
             // Escapa foto si existe, si no, usa NULL sin comillas.
             $fotoSQL = $fotoPerfil ? "'" . $this->con->real_escape_string($fotoPerfil) . "'" : "NULL";
 
@@ -77,7 +82,7 @@
                 // Crea la sentencia sql de inserción a ejecutar.
                 $sentencia_sql = 
                 "INSERT INTO usuarios VALUES (
-                    '$id', '$nombre', '$apellidos', '$correo', '$contrasena',
+                    '$id', '$nombre', '$apellidos', '$correo', '$hashContrasena',
                     '$dni', '$telefono', $fotoSQL, '$direccion',
                     '$esDueno', '$esCuidador', '$esAdmin', '$cuentaActiva',
                     '$fechaRegistro', '0', NULL

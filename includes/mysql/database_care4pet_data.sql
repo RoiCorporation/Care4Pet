@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 05, 2025 at 11:41 AM
+-- Generation Time: May 05, 2025 at 12:20 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -62,6 +62,7 @@ INSERT INTO `mascotas` (`idMascota`, `FotoMascota`, `Descripcion`, `TipoMascota`
 --
 
 
+
 --
 -- Dumping data for table `reservas`
 --
@@ -94,15 +95,16 @@ INSERT INTO `tipos_de_mascotas` (`idTipoMascota`, `Nombre`) VALUES
 --
 
 INSERT INTO `usuarios` (`idUsuario`, `Nombre`, `Apellidos`, `Correo`, `Contraseña`, `DNI`, `Telefono`, `FotoPerfil`, `Direccion`, `esDueno`, `esCuidador`, `esAdmin`, `cuentaActiva`, `fecha_registro`, `verificado`, `documento_verificacion`) VALUES
-(1, 'Administrador', '', 'admin@admin.com', 'administrador', '99999999Z', 999999999, NULL, 'Calle falsa', 0, 0, 1, 1, '2025-03-05 00:00:00', 0, NULL),
-(1203472, 'Maria', 'José Ángel', 'mariajose@gmail.com', 'mariajose', '00000000I', 999999999, NULL, 'Calle del Amor Hermoso, 80', 1, 0, 0, 1, '2025-03-05 00:00:00', 0, NULL),
-(205753802, 'Maria', 'Santos Aguillera', 'masa@ej.com', 'masa', '00000000A', 111111111, 'cuidador3.png', 'Calle del Amor Hermoso, 80', 0, 1, 0, 1, '2025-03-05 00:00:00', 0, NULL),
-(205753803, 'José', 'Gómez Rodríguez', 'usuario@usuario.com', 'usuarios', '00000000Y', 111111111, 'cuidador1.png', 'Calle Umbria, 14', 0, 1, 0, 1, '2025-03-05 00:00:00', 0, NULL),
-(1234567890, 'Carlos', 'Perez', 'carlos.perez@gmail.com', 'password123', '11111111A', 612345678, 'cuidador1.png', 'Calle Ficticia, 10', 1, 0, 0, 1, '2025-04-07 12:00:00', 1, NULL),
-(1234567891, 'Laura', 'Martínez', 'laura.martinez@gmail.com', 'password123', '11111111B', 612345679, 'cuidador2.png', 'Avenida Principal, 15', 1, 0, 0, 1, '2025-04-07 12:00:00', 1, NULL),
-(1234567892, 'Fernando', 'López', 'fernando.lopez@gmail.com', 'password123', '11111111C', 612345680, 'cuidador3.png', 'Calle Real, 20', 1, 0, 0, 1, '2025-04-07 12:00:00', 1, NULL),
-(1234567893, 'Mario', 'López', 'mario.lopez@gmail.com', 'password123', '11111111D', 612345680, 'cuidador100.png', 'Calle Real, 20', 0, 1, 0, 1, '2025-04-07 12:00:00', 1, NULL),
-(1234567894, 'Elena', 'López', 'elena.lopez@gmail.com', 'password123', '11111111E', 612345680, 'cuidadora300.png', 'Calle Real, 20', 0, 1, 0, 1, '2025-04-07 12:00:00', 1, NULL);
+(1, 'Administrador', '', 'admin@admin.com', '$2y$10$8gYO1vI2yVyNQNahF57zuuf7u5pH.OGPJ66mzoHYXajw.uynKKnHu', '99999999Z', 999999999, NULL, 'Calle falsa', 0, 0, 1, 1, '2025-03-05 00:00:00', 0, NULL),
+(1203472, 'Maria', 'José Ángel', 'mariajose@gmail.com', '$2y$10$3S4.flw9MqumwC/Rf9ux/OKYZEV9If4mHwzzvc8v13BXdIYMYcTf.', '00000000I', 999999999, NULL, 'Calle del Amor Hermoso, 80', 1, 0, 0, 1, '2025-03-05 00:00:00', 0, NULL),
+(205753802, 'Maria', 'Santos Aguillera', 'masa@ej.com', '$2y$10$DdBsboFUQAHRRkrl5EKl7u2UTkdjdlTv/LICgwT6g5tIMQ9S92P6e', '00000000A', 111111111, 'cuidador3.png', 'Calle del Amor Hermoso, 80', 0, 1, 0, 1, '2025-03-05 00:00:00', 0, NULL),
+(205753803, 'José', 'Gómez Rodríguez', 'usuario@usuario.com', '$2y$10$u1nXoOjgj1hs0ulc793poOcrp2ZG2cPWb0ZCv/pBU9cr88vDwnvHS', '00000000Y', 111111111, 'cuidador1.png', 'Calle Umbria, 14', 0, 1, 0, 1, '2025-03-05 00:00:00', 0, NULL),
+(1234567890, 'Carlos', 'Perez', 'carlos.perez@gmail.com', '$2y$10$Iyy0ELNNLK9OqsytM18Dmue1ybnkMoRNeSMiofdpT9nuZdi0ceJum', '11111111A', 612345678, 'cuidador1.png', 'Calle Ficticia, 10', 1, 0, 0, 1, '2025-04-07 12:00:00', 1, NULL),
+(1234567891, 'Laura', 'Martínez', 'laura.martinez@gmail.com', '$2y$10$ljZCD7uH5VFAiiTnE5zu7O.a6df2NcgHQE90wtNIuYTqUhQJ2I/cO', '11111111B', 612345679, 'cuidador2.png', 'Avenida Principal, 15', 1, 0, 0, 1, '2025-04-07 12:00:00', 1, NULL),
+(1234567892, 'Fernando', 'López', 'fernando.lopez@gmail.com', '$2y$10$VE59rX8bbiveot35SWxMk.aEx5o5.twSjVT1SJBNY3TPZbqEK7gEa', '11111111C', 612345680, 'cuidador3.png', 'Calle Real, 20', 1, 0, 0, 1, '2025-04-07 12:00:00', 1, NULL),
+(1234567893, 'Mario', 'López', 'mario.lopez@gmail.com', '$2y$10$Iyy0ELNNLK9OqsytM18Dmue1ybnkMoRNeSMiofdpT9nuZdi0ceJum', '11111111D', 612345680, 'cuidador100.png', 'Calle Real, 20', 0, 1, 0, 1, '2025-04-07 12:00:00', 1, NULL),
+(1234567894, 'Elena', 'López', 'elena.lopez@gmail.com', '$2y$10$yLPB1QM07wbdBWvHK7sPGe9oST0UvG7ocgXH3IgIf7DbLJ740l44y', '11111111E', 612345680, 'cuidadora300.png', 'Calle Real, 20', 0, 1, 0, 1, '2025-04-07 12:00:00', 1, NULL),
+(1498706476, 'ejemplo', 'ejemplo', 'ejemplo@ejemplo.com', '$2y$10$JLo3cObAZQwBwK7Wlr5eqe/PL.sCIfOf5RjLq19G31vwVEuMLqLUG', '00000000I', 999999999, NULL, 'ejemplo, N0 1', 1, 0, 0, 1, '2025-05-05 10:01:00', 0, NULL);
 
 --
 -- Dumping data for table `visitas`
