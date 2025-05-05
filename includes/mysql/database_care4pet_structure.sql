@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 31-03-2025 a las 12:00:36
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.0.30
+-- Host: 127.0.0.1
+-- Generation Time: May 05, 2025 at 11:39 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -15,16 +15,16 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `database_care4pet`
+-- Database: `database_care4pet`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `cuidadores`
+-- Table structure for table `cuidadores`
 --
 
 CREATE TABLE `cuidadores` (
@@ -38,13 +38,13 @@ CREATE TABLE `cuidadores` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- RELACIONES PARA LA TABLA `cuidadores`:
+-- RELATIONSHIPS FOR TABLE `cuidadores`:
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `duenos`
+-- Table structure for table `duenos`
 --
 
 CREATE TABLE `duenos` (
@@ -53,13 +53,13 @@ CREATE TABLE `duenos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- RELACIONES PARA LA TABLA `duenos`:
+-- RELATIONSHIPS FOR TABLE `duenos`:
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `mascotas`
+-- Table structure for table `mascotas`
 --
 
 CREATE TABLE `mascotas` (
@@ -70,13 +70,13 @@ CREATE TABLE `mascotas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- RELACIONES PARA LA TABLA `mascotas`:
+-- RELATIONSHIPS FOR TABLE `mascotas`:
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `mensajes`
+-- Table structure for table `mensajes`
 --
 
 CREATE TABLE `mensajes` (
@@ -84,11 +84,11 @@ CREATE TABLE `mensajes` (
   `idUsuarioEmisor` bigint(20) UNSIGNED NOT NULL,
   `idUsuarioReceptor` bigint(20) UNSIGNED NOT NULL,
   `fecha` timestamp NOT NULL DEFAULT current_timestamp(),
-  `mensaje` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
+  `mensaje` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- RELACIONES PARA LA TABLA `mensajes`:
+-- RELATIONSHIPS FOR TABLE `mensajes`:
 --   `idUsuarioEmisor`
 --       `usuarios` -> `idUsuario`
 --   `idUsuarioReceptor`
@@ -98,7 +98,7 @@ CREATE TABLE `mensajes` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `reservas`
+-- Table structure for table `reservas`
 --
 
 CREATE TABLE `reservas` (
@@ -116,13 +116,13 @@ CREATE TABLE `reservas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- RELACIONES PARA LA TABLA `reservas`:
+-- RELATIONSHIPS FOR TABLE `reservas`:
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `servicios_adicionales`
+-- Table structure for table `servicios_adicionales`
 --
 
 CREATE TABLE `servicios_adicionales` (
@@ -132,13 +132,13 @@ CREATE TABLE `servicios_adicionales` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- RELACIONES PARA LA TABLA `servicios_adicionales`:
+-- RELATIONSHIPS FOR TABLE `servicios_adicionales`:
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipos_de_mascotas`
+-- Table structure for table `tipos_de_mascotas`
 --
 
 CREATE TABLE `tipos_de_mascotas` (
@@ -147,13 +147,13 @@ CREATE TABLE `tipos_de_mascotas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- RELACIONES PARA LA TABLA `tipos_de_mascotas`:
+-- RELATIONSHIPS FOR TABLE `tipos_de_mascotas`:
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuarios`
+-- Table structure for table `usuarios`
 --
 
 CREATE TABLE `usuarios` (
@@ -176,13 +176,13 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- RELACIONES PARA LA TABLA `usuarios`:
+-- RELATIONSHIPS FOR TABLE `usuarios`:
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `visitas`
+-- Table structure for table `visitas`
 --
 
 CREATE TABLE `visitas` (
@@ -193,33 +193,33 @@ CREATE TABLE `visitas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- RELACIONES PARA LA TABLA `visitas`:
+-- RELATIONSHIPS FOR TABLE `visitas`:
 --
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `cuidadores`
+-- Indexes for table `cuidadores`
 --
 ALTER TABLE `cuidadores`
   ADD PRIMARY KEY (`idUsuario`);
 
 --
--- Indices de la tabla `duenos`
+-- Indexes for table `duenos`
 --
 ALTER TABLE `duenos`
   ADD PRIMARY KEY (`idUsuario`,`idMascota`);
 
 --
--- Indices de la tabla `mascotas`
+-- Indexes for table `mascotas`
 --
 ALTER TABLE `mascotas`
   ADD PRIMARY KEY (`idMascota`);
 
 --
--- Indices de la tabla `mensajes`
+-- Indexes for table `mensajes`
 --
 ALTER TABLE `mensajes`
   ADD PRIMARY KEY (`idMensaje`),
@@ -227,51 +227,52 @@ ALTER TABLE `mensajes`
   ADD KEY `FK_id_receptor` (`idUsuarioReceptor`);
 
 --
--- Indices de la tabla `reservas`
+-- Indexes for table `reservas`
 --
 ALTER TABLE `reservas`
   ADD PRIMARY KEY (`idReserva`);
 
 --
--- Indices de la tabla `servicios_adicionales`
+-- Indexes for table `servicios_adicionales`
 --
 ALTER TABLE `servicios_adicionales`
   ADD PRIMARY KEY (`idServicio`);
 
 --
--- Indices de la tabla `tipos_de_mascotas`
+-- Indexes for table `tipos_de_mascotas`
 --
 ALTER TABLE `tipos_de_mascotas`
   ADD PRIMARY KEY (`idTipoMascota`);
 
 --
--- Indices de la tabla `usuarios`
+-- Indexes for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`idUsuario`);
+  ADD PRIMARY KEY (`idUsuario`),
+  ADD UNIQUE KEY `Correo` (`Correo`);
 
 --
--- Indices de la tabla `visitas`
+-- Indexes for table `visitas`
 --
 ALTER TABLE `visitas`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `visitas`
+-- AUTO_INCREMENT for table `visitas`
 --
 ALTER TABLE `visitas`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `mensajes`
+-- Constraints for table `mensajes`
 --
 ALTER TABLE `mensajes`
   ADD CONSTRAINT `FK_id_emisor` FOREIGN KEY (`idUsuarioEmisor`) REFERENCES `usuarios` (`idUsuario`) ON DELETE CASCADE,
