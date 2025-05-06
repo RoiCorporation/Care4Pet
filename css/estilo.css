@@ -842,6 +842,8 @@ a.btn-chat:hover {
     display: flex;
     flex-direction: column;
     margin: 0 auto;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 /* Atributos comunes para ambas clases de mensajes */
@@ -850,6 +852,9 @@ a.btn-chat:hover {
     border-radius: 10px;
     padding-left: 10px;
     padding-right: 10px;
+    min-width: 0;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 /* Atributos específicos para la clase de mensajes enviados 
@@ -874,6 +879,26 @@ por el otro usuario */
     margin-bottom: 15px;
     display: flex;
     justify-content: center;
+}
+
+/* Atributos comunes para ambas clases de párrafos
+de hora y fecha de los mensajes */
+.hora-fecha-mensaje-propio,
+.hora-fecha-mensaje-otro {
+    font-size: 12px;
+    color: gray;
+}
+
+/* Clase específica para la hora y fecha de los
+mensajes del propio usuario */
+.hora-fecha-mensaje-propio {
+    text-align: right;
+}
+
+/* Clase específica para la hora y fecha de los
+mensajes de otro usuario */
+.hora-fecha-mensaje-otro {
+    text-align: left;
 }
 
 .btn-delete{
