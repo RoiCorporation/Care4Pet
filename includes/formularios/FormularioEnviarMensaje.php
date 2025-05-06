@@ -30,7 +30,7 @@
                 $htmlErroresGlobales
                     <div>
                         <input id="textoMensaje" type="text" name="textoMensaje" 
-                            placeholder="Escribe un mensaje" size="68" value="$textoMensaje" />
+                            placeholder="Escribe un mensaje" size="68" value="$textoMensaje" required/>
                         {$erroresCampos['textoMensaje']}
                         <button type="submit" name="enviarMensaje" title="Enviar Mensaje">📨</button>
                         <input type="hidden" name="idOtroUsuario" value="$this->idOtroUsuario">

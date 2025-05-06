@@ -17,7 +17,6 @@
             $this->textoMensajeOriginal = $textoMensajeOriginal;
 
             parent::__construct('formularioEditarMensaje' . $idMensaje, [
-                'urlRedireccion' => 'chat_particular.php', 
                 'class' => 'formulario-envio-mensaje'
             ]);
         }
@@ -26,12 +25,14 @@
             $textoMensaje = $datos['textoMensaje'] ?? '';
             $htmlErroresGlobales = self::generaListaErroresGlobales($this->errores);
             $erroresCampos = self::generaErroresCampos(['textoMensaje'], $this->errores);
+            echo "<h1>ID OTRO: " . $this->idOtroUsuario . "</h1>";
+            echo "<h1>NOMBRE OTRO: " . $this->nombreOtroUsuario . "</h1>";
 
             return <<<EOS
                 $htmlErroresGlobales
                     <div>
                         <input id="textoMensaje" type="text" name="textoMensaje" 
-                            size="68" value="{$this->textoMensajeOriginal}" />
+                            size="68" value="{$this->textoMensajeOriginal}" required/>
                         {$erroresCampos['textoMensaje']}
                         <button type="submit" name="enviarMensaje" title="Enviar Mensaje">📨</button>
                         <input type="hidden" name="idOtroUsuario" value="$this->idOtroUsuario">
@@ -61,17 +62,12 @@
             // en la base de datos.
             $resultadoInsercionMensaje = (DAOMensaje::getInstance())->editarMensaje($this->idMensaje, $textoMensajeNuevo);
 
-            // Si se ha actualizado el mensaje exitosamente, edita la url de redirección para que vuelva a 
-            // cargar la página de la conversación, pero con ese mensaje actualizado.
-            if ($resultadoInsercionMensaje) {
-                $this->urlRedireccion = "chat_particular.php?idOtroUsuario={$this->idOtroUsuario}&nombreOtroUsuario={$this->nombreOtroUsuario}";
-            }
+            // Edita la url de redirección para que vuelva a cargar la página de la
+            // conversación, con ese mensaje actualizado.
+            $this->urlRedireccion = "chat_particular.php?" . 
+                "idOtroUsuario=" . $this->idOtroUsuario . 
+                "&nombreOtroUsuario=" . $this->nombreOtroUsuario;
 
-            // Si no se consigue actualizar el mensaje en la base de datos, muestra un error por pantalla.
-            else {
-                echo "<h3>Ha habido un error al editar su mensaje. Por favor, inténtelo de nuevo 
-                    más tarde.</hs><br>";
-            }
         }
 
     }
