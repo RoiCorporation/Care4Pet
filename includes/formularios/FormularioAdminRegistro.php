@@ -174,7 +174,7 @@ class FormularioAdminRegistro extends Formulario {
 
             $id_usuario = rand();
             $nuevoUsuario = new tUsuario($id_usuario, $nombre, $apellidos,
-                $email, $contrasena, $dni, $telefono, NULL, $direccion, $esDueno, $esCuidador);
+                $email, $contrasena, "", $dni, $telefono, NULL, $direccion, $esDueno, $esCuidador);
 
             if ((DAOUsuario::getInstance())->crearUsuario($nuevoUsuario)) {
                 // Establecer el mensaje de éxito en la sesión

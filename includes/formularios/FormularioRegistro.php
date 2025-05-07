@@ -142,8 +142,9 @@
             }
 
             $id_usuario = rand();
-            $nuevoUsuario = new tUsuario($id_usuario, $nombre, $apellidos,
-                $email, $contrasena, $dni, $telefono, NULL, $direccion, $esDueno, $esCuidador);
+            
+            $nuevoUsuario = new tUsuario($id_usuario, $nombre, $apellidos, $email,
+                $contrasena, "", $dni, $telefono, NULL, $direccion, $esDueno, $esCuidador);
 
             // Si la inserción ha creado una entrada nueva, el usuario se ha 
             // registrado correctamente. Por lo tanto, se inicia su sesión con 

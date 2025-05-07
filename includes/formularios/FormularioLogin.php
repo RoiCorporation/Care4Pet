@@ -47,14 +47,20 @@
 
             $usuario = (DAOUsuario::getInstance())->leerUnUsuario($emailUsuario);
 
+            // Crea la cadena cuyo hash se ha de comprobar para la verificación de la contraseña.
+            // Dicha cadena se forma concatenando la contraseña introducida, la salt del usuario
+            // y la pimienta.
+            $contrasenaAComprobar = $contrasena . $usuario->getSalt() . PEPPER;
+
             // Si no existe un usuario con ese correo, muestra un mensaje explicativo.
             if ($usuario == NULL) {
                 $this->errores[] = "No existe ningún usuario asociado a esa cuenta.";
             }
-
-            // Si la contraseña introducida no es correcta, imprime un mensaje.
-            else if (!password_verify($contrasena, $usuario->getContrasena())) {
-                $this->errores[] = "La contraseña es incorrecta. Por favor, inténtelo de nuevo.";
+                        
+            // Si el hash de la cadena a comprobar no coincide con el guardado en la base
+            // de datos, registra un error en la contraseña.
+            else if (!password_verify($contrasenaAComprobar, $usuario->getContrasena())) {
+                $this->errores[] = "La contraseña es incorrecta. Por favor, inténtelo de nuevo.";            
             }
 
             // Si tanto el email como la contraseña son correctos, se inicia sesión en la 
