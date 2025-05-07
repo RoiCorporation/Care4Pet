@@ -171,6 +171,76 @@
 
 
 
+        // Leer los cuidadores basado en filtros.
+        public function leerCuidadoresConFiltros(array $filtros) {
+            $where = [];
+            $params = [];
+            $types = '';
+        
+            // preparamos el sql statement
+            if ($filtros['min_valoracion'] !== null) {
+                // para filtrado de valoracion
+                $where[] = 'Valoracion >= ?';
+                $types .= 'd';
+                $params[] = $filtros['min_valoracion'];
+            }
+            if ($filtros['max_tarifa'] !== null) {
+                // para filtrado de tarifa
+                $where[] = 'Tarifa <= ?';
+                $types .= 'd';
+                $params[] = $filtros['max_tarifa'];
+            }
+            if (!empty($filtros['tipos_mascotas'])) {
+                // para filtrado de tipos de mascotas
+                foreach ($filtros['tipos_mascotas'] as $tipo) {
+                    $where[]  = 'TiposDeMascotas LIKE ?';
+                    $types   .= 's';
+                    $params[] = "%{$tipo}%";
+                }
+            }
+            if ($filtros['zona']) {
+                // para filtrado de zonas
+                $where[] = 'ZonasAtendidas LIKE ?';
+                $types .= 's';
+                $params[] = "%{$filtros['zona']}%";
+            }
+            if ($filtros['verificado']) {
+                // para filtrar verificado
+                $joinUsuario = true;
+            }
+        
+            $sql = 'SELECT c.* FROM cuidadores c';
+            if (!empty($joinUsuario)) {
+                $sql .= ' INNER JOIN usuarios u ON u.idUsuario = c.idUsuario AND u.verificado = 1';
+            }
+            if ($where) {
+                $sql .= ' WHERE ' . implode(' AND ', $where);
+            }
+        
+            $stmt = $this->con->prepare($sql);
+            if ($params) {
+                $stmt->bind_param($types, ...$params);
+            }
+            $stmt->execute();
+            $result = $stmt->get_result();
+        
+            $array = [];
+            while ($row = $result->fetch_assoc()) {
+                $array[] = new tCuidador(
+                    $row['idUsuario'],
+                    $row['TiposDeMascotas'],
+                    $row['Tarifa'],
+                    $row['Descripcion'],
+                    $row['ServiciosAdicionales'],
+                    $row['Valoracion'],
+                    $row['ZonasAtendidas']
+                );
+            }
+            return $array;
+        }        
+
+
+
 
         // Editar cuidador.
         public function editarCuidador($cuidadorAEditar) {
