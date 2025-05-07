@@ -918,7 +918,22 @@ mensajes de otro usuario */
     background-color: #ffddc5;;
     transform: scale(1.05);
 }
-    
+
+
+/* |-----------------   ADMINISTRADOR   -----------------| */
+.tabla-admin-mensajes {
+    border-collapse: collapse;
+    border: 3px solid black;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #ffddc5;
+}
+
+.fila-tabla-admin-mensajes {
+    border: 1px solid black;
+    padding: 8px 12px; 
+}
+
 
 /* |-----------------   LOGIN   -----------------| */
 

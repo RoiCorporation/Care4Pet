@@ -183,6 +183,43 @@
 
 
 
+        // Leer todos los mensajes guardados.
+        public function leerTodosMensajes() {
+
+            // Crea la sentencia sql para obtener los mensajes.
+            $sentencia_sql = "SELECT * FROM mensajes ORDER BY fecha DESC";
+            
+            $consulta_resultado = $this->con->query($sentencia_sql);
+
+            // Si ha obtenido un resultado, entonces se procede a generar un nuevo objeto 
+            // tMensaje con los valores extraídos de la base de datos -un objeto por cada 
+            // mensaje-, y se añade a un array de mensajes.
+            $mensajes = [];
+            if ($consulta_resultado->num_rows > 0) {
+                while ($valoresMensajeActual = $consulta_resultado->fetch_assoc()) {
+                    $idMensaje = $valoresMensajeActual["idMensaje"];
+                    $idUsuarioEmisor = $valoresMensajeActual["idUsuarioEmisor"];
+                    $idUsuarioReceptor = $valoresMensajeActual["idUsuarioReceptor"];
+                    $fecha = $valoresMensajeActual["fecha"];
+                    $mensaje = $valoresMensajeActual["mensaje"];
+
+                    $mensaje = new tMensaje(
+                        $idUsuarioEmisor, $idUsuarioReceptor, $fecha, $mensaje, $idMensaje
+                    );
+
+                    $mensajes[] = $mensaje;
+                }
+
+                // Libera memoria.
+                $consulta_resultado->free();
+
+            }
+            return $mensajes;
+        }
+
+
+
+
         // Editar mensaje.
         public function editarMensaje($idMensajeAEditar, $nuevoTexto) {
 
