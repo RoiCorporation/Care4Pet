@@ -47,7 +47,6 @@
 
             $usuario = (DAOUsuario::getInstance())->leerUnUsuario($emailUsuario);
 
-            
             // Si no existe un usuario con ese correo, muestra un mensaje explicativo.
             if ($usuario == NULL) {
                 $this->errores[] = "No existe ningún usuario asociado a esa cuenta.";

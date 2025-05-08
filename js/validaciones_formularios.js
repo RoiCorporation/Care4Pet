@@ -67,6 +67,26 @@ function validarEmail() {
             campoEmail[0].setCustomValidity(MENSAJE_NINGUN_ERROR);
             break;
     }
+
+
+    // Edita la url que se le pasará a la función AJAX.
+    let urlAJAXLogin = "emailRegistroExisteEnBD.php?email=" + 
+        encodeURIComponent(campoEmail.val());
+
+    /*
+     * Función AJAX que llama al archivo emailRegistroExisteEnBD.php. Con ella 
+     * se comprueba de forma asíncrona si existe un usuario con ese email en
+     * la base de datos.
+    */ 
+    $.get(urlAJAXLogin, function(data) {
+
+        // Si el email no existe en la base de datos, muestra un mensaje de error.
+        if (data == "No existe")
+            campoEmail[0].setCustomValidity(MENSAJE_ERROR_EMAIL_NO_EXISTE);
+        else
+            campoEmail[0].setCustomValidity(MENSAJE_NINGUN_ERROR);
+    });
+
 }
 
 
