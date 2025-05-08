@@ -7,6 +7,23 @@ use Care4Pet\includes\mysql\DAOs\DAOUsuario;
 
 require_once __DIR__ . '/includes/config.php';
 
+// params de filtro
+$filtros = [
+    'min_valoracion' => (isset($_GET['min_valoracion']) && $_GET['min_valoracion'] !== '')
+        ? (float) $_GET['min_valoracion']
+        : null,
+    'max_tarifa'     => (isset($_GET['max_tarifa']) && $_GET['max_tarifa'] !== '')
+        ? (float) $_GET['max_tarifa']
+        : null,
+    'tipos_mascotas' => (isset($_GET['tipos_mascotas']) && is_array($_GET['tipos_mascotas']) && count($_GET['tipos_mascotas']))
+        ? $_GET['tipos_mascotas']
+        : [],
+    'zona'           => (isset($_GET['zona']) && trim($_GET['zona']) !== '')
+        ? trim($_GET['zona'])
+        : null,
+    'verificado'     => isset($_GET['verificado']),
+];
+
 //inicializo las variables que uso
 $cuidadores = [];
 $todosUsuarios = [];
@@ -19,7 +36,8 @@ $error = null;
             $daoUsuario = DAOUsuario::getInstance();
     
             //todos los cuidadores y usuarios
-            $cuidadores = $daoCuidador->leerTodosLosCuidadores();
+            // $cuidadores = $daoCuidador->leerTodosLosCuidadores();
+            $cuidadores = $daoCuidador->leerCuidadoresConFiltros($filtros);
             $todosUsuarios = $daoUsuario->leerTodosLosUsuarios();
     
             // ---------------------indexo usuarios por su ID para búsqueda rápida
@@ -49,6 +67,40 @@ $error = null;
 
 <!-- Contenido principal  -->
 <div class="contenedor-principal">
+
+    <!-- Formulario de filtros -->
+    <h2 class="titulo-centrado">Filtrar Cuidadores</h2>
+    <form method="get" class="form-filtros">
+        <label>Valoración mínima:
+            <input type="number" name="min_valoracion" step="0.1" min="0" max="5" value="<?= htmlspecialchars($_GET['min_valoracion'] ?? '') ?>">
+        </label>
+        <label>Tarifa máxima (€):
+            <input type="number" name="max_tarifa" step="0.5" min="0" value="<?= htmlspecialchars($_GET['max_tarifa'] ?? '') ?>">
+        </label>
+        <label>Tipos de mascotas:
+            <select name="tipos_mascotas[]" multiple>
+                <option value="Perro" <?= in_array('Perro',$filtros['tipos_mascotas']) ? 'selected' : '' ?>>Perro</option>
+                <option value="Gato" <?= in_array('Gato',$filtros['tipos_mascotas']) ? 'selected' : '' ?>>Gato</option>
+                <option value="Conejo" <?= in_array('Conejo',$filtros['tipos_mascotas']) ? 'selected' : '' ?>>Conejo</option>
+                <option value="Pajaros"<?= in_array('Pajaros',$filtros['tipos_mascotas']) ? 'selected' : '' ?>>Pájaros</option>
+                <option value="Reptiles"<?= in_array('Reptiles',$filtros['tipos_mascotas']) ? 'selected' : '' ?>>Reptiles</option>
+                <option value="Otro" <?= in_array('Otro',$filtros['tipos_mascotas']) ? 'selected' : '' ?>>Otro</option>
+            </select>
+        </label>
+        <label>Zona:
+            <input type="text" name="zona" value="<?= htmlspecialchars($_GET['zona'] ?? '') ?>">
+        </label>
+        <label>
+            <input type="checkbox" name="verificado" <?= $filtros['verificado'] ? 'checked' : '' ?>> Solo verificados
+        </label>
+        <button type="submit">Aplicar filtros</button>
+    </form>
+    <!-- Mensaje de resultados -->
+    <?php if (!empty($_GET)): ?>
+        <p class="resultado-filtro"><?= count($cuidadores) ?> cuidador<?= count($cuidadores) === 1 ? '' : 'es' ?> encontrado<?= count($cuidadores) === 1 ? '' : 's' ?>.</p>
+    <?php endif; ?>
+
+
     <h2 class="titulo-centrado">Cuidadores Disponibles</h2>
 
     <!-- Lista de cuidadores -->
