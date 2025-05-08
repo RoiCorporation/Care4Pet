@@ -70,11 +70,11 @@ function validarEmail() {
 
 
     // Edita la url que se le pasará a la función AJAX.
-    let urlAJAXLogin = "emailRegistroExisteEnBD.php?email=" + 
+    let urlAJAXLogin = "emailExisteEnBD.php?email=" + 
         encodeURIComponent(campoEmail.val());
 
     /*
-     * Función AJAX que llama al archivo emailRegistroExisteEnBD.php. Con ella 
+     * Función AJAX que llama al archivo emailExisteEnBD.php. Con ella 
      * se comprueba de forma asíncrona si existe un usuario con ese email en
      * la base de datos.
     */ 
@@ -122,11 +122,11 @@ function validarEmailRegistro() {
 
     // Se utiliza encodeURIComponenent para escapar correctamente signos al 
     // generar la url.
-    let url = "emailRegistroExisteEnBD.php?email=" + 
+    let url = "emailExisteEnBD.php?email=" + 
         encodeURIComponent(campoEmailRegistro.val());
 
     /*
-     * Función AJAX que llama al archivo emailRegistroExisteEnBD.php. Con ella 
+     * Función AJAX que llama al archivo emailExisteEnBD.php. Con ella 
      * se comprueba de forma asíncrona si ya existe un usuario con ese mismo
      * email en la base de datos.
     */ 
