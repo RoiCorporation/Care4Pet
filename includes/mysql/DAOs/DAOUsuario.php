@@ -6,6 +6,12 @@
 
     require_once __DIR__ . '/../../config.php';
 
+    // Define como constantes, tanto el número de bytes que tendrá la salt,
+    // como el valor de la pimienta, que se usarán para crear el hash de
+    // la contraseña introducida por el usuario. 
+    define("NUM_BYTES_SALT", 16);
+    define("PEPPER", "bc85878d42");
+
     class DAOUsuario {
     
         // Atributos.
@@ -54,10 +60,19 @@
             $cuentaActiva = $this->con->real_escape_string($usuarioACrear->getCuentaActiva());
             $fechaRegistro = date('Y-m-d H:i:s');
 
-            // Obtiene el hash de la contraseña introducida, junto con una salt que genera,
-            // utiliza e incluye automáticamente en el string hash resultante. Este es el valor
-            // que se guardará en la base de datos. 
-            $hashContrasena = password_hash($contrasena, PASSWORD_DEFAULT);
+            // Genera una salt aleatoria de "NUM_BYTES_SALT" caracteres. Para ello, utiliza la
+            // función "random_bytes", que genera esa cantidad de bytes aleatorios, y, a
+            // continuación, la función "bin2hex", que transforma la cadena obtenida a formato
+            // exadecimal.
+            $salt = bin2hex(random_bytes(NUM_BYTES_SALT));
+
+            // Crea la contraseña final a hashear, concatenando la cadena introducida por el
+            // usuario, la salt generada y la pimienta ("PEPPER") predefinida como constante.
+            $contrasenaFinal = $contrasena . $salt . PEPPER;
+
+            // Genera el hash de la contraseña obtenida. Este es el valor que se guardará en
+            // la base de datos.
+            $hashContrasena = password_hash($contrasenaFinal, PASSWORD_DEFAULT);
 
             // Escapa foto si existe, si no, usa NULL sin comillas.
             $fotoSQL = $fotoPerfil ? "'" . $this->con->real_escape_string($fotoPerfil) . "'" : "NULL";
@@ -83,7 +98,7 @@
                 $sentencia_sql = 
                 "INSERT INTO usuarios VALUES (
                     '$id', '$nombre', '$apellidos', '$correo', '$hashContrasena',
-                    '$dni', '$telefono', $fotoSQL, '$direccion',
+                    '$salt', '$dni', '$telefono', $fotoSQL, '$direccion',
                     '$esDueno', '$esCuidador', '$esAdmin', '$cuentaActiva',
                     '$fechaRegistro', '0', NULL
                 )";
@@ -122,6 +137,7 @@
                 $apellidos = $valores_resultado["Apellidos"];
                 $correo = $valores_resultado["Correo"];
                 $contrasena = $valores_resultado["Contraseña"];
+                $salt = $valores_resultado["Salt"];
                 $dni = $valores_resultado["DNI"];
                 $telefono = $valores_resultado["Telefono"];
                 $fotoPerfil = $valores_resultado["FotoPerfil"];
@@ -135,7 +151,7 @@
                 $documento_verificacion = $valores_resultado["documento_verificacion"];
 
                 $usuarioBuscado = new tUsuario($idUsuario, $nombre, $apellidos,
-                    $correo, $contrasena, $dni, $telefono, $fotoPerfil,
+                    $correo, $contrasena, $salt, $dni, $telefono, $fotoPerfil,
                     $direccion, $esDueno, $esCuidador, $esAdmin, $cuentaActiva, $fecha_registro, 
                     $verificado, $documento_verificacion);
                 
@@ -178,6 +194,7 @@
                 $apellidos = $valores_resultado["Apellidos"];
                 $correo = $valores_resultado["Correo"];
                 $contrasena = $valores_resultado["Contraseña"];
+                $salt = $valores_resultado["Salt"];
                 $dni = $valores_resultado["DNI"];
                 $telefono = $valores_resultado["Telefono"];
                 $fotoPerfil = $valores_resultado["FotoPerfil"];
@@ -191,7 +208,7 @@
                 $documento_verificacion = $valores_resultado["documento_verificacion"];
 
                 $usuarioBuscado = new tUsuario($idUsuario, $nombre, $apellidos,
-                    $correo, $contrasena, $dni, $telefono, $fotoPerfil,
+                    $correo, $contrasena, $salt, $dni, $telefono, $fotoPerfil,
                     $direccion, $esDueno, $esCuidador, $esAdmin, $cuentaActiva, $fecha_registro, 
                     $verificado, $documento_verificacion);
                 
@@ -233,6 +250,7 @@
                     $apellidos = $usuarioActual["Apellidos"];
                     $correo = $usuarioActual["Correo"];
                     $contrasena = $usuarioActual["Contraseña"];
+                    $salt = $usuarioActual["Salt"];
                     $dni = $usuarioActual["DNI"];
                     $telefono = $usuarioActual["Telefono"];
                     $fotoPerfil = $usuarioActual["FotoPerfil"];
@@ -246,7 +264,7 @@
                     $documento_verificacion = $usuarioActual["documento_verificacion"];
                     
                     $usuarioAAnadir = new tUsuario($idUsuario, $nombre, $apellidos,
-                        $correo, $contrasena, $dni, $telefono, $fotoPerfil,
+                        $correo, $contrasena, $salt, $dni, $telefono, $fotoPerfil,
                         $direccion, $esDueno, $esCuidador, $esAdmin, $cuentaActiva, $fecha_registro);
 
                 

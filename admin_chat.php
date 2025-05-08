@@ -1,5 +1,9 @@
 <?php
 session_start();
+
+use Care4Pet\includes\mysql\DAOs\DAOMensaje;
+use Care4Pet\includes\formularios\FormularioBorrarMensaje;
+
 require_once __DIR__ . '/includes/config.php';
 
 // Verificar si el usuario ha iniciado sesión y es administrador
@@ -21,10 +25,42 @@ if ($esAdmin != 1) {
     exit();
 }
 
-$tituloPagina = 'Chat (próximamente)';
-$contenidoPrincipal = <<<HTML
-    
-    <button onclick="location.href='index.php'" class="btn-delete">Inicio</button>
-HTML;
+
+$listaMensajes = [];  // Crea la lista de mensajes.
+
+// Introduce en la lista de mensajes todos los existentes en la base de datos.
+$listaMensajes = (DAOMensaje::getInstance())->leerTodosMensajes();
+
+// Crea la tabla y sus columnas.
+$tablaMensajes = <<<EOS
+    <table class="tabla-admin-mensajes">
+        <tr> 
+            <th class="fila-tabla-admin-mensajes">Fecha</th>
+            <th class="fila-tabla-admin-mensajes">ID Mensaje</th>
+            <th class="fila-tabla-admin-mensajes">ID Emisor</th>
+            <th class="fila-tabla-admin-mensajes">Texto</th>
+        </tr>
+EOS;
+
+// Añade cada mensaje como una fila nueva de la tabla. Además, en cada fila,
+// añade el formulario de borrar mensaje con los atributos correspondientes,
+// para permitirle al administrador borrar dicho mensaje.
+foreach($listaMensajes as $mensajeActual) {
+    $tablaMensajes .=
+    '<tr>
+        <td class="fila-tabla-admin-mensajes">' . $mensajeActual->getFecha() . '</td>
+        <td class="fila-tabla-admin-mensajes">' . $mensajeActual->getId() . '</td>
+        <td class="fila-tabla-admin-mensajes">' . $mensajeActual->getIdUsuarioEmisor() . '</td>
+        <td class="fila-tabla-admin-mensajes">' . $mensajeActual->getMensaje() . '</td>
+        <td class="fila-tabla-admin-mensajes">' . (new FormularioBorrarMensaje(NULL, NULL, $mensajeActual->getId()))->gestiona() .
+    '</tr>';
+}
+
+$tablaMensajes .= <<<EOS
+    </table>
+EOS;
+
+$tituloPagina = 'Mensajes';
+$contenidoPrincipal = $tablaMensajes;  // Añade la table de mensajes al contenido de la página.
 
 require_once __DIR__ . '/includes/vistas/plantillas/plantilla_admin.php';

@@ -25,8 +25,6 @@
             $textoMensaje = $datos['textoMensaje'] ?? '';
             $htmlErroresGlobales = self::generaListaErroresGlobales($this->errores);
             $erroresCampos = self::generaErroresCampos(['textoMensaje'], $this->errores);
-            echo "<h1>ID OTRO: " . $this->idOtroUsuario . "</h1>";
-            echo "<h1>NOMBRE OTRO: " . $this->nombreOtroUsuario . "</h1>";
 
             return <<<EOS
                 $htmlErroresGlobales

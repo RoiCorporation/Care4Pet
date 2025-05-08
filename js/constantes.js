@@ -55,6 +55,7 @@ const MENSAJE_ERROR_EMAIL_ARROBA = "Hay un error en la colocación del @ en ese 
 const MENSAJE_ERROR_EMAIL_PUNTO = "Hay un error en la colocación del . después del arroba.";
 const MENSAJE_ERROR_EMAIL_SUFIJO = "El email ha de terminar con un sufijo detrás del punto.";
 const MENSAJE_ERROR_EMAIL_YA_EXISTE = "Ya existe una cuenta asociada a ese email.";
+const MENSAJE_ERROR_EMAIL_NO_EXISTE = "No existe una cuenta con ese email.";
 
 // Mensajes de errores relacionados con el DNI.
 const MENSAJE_ERROR_DNI_LONGITUD = "El DNI ha de tener 9 caracteres.";
