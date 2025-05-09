@@ -930,7 +930,7 @@ mensajes de otro usuario */
 }
 
 .fila-tabla-admin-mensajes {
-    border: 1px solid black;
+    border: 1px solid white;
     padding: 8px 12px; 
 }
 
