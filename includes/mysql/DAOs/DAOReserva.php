@@ -419,6 +419,86 @@
                 return false;
             }
         }
+
+        public function leerTodasLasReservas() {
+            $sentencia_sql = "SELECT  
+                                    r.*,
+                                    u1.Nombre AS nombreDueno,
+                                    u1.Apellidos AS apellidosDueno,
+                                    u2.Nombre AS nombreCuidador,
+                                    u2.Apellidos AS apellidosCuidador,
+                                    u2.Correo AS correoCuidador,
+                                    u2.Telefono AS telefonoCuidador,
+                                    u2.FotoPerfil AS fotoPerfilCuidador,
+                                    u2.Direccion AS direccionCuidador,
+                                    m.FotoMascota AS fotoMascota,
+                                    m.Descripcion AS descripcionMascota,
+                                    m.TipoMascota AS tipoMascota
+                                FROM reservas r
+                                JOIN usuarios u1 ON r.idUsuario = u1.idUsuario
+                                JOIN usuarios u2 ON r.idCuidador = u2.idUsuario
+                                JOIN mascotas m ON r.idMascota = m.idMascota;"; 
+
+
+            $consulta_resultado = $this->con->query($sentencia_sql);
+            $arrayReservas = [];
+
+            if ($consulta_resultado->num_rows > 0) {
+                while ($reservaActual = $consulta_resultado->fetch_assoc()) {
+                    $reserva = new \Care4Pet\includes\clases\tReserva(
+                        $reservaActual['idReserva'],
+                        $reservaActual['idUsuario'],
+                        $reservaActual['idMascota'],
+                        $reservaActual['idCuidador'],
+                        $reservaActual['FechaInicio'] ?? null,
+                        $reservaActual['FechaFin'] ?? null,
+                        $reservaActual['Valoracion'] ?? null,
+                        $reservaActual['Resena'] ?? null,
+                        $reservaActual['ComentariosAdicionales'] ?? null,
+                        $reservaActual['esReservaActiva'],
+                        $reservaActual['nombreCuidador'] ?? null,
+                        $reservaActual['apellidosCuidador'] ?? null,
+                        $reservaActual['correoCuidador'] ?? null,
+                        $reservaActual['telefonoCuidador'] ?? null,
+                        $reservaActual['fotoPerfilCuidador'] ?? null,
+                        $reservaActual['direccionCuidador'] ?? null,  
+                        $reservaActual['fotoMascota'] ?? null,
+                        $reservaActual['descripcionMascota'] ?? null,
+                        $reservaActual['tipoMascota'] ?? null,         
+                        $reservaActual['esAceptadaPorCuidador'],
+                        $reservaActual['nombreDueno'] ?? null,
+                        $reservaActual['apellidosDueno'] ?? null
+                    );
+
+
+
+                    $arrayReservas[] = $reserva;
+                }
+
+                $consulta_resultado->free();
+                return $arrayReservas; // Devolver un array con objetos tReserva
+            } else {
+                return NULL;
+            }
+        }
+
+
+
+
+        public function borrarComentarioAdicional($idReserva) {
+            $conn = new \mysqli('localhost', 'root', '', 'database_care4pet');
+
+            if ($conn->connect_error) {
+                die("Conexión fallida: " . $conn->connect_error);
+            }
+
+            $query = sprintf("UPDATE reservas SET ComentariosAdicionales = NULL WHERE idReserva = %d", $idReserva);
+            return $conn->query($query);
+        }
+
+
+
+
     }
 
 ?>
