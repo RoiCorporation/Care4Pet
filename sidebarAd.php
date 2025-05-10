@@ -5,12 +5,13 @@
         <li><a href="admin_ajustes.php">Ajustes</a></li>
         <li><a href="admin_chat.php">Chat</a></li>
         <li><a href="admin_Gval.php">Gestión de valoraciones</a></li>
+        <li><a href="admin_contacto.php">Contacto</a></li>
 
         <li class="submenu">
             <span onclick="toggleSubMenu(this)">Usuarios ▼</span>
             <ul class="submenu-list">
                 <li><a href="admin_Gu.php">Gestión de usuarios</a></li>
-                <li><a href="admin_Gv.php">Gestión de visitantes</a></li>
+                 <!--<li><a href="admin_Gv.php">Gestión de visitantes</a></li>-->
                 <li><a href="admin_Cu.php">Creación de usuarios</a></li>
             </ul>
         </li>

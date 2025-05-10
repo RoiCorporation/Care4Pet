@@ -198,6 +198,24 @@ CREATE TABLE `visitas` (
 --
 
 --
+-- Table structure for table `mensajes_contacto`
+--
+
+CREATE TABLE mensajes_contacto (
+    idMensaje INT AUTO_INCREMENT PRIMARY KEY,
+    nombreUsuario VARCHAR(255) NOT NULL,
+    correoUsuario VARCHAR(255) NOT NULL,
+    telefonoUsuario VARCHAR(20) NULL,
+    mensaje TEXT NOT NULL,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    estado ENUM('pendiente', 'leído', 'respondido') DEFAULT 'pendiente'
+);
+
+--
+-- RELATIONSHIPS FOR TABLE `mensajes_contacto`:
+--
+
+--
 -- Indexes for dumped tables
 --
 
