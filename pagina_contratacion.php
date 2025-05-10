@@ -1,27 +1,38 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
 // esta pagina muestra los cuidadores disponibles en nuestra web
 session_start();
 
 use Care4Pet\includes\mysql\DAOs\DAOCuidador;
 use Care4Pet\includes\mysql\DAOs\DAOUsuario;
+use Care4Pet\includes\formularios\FormularioFiltrosCuidadores;
 
 require_once __DIR__ . '/includes/config.php';
 
-// params de filtro
+// Crear instancia del formulario
+$formFiltros = new FormularioFiltrosCuidadores();
+$formFiltros->gestiona(); // Esto manejará la lógica del formulario
+
+// Obtener datos filtrados del formulario
+$datosFiltros = $_GET;
+
+// Procesar y validar filtros
 $filtros = [
-    'min_valoracion' => (isset($_GET['min_valoracion']) && $_GET['min_valoracion'] !== '')
-        ? (float) $_GET['min_valoracion']
+    'min_valoracion' => isset($datosFiltros['min_valoracion']) && $datosFiltros['min_valoracion'] !== '' 
+        ? filter_var($datosFiltros['min_valoracion'], FILTER_VALIDATE_FLOAT, ['options' => ['min_range' => 0, 'max_range' => 5]])
         : null,
-    'max_tarifa'     => (isset($_GET['max_tarifa']) && $_GET['max_tarifa'] !== '')
-        ? (float) $_GET['max_tarifa']
+    'max_tarifa'     => isset($datosFiltros['max_tarifa']) && $datosFiltros['max_tarifa'] !== ''
+        ? filter_var($datosFiltros['max_tarifa'], FILTER_VALIDATE_FLOAT, ['options' => ['min_range' => 0]])
         : null,
-    'tipos_mascotas' => (isset($_GET['tipos_mascotas']) && is_array($_GET['tipos_mascotas']) && count($_GET['tipos_mascotas']))
-        ? $_GET['tipos_mascotas']
+    'tipos_mascotas' => isset($datosFiltros['tipos_mascotas']) && is_array($datosFiltros['tipos_mascotas'])
+        ? array_map('htmlspecialchars', $datosFiltros['tipos_mascotas'])
         : [],
-    'zona'           => (isset($_GET['zona']) && trim($_GET['zona']) !== '')
-        ? trim($_GET['zona'])
+    'zona'           => isset($datosFiltros['zona']) && trim($datosFiltros['zona']) !== ''
+        ? htmlspecialchars(trim($datosFiltros['zona']))
         : null,
-    'verificado'     => isset($_GET['verificado']),
+    'verificado'     => isset($datosFiltros['verificado']),
 ];
 
 //inicializo las variables que uso
@@ -67,39 +78,12 @@ $error = null;
 
 <!-- Contenido principal  -->
 <div class="contenedor-principal">
-
-    <!-- Formulario de filtros -->
     <h2 class="titulo-centrado">Filtrar Cuidadores</h2>
-    <form method="get" class="form-filtros">
-        <label>Valoración mínima:
-            <input type="number" name="min_valoracion" step="0.1" min="0" max="5" value="<?= htmlspecialchars($_GET['min_valoracion'] ?? '') ?>">
-        </label>
-        <label>Tarifa máxima (€):
-            <input type="number" name="max_tarifa" step="0.5" min="0" value="<?= htmlspecialchars($_GET['max_tarifa'] ?? '') ?>">
-        </label>
-        <label>Tipos de mascotas:
-            <div class="dropdown">
-                <button type="button" class="dropdown-toggle">Seleccionar tipos</button>
-                <div class="dropdown-menu">
-                    <label><input type="checkbox" name="tipos_mascotas[]" value="Perro" <?= in_array('Perro', $filtros['tipos_mascotas']) ? 'checked' : '' ?>> Perro</label>
-                    <label><input type="checkbox" name="tipos_mascotas[]" value="Gato" <?= in_array('Gato', $filtros['tipos_mascotas']) ? 'checked' : '' ?>> Gato</label>
-                    <label><input type="checkbox" name="tipos_mascotas[]" value="Conejo" <?= in_array('Conejo', $filtros['tipos_mascotas']) ? 'checked' : '' ?>> Conejo</label>
-                    <label><input type="checkbox" name="tipos_mascotas[]" value="Pajaros" <?= in_array('Pajaros', $filtros['tipos_mascotas']) ? 'checked' : '' ?>> Pájaros</label>
-                    <label><input type="checkbox" name="tipos_mascotas[]" value="Reptiles" <?= in_array('Reptiles', $filtros['tipos_mascotas']) ? 'checked' : '' ?>> Reptiles</label>
-                    <label><input type="checkbox" name="tipos_mascotas[]" value="Otro" <?= in_array('Otro', $filtros['tipos_mascotas']) ? 'checked' : '' ?>> Otro</label>
-                </div>
-            </div>
-        </label>
-        <label>Zona:
-            <input type="text" name="zona" value="<?= htmlspecialchars($_GET['zona'] ?? '') ?>">
-        </label>
-        <label>
-            <input type="checkbox" name="verificado" <?= $filtros['verificado'] ? 'checked' : '' ?>> Solo verificados
-        </label>
-        <button type="submit" class="btn-filter">Aplicar filtros</button>
-    </form>
+    <!-- Mostrar formulario de filtros -->
+    <?= $formFiltros->mostrarFormulario($datosFiltros) ?>
+    
     <!-- Mensaje de resultados -->
-    <?php if (!empty($_GET)): ?>
+    <?php if (!empty($datosFiltros)): ?>
         <p class="resultado-filtro"><?= count($cuidadores) ?> cuidador<?= count($cuidadores) === 1 ? '' : 'es' ?> encontrado<?= count($cuidadores) === 1 ? '' : 's' ?>.</p>
     <?php endif; ?>
 
