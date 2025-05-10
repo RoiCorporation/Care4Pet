@@ -116,6 +116,9 @@
                         <!-- Si no hay foto, mostramos la foto por defecto -->
                         <img src="<?= RUTA_IMGS ?>perfil_rand.png" alt="Foto de dueno" width="100" height="100">
                     <?php } ?>
+                <form action="subir_foto_perfil.php" method="get" style="margin-top: 10px;">
+                    <button type="submit">Cambiar Foto de Perfil</button>
+                </form>
 
 
         <h2>Información basica de tu perfil:</h2>
