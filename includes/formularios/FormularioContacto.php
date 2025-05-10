@@ -30,19 +30,19 @@ class FormularioContacto extends Formulario {
             $htmlErroresGlobales
                 <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
 
-                    <label for="nombre">Nombre</label>
+                    <label for="campoNombre">Nombre</label>
                     <input type="text" name="nombre" id="campoNombre" placeholder="Nombre" value="$nombre" required>
                     {$erroresCampos['nombre']}
 
-                    <label for="emailUsuario">Email</label>
+                    <label for="campoEmail">Email</label>
                     <input type="email" name="emailUsuario" id="campoEmail" placeholder="Correo Electrónico" value="$emailUsuario" required>
                     {$erroresCampos['emailUsuario']}
 
-                    <label for="telefono">Teléfono</label>
+                    <label for="campoTelefono">Teléfono</label>
                     <input type="tel" name="telefono" id="campoTelefono" placeholder="Teléfono" value="$telefono" pattern="[0-9]{9}">
                     {$erroresCampos['telefono']}
 
-                    <label for="mensaje">Mensaje</label>
+                    <label for="campoMensaje">Mensaje</label>
                     <textarea name="mensaje" id="campoMensaje" placeholder="Mensaje" required>$mensaje</textarea>
                     {$erroresCampos['mensaje']}
 
