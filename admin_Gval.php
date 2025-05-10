@@ -16,7 +16,7 @@ $listaReservas = DAOReserva::getInstance()->leerTodasLasReservas();
 
 // Crear tabla HTML para mostrar las valoraciones
 $tablaValoraciones = <<<EOS
-    <h1>Gestión de Comentarios Adicionales en Reservas</h1>
+    <h1>Gestión de Comentarios en las Reservas</h1>
     <table class="tabla-admin-mensajes">
         <tr>
             <th>ID Reserva</th>
