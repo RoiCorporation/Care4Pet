@@ -15,7 +15,7 @@ if (file_exists($configJsonPath)) {
 }
 ?>
 <header>
-    <img src="img/logo_menor.png"<?= htmlspecialchars($configSitio['logo']) ?>" alt="Logo Menor" class="logo_menor">
+    <img src="img/logo_menor.png"<?= htmlspecialchars($configSitio['logo']) ?> alt="Logo Menor" class="logo_menor">
     <h1><?= htmlspecialchars($configSitio['titulo']) ?></h1>
     <h3><?= htmlspecialchars($configSitio['descripcion']) ?></h3>
     <?php
