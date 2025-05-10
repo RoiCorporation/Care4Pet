@@ -78,14 +78,17 @@ $error = null;
             <input type="number" name="max_tarifa" step="0.5" min="0" value="<?= htmlspecialchars($_GET['max_tarifa'] ?? '') ?>">
         </label>
         <label>Tipos de mascotas:
-            <select name="tipos_mascotas[]" multiple>
-                <option value="Perro" <?= in_array('Perro',$filtros['tipos_mascotas']) ? 'selected' : '' ?>>Perro</option>
-                <option value="Gato" <?= in_array('Gato',$filtros['tipos_mascotas']) ? 'selected' : '' ?>>Gato</option>
-                <option value="Conejo" <?= in_array('Conejo',$filtros['tipos_mascotas']) ? 'selected' : '' ?>>Conejo</option>
-                <option value="Pajaros"<?= in_array('Pajaros',$filtros['tipos_mascotas']) ? 'selected' : '' ?>>Pájaros</option>
-                <option value="Reptiles"<?= in_array('Reptiles',$filtros['tipos_mascotas']) ? 'selected' : '' ?>>Reptiles</option>
-                <option value="Otro" <?= in_array('Otro',$filtros['tipos_mascotas']) ? 'selected' : '' ?>>Otro</option>
-            </select>
+            <div class="dropdown">
+                <button type="button" class="dropdown-toggle">Seleccionar tipos</button>
+                <div class="dropdown-menu">
+                    <label><input type="checkbox" name="tipos_mascotas[]" value="Perro" <?= in_array('Perro', $filtros['tipos_mascotas']) ? 'checked' : '' ?>> Perro</label>
+                    <label><input type="checkbox" name="tipos_mascotas[]" value="Gato" <?= in_array('Gato', $filtros['tipos_mascotas']) ? 'checked' : '' ?>> Gato</label>
+                    <label><input type="checkbox" name="tipos_mascotas[]" value="Conejo" <?= in_array('Conejo', $filtros['tipos_mascotas']) ? 'checked' : '' ?>> Conejo</label>
+                    <label><input type="checkbox" name="tipos_mascotas[]" value="Pajaros" <?= in_array('Pajaros', $filtros['tipos_mascotas']) ? 'checked' : '' ?>> Pájaros</label>
+                    <label><input type="checkbox" name="tipos_mascotas[]" value="Reptiles" <?= in_array('Reptiles', $filtros['tipos_mascotas']) ? 'checked' : '' ?>> Reptiles</label>
+                    <label><input type="checkbox" name="tipos_mascotas[]" value="Otro" <?= in_array('Otro', $filtros['tipos_mascotas']) ? 'checked' : '' ?>> Otro</label>
+                </div>
+            </div>
         </label>
         <label>Zona:
             <input type="text" name="zona" value="<?= htmlspecialchars($_GET['zona'] ?? '') ?>">
@@ -93,7 +96,7 @@ $error = null;
         <label>
             <input type="checkbox" name="verificado" <?= $filtros['verificado'] ? 'checked' : '' ?>> Solo verificados
         </label>
-        <button type="submit">Aplicar filtros</button>
+        <button type="submit" class="btn-filter">Aplicar filtros</button>
     </form>
     <!-- Mensaje de resultados -->
     <?php if (!empty($_GET)): ?>

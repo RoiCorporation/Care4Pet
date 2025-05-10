@@ -60,7 +60,7 @@ body {
 
 
 
-/* estilos item de reserva */
+
 /* =========================
    IMPORTAR FONTE
    ========================= */
@@ -100,7 +100,7 @@ body {
     top: 0px;  
     height: auto;     
     opacity: 0.8;    /* Transparencia: 1 = opaco, 0 = total transparente */
-    width: 120px; /* Adjust logo size for smaller screens */
+    width: 120px; /* Ajustar tamaño del logo para pantallas pequeñas */
     margin-bottom: 10px;
 }
    /* Titulo principal */
@@ -128,7 +128,7 @@ body {
     gap: 0; 
     flex-wrap: wrap;
     justify-content: center;
-    display: inline-block;      /* buttons agrupados */  
+    display: inline-block;      /* Agrupar botones */  
     overflow: hidden;           
   }
 
@@ -143,8 +143,8 @@ body {
     margin-top: 5px;           
     border: none;      
     border-radius: 0;   
-    padding: 8px 15px; /* Adjust button padding */
-    font-size: 14px; /* Adjust font size */
+    padding: 8px 15px; /* Ajustar el relleno del botón */
+    font-size: 14px; /* Ajustar el tamaño de la fuente */
   }
    /* efecto hover */
    header nav .menu-bar a.button:hover {
@@ -181,13 +181,13 @@ body {
     width: 200px;            
     display: block;
     margin: 0 auto;
-    opacity: 0;              /* inicia invisible */
-    transform: translateY(20px); /* deslocamento pequeño */
-    animation: fadeIn 1s forwards; /* animacion sencilla */
-    animation-delay: 0.7s;   /* delay */
+    opacity: 0;              /* Inicia invisible */
+    transform: translateY(20px); /* Desplazamiento pequeño */
+    animation: fadeIn 1s forwards; /* Animación sencilla */
+    animation-delay: 0.7s;   /* Retraso */
   }
   
-  /* Definicion del fadeIn */
+  /* Definición del fadeIn */
   @keyframes fadeIn {
     to {
       opacity: 1;
@@ -254,6 +254,9 @@ body {
 
 .reserva-details {
     display: flex;
+    justify-content: space-between; /* Align items horizontally */
+    align-items: flex-start; /* Align items at the top */
+    gap: 20px; /* Add spacing between sections */
 }
 
 .reserva-info,
@@ -295,6 +298,18 @@ body {
     margin-left: 20px;
 }
 
+.mascota-actions button {
+    padding: 10px 20px;
+    background-color: #ffb077; 
+    color: #062932;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.3s;
+    margin-top: 15px;         
+    border: none;      
+    border-radius: 5px; 
+    bottom: 0px;
+}
+
 .mascota-info {
     flex: 1;
     display: flex;
@@ -333,6 +348,17 @@ main {
     justify-content: center;
     flex-direction: column;
     text-align: center;
+}
+
+.mascota-form button {
+    padding: 10px 20px;
+    background-color: #ffb077; 
+    color: #062932;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.3s;
+    margin-top: 15px;         
+    border: none;      
+    border-radius: 5px; 
 }
 
 
@@ -612,20 +638,20 @@ main {
     }
 
     .logo_menor {
-        width: 100px; /* Further reduce logo size */
+        width: 100px; /* Reducir aún más el tamaño del logo */
     }
 
     header h1 {
-        font-size: 1.8rem; /* Adjust title size */
+        font-size: 1.8rem; /* Ajustar tamaño del título */
     }
 
     header h3 {
-        font-size: 1rem; /* Adjust subtitle size */
+        font-size: 1rem; /* Ajustar tamaño del subtítulo */
     }
 
     header nav .menu-bar a.button {
-        padding: 6px 10px; /* Reduce button padding */
-        font-size: 12px; /* Reduce font size */
+        padding: 6px 10px; /* Reducir el relleno del botón */
+        font-size: 12px; /* Reducir tamaño de fuente */
         margin-top: 5px;
     }
     .titulosAd h2 {
@@ -637,6 +663,138 @@ main {
         font-size: 0.9rem;
     }
 }
+
+
+/* ====== PERFIL INFO ====== */
+.perfil-info {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2rem;
+    padding: 1.5rem;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+  }
+  
+  /* Cabeçalho grande ocupa toda a largura */
+  .perfil-info > h2 {
+    flex-basis: 100%;
+    margin-bottom: 1rem;
+    font-size: 1.75rem;
+    color: #034047;
+  }
+  
+  /* Coluna de texto com os dados */
+  .perfil-info .info-text {
+    flex: 1 1 200px;
+    line-height: 1.6;
+    color: #333;
+  }
+  .perfil-info .info-text p {
+    margin: .4rem 0;
+  }
+  
+  /* Foto de perfil arredondada */
+  .perfil-info .foto-perfil {
+    flex: 0 0 120px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #034047;
+  }
+  .perfil-info .foto-perfil img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* Mensagem de boas-vindas sob os dados */
+  .perfil-info h2 + h2 {
+    flex-basis: 100%;
+    margin-top: 1.5rem;
+    font-size: 1.5rem;
+    color: #034047;
+  }
+  
+  /* ====== VERIFICACIÓN DE IDENTIDAD ====== */
+  .perfil-info h3 {
+    flex-basis: 100%;
+    margin-top: 2rem;
+    font-size: 1.25rem;
+    color: #034047;
+  }
+  
+  /* Status side by side com o formulário */
+  .perfil-info .verificacion {
+    display: flex;
+    flex-wrap: nowrap; /* Ensure elements stay on the same line */
+    align-items: center;
+    justify-content: space-between; /* Distribute space between elements */
+    gap: 1rem;
+    margin-top: 1rem;
+    width: 100%;
+  }
+  
+  /* Ícone de status */
+  .perfil-info .verificacion .status {
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    color: #d9534f;
+    flex-shrink: 0; /* Prevent shrinking of the status text */
+    margin-right: 1rem; /* Add spacing between status and form */
+  }
+  .perfil-info .verificacion .status--ok {
+    color: #28a745;
+  }
+  
+  /* Estilización do formulário de upload */
+  .perfil-info .verificacion form {
+    display: flex;
+    flex-wrap: nowrap; /* Keep form elements on the same line */
+    align-items: center;
+    gap: 0.5rem; /* Reduce gap between form elements */
+    flex-grow: 1; /* Allow the form to take up remaining space */
+    justify-content: flex-end; /* Align form elements to the right */
+  }
+  
+  /* Esconder input file nativo e estilizar label */
+  .perfil-info .verificacion input[type="file"] {
+    display: none;
+  }
+  .perfil-info .verificacion label[for="documento"] {
+    background: #f0f0f0;
+    padding: 0.6rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    text-align: center; /* Center text inside the label */
+    min-width: 150px; /* Ensure consistent width */
+    flex-shrink: 0; /* Prevent shrinking of the label */
+  }
+  .perfil-info .verificacion label[for="documento"]:hover {
+    background: #e4e4e4;
+  }
+  
+  /* Botão de enviar */
+  .perfil-info .verificacion button {
+    padding: 10px 20px;
+    background-color: #ffb077; 
+    color: #062932;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  .perfil-info .verificacion button:hover {
+    background-color: #ffddc5;
+    transform: scale(1.05);
+  }
+  
 
 /* Estilos para la verificación */
 .verificado {
@@ -952,4 +1110,86 @@ mensajes de otro usuario */
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
+}
+
+.button-ver-reserva {
+    display: inline-block;    
+    background-color: #ffb077; 
+    color: #062932;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s, transform 0.3s;
+    margin: 0;
+    margin-top: 5px;           
+    border: none;      
+    border-radius: 0;   
+    padding: 8px 15px; /* Ajustar el relleno del botón */
+    font-size: 14px; /* Ajustar el tamaño de la fuente */
+}
+
+.button-ver-reserva:hover {
+    background-color: #ffddc5;;
+     transform: scale(1.05);
+}
+
+/* Dropdown styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    padding: 10px 20px;
+    background-color: #ffb077;
+    color: #062932;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.dropdown-toggle:hover {
+    background-color: #ffddc5;
+    transform: scale(1.05);
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    z-index: 1000;
+    min-width: 200px;
+}
+
+.dropdown-menu label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #333;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Button styles for filters */
+.btn-filter {
+    padding: 10px 20px;
+    background-color: #ffb077;
+    color: #062932;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.btn-filter:hover {
+    background-color: #ffddc5;
+    transform: scale(1.05);
 }

@@ -40,7 +40,7 @@ $jsExtra .= '<script src="js/validaciones_formularios.js" defer></script>';
     </div>
 
     <?php require(dirname(__DIR__) . '/comun/pie_pagina.php'); ?>
-    <?php require(dirname(__DIR__) . '/comun/aviso_legal.php'); ?>
+
 
 
     <?= $jsExtra ?>

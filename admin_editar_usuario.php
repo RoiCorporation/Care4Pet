@@ -29,7 +29,10 @@ $form = new FormularioEditarUsuario(
     $usuario->direccion,
     $usuario->correo,
     $usuario->telefono,
-    $usuario->esCuidador
+    $usuario->esCuidador,
+    $usuario->verificado,
+    $usuario->documento_verificacion
+
 );
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
