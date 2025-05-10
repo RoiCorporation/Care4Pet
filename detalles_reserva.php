@@ -110,10 +110,10 @@
 		echo "</div>";
 
 
-		$ffin = new DateTime($reserva->getFechaFin());
+		$ffin = new DateTime($reserva->getFechaFin()); //  FechaFin incluye hora y minutos
 		$now = new DateTime();
 
-		if ($reserva->getValoracion() == NULL && $reserva->getEsAceptadaPorCuidador() == true && $ffin < $now) {
+		if ($reserva->getValoracion() == NULL && $reserva->getEsAceptadaPorCuidador() == true && $ffin <= $now) {
 			echo "<div class='reserva-details'>";
 			// formulario valoracion
 			echo "<div class='form-valoracion'>";
