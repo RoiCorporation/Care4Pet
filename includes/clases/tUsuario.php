@@ -9,9 +9,7 @@
         public $id, $nombre, $apellidos, $correo, $contrasena, $salt,
             $dni, $telefono, $fotoPerfil, $direccion, $esDueno, 
             $esCuidador, $esAdmin, $cuentaActiva, $fecha_registro,
-            $documento_verificacion;
-
-        private $verificado; // Add a property to store verification status
+            $documento_verificacion, $verificado;
 
             
         // Constructor
