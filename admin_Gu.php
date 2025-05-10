@@ -17,7 +17,6 @@ if (isset($_SESSION['mensaje_exito'])) {
 }
 
 // Obtener usuarios no administradores
-// Obtener usuarios no administradores
 $db = DatabaseConnection::getInstance();
 $conn = $db->getConnection();
 $sql = "SELECT idUsuario, Nombre, Apellidos, Correo, DNI, FotoPerfil, esCuidador, esDueno FROM usuarios WHERE esAdmin = 0";

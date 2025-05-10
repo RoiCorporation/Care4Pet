@@ -57,25 +57,6 @@ INSERT INTO `mascotas` (`idMascota`, `FotoMascota`, `Descripcion`, `TipoMascota`
 (999006, 'mascota101.png', 'Gato independiente, le gusta explorar', 2),
 (386894591, NULL, 'Amable perro Juan', 1);
 
---
--- Dumping data for table `mensajes`
---
-
-INSERT INTO `mensajes` (`idMensaje`, `idUsuarioEmisor`, `idUsuarioReceptor`, `fecha`, `mensaje`) VALUES
-(7736948, 1234567891, 1234567893, '2025-05-07 18:25:07', 'T&uacute; cuidas tambi&eacute;n a periquitos?'),
-(153293382, 205753803, 205753802, '2025-05-06 14:54:53', 'Dime'),
-(554913700, 1234567891, 1234567893, '2025-05-07 18:24:59', 'Buenos d&iacute;as, Mario!'),
-(741471408, 205753803, 205753802, '2025-05-06 15:00:28', 'Venga!'),
-(847762746, 205753803, 205753802, '2025-05-06 14:42:46', 'Ah&iacute; andamos...'),
-(981710315, 205753803, 205753802, '2025-05-06 14:55:26', 'Bien, sin novedad:)'),
-(989956312, 205753802, 205753803, '2025-05-06 15:00:20', 'Cenamos hoy?'),
-(1029779168, 205753803, 205753802, '2025-05-06 14:01:42', 'Buenos d&iacute;as, Mar&iacute;a!'),
-(1125472986, 205753802, 205753803, '2025-05-06 14:32:19', 'C&oacute;mo te encuentras?'),
-(1320760457, 205753802, 205753803, '2025-05-06 14:55:10', 'Qu&eacute; tal fue la convenci&oacute;n??'),
-(1511948377, 205753802, 205753803, '2025-05-06 15:00:07', 'Bien, sin novedad;)'),
-(1774070802, 205753802, 205753803, '2025-05-06 15:17:01', 'asdfasdfasdf'),
-(1855060252, 1234567893, 1234567891, '2025-05-07 18:25:44', 'Hola Laura!'),
-(1882503406, 205753802, 205753803, '2025-05-06 14:42:56', 'Entiendo...');
 
 --
 -- Dumping data for table `reservas`
@@ -129,6 +110,34 @@ INSERT INTO `visitas` (`id`, `fecha`, `ip`, `idUsuario`) VALUES
 (3, '2025-04-13 19:19:23', '::1', NULL),
 (4, '2025-04-21 11:02:27', '::1', NULL);
 COMMIT;
+
+--
+-- Dumping data for table `mensajes`
+--
+
+INSERT INTO `mensajes` (`idMensaje`, `idUsuarioEmisor`, `idUsuarioReceptor`, `fecha`, `mensaje`) VALUES
+(7736948, 1234567891, 1234567893, '2025-05-07 18:25:07', 'T&uacute; cuidas tambi&eacute;n a periquitos?'),
+(153293382, 205753803, 205753802, '2025-05-06 14:54:53', 'Dime'),
+(554913700, 1234567891, 1234567893, '2025-05-07 18:24:59', 'Buenos d&iacute;as, Mario!'),
+(741471408, 205753803, 205753802, '2025-05-06 15:00:28', 'Venga!'),
+(847762746, 205753803, 205753802, '2025-05-06 14:42:46', 'Ah&iacute; andamos...'),
+(981710315, 205753803, 205753802, '2025-05-06 14:55:26', 'Bien, sin novedad:)'),
+(989956312, 205753802, 205753803, '2025-05-06 15:00:20', 'Cenamos hoy?'),
+(1029779168, 205753803, 205753802, '2025-05-06 14:01:42', 'Buenos d&iacute;as, Mar&iacute;a!'),
+(1125472986, 205753802, 205753803, '2025-05-06 14:32:19', 'C&oacute;mo te encuentras?'),
+(1320760457, 205753802, 205753803, '2025-05-06 14:55:10', 'Qu&eacute; tal fue la convenci&oacute;n??'),
+(1511948377, 205753802, 205753803, '2025-05-06 15:00:07', 'Bien, sin novedad;)'),
+(1774070802, 205753802, 205753803, '2025-05-06 15:17:01', 'asdfasdfasdf'),
+(1855060252, 1234567893, 1234567891, '2025-05-07 18:25:44', 'Hola Laura!'),
+(1882503406, 205753802, 205753803, '2025-05-06 14:42:56', 'Entiendo...');
+
+--
+-- Dumping data for table `mensajes_contacto`
+--
+
+INSERT INTO mensajes_contacto (nombreUsuario, correoUsuario, telefonoUsuario, mensaje, estado)
+VALUES ('Fernando López', 'jfernando.lopez@gmail.com', '612345680', 'Hola, esto es un mensaje de prueba', 'pendiente');
+
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
