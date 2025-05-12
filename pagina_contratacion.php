@@ -1,7 +1,4 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
 // esta pagina muestra los cuidadores disponibles en nuestra web
 session_start();
 
@@ -68,7 +65,6 @@ $error = null;
 <html lang="es">
 <head>
     <link rel="stylesheet" type="text/css" href="<?= RUTA_CSS ?>estilo.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Página de Contratación</title>
 </head>
