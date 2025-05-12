@@ -5,6 +5,7 @@ session_start();
 use Care4Pet\includes\mysql\DAOs\DAOCuidador;
 use Care4Pet\includes\mysql\DAOs\DAOUsuario;
 use Care4Pet\includes\formularios\FormularioFiltrosCuidadores;
+ 
 
 require_once __DIR__ . '/includes/config.php';
 
@@ -37,42 +38,31 @@ $cuidadores = [];
 $todosUsuarios = [];
 $error = null;
 
+try {
+    // DAOs
+    $daoCuidador = DAOCuidador::getInstance();
+    $daoUsuario = DAOUsuario::getInstance();
 
-        try {
-             // DAOs
-             $daoCuidador = DAOCuidador::getInstance();
-            $daoUsuario = DAOUsuario::getInstance();
-    
-            //todos los cuidadores y usuarios
-            // $cuidadores = $daoCuidador->leerTodosLosCuidadores();
-            $cuidadores = $daoCuidador->leerCuidadoresConFiltros($filtros);
-            $todosUsuarios = $daoUsuario->leerTodosLosUsuarios();
-    
-            // ---------------------indexo usuarios por su ID para búsqueda rápida
-            $usuariosIndexados = [];
-            foreach ($todosUsuarios as $usuario) {
-                    $usuariosIndexados[$usuario->getId()] = $usuario;
-            }
-        } 
-        catch (Exception $e) {
-            error_log("Error en pagina_contratacion.php: " . $e->getMessage());
-            $error = "Ocurrió un error al cargar los cuidadores. Por favor, inténtelo más tarde.";
-        }
+    //todos los cuidadores y usuarios
+    $cuidadores = $daoCuidador->leerCuidadoresConFiltros($filtros);
+    $todosUsuarios = $daoUsuario->leerTodosLosUsuarios();
 
+    // ---------------------indexo usuarios por su ID para búsqueda rápida
+    $usuariosIndexados = [];
+    foreach ($todosUsuarios as $usuario) {
+        $usuariosIndexados[$usuario->getId()] = $usuario;
+    }
+} catch (Exception $e) {
+    error_log("Error en pagina_contratacion.php: " . $e->getMessage());
+    $error = "Ocurrió un error al cargar los cuidadores. Por favor, inténtelo más tarde.";
+}
+
+// Configurar el contenido para la plantilla
+$tituloPagina = 'Página de Contratación';
+
+// Construye el contenido principal (mantén tu lógica actual)
+ob_start(); // Inicia el buffer de salida
 ?>
-
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <link rel="stylesheet" type="text/css" href="<?= RUTA_CSS ?>estilo.css" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Página de Contratación</title>
-</head>
-<body>
-
-<?php require_once __DIR__ . '/includes/vistas/comun/cabecera.php'; ?>
-
-<!-- Contenido principal  -->
 <div class="contenedor-principal">
     <h2 class="titulo-centrado">Filtrar Cuidadores</h2>
     <!-- Mostrar formulario de filtros -->
@@ -82,7 +72,6 @@ $error = null;
     <?php if (!empty($datosFiltros)): ?>
         <p class="resultado-filtro"><?= count($cuidadores) ?> cuidador<?= count($cuidadores) === 1 ? '' : 'es' ?> encontrado<?= count($cuidadores) === 1 ? '' : 's' ?>.</p>
     <?php endif; ?>
-
 
     <h2 class="titulo-centrado">Cuidadores Disponibles</h2>
 
@@ -98,7 +87,6 @@ $error = null;
                     <?php $usuario = $usuariosIndexados[$cuidador->getId()]; ?>
                     
                     <div class="tarjeta-cuidador">
-
                         <!-- Foto de perfil -->
                         <?php if ($usuario->getFotoPerfil()): ?>
                             <img src="<?= RUTA_IMGS . $usuario->getFotoPerfil() ?>" 
@@ -113,12 +101,8 @@ $error = null;
                         <div class="info-cuidador">
                         <h3>
                             <?= htmlspecialchars($usuario->getNombre() . ' ' . $usuario->getApellidos()) ?>
-                            <?php
-                                echo "<!-- Verificado para " . $usuario->getId() . ": " . $usuario->getVerificado() . " -->";  // Cambié el acceso aquí
-                            ?>
-
-                            <?php if ($usuario->getVerificado() == 1): ?> <!-- Cambié el acceso aquí -->
-                                <i class="fas fa-check-circle" style="color: #1DA1F2; margin-left: 5px;"></i> <!-- Ícono de verificación -->
+                            <?php if ($usuario->getVerificado() == 1): ?>
+                                <i class="fas fa-check-circle" style="color: #1DA1F2; margin-left: 5px;"></i>
                             <?php endif; ?>
                         </h3>
                             <p class="valoracion">Valoración: <?= htmlspecialchars($cuidador->getValoracion()) ?>/5</p>
@@ -139,19 +123,13 @@ $error = null;
                             </div>
                         </div>
                     </div>
-                <?php else: ?>
-                    <!-- Comentario para depuración -->
-                    <!-- Usuario no encontrado para cuidador ID: <?= $cuidador->getId() ?> -->
                 <?php endif; ?>
             <?php endforeach; ?>
         <?php endif; ?>
     </div>
 </div>
+<?php
+$contenidoPagina = ob_get_clean(); // Obtiene el contenido del buffer
 
-<?php 
-require_once __DIR__ . '/includes/vistas/comun/pie_pagina.php';
-require_once __DIR__ . '/includes/vistas/comun/aviso_legal.php'; 
-?>
-
-</body>
-</html>
+// Incluye la plantilla directamente
+require __DIR__ . '/includes/vistas/plantillas/plantilla.php';
